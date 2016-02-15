@@ -7,27 +7,36 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.Component;
+//import java.awt.Component;
+import java.awt.Toolkit;
 
 import javax.imageio.*;
 
-public class  UserInterface extends Frame {
+public class  MenuUI extends Frame {
 
 	//Costruttore dela classe che va a chiamare il metodo PrepareGui()
-	 public UserInterface(){  
+	 public MenuUI(){  
 	      super("Munchkin");
 	      prepareGUI();
 	   }
-      
+     
+	 	//Prendo le dimensione dello schermo per dimensionare la finestra
+	   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	   double width = screenSize.getWidth();
+	   double height = screenSize.getHeight();
+	   
+      int w= (int) width;
+      int h= (int) height;
+	 
 	 public void paint(Graphics g) {
 		    Image img = createImage();
-		    g.drawImage(img, 200,200,this);
+		    g.drawImage(img, 0,0,w,h,null);
 		  }
 	 
 	//Metodo che gestisce la finestra settando altezza e larghezza
 	 
 	  private void prepareGUI(){  
-	      setSize(1024,800);
+	      setSize(w,h);
 	      addWindowListener(new WindowAdapter() {
 	         public void windowClosing(WindowEvent windowEvent){
 	            System.exit(0);
@@ -52,6 +61,5 @@ public class  UserInterface extends Frame {
 		    return img;
 		  }
 	   
-     
-        
+
 }

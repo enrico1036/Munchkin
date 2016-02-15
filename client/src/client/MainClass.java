@@ -1,11 +1,11 @@
 package client;
 
-import user_interface.UserInterface;
+import user_interface.MenuUI;
  
 public class MainClass   {
 	
 	   public static void main(String[] args){
-		   UserInterface  user_interface = new UserInterface();  
+		   MenuUI  user_interface = new MenuUI();  
 		   user_interface.setVisible(true);
 	   }
 
