@@ -51,7 +51,7 @@ public class  MenuUI extends Frame {
 	 */
 	   private Image createImage(){     
 		   BufferedImage img = null;
-		   File sourceimage = new File("Resources/Images/homeimage.png");
+		   File sourceimage = new File("Resources/Images/home.jpg");
 		   try {
 			  img = ImageIO.read(sourceimage);
 			} catch (IOException e) {
