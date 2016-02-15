@@ -1,2 +1,2 @@
 # Munchkin
-An online version of the card play "Munchkin™". Only for educational purpose, not for distribution.
+A multiplayer Java version of the card game "Munchkin™". Only for educational purpose, not for distribution.
