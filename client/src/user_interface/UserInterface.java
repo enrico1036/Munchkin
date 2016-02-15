@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Component;
 
 import javax.imageio.*;
 
@@ -20,13 +21,13 @@ public class  UserInterface extends Frame {
       
 	 public void paint(Graphics g) {
 		    Image img = createImage();
-		    g.drawImage(img, 20,20,this);
+		    g.drawImage(img, 200,200,this);
 		  }
 	 
 	//Metodo che gestisce la finestra settando altezza e larghezza
 	 
 	  private void prepareGUI(){  
-	      setSize(400,400);
+	      setSize(1024,800);
 	      addWindowListener(new WindowAdapter() {
 	         public void windowClosing(WindowEvent windowEvent){
 	            System.exit(0);
@@ -41,8 +42,9 @@ public class  UserInterface extends Frame {
 	 */
 	   private Image createImage(){     
 		   BufferedImage img = null;
+		   File sourceimage = new File("Resources/Images/homeimage.png");
 		   try {
-			    img = ImageIO.read(new File("/Resources/Images/homeimage.png"));
+			  img = ImageIO.read(sourceimage);
 			} catch (IOException e) {
 			}
 		    
