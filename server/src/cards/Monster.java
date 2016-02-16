@@ -8,6 +8,7 @@ public class Monster extends Card {
 	
 	
 	public Monster(int level) {
+		this.type = CardType.Door;
 		this.level = level;
 	}
 	
