@@ -8,7 +8,6 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-//import java.awt.Component;
 import java.awt.Toolkit;
 
 import javax.imageio.*;
@@ -25,15 +24,18 @@ public class  MenuUI extends Frame {
 	   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	   double width = screenSize.getWidth();
 	   double height = screenSize.getHeight();
-	   
+	  
+	   //Effettuo un cast per poter inserire le due grandezze sui metodi setSize() e drawImage()
       int w= (int) width;
       int h= (int) height;
       
       
 	  
-	  
+	  //Metodo paint che mi va a disegnera l'immagine in background
+     
 	 public void paint(Graphics g) {
 		    Image img = createImage();
+		    
 		    g.drawImage(img, 0,0,w,h,null);
 		    
 		  }
@@ -41,7 +43,7 @@ public class  MenuUI extends Frame {
 	//Metodo che gestisce la finestra settando altezza e larghezza
 	 
 	  private void prepareGUI(){  
-		 
+		  this.setSize(screenSize);
 	      addWindowListener(new WindowAdapter() {
 	         public void windowClosing(WindowEvent windowEvent){
 	            System.exit(0);
