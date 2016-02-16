@@ -1,5 +1,6 @@
 package user_interface;
 
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Graphics;
@@ -18,7 +19,7 @@ public class  MenuUI extends Frame {
 	 public MenuUI(){  
 	      super("Munchkin");
 	      prepareGUI();
-	   }
+	 	   }
      
 	 	//Prendo le dimensione dello schermo per dimensionare la finestra
 	   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -27,16 +28,19 @@ public class  MenuUI extends Frame {
 	   
       int w= (int) width;
       int h= (int) height;
-	 
+      
+	  
+	  
 	 public void paint(Graphics g) {
 		    Image img = createImage();
 		    g.drawImage(img, 0,0,w,h,null);
+		    
 		  }
 	 
 	//Metodo che gestisce la finestra settando altezza e larghezza
 	 
 	  private void prepareGUI(){  
-	      setSize(w,h);
+		 
 	      addWindowListener(new WindowAdapter() {
 	         public void windowClosing(WindowEvent windowEvent){
 	            System.exit(0);
