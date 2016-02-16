@@ -36,9 +36,9 @@ public class  MenuUI extends Frame {
 	 public void paint(Graphics g) {
 		
 		   File s1 = new File("Resources/Images/home.jpg");
-		   File s2 = new File("Resources/Images/connect_to_server.jpg");
-		   File s3 = new File("Resources/Images/option.jpg");
-		   File s4 = new File("Resources/Images/exit.jpg");
+		   File s2 = new File("Resources/Images/connect_to_server.png");
+		   File s3 = new File("Resources/Images/option.png");
+		   File s4 = new File("Resources/Images/exit.png");
 		 
 		 
 		 	Image back = createImage(s1);
