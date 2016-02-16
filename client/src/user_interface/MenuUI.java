@@ -28,7 +28,7 @@ public class  MenuUI extends Frame {
 	   
       int w= (int) width;
       int h= (int) height;
-      int ww=2;
+      
       
 	  
 	  
