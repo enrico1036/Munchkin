@@ -35,7 +35,8 @@ public class  MenuUI extends Frame {
      
 	 public void paint(Graphics g) {
 		    Image img = createImage();
-		     g.drawImage(img, 0,0,w,h,null);
+		     
+		    g.drawImage(img, 0,0,w,h,null);
 		    
 		  }
 	 
