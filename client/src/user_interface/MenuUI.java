@@ -34,9 +34,22 @@ public class  MenuUI extends Frame {
 	  //Metodo paint che mi va a disegnera l'immagine in background
      
 	 public void paint(Graphics g) {
-		    Image img = createImage();
-		    
-		   g.drawImage(img, 0,0,w,h,null);
+		
+		   File s1 = new File("Resources/Images/home.jpg");
+		   File s2 = new File("Resources/Images/connect_to_server.png");
+		   File s3 = new File("Resources/Images/option.png");
+		   File s4 = new File("Resources/Images/exit.png");
+		 
+		 
+		 	Image back = createImage(s1);
+		    Image conn = createImage(s2);
+		    Image opt = createImage(s3);
+		    Image exit = createImage(s4);
+		   g.drawImage(back, 0,0,w,h,null);
+		   g.drawImage(conn, 200,200,this);
+		   g.drawImage(opt, 200,300,this);
+		   g.drawImage(exit, 200,400,this);
+		   
 		    
 		  }
 	 
@@ -56,11 +69,12 @@ public class  MenuUI extends Frame {
 		che tale caricamento potrebbe non restituire niente e quindi conviene
 		gestire tale problema con un'eccezione.
 	 */
-	   private Image createImage(){     
-		   BufferedImage img = null;
-		   File sourceimage = new File("Resources/Images/home.jpg");
+	   private Image createImage(File b){     
+		   BufferedImage img=null;
+		   
 		   try {
-			  img = ImageIO.read(sourceimage);
+			  img = ImageIO.read(b);
+			  
 			} catch (IOException e) {
 			}
 		    
@@ -68,5 +82,5 @@ public class  MenuUI extends Frame {
 		    return img;
 		  }
 	   
-
+	
 }
