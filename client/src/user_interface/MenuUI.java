@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Toolkit;
-
 import javax.imageio.*;
+import java.awt.GraphicsDevice;
 
 public class  MenuUI extends Frame {
 
@@ -45,7 +45,7 @@ public class  MenuUI extends Frame {
 		    Image conn = createImage(s2);
 		    Image opt = createImage(s3);
 		    Image exit = createImage(s4);
-		   g.drawImage(back, 0,0,w,h,null);
+		   g.drawImage(back, 0,20,w,h-20,null);
 		   g.drawImage(conn, 200,200,this);
 		   g.drawImage(opt, 200,300,this);
 		   g.drawImage(exit, 200,400,this);
