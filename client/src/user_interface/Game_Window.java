@@ -4,15 +4,14 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 
-public class Game_Window extends JFrame implements KeyListener {
+public class Game_Window extends JFrame  {
 
 	
- 
-
-
+	
     public Game_Window() {
     	
     	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -22,10 +21,11 @@ public class Game_Window extends JFrame implements KeyListener {
     	int w= (int) ( width*0.8);
     	int h= (int) ( height*0.8);
     	
-
+    
+    	
     	  
-    	this.addKeyListener(this);
-    	this.setContentPane(new MenuUI());
+    	
+    	this.setContentPane(panels[2]);
     	this.setSize(w, h);
     	
     	int x = (int) ((width-w)/2);
@@ -46,32 +46,10 @@ public class Game_Window extends JFrame implements KeyListener {
 		
 	}
 
-
-
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-	
-		
-	}
-
-
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-	
-		
-	}
-
-
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		if (arg0.getKeyChar()=='a')
-		{
-			System.out.println("Sto beeeneeee");
-		}
-		
-		
-	}
-    
+    public void SetActivePanel(JPanel a)
+    {
+    	this.setContentPane(a);
+    	this.revalidate();
+    }
+    }
 }

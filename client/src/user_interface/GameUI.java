@@ -7,18 +7,22 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import client.MunchkinClient;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class MenuUI extends JPanel implements KeyListener{
+public class GameUI extends JPanel implements KeyListener{
 	
 	BufferedImage background=null;
 	
-	public MenuUI() {
+	public GameUI() {
 		
+		((Game_Window)(this.getParent())).SetActivePanel(a);
 		try {
-			this.background=ImageIO.read(new File("Resources/Images/home.jpg"));
+			this.background=ImageIO.read(new File("Resources/Images/option.png"));
+			this.addKeyListener(this);
+			
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -52,7 +56,7 @@ public class MenuUI extends JPanel implements KeyListener{
 		switch (e.getKeyChar())
 		{
 		case 'a':
-			this.setContentPane(panels[0]);
+			this.setContentPane(MunchkinClient.panels[0]);
 			
 			break;
 		case 's':
