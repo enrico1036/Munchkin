@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <image>
+        <name>connect_button</name>
+        <path>Resources/Images/connect_to_server.png</path>
+    </image>
+    <image>
+        <name>exit_button</name>
+        <path>Resources/Images/exit.png</path>
+    </image>
+    <image>
+        <name>menu_background</name>
+        <path>Resources/Images/home.jpg</path>
+    </image>
+    <image>
+        <name>option_button</name>
+        <path>Resources/Images/option.png</path>
+    </image>
+        <image>
+        <name>prova_inesistente</name>
+        <path>Resources/Images/immagine_non_esistente.png</path>
+    </image>
+</resources>

@@ -92,10 +92,9 @@ public class XmlImageLoader {
 			BufferedImage image = null;
 			try{
 				image = ImageIO.read(new File(path));
+				loadedImages.add(new Pair<String, BufferedImage>(name, image));
 			} catch (IOException e){
 				notLoaded.add(new Pair<String, String>(name, path));
-			} finally {
-				loadedImages.add(new Pair<String, BufferedImage>(name, image));
 			}
 		}
 	}
