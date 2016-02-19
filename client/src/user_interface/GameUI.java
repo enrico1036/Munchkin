@@ -15,46 +15,22 @@ public class GameUI extends GamePanel{
 	
 	BufferedImage background=null;
 	
-	private  Game_Window wnd;
-	public GameUI(Game_Window window) {
+	private  GameWindow wnd;
+	public GameUI(GameWindow window) {
 		wnd =window;
 		
-		try {
-			this.background=ImageIO.read(new File("Resources/Images/option.png"));
-			this.addKeyListener(this);
-			
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-			
-		}
-		this.addKeyListener(this);
+		this.background=MunchkinClient.getImage("option_button");
+	
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
-		g.drawImage(background,0,0, this.getWidth(), this.getHeight(),null);
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(background, 0,0, this.getWidth(), this.getHeight(),null);
 		
 	}
 
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-
-		switch (e.getKeyChar())
-		{
-		case 'a':
-			wnd.SetActivePanel((MunchkinClient.getPanel(0)));
-			
-			break;
-		case 's':
-			wnd.SetActivePanel(MunchkinClient.getPanel(2));
-			break;
-		}
-		
-		
-	}
 	
 }
 	

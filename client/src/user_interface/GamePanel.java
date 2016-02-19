@@ -1,5 +1,7 @@
 package user_interface;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -7,34 +9,40 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
-public abstract class GamePanel extends JPanel implements KeyListener,MouseListener {
+public abstract class GamePanel extends JPanel implements KeyListener,MouseListener,ActionListener {
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
+	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
+	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -57,4 +65,7 @@ public abstract class GamePanel extends JPanel implements KeyListener,MouseListe
 		
 	}
 
+
+
+	
 }
