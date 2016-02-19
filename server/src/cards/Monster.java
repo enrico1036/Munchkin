@@ -7,7 +7,8 @@ public class Monster extends Card {
 	private int earningTreasures;
 	
 	
-	public Monster(int level) {
+	public Monster(String title, int level) {
+		this.title = title;
 		this.type = CardType.Door;
 		this.level = level;
 	}
