@@ -2,7 +2,8 @@ package cards;
 
 public class Race extends Card {
 
-	public Race() {
+	public Race(String title) {
+		this.title = title;
 		this.type = CardType.Door;
 	}
 
