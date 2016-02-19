@@ -14,11 +14,11 @@ import client.MunchkinClient;
 public class GameUI extends GamePanel{
 	
 	BufferedImage background=null;
-	private static MunchkinClient client = new MunchkinClient();
-	private static Game_Window wnd = new Game_Window();
+	private  MunchkinClient client;
+	private  Game_Window wnd;
 	public GameUI() {
-	
-		
+		client = new MunchkinClient();
+		wnd = new Game_Window();
 		
 		try {
 			this.background=ImageIO.read(new File("Resources/Images/option.png"));

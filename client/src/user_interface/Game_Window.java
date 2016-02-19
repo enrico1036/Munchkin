@@ -23,7 +23,7 @@ public class Game_Window extends JFrame  {
     	
     	MunchkinClient client = new MunchkinClient();
     	
-    	this.setContentPane(MunchkinClient.getPanel(2));
+    	this.setContentPane(client.getPanel(2));
     	this.setSize(w, h);
     	
     	int x = (int) ((width-w)/2);
