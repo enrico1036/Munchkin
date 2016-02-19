@@ -9,7 +9,8 @@ import user_interface.LobbyUI;
 import user_interface.PauseUI;
  
 public class MunchkinClient   {
-	public static JPanel[] panels = new JPanel[4];
+	private static JPanel[] panels = new JPanel[4];
+	
 	
 	public MunchkinClient(){
 		panels[0]=new GameUI();
@@ -17,6 +18,10 @@ public class MunchkinClient   {
 		panels[2]=new MenuUI();
 		panels[3]=new PauseUI();
 		
+	}
+	
+	public static JPanel getPanel(int i) {
+		return panels[i];
 	}
 	
 	   public static void main(String[] args){

@@ -1,10 +1,10 @@
 package user_interface;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import client.MunchkinClient;
 
 
 
@@ -21,11 +21,9 @@ public class Game_Window extends JFrame  {
     	int w= (int) ( width*0.8);
     	int h= (int) ( height*0.8);
     	
-    
+    	MunchkinClient client = new MunchkinClient();
     	
-    	  
-    	
-    	this.setContentPane(panels[2]);
+    	this.setContentPane(MunchkinClient.getPanel(2));
     	this.setSize(w, h);
     	
     	int x = (int) ((width-w)/2);
@@ -51,5 +49,5 @@ public class Game_Window extends JFrame  {
     	this.setContentPane(a);
     	this.revalidate();
     }
+    
     }
-}

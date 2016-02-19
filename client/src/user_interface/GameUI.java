@@ -3,22 +3,23 @@ package user_interface;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
+
+
 import client.MunchkinClient;
 
-import javax.imageio.ImageIO;
-import javax.swing.JPanel;
-
-public class GameUI extends JPanel implements KeyListener{
+public class GameUI extends GamePanel{
 	
 	BufferedImage background=null;
-	
+	private static MunchkinClient client = new MunchkinClient();
+	private static Game_Window wnd = new Game_Window();
 	public GameUI() {
+	
 		
-		((Game_Window)(this.getParent())).SetActivePanel(a);
+		
 		try {
 			this.background=ImageIO.read(new File("Resources/Images/option.png"));
 			this.addKeyListener(this);
@@ -38,17 +39,6 @@ public class GameUI extends JPanel implements KeyListener{
 		
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -56,14 +46,14 @@ public class GameUI extends JPanel implements KeyListener{
 		switch (e.getKeyChar())
 		{
 		case 'a':
-			this.setContentPane(MunchkinClient.panels[0]);
+			wnd.SetActivePanel((client.getPanel(0)));
 			
 			break;
 		case 's':
-			this.setContentPane(panels[2]);
+			wnd.SetActivePanel(client.getPanel(2));
 			break;
 		}
-		this.revalidate();
+		
 		
 	}
 	

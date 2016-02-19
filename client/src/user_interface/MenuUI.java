@@ -1,20 +1,20 @@
 package user_interface;
 
-
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import client.MunchkinClient;
 
-public class MenuUI extends JPanel implements KeyListener{
+public class MenuUI extends GamePanel{
 	
 	BufferedImage background=null;
-	
+	private static MunchkinClient client = new MunchkinClient();
+	private static Game_Window wnd = new Game_Window();
 	public MenuUI() {
 		
 		try {
@@ -35,31 +35,19 @@ public class MenuUI extends JPanel implements KeyListener{
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void keyTyped(KeyEvent e) {
 
 		switch (e.getKeyChar())
 		{
-		case 'a':
-			this.setContentPane(panels[0]);
+		case 'z':
+			wnd.SetActivePanel(client.getPanel(0));
 			
 			break;
-		case 's':
-			this.setContentPane(panels[2]);
+		case 'x':
+			wnd.SetActivePanel(client.getPanel(2));
 			break;
 		}
-		this.revalidate();
+		
 		
 	}
 	
