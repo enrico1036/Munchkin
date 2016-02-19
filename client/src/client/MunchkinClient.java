@@ -19,25 +19,14 @@ public class MunchkinClient {
 
 	private static JPanel[] panels = new JPanel[4];
 	private static HashMap<String, BufferedImage> images;
-
+	private  Game_Window window;
 	public MunchkinClient() {
-		panels[0] = new GameUI();
-		panels[1] = new LobbyUI();
-		panels[2] = new MenuUI();
-		panels[3] = new PauseUI();
-
-	}
-
-	public static JPanel getPanel(int i) {
-		return panels[i];
-	}
-
-	public static void main(String[] args) {
-
-		MunchkinClient client = new MunchkinClient();
-
-		Game_Window window = new Game_Window();
+		window = new Game_Window();
 		window.setVisible(true);
+		panels[0] = new GameUI(window);
+		panels[1] = new LobbyUI();
+		panels[2] = new MenuUI(window);
+		panels[3] = new PauseUI();
 
 		XmlImageLoader loader = null;
 		try{
@@ -52,6 +41,17 @@ public class MunchkinClient {
 		for(Pair<String, BufferedImage> pair : loader.getImages()){
 			images.put(pair.getKey(), pair.getValue());
 		}
+
+	}
+
+	public static JPanel getPanel(int i) {
+		return panels[i];
+	}
+
+	public static void main(String[] args) {
+
+		MunchkinClient client = new MunchkinClient();
+
 		
 	}
 

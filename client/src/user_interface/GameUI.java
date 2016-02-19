@@ -14,11 +14,10 @@ import client.MunchkinClient;
 public class GameUI extends GamePanel{
 	
 	BufferedImage background=null;
-	private  MunchkinClient client;
+	
 	private  Game_Window wnd;
-	public GameUI() {
-		client = new MunchkinClient();
-		wnd = new Game_Window();
+	public GameUI(Game_Window window) {
+		wnd =window;
 		
 		try {
 			this.background=ImageIO.read(new File("Resources/Images/option.png"));
@@ -46,11 +45,11 @@ public class GameUI extends GamePanel{
 		switch (e.getKeyChar())
 		{
 		case 'a':
-			wnd.SetActivePanel((client.getPanel(0)));
+			wnd.SetActivePanel((MunchkinClient.getPanel(0)));
 			
 			break;
 		case 's':
-			wnd.SetActivePanel(client.getPanel(2));
+			wnd.SetActivePanel(MunchkinClient.getPanel(2));
 			break;
 		}
 		
