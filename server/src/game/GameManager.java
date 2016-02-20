@@ -13,23 +13,22 @@ public class GameManager extends StateMachine{
 	}
 	
 	
-	private static void begin() {
+	private void begin() {
 		
 	}
 	
-	private static void turn() {
-		
+	private void turn() {
+		Turn turn = new Turn();
+		while(turn.performStep());
 	}
 	
-	private static void end() {
+	private void end() {
 		
 	}
 	
 	//TODO: look for a method to make static performStep()
 	@Override
-	public void performStep() {
-		
-		//TODO: Insert your code here
+	public boolean performStep() {
 		switch(states[currentState]) {
 		case "Begin":
 			begin();
@@ -41,6 +40,7 @@ public class GameManager extends StateMachine{
 			end();
 			break;
 		}
-		super.performStep();
+		
+		return super.performStep();
 	}
 }

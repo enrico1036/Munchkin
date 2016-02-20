@@ -6,13 +6,18 @@ public class Turn extends StateMachine {
 
 	public Turn() {
 		super();
-		//TODO: Insert your code here
+		states = new String[4];
+		states[0] = "Draw";
+		states[1] = "Combat";
+		states[2] = "Trading";
+		states[3] = "Charity";
 	}
 	
 	@Override
-	public void performStep() {
+	public boolean performStep() {
 		// TODO Insert your code here
-		super.performStep();
+		
+		return super.performStep();
 	}
 
 }

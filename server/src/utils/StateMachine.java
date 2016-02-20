@@ -3,14 +3,14 @@ package utils;
 import javafx.util.Pair;
 
 public abstract class StateMachine {
-	public static int currentState;
-	protected static String[] states;
+	public int currentState;
+	protected String[] states;
 	
 	public StateMachine() {
 		currentState = 0;
 	}
 	
-	public static boolean stepOver() {
+	public boolean stepOver() {
 		if(states.length < currentState) {
 			currentState++;
 			return true;
@@ -18,11 +18,11 @@ public abstract class StateMachine {
 		return false;
 	}
 	
-	public static Pair<Integer, String> getState() {
+	public Pair<Integer, String> getState() {
 		return new Pair<Integer, String>(currentState, states[currentState]);
 	}
 	
-	public void performStep() {
-		stepOver();
+	public boolean performStep(){
+		return this.stepOver();
 	}
 }
