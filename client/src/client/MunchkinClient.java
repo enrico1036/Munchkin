@@ -50,9 +50,9 @@ public class MunchkinClient {
 		window.setVisible(true);
 		
 		// Setup game panels
-		panels[0] = new GameUI(window);
+		panels[0] = new GameUI();
 		panels[1] = new LobbyUI();
-		panels[2] = new MenuUI(window);
+		panels[2] = new MenuUI();
 		panels[3] = new PauseUI();
 		
 		// Start game in menu ui
