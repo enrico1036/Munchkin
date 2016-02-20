@@ -1,5 +1,6 @@
 package game;
 
+import utils.Debug;
 import utils.StateMachine;
 
 public class GameManager extends StateMachine{
@@ -14,7 +15,7 @@ public class GameManager extends StateMachine{
 	
 	
 	private void begin() {
-		
+		Debug.print("GameManager: Begin");
 	}
 	
 	private void turn() {
@@ -23,7 +24,7 @@ public class GameManager extends StateMachine{
 	}
 	
 	private void end() {
-		
+		Debug.print("GameManager: End");
 	}
 	
 	//TODO: look for a method to make static performStep()

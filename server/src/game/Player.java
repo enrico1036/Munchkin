@@ -3,18 +3,24 @@ package game;
 import java.util.ArrayList;
 
 import cards.Card;
+import cards.Equipment;
 import cards.Race;
 
 public class Player {
 	
 	private String username;
 	private int level;
-	private Race[] race = new Race[2];
+	private cards.Race[] race = new cards.Race[2];
 	private int raceAllowed;
 	private cards.Class[] playerClass = new cards.Class[2];
 	private int classAllowed;
 	private ArrayList <Card> hand;
 	private ArrayList <Card> table;
+	private cards.Equipment head;
+	private cards.Equipment hand1;
+	private cards.Equipment hand2;
+	private cards.Equipment body;
+	private cards.Equipment feet;
 	private boolean alive;
 	private final int handSize = 5;
 	
@@ -114,6 +120,31 @@ public class Player {
 	
 	public void draw(Card card) {
 		this.hand.add(card);
+	}
+	
+	public boolean equip(cards.EquipSlot slot, cards.Equipment card) {
+		if(card.getSlot() != slot)
+			return false;
+		
+		switch (slot) {
+		case head:
+			this.head = card;
+			break;
+		case body:
+			this.body = card;
+			break;
+		case hand1:
+			this.hand1 = card;
+			break;
+		case hand2:
+			this.hand2 = card;
+			break;
+		case feet:
+			this.feet = card;
+			break;
+		}
+		
+		return true;
 	}
 
 }

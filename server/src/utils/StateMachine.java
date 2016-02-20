@@ -11,10 +11,10 @@ public abstract class StateMachine {
 	}
 	
 	public boolean stepOver() {
-		if(states.length < currentState) {
-			currentState++;
+		if(this.states.length > ++this.currentState) {
 			return true;
 		}
+		this.currentState = 0;
 		return false;
 	}
 	
