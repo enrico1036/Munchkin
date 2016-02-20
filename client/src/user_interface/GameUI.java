@@ -9,7 +9,7 @@ public class GameUI extends GamePanel{
 	
 	BufferedImage background=null;
 	
-	public GameUI() {
+	public GameUI(GameWindow window) {
 		this.background=MunchkinClient.getImage("option_button");
 	
 	}

@@ -2,7 +2,6 @@ package client;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JPanel;
@@ -14,10 +13,11 @@ import user_interface.GameWindow;
 import user_interface.MenuUI;
 import user_interface.LobbyUI;
 import user_interface.PauseUI;
+import user_interface.OptionUI;
 
 public class MunchkinClient {
 
-	private static JPanel[] panels = new JPanel[4];
+	private static JPanel[] panels = new JPanel[5];
 	
 	private static HashMap<String, BufferedImage> images;
 	
@@ -29,6 +29,7 @@ public class MunchkinClient {
 
 
 	private  GameWindow window;
+	
 	public MunchkinClient() {
 		// Load images from resource folder
 		XmlImageLoader loader = null;
@@ -50,10 +51,11 @@ public class MunchkinClient {
 		window.setVisible(true);
 		
 		// Setup game panels
-		panels[0] = new GameUI();
-		panels[1] = new LobbyUI();
-		panels[2] = new MenuUI();
+		panels[0] = new GameUI(window);
+		panels[1] = new LobbyUI(window);
+		panels[2] = new MenuUI(window);
 		panels[3] = new PauseUI();
+		panels[4] = new OptionUI();
 		
 		// Start game in menu ui
 		window.SetActivePanel(panels[2]);

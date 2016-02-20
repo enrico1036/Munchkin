@@ -20,4 +20,8 @@
         <name>prova_inesistente</name>
         <path>Resources/Images/immagine_non_esistente.png</path>
     </image>
+    <image>
+        <name>lobby_background</name>
+        <path>Resources/Images/sfondo.png</path>
+    </image>
 </resources>
