@@ -11,9 +11,25 @@ public class Combat extends StateMachine {
 		states[1] = "InterferInCombat";
 	}
 	
+	private void askForHelp() {
+		
+	}
+	
+	private void interferInCombat() {
+		
+	}
+	
 	@Override
 	public boolean performStep() {
 		// TODO Insert your code here
+		switch(states[currentState]) {
+		case "AskForHelp":
+			askForHelp();
+			break;
+		case "InterferInCombat":
+			interferInCombat();
+			break;
+		}
 		
 		return super.performStep();
 	}
