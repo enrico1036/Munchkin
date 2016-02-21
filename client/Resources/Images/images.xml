@@ -16,12 +16,16 @@
         <name>option_button</name>
         <path>Resources/Images/option.png</path>
     </image>
-        <image>
-        <name>prova_inesistente</name>
-        <path>Resources/Images/immagine_non_esistente.png</path>
-    </image>
     <image>
         <name>lobby_background</name>
-        <path>Resources/Images/sfondo.png</path>
+        <path>Resources/Images/background.jpg</path>
+    </image>
+    <image>
+    	<name>dragon_lobby</name>
+    	<path>Resources/Images/dragon_lobby.png</path>
+    </image>
+    <image>
+    	<name>users_lobby</name>
+    	<path>Resources/Images/users.gif</path>
     </image>
 </resources>
