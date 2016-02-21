@@ -1,47 +1,47 @@
 package game;
 
+import java.util.ArrayList;
+
 import utils.Debug;
-import utils.StateMachine;
 
-public class GameManager extends StateMachine{
-
-	public GameManager() {
-		super();
-		states = new String[3];
-		states[0] = "Begin";
-		states[1] = "Turn";
-		states[2] = "End";
-	}
+public class GameManager{
+	private static boolean playerWon;
+	private static ArrayList<game.Player> players;
 	
 	
-	private void begin() {
+	private static void begin() {
 		Debug.print("GameManager: Begin");
+		playerWon = false;
+		//fill player array
 	}
 	
-	private void turn() {
+	private static void turn() {
 		Turn turn = new Turn();
 		while(turn.performStep());
 	}
 	
-	private void end() {
+	private static void end() {
 		Debug.print("GameManager: End");
+		Debug.print(players.get(0).getUsername() + "Won!!!");
+	}
+	
+	private static void nextPlayer() {
+		players.add(players.get(0));
+		players.remove(0);
+	}
+	
+	public static void win() {
+		playerWon = true;
 	}
 	
 	//TODO: look for a method to make static performStep()
-	@Override
-	public boolean performStep() {
-		switch(states[currentState]) {
-		case "Begin":
+
+	public static void StartGame() {
 			begin();
-			break;
-		case "Turn":
-			turn();
-			break;
-		case "End":
-			end();
-			break;
-		}
-		
-		return super.performStep();
+			while(!playerWon) {
+				nextPlayer();
+				turn();
+			}
+			end();		
 	}
 }

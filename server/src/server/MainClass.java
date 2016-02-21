@@ -12,8 +12,7 @@ public class MainClass {
 //		handler.setAcceptTimeout(60000);
 //		handler.setConnectionTimeout(10000);
 //		handler.run();
-		GameManager gm = new GameManager();
-		while(gm.performStep());
+		GameManager.StartGame();
 		
 	}
 

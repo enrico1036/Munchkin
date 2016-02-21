@@ -24,14 +24,19 @@ public class Player {
 	private boolean alive;
 	private final int handSize = 5;
 	
-	public Player() {
+	public Player(String username) {
 		// TODO Auto-generated constructor stub
+		level = 0;
 		hand = new ArrayList <Card>();
 		table = new ArrayList <Card>();
 		race[0] = new Race("Human");
 		raceAllowed = 1;
 		classAllowed = 1;
 		alive = false;
+	}
+	
+	public String getUsername() {
+		return username;
 	}
 	
 	public void die() {

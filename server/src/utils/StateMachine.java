@@ -18,7 +18,7 @@ public abstract class StateMachine {
 		return false;
 	}
 	
-	public Pair<Integer, String> getState() {
+	public Pair<Integer, String> getCurrentState() {
 		return new Pair<Integer, String>(currentState, states[currentState]);
 	}
 	
