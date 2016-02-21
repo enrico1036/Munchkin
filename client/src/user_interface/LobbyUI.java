@@ -2,28 +2,40 @@ package user_interface;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import javax.swing.JTextArea;
-import javax.swing.text.DefaultCaret;
 
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import client.MunchkinClient;
 
 public class LobbyUI extends GamePanel {
 
 	private BufferedImage background,dragon,users;
-	private JTextArea Users,Gamestatus;
+	private JLabel Users;
+	private JTextArea Gamestatus;
 	private int wndWidth,wndHeight;
+	private JCheckBox User_ready;
+	private GameWindow wnd;
 	
 	public LobbyUI(GameWindow window) {
-				
+		
+		wnd=window;
 		this.background=MunchkinClient.getImage("lobby_background");
 		this.dragon=MunchkinClient.getImage("dragon_lobby");
 		this.users=MunchkinClient.getImage("users_lobby");
 		
-		this.Users = new JTextArea("Utente a \nUtente b \nUtente c");
+		
+		this.Users = new JLabel("Utente a");
 		Users.setFocusable(false);
-		Users.setBackground(new Color(0,0,0,10));
 		this.add(Users);
+		
+		this.User_ready= new JCheckBox();
+		User_ready.setActionCommand("tick");
+		User_ready.addActionListener(this);
+		this.add(User_ready);
 		
 		
 		this.Gamestatus = new JTextArea();
@@ -34,10 +46,12 @@ public class LobbyUI extends GamePanel {
 		for(int i =100;i>0;i--)
 		{
 			Gamestatus.append("Gamestarting in "+i+"\n");
+			
 		}
 		
 		
 	}
+	
 
 
 	@Override
@@ -54,17 +68,24 @@ public class LobbyUI extends GamePanel {
 		 wndWidth = this.getWidth();
 		 wndHeight = this.getHeight();
 		 
-		 this.resizeTextArea(Users, wndWidth*3/5, wndHeight/10, wndWidth/5, wndHeight/4);
-		 this.resizeTextArea(Gamestatus, wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
-		 
+		 this.resizeComponent(Users, wndWidth*3/5, wndHeight/10, wndWidth/5, wndHeight/4);
+		 this.resizeComponent(Gamestatus, wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
+		 this.resizeComponent(User_ready, wndWidth*3/5+wndWidth/5, wndHeight/10, User_ready.getWidth(), User_ready.getHeight());
 		 
 	}
 	
-	public void resizeTextArea(JTextArea text,int newX,int newY,int newWidth,int newHeight){
+	public void resizeComponent(JComponent text,int newX,int newY,int newWidth,int newHeight){
 		
 		text.setBounds(newX, newY, newWidth, newWidth);
 		
 		
+	}
+	public void actionPerformed(ActionEvent e) {
+		super.actionPerformed(e);
+		if(e.getActionCommand()=="tick")
+		{
+			wnd.SetActivePanel(MunchkinClient.getPanel(0));
+		}
 	}
 	
 }
