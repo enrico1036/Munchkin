@@ -1,18 +1,24 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import utils.Debug;
 
 public class GameManager{
 	private static boolean playerWon;
 	private static ArrayList<game.Player> players;
+	private static ArrayList<cards.Card> doorDeck;
+	private static ArrayList<cards.Card> treasureDeck;
 	
 	
 	private static void begin() {
 		Debug.print("GameManager: Begin");
 		playerWon = false;
-		//fill player array
+		//TODO: fill player array
+		//TODO: fill decks
+		Collections.shuffle(doorDeck);
+		Collections.shuffle(treasureDeck);
 	}
 	
 	private static void turn() {
