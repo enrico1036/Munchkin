@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
 
 public class ServerConnection {
 	private Socket socket;
@@ -48,6 +47,8 @@ public class ServerConnection {
 		String line = null;
 		try {
 			line = reader.readLine();
+			if(line == null)
+				socket.close();
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -58,6 +59,8 @@ public class ServerConnection {
 	public void writeLine(String line){
 		try {
 			writer.write(line);
+			writer.newLine();
+			writer.flush();
 		}
 		catch (IOException e) {
 			e.printStackTrace();
