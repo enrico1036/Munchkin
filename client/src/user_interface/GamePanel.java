@@ -10,7 +10,12 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 public abstract class GamePanel extends JPanel implements KeyListener,MouseListener,ActionListener {
-
+	protected GameWindow window;
+	
+	public GamePanel(GameWindow window){
+		this.window = window;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

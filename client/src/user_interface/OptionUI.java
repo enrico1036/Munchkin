@@ -1,5 +1,7 @@
 package user_interface;
 
-public class OptionUI extends GamePanel{
+import javax.swing.JPanel;
+
+public class OptionUI extends JPanel{
 
 }

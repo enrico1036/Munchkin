@@ -17,12 +17,11 @@ public class MenuUI extends GamePanel{
 	private ImageIcon connetti,option,exit;
 	private JButton button,button1,button2;
 	private int wndWidth,wndHeight;
-	private GameWindow wnd;
 	
 	
 	public MenuUI(GameWindow window) {
 		
-		 this.wnd=window;
+		super(window);
 		 Dimension buttdimmin = new Dimension(300,50);
 		 		
 		this.background = MunchkinClient.getImage("menu_background");
@@ -80,10 +79,10 @@ public class MenuUI extends GamePanel{
 		super.actionPerformed(e);
 		switch(e.getActionCommand()){
 		case "connect":
-			wnd.SetActivePanel(MunchkinClient.getPanel(1));
+			window.SetActivePanel(MunchkinClient.getPanel(1));
 			break;
 		case "option":
-			wnd.SetActivePanel(MunchkinClient.getPanel(4));
+			window.SetActivePanel(MunchkinClient.getPanel(4));
 			break;
 		case "exit":
 			System.exit(0);

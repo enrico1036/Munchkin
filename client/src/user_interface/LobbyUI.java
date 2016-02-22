@@ -18,11 +18,10 @@ public class LobbyUI extends GamePanel {
 	private JTextArea Gamestatus;
 	private int wndWidth,wndHeight;
 	private JCheckBox User_ready;
-	private GameWindow wnd;
 	
 	public LobbyUI(GameWindow window) {
 		
-		wnd=window;
+		super(window);
 		this.background=MunchkinClient.getImage("lobby_background");
 		this.dragon=MunchkinClient.getImage("dragon_lobby");
 		this.users=MunchkinClient.getImage("users_lobby");
@@ -68,23 +67,18 @@ public class LobbyUI extends GamePanel {
 		 wndWidth = this.getWidth();
 		 wndHeight = this.getHeight();
 		 
-		 this.resizeComponent(Users, wndWidth*3/5, wndHeight/10, wndWidth/5, wndHeight/4);
-		 this.resizeComponent(Gamestatus, wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
-		 this.resizeComponent(User_ready, wndWidth*3/5+wndWidth/5, wndHeight/10, User_ready.getWidth(), User_ready.getHeight());
+		 Users.setBounds(wndWidth*3/5, wndHeight/10, wndWidth/5, wndHeight/4);
+		 Gamestatus.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
+		 User_ready.setBounds( wndWidth*3/5+wndWidth/5, wndHeight/10, User_ready.getWidth(), User_ready.getHeight());
 		 
 	}
 	
-	public void resizeComponent(JComponent text,int newX,int newY,int newWidth,int newHeight){
-		
-		text.setBounds(newX, newY, newWidth, newWidth);
-		
-		
-	}
+	
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
 		if(e.getActionCommand()=="tick")
 		{
-			wnd.SetActivePanel(MunchkinClient.getPanel(0));
+			window.SetActivePanel(MunchkinClient.getPanel(0));
 		}
 	}
 	
