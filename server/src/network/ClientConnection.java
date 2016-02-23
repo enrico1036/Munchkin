@@ -14,48 +14,73 @@ public class ClientConnection implements Runnable{
 	private final Socket sock;
 	private BufferedReader reader;
 	private BufferedWriter writer;
-	private boolean onRun;
+	private final IOBuffer buffer;
+	private boolean alive;
 	
-	public ClientConnection(Socket sock, int timeout){
+	public ClientConnection(Socket sock, int timeout, final IOBuffer buffer){
 		this.sock = sock;
-		this.onRun = true;
-		
+		this.buffer = buffer;
+		alive = true;
 		try {
 			this.sock.setSoTimeout(timeout);
-			this.reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-			this.writer = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
+			reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+			writer = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
 		} catch (IOException e) {
 			e.printStackTrace();
-			onRun = false;
+			alive = false;
 		}
 	}
 	
-	public boolean isRunning(){
-		return onRun;
+	public boolean isAlive(){
+		return alive;
 	}
 
 	@Override
 	public void run() {
-		
-		if(sock == null)
+		// Terminate thread if the socket does not exist
+		if(sock == null){
 			stop();
-		
-		Debug.print("Connection " + sock.getPort() + " started");
-		
-		while(onRun && sock.isConnected()){
+			return;
+		}
+		// Loop until client disconnects
+		while(alive && sock.isConnected()){
 			try {
 				System.out.println(reader.readLine());
 			} 
 			catch (IOException e) {
-				onRun = false;
+				alive = false;
 			}
 		}
 		
-		Debug.print("Connection " + sock.getPort() + " ended");
+		stop();
+	}
+	
+	public String readLine(){
+		String line = null;
+		try {
+			line = reader.readLine();
+		} catch (IOException e) {
+			alive = false;
+		}
+		return line;
+	}
+	
+	public void write(String str){
+		try {
+			writer.write(str);
+			writer.flush();
+		} catch (IOException e) {
+			alive = false;
+		}
 	}
 
 	public void stop() {
-		onRun = false;
+		alive = false;
+		try{
+			sock.close();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 	
 }
