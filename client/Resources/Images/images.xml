@@ -28,4 +28,8 @@
     	<name>users_lobby</name>
     	<path>Resources/Images/users.gif</path>
     </image>
+    <image>
+    	<name>player_head</name>
+    	<path>Resources/Images/head.png</path>
+    </image>
 </resources>

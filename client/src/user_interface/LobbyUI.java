@@ -1,12 +1,10 @@
 package user_interface;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JCheckBox;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import client.MunchkinClient;

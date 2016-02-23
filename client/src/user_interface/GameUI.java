@@ -1,24 +1,31 @@
 package user_interface;
 
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import client.MunchkinClient;
+
 import java.awt.Component;
-import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.image.BufferedImage;
 import java.awt.Color;
 
 public class GameUI extends GamePanel implements ComponentListener {
-	private JTextField lblPlayerName;
-	private JTextField txtLevel;
-	private JTextField textField;
+	
+	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
+	lblPlayerSex,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue,
+	lblPlayerHead,lblPlayerRiarm,lblPlayerBody,lblPlayerLearm,lblPlayerLegs;
+	
+	
 	private int ww,wh;
 	private JPanel PlayerStats,hand,Player2,Player3,
 	Player4,Player5,Player6,Cards,Table,ZoomedPanel;
-
+	
 
 	/**
 	 * Create the panel.
@@ -28,8 +35,8 @@ public class GameUI extends GamePanel implements ComponentListener {
 		
 		this.addComponentListener(this);
 		
-		ww=window.getWidth();
-		wh=window.getHeight();
+		ww=window.getContentPane().getWidth();
+		wh=window.getContentPane().getHeight();
 		
 		setBackground(Color.RED);
 		setLayout(null);
@@ -47,57 +54,66 @@ public class GameUI extends GamePanel implements ComponentListener {
 		add(PlayerStats);
 		PlayerStats.setLayout(null);
 		
-		lblPlayerName = new JTextField();
-		lblPlayerName.setBounds(0, 0, 140, 42);
-		lblPlayerName.setText("PlayerName");
-		lblPlayerName.setEditable(false);
-		lblPlayerName.setEnabled(false);
+		lblPlayerName = new JLabel("PlayerName");
+		lblPlayerName.setBounds(0, 0, PlayerStats.getWidth()/2, PlayerStats.getHeight()/3);
 		PlayerStats.add(lblPlayerName);
-		lblPlayerName.setColumns(10);
+
+		lblPlayerLevel = new JLabel("Level");
+		lblPlayerLevel.setBounds(PlayerStats.getWidth()/2,0, PlayerStats.getWidth()/4, PlayerStats.getHeight()/6);
+		PlayerStats.add(lblPlayerLevel);
+
+		 lblPlayerLevelValue = new JLabel("Level Value");
+		lblPlayerLevelValue.setBounds(PlayerStats.getWidth()*3/4,0, PlayerStats.getWidth()/4, PlayerStats.getHeight()/6);
+		PlayerStats.add(lblPlayerLevelValue);
 		
-		txtLevel = new JTextField();
-		txtLevel.setBounds(139, 21, 52, 21);
-		txtLevel.setText("10");
-		txtLevel.setEditable(false);
-		txtLevel.setEnabled(false);
-		PlayerStats.add(txtLevel);
-		txtLevel.setColumns(10);
+		lblPlayerPower = new JLabel("Power");
+		lblPlayerPower.setBounds(PlayerStats.getWidth()/2, PlayerStats.getHeight()/6, PlayerStats.getWidth()/4, PlayerStats.getHeight()/6);
+		PlayerStats.add(lblPlayerPower);
+
+		 lblPlayerPowerValue = new JLabel("Power Value");
+		 lblPlayerPowerValue.setBounds(PlayerStats.getWidth()*3/4, PlayerStats.getHeight()/6, PlayerStats.getWidth()/4, PlayerStats.getHeight()/6);
+		PlayerStats.add(lblPlayerPowerValue);
+	
+		 lblPlayerRace = new JLabel("Race");
+		lblPlayerRace.setBounds(0,PlayerStats.getHeight()/3, PlayerStats.getWidth()/6, PlayerStats.getHeight()/3);
+		PlayerStats.add(lblPlayerRace);
 		
-		JLabel lblLevel = new JLabel("Level");
-		lblLevel.setBounds(145, 0, 46, 23);
-		PlayerStats.add(lblLevel);
+		 lblPlayerClass = new JLabel("Class");
+		lblPlayerClass.setBounds(PlayerStats.getWidth()/6, PlayerStats.getHeight()/3, PlayerStats.getWidth()/6, PlayerStats.getHeight()/3);
+		PlayerStats.add(lblPlayerClass);
 		
-		JLabel lblRace = new JLabel("Race");
-		lblRace.setBounds(0, 38, 70, 42);
-		PlayerStats.add(lblRace);
+		 lblPlayerSex = new JLabel("Sex");
+		lblPlayerSex.setBounds(PlayerStats.getWidth()/3, PlayerStats.getHeight()/3, PlayerStats.getWidth()/6, PlayerStats.getHeight()/3);
+		PlayerStats.add(lblPlayerSex);
 		
-		JLabel lblClass = new JLabel("Class");
-		lblClass.setBounds(0, 91, 70, 40);
-		PlayerStats.add(lblClass);
 		
-		JLabel lblSex = new JLabel("Sex");
-		lblSex.setBounds(0, 135, 70, 40);
-		PlayerStats.add(lblSex);
+		BufferedImage img = MunchkinClient.getImage("player_head");
 		
-		JLabel lblHead = new JLabel("Head");
-		lblHead.setBounds(120, 53, 32, 29);
-		PlayerStats.add(lblHead);
+		 lblPlayerHead = new JLabel();
+		 lblPlayerHead.setBounds(PlayerStats.getWidth()*2/3, PlayerStats.getHeight()/3, PlayerStats.getWidth()/6, PlayerStats.getHeight()*2/9);
+		 Image dimg = img.getScaledInstance(lblPlayerHead.getWidth(), lblPlayerHead.getHeight(),
+			        Image.SCALE_SMOOTH);
+		 ImageIcon head= new ImageIcon(dimg);
+		 lblPlayerHead.setIcon(head);
+		 PlayerStats.add(lblPlayerHead);
 		
-		JLabel lblRiarm = new JLabel("RiArm");
-		lblRiarm.setBounds(81, 84, 32, 47);
-		PlayerStats.add(lblRiarm);
 		
-		JLabel lblBody = new JLabel("Body");
-		lblBody.setBounds(114, 88, 32, 47);
-		PlayerStats.add(lblBody);
 		
-		JLabel lblLearm = new JLabel("LeArm");
-		lblLearm.setBounds(145, 86, 36, 50);
-		PlayerStats.add(lblLearm);
+		 lblPlayerRiarm = new JLabel("RiArm");
+		 lblPlayerRiarm.setBounds(PlayerStats.getWidth()/2, PlayerStats.getHeight()*5/9, PlayerStats.getWidth()/6, PlayerStats.getHeight()*2/9);
+		PlayerStats.add(lblPlayerRiarm);
 		
-		JLabel lblLegs = new JLabel("Legs");
-		lblLegs.setBounds(108, 139, 32, 33);
-		PlayerStats.add(lblLegs);
+		 lblPlayerBody = new JLabel("Body");
+		 lblPlayerBody.setBounds(PlayerStats.getWidth()*2/3, PlayerStats.getHeight()*5/9, PlayerStats.getWidth()/6, PlayerStats.getHeight()*2/9);
+		PlayerStats.add(lblPlayerBody);
+		
+		 lblPlayerLearm = new JLabel("LeArm");
+		 lblPlayerLearm.setBounds(PlayerStats.getWidth()*5/6, PlayerStats.getHeight()*5/9, PlayerStats.getWidth()/6, PlayerStats.getHeight()*2/9);
+		PlayerStats.add(lblPlayerLearm);
+		
+		 lblPlayerLegs = new JLabel("Legs");
+		 lblPlayerLegs.setBounds(PlayerStats.getWidth()*2/3, PlayerStats.getHeight()*7/9, PlayerStats.getWidth()/6, PlayerStats.getHeight()*2/9);
+		 PlayerStats.add(lblPlayerLegs);
 		
 		/*
 		 * 
@@ -117,6 +133,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		lblHand.setBounds(151, 48, 34, 24);
 		lblHand.setHorizontalTextPosition(SwingConstants.CENTER);
 		hand.add(lblHand);
+		
 		
 		/*
 		 * 
@@ -190,11 +207,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		lblLevel_1.setBounds(10, 31, 44, 20);
 		Player5.add(lblLevel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(60, 31, 39, 20);
-		textField.setText("10");
-		Player5.add(textField);
-		textField.setColumns(10);
+		
 		
 		JLabel lblRace_1 = new JLabel("RACE5");
 		lblRace_1.setBounds(0, 57, 46, 14);
@@ -296,10 +309,10 @@ public class GameUI extends GamePanel implements ComponentListener {
 	
 	private void updateComponents(){
 		
-		ww=window.getWidth();
-		wh=window.getHeight();
-		
-		
+		ww=this.getWidth();
+		wh=this.getHeight();
+
+		//Resize automatically all JPanels on GameUI istance
 		
 		PlayerStats.setBounds(0, wh*2/3, ww*2/5, wh/3);
 		hand.setBounds(ww*2/5, wh*2/3, ww*3/5, wh/3);
@@ -311,6 +324,27 @@ public class GameUI extends GamePanel implements ComponentListener {
 		Cards.setBounds(ww*3/4, wh/3, ww/4, wh/3);
 		Table.setBounds(0, wh/3, ww*3/4, wh/3);
 		ZoomedPanel.setBounds(ww/3, wh/20, ww/3, wh*4/6);
+		
+		
+		
+		
+		//-------Resize all JComponent of PlayerStats Panel-----------
+		
+		lblPlayerName.setBounds(0, 0, PlayerStats.getWidth()/2, PlayerStats.getHeight()/3);
+		lblPlayerLevel.setBounds(PlayerStats.getWidth()/2,0, PlayerStats.getWidth()/4, PlayerStats.getHeight()/6);
+		lblPlayerLevelValue.setBounds(PlayerStats.getWidth()*3/4,0, PlayerStats.getWidth()/4, PlayerStats.getHeight()/6);
+		lblPlayerPower.setBounds(PlayerStats.getWidth()/2, PlayerStats.getHeight()/6, PlayerStats.getWidth()/4, PlayerStats.getHeight()/6);
+		lblPlayerPowerValue.setBounds(PlayerStats.getWidth()*3/4, PlayerStats.getHeight()/6, PlayerStats.getWidth()/4, PlayerStats.getHeight()/6);
+		lblPlayerRace.setBounds(0,PlayerStats.getHeight()/3, PlayerStats.getWidth()/6, PlayerStats.getHeight()/3);
+		lblPlayerClass.setBounds(PlayerStats.getWidth()/6, PlayerStats.getHeight()/3, PlayerStats.getWidth()/6, PlayerStats.getHeight()/3);
+		lblPlayerSex.setBounds(PlayerStats.getWidth()/3, PlayerStats.getHeight()/3, PlayerStats.getWidth()/6, PlayerStats.getHeight()/3);
+		lblPlayerHead.setBounds(PlayerStats.getWidth()*2/3, PlayerStats.getHeight()/3, PlayerStats.getWidth()/6, PlayerStats.getHeight()*2/9);
+		lblPlayerRiarm.setBounds(PlayerStats.getWidth()/2, PlayerStats.getHeight()*5/9, PlayerStats.getWidth()/6, PlayerStats.getHeight()*2/9);
+		lblPlayerBody.setBounds(PlayerStats.getWidth()*2/3, PlayerStats.getHeight()*5/9, PlayerStats.getWidth()/6, PlayerStats.getHeight()*2/9);
+		lblPlayerLearm.setBounds(PlayerStats.getWidth()*5/6, PlayerStats.getHeight()*5/9, PlayerStats.getWidth()/6, PlayerStats.getHeight()*2/9);
+		lblPlayerLegs.setBounds(PlayerStats.getWidth()*2/3, PlayerStats.getHeight()*7/9, PlayerStats.getWidth()/6, PlayerStats.getHeight()*2/9);
+		
+		
 	}
 	@Override
 	public void componentHidden(ComponentEvent e) {
