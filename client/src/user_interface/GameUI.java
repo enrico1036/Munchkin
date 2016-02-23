@@ -7,11 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-
 import client.MunchkinClient;
 
-import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
@@ -21,8 +18,9 @@ import java.awt.Graphics;
 public class GameUI extends GamePanel implements ComponentListener {
 	
 	private ImageIcon showPlayerCards;
-	private BufferedImage background;
+	private BufferedImage background,framePlayerStats;
 	private Border loweredbevel;
+	private Graphics x;
 	
 	//--------Player 1 JComonents---------
 	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
@@ -76,10 +74,13 @@ public class GameUI extends GamePanel implements ComponentListener {
 	public GameUI(GameWindow window)  {
 		super(window);
 		
+		
+		
 		this.addComponentListener(this);
 
 		
 		this.background=MunchkinClient.getImage("lobby_background");
+		this.framePlayerStats=MunchkinClient.getImage("playerstats_frame");
 		this.setOpaque(false);
 		this.setLayout(null);
 		
@@ -106,12 +107,13 @@ public class GameUI extends GamePanel implements ComponentListener {
 		 * 
 		 */
 		
-		PlayerStats = new JPanel();
+		PlayerStats = new PaintPanel(framePlayerStats,ww*2/5, wh/3);
 		PlayerStats.setOpaque(false);
 		PlayerStats.setBounds(0, wh*2/3, ww*2/5, wh/3);
 		PlayerStats.setBorder(loweredbevel);
 		add(PlayerStats);
 		PlayerStats.setLayout(null);
+		
 		
 		psw=PlayerStats.getWidth();
 		psh=PlayerStats.getHeight();
@@ -553,7 +555,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		ww=this.getWidth();
 		wh=this.getHeight();
 
-		//Resize automatically all JPanels on GameUI istance
+		//Resize automatically all JPanels on GameUI instance
 		
 		PlayerStats.setBounds(0, wh*2/3, ww*2/5, wh/3);
 		hand.setBounds(ww*2/5, wh*2/3, ww*3/5, wh/3);

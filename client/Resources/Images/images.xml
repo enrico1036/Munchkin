@@ -36,4 +36,8 @@
     	<name>cards</name>
     	<path>Resources/Images/card.png</path>
     </image>
+    <image>
+    	<name>playerstats_frame</name>
+    	<path>Resources/Images/playstatsframe.png</path>
+    </image>
 </resources>

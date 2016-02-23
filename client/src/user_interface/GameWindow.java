@@ -16,7 +16,7 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
 	boolean maximized = false;
 	Dimension dimmin= new Dimension(800,450);
     public GameWindow() {
-    	
+    	setTitle("Munchkin");
     	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     	double width = screenSize.getWidth();
     	double height = screenSize.getHeight();
