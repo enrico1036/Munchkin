@@ -32,4 +32,8 @@
     	<name>player_head</name>
     	<path>Resources/Images/head.png</path>
     </image>
+    <image>
+    	<name>cards</name>
+    	<path>Resources/Images/card.png</path>
+    </image>
 </resources>
