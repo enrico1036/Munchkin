@@ -107,7 +107,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		 * 
 		 */
 		
-		PlayerStats = new PaintPanel(framePlayerStats,ww*2/5, wh/3);
+		PlayerStats = new PaintPanel(framePlayerStats);
 		PlayerStats.setOpaque(false);
 		PlayerStats.setBounds(0, wh*2/3, ww*2/5, wh/3);
 		PlayerStats.setBorder(loweredbevel);
