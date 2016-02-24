@@ -8,7 +8,7 @@ public final class ConnectionRequestMessage extends Message{
 		this.clientName = clientName;
 	}
 	
-	public String clientName(){
+	public String getClientName(){
 		return clientName;
 	}
 
@@ -21,5 +21,10 @@ public final class ConnectionRequestMessage extends Message{
 		builder.append(Message.MSG_TERMINATOR);
 		return builder.toString();
 	}
+	
+	/*
+	 * 	 	ConnectionRequestMessage message = new ConnectionRequestMessage("nomegiocatore");
+	 * 		conn.write(message.getFormattedMessage());
+	 */
 
 }

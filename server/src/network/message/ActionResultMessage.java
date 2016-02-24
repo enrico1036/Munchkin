@@ -5,14 +5,20 @@ import java.util.regex.Pattern;
 
 public final class ActionResultMessage extends Message{
 	private final String result;
+	private final String reason;
 	
-	public ActionResultMessage(String result) {
+	public ActionResultMessage(String result, String reason) {
 		super(Message.SRV_ACTION_RESULT);
 		this.result = result;
+		this.reason = reason;
 	}
 	
 	public boolean isAllowed(){
 		return result.equals(Message.ACTION_ALLOWED);
+	}
+	
+	public String getReason(){
+		return reason;
 	}
 	
 	@Override
@@ -21,6 +27,8 @@ public final class ActionResultMessage extends Message{
 		builder.append(messageCode);
 		builder.append(Message.ARG_SEPARATOR);
 		builder.append(result);
+		builder.append(Message.MSG_TERMINATOR);
+		builder.append(reason);
 		builder.append(Message.MSG_TERMINATOR);
 		return builder.toString();
 	}

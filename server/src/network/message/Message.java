@@ -43,7 +43,7 @@ public abstract class Message {
 			return new ConnectionRequestMessage(tokens.get(1));
 			
 		case Message.SRV_ACTION_RESULT:
-			return new ActionResultMessage(tokens.get(1));
+			return new ActionResultMessage(tokens.get(1), tokens.get(2));
 		
 		case Message.CLT_CHAT_MESSAGE:
 			return new ChatMessage(tokens.get(1), tokens.get(2));

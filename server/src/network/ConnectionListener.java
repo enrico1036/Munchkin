@@ -13,34 +13,30 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import game.GameManager;
+import network.message.ActionResultMessage;
 import network.message.ConnectionRequestMessage;
 import network.message.Message;
 
 
-public class ConnectionManager implements Runnable{
+public class ConnectionListener implements Runnable{
 
 	private final ServerSocket servSock;
-	private final ExecutorService execService;
-	private final ConcurrentHashMap<String, ClientConnection> connMap;
 	private final Thread listenerThread;
-	private final IOBuffer buffer;
+	
+	private final ConnectionPool pool;
 	
 	private boolean running;
 	private int connTimeout;
 	
-	public ConnectionManager(int port, int maxConnections, final IOBuffer buffer) throws IOException{
+	public ConnectionListener(int port, final ConnectionPool pool) throws IOException{
 		servSock = new ServerSocket(port);
-		execService = Executors.newFixedThreadPool(maxConnections);
-		connMap = new ConcurrentHashMap<>(maxConnections);
 		listenerThread = new Thread(this);
-		this.buffer = buffer;
+		this.pool = pool;
 		running = true;
+		
 		// Accept will throw SocketTimeoutException after 5 sec
 		setAcceptTimeout(5000);
-	}
-	
-	public int aliveConnections(){
-		return connMap.size();
 	}
 	
 	public void setAcceptTimeout(int millis){
@@ -55,16 +51,22 @@ public class ConnectionManager implements Runnable{
 		connTimeout = millis;
 	}
 	
-	public void startAsync(){
+	public boolean isRunning(){
+		return running;
+	}
+	
+	public void start(){
 		listenerThread.start();
-		
 	}
 	
 	public void stop(){
 		running = false;
 		try {
+			servSock.close();
 			listenerThread.join();
 		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -77,14 +79,8 @@ public class ConnectionManager implements Runnable{
 		while(running){
 			try {
 				// Accept new socket and create a new runnable ClientConnection
-				conn = new ClientConnection(servSock.accept(), connTimeout, buffer);
-				// Read first message, and check if username is already in use
-				ConnectionRequestMessage message = (ConnectionRequestMessage) Message.parse(conn.readLine());
-				
-				// Add connection to list
-				
-				// Execute connection as a new thread
-				execService.execute(conn);
+				conn = new ClientConnection(servSock.accept(), connTimeout, pool);
+				pool.add(conn);
 			} catch (SocketTimeoutException e) {
 				continue;
 			} catch (IOException e){
@@ -96,21 +92,7 @@ public class ConnectionManager implements Runnable{
 		// Close server socket and wait until all connections are terminated
 		try {
 			servSock.close();
-		} catch (IOException e) {}
-		
-		// Await termination of the threads still running
-		// If not possible, force shutdown
-		try {
-			if(!execService.awaitTermination(10, TimeUnit.SECONDS)){
-				ArrayList<Runnable> list = (ArrayList<Runnable>) execService.shutdownNow();
-				for (Runnable r : list){
-					((ClientConnection) r).stop();
-				}
-			}
-		} catch (InterruptedException e) {
-			execService.shutdown();
-		}
-		
+		} catch (IOException e) {}	
 	}
 	
 	

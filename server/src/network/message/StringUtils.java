@@ -9,6 +9,9 @@ public class StringUtils {
 	public static List<String> split(final String message, final String separator){
 		// Return list of tokens
 		List<String> tokens = new LinkedList<>();
+		// Check string existence
+		if (message == null)
+			return tokens;
 		
 		int curIndex = 0;
 		// Loop until message length is reached
