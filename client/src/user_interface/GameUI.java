@@ -145,12 +145,12 @@ public class GameUI extends GamePanel implements ComponentListener {
 		/*
 		this.setComponentZOrder(card,2);
 		this.setComponentZOrder(card2,2);
-		
-		System.out.println(this.getComponentZOrder(card));
-		System.out.println(this.getComponentZOrder(zp));
-		System.out.println(this.getComponentZOrder(card2));
-*/
-				
+		*/
+		//System.out.println(this.getComponentZOrder(card));
+		//System.out.println(this.getComponentZOrder(zp));
+		//System.out.println(this.getComponentZOrder(card2));
+
+		this.setComponentZOrder(zp, 0);	
 		hand.add(card);
 		hand.add(card2);
 		
@@ -285,7 +285,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		lblPlayer2Class.setBounds(pw/3, ph/2, pw/3, ph/2);
 		Player2.add(lblPlayer2Class);
 		
-		 lblPlayer2Cards = new JLabel("N° Cards");
+		 lblPlayer2Cards = new JLabel("Nï¿½ Cards");
 		 lblPlayer2Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
 		Player2.add(lblPlayer2Cards);
 		
@@ -343,7 +343,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		lblPlayer3Class.setBounds(pw/3, ph/2, pw/3, ph/2);
 		Player3.add(lblPlayer3Class);
 		
-		 lblPlayer3Cards = new JLabel("N° Cards");
+		 lblPlayer3Cards = new JLabel("Nï¿½ Cards");
 		 lblPlayer3Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
 		 Player3.add(lblPlayer3Cards);
 		
@@ -396,7 +396,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		lblPlayer4Class.setBounds(pw/3,ph/2, pw/3, ph/2);
 		Player4.add(lblPlayer4Class);
 		
-		 lblPlayer4Cards = new JLabel("N° Cards");
+		 lblPlayer4Cards = new JLabel("Nï¿½ Cards");
 		 lblPlayer4Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
 		 Player4.add(lblPlayer4Cards);
 		
@@ -451,7 +451,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		lblPlayer5Class.setBounds(pw/3,ph/2, pw/3, ph/2);
 		Player5.add(lblPlayer5Class);
 		
-		 lblPlayer5Cards = new JLabel("N° Cards");
+		 lblPlayer5Cards = new JLabel("Nï¿½ Cards");
 		 lblPlayer5Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
 		 Player5.add(lblPlayer5Cards);
 		
@@ -504,7 +504,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		lblPlayer6Class.setBounds(pw/3,ph/2, pw/3, ph/2);
 		Player6.add(lblPlayer6Class);
 		
-		 lblPlayer6Cards = new JLabel("N° Cards");
+		 lblPlayer6Cards = new JLabel("Nï¿½ Cards");
 		 lblPlayer6Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
 		 Player6.add(lblPlayer6Cards);
 		
