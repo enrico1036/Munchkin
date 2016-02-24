@@ -2,13 +2,9 @@ package user_interface;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 import client.MunchkinClient;
-
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
@@ -16,13 +12,17 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class GameUI extends GamePanel implements ComponentListener {
 	
-	private ImageIcon showPlayerCards;
+	private ImageIcon showPlayerCards,inventory;
 	private BufferedImage background,framePlayerStats;
 	
-	//--------Player 1 JComonents---------
+	//--------Hand JComponents------------
+	private JButton handInventory;
+	
+	//--------Player 1 JComponents---------
 	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
 	lblPlayerSex,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue,
 	lblPlayerHead,lblPlayerRiarm,lblPlayerBody,lblPlayerLearm,lblPlayerLegs;
@@ -65,7 +65,8 @@ public class GameUI extends GamePanel implements ComponentListener {
 	
 	//There are all the JPanels in GameUI
 	private JPanel PlayerStats,hand,Player2,Player3,
-	Player4,Player5,Player6,Decks,Table,ZoomedPanel;
+	Player4,Player5,Player6,Decks,Table;
+	private ZoomedPanel zp;
 	
 
 	/**
@@ -94,7 +95,64 @@ public class GameUI extends GamePanel implements ComponentListener {
 		showPlayerCards = new ImageIcon();
 		showPlayerCards.setImage(MunchkinClient.getImage("cards"));
 		
+		inventory = new ImageIcon();
+		inventory.setImage(MunchkinClient.getImage("inventory"));
 		
+		/*
+		 * 
+		 * 
+		 * 
+		 * HAND PANEL AND ITS COMPONENTS
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+		
+		
+		hand = new JPanel();
+		hand.setOpaque(false);
+		hand.setBounds(ww*2/5, wh*2/3, ww*3/5, wh/3);
+		add(hand);
+		hand.setLayout(null);
+		
+		handInventory = new JButton(inventory);
+		handInventory.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
+		handInventory.setVisible(true);
+		handInventory.setContentAreaFilled(false);
+		handInventory.setBorderPainted(false);
+		hand.add(handInventory);
+		
+		
+		
+		/*
+		 * 
+		 * ZOOMED PANEL AND ITS COMPONENTS
+		 * 
+		 */
+		
+		zp=new ZoomedPanel();
+		
+		
+		client.ClientCard card = new client.ClientCard("ciao", MunchkinClient.getImage("door_card"), new Rectangle(hand.getWidth()/3, hand.getHeight()/4, hand.getWidth()/6, hand.getHeight()/2), zp);
+		client.ClientCard card2 = new client.ClientCard("ciao 2", MunchkinClient.getImage("treasure_card"), new Rectangle(hand.getWidth()*5/12, hand.getHeight()/4, hand.getWidth()/6, hand.getHeight()/2), zp);
+		
+		zp.setVisible(true);
+		zp.setBounds(ww/3, wh/20, ww/3, wh*5/6);
+		this.add(zp);
+		zp.setLayout(null);
+		
+		/*
+		this.setComponentZOrder(card,2);
+		this.setComponentZOrder(card2,2);
+		
+		System.out.println(this.getComponentZOrder(card));
+		System.out.println(this.getComponentZOrder(zp));
+		System.out.println(this.getComponentZOrder(card2));
+*/
+				
+		hand.add(card);
+		hand.add(card2);
 		
 		/*
 		 * 
@@ -177,29 +235,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		 lblPlayerLegs.setBounds(psw*2/3, psh*7/9, psw/6, psh*2/9);
 		 PlayerStats.add(lblPlayerLegs);
 		
-		/*
-		 * 
-		 * 
-		 * 
-		 * HAND PANEL AND ITS COMPONENTS
-		 * 
-		 * 
-		 * 
-		 * 
-		 */
-		
-		
-		hand = new JPanel();
-		hand.setOpaque(false);
-		hand.setBounds(ww*2/5, wh*2/3, ww*3/5, wh/3);
-		add(hand);
-		hand.setLayout(null);
-		
-		JLabel lblHand = new JLabel("hand");
-		lblHand.setBounds(151, 48, 34, 24);
-		lblHand.setHorizontalTextPosition(SwingConstants.CENTER);
-		hand.add(lblHand);
-		
+				
 		
 		/*
 		 * 
@@ -518,27 +554,10 @@ public class GameUI extends GamePanel implements ComponentListener {
 		lblDranwCard.setBounds(136, 25, 155, 86);
 		Table.add(lblDranwCard);
 
-		/*
-		 * 
-		 * ZOOMED PANEL AND ITS COMPONENTS
-		 * 
-		 */
 		
-		 ZoomedPanel = new JPanel();
-		ZoomedPanel.setBackground(Color.WHITE);
-		ZoomedPanel.setVisible(false);
-		ZoomedPanel.setBounds(ww/3, wh/20, ww/3, wh*5/6);
-		add(ZoomedPanel);
-		ZoomedPanel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(287, 0, 23, 23);
-		ZoomedPanel.add(btnNewButton);
-		
-		JLabel lblZoomedPanel = new JLabel("ZOOMED PANEL");
-		lblZoomedPanel.setBounds(78, 226, 159, 23);
-		ZoomedPanel.add(lblZoomedPanel);
-		setComponentZOrder(ZoomedPanel, 0);
+	
+	
 		
 	}
 
@@ -559,7 +578,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		Player6.setBounds(ww*4/5, 0, ww/5, wh/3);
 		Decks.setBounds(ww*3/4, wh/3, ww/4, wh/3);
 		Table.setBounds(0, wh/3, ww*3/4, wh/3);
-		ZoomedPanel.setBounds(ww/3, wh/20, ww/3, wh*5/6);
+		zp.setBounds(ww/3, wh/20, ww/3, wh*5/6);
 		
 		
 		//Get the width and the height of PlayerStats JPanel

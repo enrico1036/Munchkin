@@ -80,4 +80,24 @@
     	<name>frameplayer10</name>
     	<path>Resources/Images/frameplayer10.png</path>
     </image>
+    <image>
+    	<name>treasure_card</name>
+    	<path>Resources/Images/treasurecard.png</path>
+    </image>
+    <image>
+    	<name>treasure_back</name>
+    	<path>Resources/Images/treasureback.png</path>
+    </image>
+    <image>
+    	<name>door_card</name>
+    	<path>Resources/Images/doorcard.png</path>
+    </image>
+    <image>
+    	<name>door_back</name>
+    	<path>Resources/Images/doorback.png</path>
+    </image>
+     <image>
+    	<name>inventory</name>
+    	<path>Resources/Images/inventory.png</path>
+    </image>
 </resources>
