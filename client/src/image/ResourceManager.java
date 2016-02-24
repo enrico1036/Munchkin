@@ -9,7 +9,7 @@ import javafx.util.Pair;
 public class ResourceManager {
 	private static HashMap<String, BufferedImage> images;
 
-	private static void loadAll() {
+	public static void loadAll() {
 		// Load images from resource folder
 		XmlImageLoader loader = null;
 		try {
