@@ -12,6 +12,8 @@ import client.MunchkinClient;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Random;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -19,8 +21,6 @@ public class GameUI extends GamePanel implements ComponentListener {
 	
 	private ImageIcon showPlayerCards;
 	private BufferedImage background,framePlayerStats;
-	private Border loweredbevel;
-	private Graphics x;
 	
 	//--------Player 1 JComonents---------
 	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
@@ -74,13 +74,14 @@ public class GameUI extends GamePanel implements ComponentListener {
 	public GameUI(GameWindow window)  {
 		super(window);
 		
-		
+		this.createRandomFramePanel();
 		
 		this.addComponentListener(this);
 
 		
 		this.background=MunchkinClient.getImage("lobby_background");
 		this.framePlayerStats=MunchkinClient.getImage("playerstats_frame");
+	
 		this.setOpaque(false);
 		this.setLayout(null);
 		
@@ -93,8 +94,6 @@ public class GameUI extends GamePanel implements ComponentListener {
 		showPlayerCards = new ImageIcon();
 		showPlayerCards.setImage(MunchkinClient.getImage("cards"));
 		
-	
-		loweredbevel = BorderFactory.createLoweredBevelBorder();
 		
 		
 		/*
@@ -110,7 +109,6 @@ public class GameUI extends GamePanel implements ComponentListener {
 		PlayerStats = new PaintPanel(framePlayerStats);
 		PlayerStats.setOpaque(false);
 		PlayerStats.setBounds(0, wh*2/3, ww*2/5, wh/3);
-		PlayerStats.setBorder(loweredbevel);
 		add(PlayerStats);
 		PlayerStats.setLayout(null);
 		
@@ -214,10 +212,9 @@ public class GameUI extends GamePanel implements ComponentListener {
 		 */
 		
 		
-		Player2 = new JPanel();
+		
 		Player2.setOpaque(false);
 		Player2.setBounds(0, 0, ww/5, wh/3);
-		Player2.setBorder(loweredbevel);
 		add(Player2);
 		Player2.setLayout(null);
 		
@@ -275,10 +272,9 @@ public class GameUI extends GamePanel implements ComponentListener {
 		 * 
 		 */
 		
-		Player3 = new JPanel();
+		
 		Player3.setOpaque(false);
 		Player3.setBounds(ww/5, 0, ww/5, wh/3);
-		Player3.setBorder(loweredbevel);
 		add(Player3);
 		Player3.setLayout(null);
 		
@@ -330,10 +326,9 @@ public class GameUI extends GamePanel implements ComponentListener {
 		 * 
 		 */
 		
-		 Player4 = new JPanel();
+		
 		Player4.setOpaque(false);
 		Player4.setBounds(ww*2/5, 0, ww/5, wh/3);
-		Player4.setBorder(loweredbevel);
 		add(Player4);
 		Player4.setLayout(null);
 		
@@ -386,10 +381,9 @@ public class GameUI extends GamePanel implements ComponentListener {
 		 * 
 		 */
 		
-		 Player5 = new JPanel();
+		
 		Player5.setOpaque(false);
 		Player5.setBounds(ww*3/5,  0, ww/5, wh/3);
-		Player5.setBorder(loweredbevel);
 		add(Player5);
 		Player5.setLayout(null);
 		
@@ -440,10 +434,9 @@ public class GameUI extends GamePanel implements ComponentListener {
 		 * 
 		 */
 		
-		 Player6 = new JPanel();
+		 
 		Player6.setOpaque(false);
 		Player6.setBounds(ww*4/5, 0, ww/5, wh/3);
-		Player6.setBorder(loweredbevel);
 		add(Player6);
 		Player6.setLayout(null);
 		
@@ -677,6 +670,32 @@ public class GameUI extends GamePanel implements ComponentListener {
 		g.drawImage(background, 0,0, this.getWidth(), this.getHeight(),null);
 		
 	}
+	
+	public void createRandomFramePanel(){
+		 int size = 10,k=0;
+	        int[] x = new int[5];
+	        
+	        ArrayList<Integer> list = new ArrayList<Integer>(size);
+	        for(int i = 1; i <= size; i++) {
+	            list.add(i);
+	        }
+
+	        Random rand = new Random();
+	        while(list.size() > 0&&k<5) {
+	            int index = rand.nextInt(list.size());
+	            x[k]=list.remove(index);
+	            
+	            System.out.println(k+"Selected: "+x[k]);
+	            k++;
+	        }  
+	    	
+	     Player2 = new PaintPanel(MunchkinClient.getImage("frameplayer"+x[0]));
+	     Player3 = new PaintPanel(MunchkinClient.getImage("frameplayer"+x[1]));
+	     Player4 = new PaintPanel(MunchkinClient.getImage("frameplayer"+x[2]));
+	     Player5 = new PaintPanel(MunchkinClient.getImage("frameplayer"+x[3]));
+	     Player6 = new PaintPanel(MunchkinClient.getImage("frameplayer"+x[4]));
+		
+	} 
 	
 	
 	

@@ -40,4 +40,44 @@
     	<name>playerstats_frame</name>
     	<path>Resources/Images/playstatsframe.png</path>
     </image>
+    <image>
+    	<name>frameplayer1</name>
+    	<path>Resources/Images/frameplayer1.png</path>
+    </image>
+    <image>
+    	<name>frameplayer2</name>
+    	<path>Resources/Images/frameplayer2.png</path>
+    </image>
+    <image>
+    	<name>frameplayer3</name>
+    	<path>Resources/Images/frameplayer3.png</path>
+    </image>
+    <image>
+    	<name>frameplayer4</name>
+    	<path>Resources/Images/frameplayer4.png</path>
+    </image>
+    <image>
+    	<name>frameplayer5</name>
+    	<path>Resources/Images/frameplayer5.png</path>
+    </image>
+    <image>
+    	<name>frameplayer6</name>
+    	<path>Resources/Images/frameplayer6.png</path>
+    </image>
+    <image>
+    	<name>frameplayer7</name>
+    	<path>Resources/Images/frameplayer7.png</path>
+    </image>
+    <image>
+    	<name>frameplayer8</name>
+    	<path>Resources/Images/frameplayer8.png</path>
+    </image>
+    <image>
+    	<name>frameplayer9</name>
+    	<path>Resources/Images/frameplayer9.png</path>
+    </image>
+    <image>
+    	<name>frameplayer10</name>
+    	<path>Resources/Images/frameplayer10.png</path>
+    </image>
 </resources>
