@@ -2,7 +2,7 @@ package client;
 
 import java.util.ArrayList;
 
-public class HandHandler {
+public class HandManager {
 
 	private int size=10;
 	private ArrayList<ClientCard> Hand;
@@ -13,7 +13,7 @@ public class HandHandler {
 		return Hand;
 	}
 
-	public HandHandler(){
+	public HandManager(){
 		
 		Hand = new ArrayList<ClientCard>(size);
 		//è da inserire il metodo che crea la mano all'inizio della partita

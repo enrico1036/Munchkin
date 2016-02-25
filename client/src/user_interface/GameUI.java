@@ -12,14 +12,14 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import client.ClientCard;
-import client.HandHandler;
+import client.HandManager;
 
 public class GameUI extends GamePanel {
 	
 	private ImageIcon inventory;
 	private BufferedImage background,framePlayerStats;
 	private PlayerPanel OpponentPlayers[] = new PlayerPanel[5];
-	private HandHandler HandCards;
+	private HandManager HandCards;
 	
 	//--------Hand JComponents------------
 	private JButton handInventory;
@@ -99,7 +99,7 @@ public class GameUI extends GamePanel {
 		
 		zp=new ZoomedPanel();
 		
-		HandCards = new HandHandler();
+		HandCards = new HandManager();
 		HandCards.getCard("ciao").CreateCard(MunchkinClient.getImage("door_card"), new Rectangle(Hand.getWidth()/3, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
 		HandCards.getCard("ciao2").CreateCard(MunchkinClient.getImage("treasure_card"), new Rectangle(Hand.getWidth()*5/12, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
 		
