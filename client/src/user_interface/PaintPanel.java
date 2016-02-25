@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class PaintPanel extends JPanel {
 
-	private BufferedImage background;
+	protected BufferedImage background;
 	
 	public PaintPanel(BufferedImage image){
 		

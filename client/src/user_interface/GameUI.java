@@ -5,19 +5,21 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import client.MunchkinClient;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class GameUI extends GamePanel implements ComponentListener {
+import client.ClientCard;
+import client.HandHandler;
+
+public class GameUI extends GamePanel {
 	
-	private ImageIcon showPlayerCards,inventory;
+	private ImageIcon inventory;
 	private BufferedImage background,framePlayerStats;
+	private PlayerPanel OpponentPlayers[] = new PlayerPanel[5];
+	private HandHandler HandCards;
 	
 	//--------Hand JComponents------------
 	private JButton handInventory;
@@ -28,44 +30,16 @@ public class GameUI extends GamePanel implements ComponentListener {
 	lblPlayerHead,lblPlayerRiarm,lblPlayerBody,lblPlayerLearm,lblPlayerLegs;
 	
 	
-	//---------Player 2 JComponents------------
-	private JLabel lblPlayer2Name,lblPlayer2Level,lblPlayer2Race,lblPlayer2Class,
-	lblPlayer2Cards,lblPlayer2Power,lblPlayer2PowerValue,lblPlayer2LevelValue;
-	private JButton btnPlayer2Cards;
-	
-	//---------Player 3 JComponents------------
-	private JLabel lblPlayer3Name,lblPlayer3Level,lblPlayer3Race,lblPlayer3Class,
-	lblPlayer3Cards,lblPlayer3Power,lblPlayer3PowerValue,lblPlayer3LevelValue;
-	private JButton btnPlayer3Cards;
-		
-	//---------Player 4 JComponents------------
-	private JLabel lblPlayer4Name,lblPlayer4Level,lblPlayer4Race,lblPlayer4Class,
-	lblPlayer4Cards,lblPlayer4Power,lblPlayer4PowerValue,lblPlayer4LevelValue;
-	private JButton btnPlayer4Cards;
-		
-	//---------Player 5 JComponents------------
-	private JLabel lblPlayer5Name,lblPlayer5Level,lblPlayer5Race,lblPlayer5Class,
-	lblPlayer5Cards,lblPlayer5Power,lblPlayer5PowerValue,lblPlayer5LevelValue;
-	private JButton btnPlayer5Cards;
-				
-	//---------Player 6 JComponents------------
-	private JLabel lblPlayer6Name,lblPlayer6Level,lblPlayer6Race,lblPlayer6Class,
-	lblPlayer6Cards,lblPlayer6Power,lblPlayer6PowerValue,lblPlayer6LevelValue;
-	private JButton btnPlayer6Cards;
-	
 	/*
 	 * ww= Gamewindow (JFrame) width
 	 * wh= Gamewindow (JFrame) height
-	 * pw= Player* (JPanel) width
-	 * ph= Player* (JPanel) height
 	 * psw= PlayerStats (JPanel) width
 	 * psh= PlayerStats (JPanel) height
 	 */
-	private int ww,wh,pw,ph,psw,psh;
+	private int ww,wh,psw,psh;
 	
 	//There are all the JPanels in GameUI
-	private JPanel PlayerStats,hand,Player2,Player3,
-	Player4,Player5,Player6,Decks,Table;
+	private JPanel PlayerStats,Hand,Decks,Table;
 	private ZoomedPanel zp;
 	
 
@@ -76,10 +50,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		super(window);
 		
 		this.createRandomFramePanel();
-		
-		this.addComponentListener(this);
-
-		
+	
 		this.background=MunchkinClient.getImage("lobby_background");
 		this.framePlayerStats=MunchkinClient.getImage("playerstats_frame");
 	
@@ -89,11 +60,6 @@ public class GameUI extends GamePanel implements ComponentListener {
 		
 		ww=window.getContentPane().getWidth();
 		wh=window.getContentPane().getHeight();
-		
-
-		
-		showPlayerCards = new ImageIcon();
-		showPlayerCards.setImage(MunchkinClient.getImage("cards"));
 		
 		inventory = new ImageIcon();
 		inventory.setImage(MunchkinClient.getImage("inventory"));
@@ -110,18 +76,18 @@ public class GameUI extends GamePanel implements ComponentListener {
 		 */
 		
 		
-		hand = new JPanel();
-		hand.setOpaque(false);
-		hand.setBounds(ww*2/5, wh*2/3, ww*3/5, wh/3);
-		add(hand);
-		hand.setLayout(null);
+		Hand = new JPanel();
+		Hand.setOpaque(false);
+		Hand.setBounds(ww*2/5, wh*2/3, ww*3/5, wh/3);
+		add(Hand);
+		Hand.setLayout(null);
 		
 		handInventory = new JButton(inventory);
-		handInventory.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
+		handInventory.setBounds(Hand.getWidth()*7/8,Hand.getHeight()*7/8,Hand.getWidth()/8,Hand.getHeight()/8);
 		handInventory.setVisible(true);
 		handInventory.setContentAreaFilled(false);
 		handInventory.setBorderPainted(false);
-		hand.add(handInventory);
+		Hand.add(handInventory);
 		
 		
 		
@@ -133,26 +99,18 @@ public class GameUI extends GamePanel implements ComponentListener {
 		
 		zp=new ZoomedPanel();
 		
-		
-		client.ClientCard card = new client.ClientCard("ciao", MunchkinClient.getImage("door_card"), new Rectangle(hand.getWidth()/3, hand.getHeight()/4, hand.getWidth()/6, hand.getHeight()/2), zp);
-		client.ClientCard card2 = new client.ClientCard("ciao 2", MunchkinClient.getImage("treasure_card"), new Rectangle(hand.getWidth()*5/12, hand.getHeight()/4, hand.getWidth()/6, hand.getHeight()/2), zp);
+		HandCards = new HandHandler();
+		HandCards.getCard("ciao").CreateCard(MunchkinClient.getImage("door_card"), new Rectangle(Hand.getWidth()/3, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
+		HandCards.getCard("ciao2").CreateCard(MunchkinClient.getImage("treasure_card"), new Rectangle(Hand.getWidth()*5/12, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
 		
 		zp.setVisible(true);
 		zp.setBounds(ww/3, wh/20, ww/3, wh*5/6);
 		this.add(zp);
 		zp.setLayout(null);
 		
-		/*
-		this.setComponentZOrder(card,2);
-		this.setComponentZOrder(card2,2);
-		*/
-		//System.out.println(this.getComponentZOrder(card));
-		//System.out.println(this.getComponentZOrder(zp));
-		//System.out.println(this.getComponentZOrder(card2));
-
 		this.setComponentZOrder(zp, 0);	
-		hand.add(card);
-		hand.add(card2);
+		Hand.add(HandCards.getCard("ciao"));
+		Hand.add(HandCards.getCard("ciao2"));
 		
 		/*
 		 * 
@@ -175,7 +133,7 @@ public class GameUI extends GamePanel implements ComponentListener {
 		psh=PlayerStats.getHeight();
 		
 		lblPlayerName = new JLabel("PlayerName");
-		lblPlayerName.setBounds(0, 0, psw/2, psh/3);
+		lblPlayerName.setBounds(psw/16, 0, psw*7/16, psh/3);
 		PlayerStats.add(lblPlayerName);
 
 		lblPlayerLevel = new JLabel("Level");
@@ -195,15 +153,15 @@ public class GameUI extends GamePanel implements ComponentListener {
 		PlayerStats.add(lblPlayerPowerValue);
 	
 		 lblPlayerRace = new JLabel("Race");
-		lblPlayerRace.setBounds(0,psh/3, psw/6, psh/3);
+		lblPlayerRace.setBounds(psw/8,psh/3, psw/8, psh/4);
 		PlayerStats.add(lblPlayerRace);
 		
 		 lblPlayerClass = new JLabel("Class");
-		lblPlayerClass.setBounds(psw/6, psh/3, psw/6, psh/3);
+		lblPlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
 		PlayerStats.add(lblPlayerClass);
 		
 		 lblPlayerSex = new JLabel("Sex");
-		lblPlayerSex.setBounds(psw/3, psh/3, psw/6, psh/3);
+		lblPlayerSex.setBounds(psw*3/8, psh/3, psw/8, psh/4);
 		PlayerStats.add(lblPlayerSex);
 		
 		
@@ -241,282 +199,20 @@ public class GameUI extends GamePanel implements ComponentListener {
 		 * 
 		 * 
 		 * 
-		 * PLAYER 2 PANEL AND ITS COMPONENTS
+		 * OPPONENT PLAYER JPANEL
 		 * 
 		 * 
 		 * 
 		 */
 		
-		
-		
-		Player2.setOpaque(false);
-		Player2.setBounds(0, 0, ww/5, wh/3);
-		add(Player2);
-		Player2.setLayout(null);
-		
-		pw=Player2.getWidth();
-		ph=Player2.getHeight();
-		
-		lblPlayer2Name = new JLabel("PlayerName");
-		lblPlayer2Name.setBounds(0, 0,pw/2, ph/2);
-		Player2.add(lblPlayer2Name);
+		for(int k=0;k<5;k++)
+		{
+			OpponentPlayers[k].setOpaque(false);
+			OpponentPlayers[k].setBounds(ww*k/5, 0, ww/5, wh/3);
+			add(OpponentPlayers[k]);
+			OpponentPlayers[k].setLayout(null);
+		}
 
-		lblPlayer2Level = new JLabel("Level");
-		lblPlayer2Level.setBounds(pw/2,0, pw/4, ph/4);
-		Player2.add(lblPlayer2Level);
-
-		 lblPlayer2LevelValue = new JLabel("Level Value");
-		 lblPlayer2LevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
-		Player2.add(lblPlayer2LevelValue);
-		
-		lblPlayer2Power = new JLabel("Power");
-		lblPlayer2Power.setBounds(pw/2, ph/4, pw/4, ph/4);
-		Player2.add(lblPlayer2Power);
-
-		 lblPlayer2PowerValue = new JLabel("Power Value");
-		 lblPlayer2PowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
-		 Player2.add(lblPlayer2PowerValue);
-	
-		 lblPlayer2Race = new JLabel("Race");
-		lblPlayer2Race.setBounds(0,ph/2, pw/3, ph/2);
-		Player2.add(lblPlayer2Race);
-		
-		 lblPlayer2Class = new JLabel("Class");
-		lblPlayer2Class.setBounds(pw/3, ph/2, pw/3, ph/2);
-		Player2.add(lblPlayer2Class);
-		
-		 lblPlayer2Cards = new JLabel("N� Cards");
-		 lblPlayer2Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
-		Player2.add(lblPlayer2Cards);
-		
-		
-		
-		btnPlayer2Cards = new JButton(showPlayerCards);
-		btnPlayer2Cards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
-		btnPlayer2Cards.setVisible(true);
-		btnPlayer2Cards.setContentAreaFilled(false);
-		btnPlayer2Cards.setBorderPainted(false);
-		Player2.add(btnPlayer2Cards);
-		
-		/*
-		 * 
-		 * 
-		 * 
-		 * PLAYER 3 PANEL AND ITS COMPONENTS
-		 * 
-		 * 
-		 * 
-		 */
-		
-		
-		Player3.setOpaque(false);
-		Player3.setBounds(ww/5, 0, ww/5, wh/3);
-		add(Player3);
-		Player3.setLayout(null);
-		
-
-		lblPlayer3Name = new JLabel("PlayerName");
-		lblPlayer3Name.setBounds(0, 0, pw/2,ph/2);
-		Player3.add(lblPlayer3Name);
-
-		lblPlayer3Level = new JLabel("Level");
-		lblPlayer3Level.setBounds(pw/2,0, pw/4, ph/4);
-		Player3.add(lblPlayer3Level);
-
-		 lblPlayer3LevelValue = new JLabel("Level Value");
-		 lblPlayer3LevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
-		 Player3.add(lblPlayer3LevelValue);
-		
-		lblPlayer3Power = new JLabel("Power");
-		lblPlayer3Power.setBounds(pw/2, ph/4, pw/4, ph/4);
-		Player3.add(lblPlayer3Power);
-
-		 lblPlayer3PowerValue = new JLabel("Power Value");
-		 lblPlayer3PowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
-		 Player3.add(lblPlayer3PowerValue);
-	
-		 lblPlayer3Race = new JLabel("Race");
-		lblPlayer3Race.setBounds(0,ph/2, pw/3, ph/2);
-		Player3.add(lblPlayer3Race);
-		
-		 lblPlayer3Class = new JLabel("Class");
-		lblPlayer3Class.setBounds(pw/3, ph/2, pw/3, ph/2);
-		Player3.add(lblPlayer3Class);
-		
-		 lblPlayer3Cards = new JLabel("N� Cards");
-		 lblPlayer3Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
-		 Player3.add(lblPlayer3Cards);
-		
-		
-		
-		btnPlayer3Cards = new JButton(showPlayerCards);
-		btnPlayer3Cards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
-		btnPlayer3Cards.setVisible(true);
-		btnPlayer3Cards.setContentAreaFilled(false);
-		btnPlayer3Cards.setBorderPainted(false);
-		Player3.add(btnPlayer3Cards);
-		
-		/*
-		 * 
-		 * PLAYER 4 PANEL AND ITS COMPONENTS
-		 * 
-		 */
-		
-		
-		Player4.setOpaque(false);
-		Player4.setBounds(ww*2/5, 0, ww/5, wh/3);
-		add(Player4);
-		Player4.setLayout(null);
-		
-		lblPlayer4Name = new JLabel("PlayerName");
-		lblPlayer4Name.setBounds(0, 0, pw/2, ph/2);
-		Player4.add(lblPlayer4Name);
-
-		lblPlayer4Level = new JLabel("Level");
-		lblPlayer4Level.setBounds(pw/2,0, pw/4, ph/4);
-		Player4.add(lblPlayer4Level);
-
-		 lblPlayer4LevelValue = new JLabel("Level Value");
-		 lblPlayer4LevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
-		 Player4.add(lblPlayer4LevelValue);
-		
-		lblPlayer4Power = new JLabel("Power");
-		lblPlayer4Power.setBounds(pw/2, ph/4, pw/4, ph/4);
-		Player4.add(lblPlayer4Power);
-
-		 lblPlayer4PowerValue = new JLabel("Power Value");
-		 lblPlayer4PowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
-		 Player4.add(lblPlayer4PowerValue);
-	
-		 lblPlayer4Race = new JLabel("Race");
-		lblPlayer4Race.setBounds(0,ph/2, pw/3, ph/2);
-		Player4.add(lblPlayer4Race);
-		
-		 lblPlayer4Class = new JLabel("Class");
-		lblPlayer4Class.setBounds(pw/3,ph/2, pw/3, ph/2);
-		Player4.add(lblPlayer4Class);
-		
-		 lblPlayer4Cards = new JLabel("N� Cards");
-		 lblPlayer4Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
-		 Player4.add(lblPlayer4Cards);
-		
-		
-		
-		btnPlayer4Cards = new JButton(showPlayerCards);
-		btnPlayer4Cards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
-		btnPlayer4Cards.setVisible(true);
-		btnPlayer4Cards.setContentAreaFilled(false);
-		btnPlayer4Cards.setBorderPainted(false);
-		Player4.add(btnPlayer4Cards);
-		
-		
-		
-		/*
-		 * 
-		 * PLAYER 5 PANEL AND ITS COMPONENTS
-		 * 
-		 */
-		
-		
-		Player5.setOpaque(false);
-		Player5.setBounds(ww*3/5,  0, ww/5, wh/3);
-		add(Player5);
-		Player5.setLayout(null);
-		
-		lblPlayer5Name = new JLabel("PlayerName");
-		lblPlayer5Name.setBounds(0, 0, pw/2, ph/2);
-		Player5.add(lblPlayer5Name);
-
-		lblPlayer5Level = new JLabel("Level");
-		lblPlayer5Level.setBounds(pw/2,0, pw/4, ph/4);
-		Player5.add(lblPlayer5Level);
-
-		 lblPlayer5LevelValue = new JLabel("Level Value");
-		 lblPlayer5LevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
-		 Player5.add(lblPlayer5LevelValue);
-		
-		lblPlayer5Power = new JLabel("Power");
-		lblPlayer5Power.setBounds(pw/2, ph/4, pw/4, ph/4);
-		Player5.add(lblPlayer5Power);
-
-		 lblPlayer5PowerValue = new JLabel("Power Value");
-		 lblPlayer5PowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
-		 Player5.add(lblPlayer5PowerValue);
-	
-		 lblPlayer5Race = new JLabel("Race");
-		lblPlayer5Race.setBounds(0,ph/2, pw/3, ph/2);
-		Player5.add(lblPlayer5Race);
-		
-		 lblPlayer5Class = new JLabel("Class");
-		lblPlayer5Class.setBounds(pw/3,ph/2, pw/3, ph/2);
-		Player5.add(lblPlayer5Class);
-		
-		 lblPlayer5Cards = new JLabel("N� Cards");
-		 lblPlayer5Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
-		 Player5.add(lblPlayer5Cards);
-		
-		
-		
-		btnPlayer5Cards = new JButton(showPlayerCards);
-		btnPlayer5Cards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
-		btnPlayer5Cards.setVisible(true);
-		btnPlayer5Cards.setContentAreaFilled(false);
-		btnPlayer5Cards.setBorderPainted(false);
-		Player5.add(btnPlayer5Cards);
-		
-		/*
-		 * 
-		 * PLAYER 6 PANEL AND ITS COMPONENTS
-		 * 
-		 */
-		
-		 
-		Player6.setOpaque(false);
-		Player6.setBounds(ww*4/5, 0, ww/5, wh/3);
-		add(Player6);
-		Player6.setLayout(null);
-		
-		lblPlayer6Name = new JLabel("PlayerName");
-		lblPlayer6Name.setBounds(0, 0, pw/2, ph/2);
-		Player6.add(lblPlayer6Name);
-
-		lblPlayer6Level = new JLabel("Level");
-		lblPlayer6Level.setBounds(pw/2,0, pw/4, ph/4);
-		Player6.add(lblPlayer6Level);
-
-		 lblPlayer6LevelValue = new JLabel("Level Value");
-		 lblPlayer6LevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
-		 Player6.add(lblPlayer6LevelValue);
-		
-		lblPlayer6Power = new JLabel("Power");
-		lblPlayer6Power.setBounds(pw/2, ph/4, pw/4, ph/4);
-		Player6.add(lblPlayer6Power);
-
-		 lblPlayer6PowerValue = new JLabel("Power Value");
-		 lblPlayer6PowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
-		 Player6.add(lblPlayer6PowerValue);
-	
-		 lblPlayer6Race = new JLabel("Race");
-		lblPlayer6Race.setBounds(0,ph/2, pw/3, ph/2);
-		Player6.add(lblPlayer6Race);
-		
-		 lblPlayer6Class = new JLabel("Class");
-		lblPlayer6Class.setBounds(pw/3,ph/2, pw/3, ph/2);
-		Player6.add(lblPlayer6Class);
-		
-		 lblPlayer6Cards = new JLabel("N� Cards");
-		 lblPlayer6Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
-		 Player6.add(lblPlayer6Cards);
-		
-		
-		
-		btnPlayer6Cards = new JButton(showPlayerCards);
-		btnPlayer6Cards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
-		btnPlayer6Cards.setVisible(true);
-		btnPlayer6Cards.setContentAreaFilled(false);
-		btnPlayer6Cards.setBorderPainted(false);
-		Player6.add(btnPlayer6Cards);
-		
 		
 		/*
 		 * 
@@ -554,13 +250,10 @@ public class GameUI extends GamePanel implements ComponentListener {
 		lblDranwCard.setBounds(136, 25, 155, 86);
 		Table.add(lblDranwCard);
 
-		
-		
-	
-	
-		
 	}
 
+	
+	
 	
 	private void updateComponents(){
 		
@@ -570,15 +263,18 @@ public class GameUI extends GamePanel implements ComponentListener {
 		//Resize automatically all JPanels on GameUI instance
 		
 		PlayerStats.setBounds(0, wh*2/3, ww*2/5, wh/3);
-		hand.setBounds(ww*2/5, wh*2/3, ww*3/5, wh/3);
-		Player2.setBounds(0, 0, ww/5, wh/3);
-		Player3.setBounds(ww/5, 0, ww/5, wh/3);
-		Player4.setBounds(ww*2/5, 0, ww/5, wh/3);
-		Player5.setBounds(ww*3/5,  0, ww/5, wh/3);
-		Player6.setBounds(ww*4/5, 0, ww/5, wh/3);
+		Hand.setBounds(ww*2/5, wh*2/3, ww*3/5, wh/3);
 		Decks.setBounds(ww*3/4, wh/3, ww/4, wh/3);
 		Table.setBounds(0, wh/3, ww*3/4, wh/3);
 		zp.setBounds(ww/3, wh/20, ww/3, wh*5/6);
+		
+		
+		for(int k=0;k<5;k++)
+		{
+			OpponentPlayers[k].setBounds(ww*k/5, 0, ww/5, wh/3);
+			OpponentPlayers[k].updatePlayerComponents();
+		}
+		
 		
 		
 		//Get the width and the height of PlayerStats JPanel
@@ -590,14 +286,14 @@ public class GameUI extends GamePanel implements ComponentListener {
 		
 		//-------Resize all JComponent of PlayerStats Panel-----------
 		
-		lblPlayerName.setBounds(0, 0, psw/2, psh/3);
+		lblPlayerName.setBounds(psw/16, 0, psw*7/16, psh/3);
 		lblPlayerLevel.setBounds(psw/2,0, psw/4,psh/6);
 		lblPlayerLevelValue.setBounds(psw*3/4,0, psw/4, psh/6);
 		lblPlayerPower.setBounds(psw/2, psh/6, psw/4, psh/6);
 		lblPlayerPowerValue.setBounds(psw*3/4, psh/6, psw/4, psh/6);
-		lblPlayerRace.setBounds(0,psh/3, psw/6, psh/3);
-		lblPlayerClass.setBounds(psw/6, psh/3, psw/6, psh/3);
-		lblPlayerSex.setBounds(psw/3, psh/3, psw/6, psh/3);
+		lblPlayerRace.setBounds(psw/8,psh/3, psw/8, psh/4);
+		lblPlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
+		lblPlayerSex.setBounds(psw*3/8, psh/3, psw/8, psh/4);
 		lblPlayerHead.setBounds(psw*2/3, psh/3, psw/6, psh*2/9);
 		lblPlayerRiarm.setBounds(psw/2, psh*5/9, psw/6, psh*2/9);
 		lblPlayerBody.setBounds(psw*2/3, psh*5/9, psw/6, psh*2/9);
@@ -606,78 +302,6 @@ public class GameUI extends GamePanel implements ComponentListener {
 
 		
 		//Get the width and the height of Player* JPanel (* stands for 2,3,4,5,6). 
-		
-		pw=Player2.getWidth();
-		ph=Player2.getHeight();
-		
-		
-		//-------Resize all JComponent of Player2 Panel-----------
-		
-		lblPlayer2Name.setBounds(0, 0,pw/2, ph/2);
-		lblPlayer2Level.setBounds(pw/2,0, pw/4, ph/4);
-		lblPlayer2LevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
-		lblPlayer2Power.setBounds(pw/2, ph/4, pw/4, ph/4);
-		lblPlayer2PowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
-		lblPlayer2Race.setBounds(0,ph/2, pw/3, ph/2);
-		lblPlayer2Class.setBounds(pw/3, ph/2, pw/3, ph/2);
-		lblPlayer2Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
-		btnPlayer2Cards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
-
-
-		
-		//-------Resize all JComponent of Player3 Panel-----------
-		
-		
-		lblPlayer3Name.setBounds(0, 0, pw/2,ph/2);
-		lblPlayer3Level.setBounds(pw/2,0, pw/4, ph/4);
-		lblPlayer3LevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
-		lblPlayer3Power.setBounds(pw/2, ph/4, pw/4, ph/4);
-		lblPlayer3PowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
-		lblPlayer3Race.setBounds(0,ph/2, pw/3, ph/2);
-		lblPlayer3Class.setBounds(pw/3, ph/2, pw/3, ph/2);
-		lblPlayer3Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
-		btnPlayer3Cards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
-
-		
-		
-		//-------Resize all JComponent of Player4 Panel-----------
-		
-		lblPlayer4Name.setBounds(0, 0, pw/2, ph/2);
-		lblPlayer4Level.setBounds(pw/2,0, pw/4, ph/4);
-		lblPlayer4LevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
-		lblPlayer4Power.setBounds(pw/2, ph/4, pw/4, ph/4);
-		lblPlayer4PowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
-		lblPlayer4Race.setBounds(0,ph/2, pw/3, ph/2);
-		lblPlayer4Class.setBounds(pw/3,ph/2, pw/3, ph/2);
-		lblPlayer4Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
-		btnPlayer4Cards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
-
-		//-------Resize all JComponent of Player5 Panel-----------
-		
-
-		lblPlayer5Name.setBounds(0, 0, pw/2, ph/2);
-		lblPlayer5Level.setBounds(pw/2,0, pw/4, ph/4);
-		lblPlayer5LevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
-		lblPlayer5Power.setBounds(pw/2, ph/4, pw/4, ph/4);
-		lblPlayer5PowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
-		lblPlayer5Race.setBounds(0,ph/2, pw/3, ph/2);
-		lblPlayer5Class.setBounds(pw/3,ph/2, pw/3, ph/2);
-		lblPlayer5Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
-		btnPlayer5Cards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
-		
-		
-		
-		//-------Resize all JComponent of Player6 Panel-----------
-		
-		
-		lblPlayer6Level.setBounds(pw/2,0, pw/4, ph/4);
-		lblPlayer6LevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
-		lblPlayer6Power.setBounds(pw/2, ph/4, pw/4, ph/4);
-		lblPlayer6PowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
-		lblPlayer6Race.setBounds(0,ph/2, pw/3, ph/2);
-		lblPlayer6Class.setBounds(pw/3,ph/2, pw/3, ph/2);
-		lblPlayer6Cards.setBounds(pw*2/3, ph/2, pw/3, ph/2);
-		btnPlayer6Cards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
 		
 		
 	}
@@ -690,7 +314,11 @@ public class GameUI extends GamePanel implements ComponentListener {
 		
 	}
 	
-	public void createRandomFramePanel(){
+	
+	
+	
+	
+	private void createRandomFramePanel(){
 		 int size = 10,k=0;
 	        int[] x = new int[5];
 	        
@@ -703,42 +331,16 @@ public class GameUI extends GamePanel implements ComponentListener {
 	        while(list.size() > 0&&k<5) {
 	            int index = rand.nextInt(list.size());
 	            x[k]=list.remove(index);
-	            
-	            System.out.println(k+"Selected: "+x[k]);
 	            k++;
 	        }  
 	    	
-	     Player2 = new PaintPanel(MunchkinClient.getImage("frameplayer"+x[0]));
-	     Player3 = new PaintPanel(MunchkinClient.getImage("frameplayer"+x[1]));
-	     Player4 = new PaintPanel(MunchkinClient.getImage("frameplayer"+x[2]));
-	     Player5 = new PaintPanel(MunchkinClient.getImage("frameplayer"+x[3]));
-	     Player6 = new PaintPanel(MunchkinClient.getImage("frameplayer"+x[4]));
+	        for(k=0;k<5;k++){
+	     OpponentPlayers[k] = new PlayerPanel(MunchkinClient.getImage("frameplayer"+x[k]));
+	        }
+	    
 		
 	} 
 	
 	
-	
-	//Unimplemented methods
-	
-	@Override
-	public void componentHidden(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void componentMoved(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void componentShown(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void componentResized(ComponentEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
 }

@@ -1,14 +1,11 @@
 package client;
 
-import java.awt.Event;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.Action;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -20,8 +17,11 @@ public class ClientCard extends JButton implements MouseListener{
 	private BufferedImage image;
 	private ZoomedPanel zoomedPanel;
 	
-	public ClientCard(String title, BufferedImage image, Rectangle rectangle, ZoomedPanel zoomedPanel) {
-		this.title = title;
+	public ClientCard(String title){
+		this.title =title;
+	}
+	
+	public void CreateCard(BufferedImage image, Rectangle rectangle, ZoomedPanel zoomedPanel) {
 		this.image = image;
 		this.setIcon(new ImageIcon(image));
 		this.setBorderPainted(false);
@@ -72,4 +72,14 @@ public class ClientCard extends JButton implements MouseListener{
 		super.setBounds(x, y, width, height);
 	}
 
+	public String getTitle() {
+		return title;
+	}
+	
+	
+	public boolean equals(ClientCard card2){
+	
+		return(this.title.equals(card2.title));
+		
+	}
 }
