@@ -4,53 +4,41 @@ import java.util.ArrayList;
 
 public class HandManager {
 
-	private int size=10;
-	private ArrayList<ClientCard> Hand;
-	private ClientCard card1,card2;
+	private ArrayList<ClientCard> hand;
 	
-	
-	public ArrayList<ClientCard> getHand() {
-		return Hand;
-	}
 
 	public HandManager(){
-		
-		Hand = new ArrayList<ClientCard>(size);
-		//� da inserire il metodo che crea la mano all'inizio della partita
-		card1=new ClientCard("ciao");
-		card2=new ClientCard("ciao2");
-		
-		Hand.add(card1);
-		Hand.add(card2);
-		
-		
-		
-
-	}
-	public void draw(ClientCard cardDrawn){
-		Hand.add(cardDrawn);
-	
-	}
-	public void discard(ClientCard cardDiscarded){
-	
-		for(ClientCard card : Hand){
-			if(card.equals(cardDiscarded)){
-				Hand.remove(card);
-			}
+		hand = new ArrayList<ClientCard>();
+		//First draw 
+		for(int i=0; i<2; i++) {
+			addCard(DeckManager.getDoorCard());
+			addCard(DeckManager.getTreasureCard());
 		}
-
 	}
-	public ClientCard getCard(String Title){
 	
+	public ArrayList<ClientCard> getHand() {
+		return hand;
+	}
+	
+	public void addCard(ClientCard cardDrawn){
+		hand.add(cardDrawn);
+	}
+	
+	public ClientCard getCard(String Title){	//TODO: forse non serve però in caso mi sa che è meglio passargli un istanza di carta
 		ClientCard selected = null;
-		for(ClientCard card : Hand){
+		for(ClientCard card : hand){
 			if(card.getTitle().equals(Title)){
-				selected= card;
+				selected = card;
 			}
 		}
 		return selected;
-		
-		
 	}
 	
+	public void discard(ClientCard cardDiscarded){
+		DeckManager.discardCard(hand.remove(hand.indexOf(cardDiscarded)));
+	}
+	
+	public int getSize() {
+		return this.hand.size();
+	}
 }

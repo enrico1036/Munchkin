@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 public class ZoomedPanel extends JLabel {
 	
+	private static final long serialVersionUID = -847663119189970074L;
 	private BufferedImage card;
 
 	public ZoomedPanel() {

@@ -13,15 +13,20 @@ import user_interface.ZoomedPanel;
 
 public class ClientCard extends JButton implements MouseListener{
 
+	private static final long serialVersionUID = 675231082196084165L;
 	private String title;
 	private BufferedImage image;
+	private CardType type;
 	private ZoomedPanel zoomedPanel;
 	
-	public ClientCard(String title){
-		this.title =title;
+	public ClientCard(String title, CardType type) {
+		this.title = title;
+		this.type = type;
 	}
 	
-	public void CreateCard(BufferedImage image, Rectangle rectangle, ZoomedPanel zoomedPanel) {
+	public ClientCard(String title, CardType type, BufferedImage image, Rectangle rectangle, ZoomedPanel zoomedPanel){
+		this.title = title;
+		this.type = type;
 		this.image = image;
 		this.setIcon(new ImageIcon(image));
 		this.setBorderPainted(false);
@@ -29,6 +34,30 @@ public class ClientCard extends JButton implements MouseListener{
 		this.setBounds(rectangle);
 		this.zoomedPanel = zoomedPanel;
 		this.addMouseListener(this);
+	}
+	
+	public String getTitle() {
+		return this.title;
+	}
+	
+	public CardType getType() {
+		return this.type;
+	}
+	
+	public boolean equals(ClientCard card){
+		return(this.title.equals(card.title));
+	}
+	
+	@Override
+	public void setSize(int width, int height) {
+		this.setIcon(new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_SMOOTH)));
+		super.setSize(width, height);
+	}
+	
+	@Override
+	public void setBounds(int x, int y, int width, int height) {
+		this.setIcon(new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_SMOOTH)));
+		super.setBounds(x, y, width, height);
 	}
 	
 	@Override
@@ -56,30 +85,6 @@ public class ClientCard extends JButton implements MouseListener{
 	@Override
 	public void mouseExited(MouseEvent e) {
 		zoomedPanel.hideCard();
-		
-	}
-
-	
-	@Override
-	public void setSize(int width, int height) {
-		this.setIcon(new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_SMOOTH)));
-		super.setSize(width, height);
-	}
-	
-	@Override
-	public void setBounds(int x, int y, int width, int height) {
-		this.setIcon(new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_SMOOTH)));
-		super.setBounds(x, y, width, height);
-	}
-
-	public String getTitle() {
-		return title;
-	}
-	
-	
-	public boolean equals(ClientCard card2){
-	
-		return(this.title.equals(card2.title));
 		
 	}
 }

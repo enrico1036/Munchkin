@@ -46,6 +46,9 @@ public class MunchkinClient {
 			images.put(pair.getKey(), pair.getValue());
 		}
 		
+		//Initialize decks
+		DeckManager.loadDecks();
+		
 		// Initialize game window
 		window = new GameWindow();
 		window.setVisible(true);

@@ -11,6 +11,7 @@ import java.util.Random;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import client.CardType;
 import client.ClientCard;
 import client.HandManager;
 
@@ -100,8 +101,10 @@ public class GameUI extends GamePanel {
 		zp=new ZoomedPanel();
 		
 		HandCards = new HandManager();
-		HandCards.getCard("ciao").CreateCard(MunchkinClient.getImage("door_card"), new Rectangle(Hand.getWidth()/3, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
-		HandCards.getCard("ciao2").CreateCard(MunchkinClient.getImage("treasure_card"), new Rectangle(Hand.getWidth()*5/12, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
+		ClientCard card1 = new ClientCard("ciao", CardType.Door, MunchkinClient.getImage("door_card"), new Rectangle(Hand.getWidth()/3, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
+		ClientCard card2 = new ClientCard("ciao2", CardType.Door, MunchkinClient.getImage("treasure_card"), new Rectangle(Hand.getWidth()*5/12, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
+		HandCards.addCard(card1);
+		HandCards.addCard(card2);
 		
 		zp.setVisible(true);
 		zp.setBounds(ww/3, wh/20, ww/3, wh*5/6);
