@@ -25,6 +25,7 @@ public class LobbyUI extends GamePanel {
 	private JCheckBox User_ready;
 	private JScrollPane listScroller;
 	private DefaultListModel<String> listModel;
+	private ScrollableList ScrollList;
 	
 	public LobbyUI(GameWindow window) {
 		
@@ -43,31 +44,17 @@ public class LobbyUI extends GamePanel {
 		User_ready.addActionListener(this);
 		this.add(User_ready);
 		
-		
-		listModel = new DefaultListModel<>();
-		listModel.addElement("Jane Doe");
-		listModel.addElement("John Smith");
-		listModel.addElement("Kathy Green");
-		Gamestatus_list = new JList<>(listModel);
-		Gamestatus_list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		Gamestatus_list.setLayoutOrientation(JList.VERTICAL);
-		Gamestatus_list.setVisibleRowCount(-1);
-		listScroller = new JScrollPane(Gamestatus_list);
-		listScroller.setPreferredSize(new Dimension(250, 80));
-		Gamestatus_list.setFocusable(false);
-		Gamestatus_list.setVisible(true);
-		listScroller.setBounds(wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
-		this.add(listScroller);
-		
-		//this.Gamestatus = new JTextArea();
-		//Gamestatus.setFocusable(false);
-		//this.add(Gamestatus);
+		ScrollList = new ScrollableList();
+		ScrollList.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
+		this.add(ScrollList);
+		ScrollList.add_Element("ciaooooooo");
+
 		
 		
 		for(int i =100;i>0;i--)
 		{
-			//Gamestatus.append("Gamestarting in "+i+"\n");
-			listModel.addElement("ciauzzz");
+
+			ScrollList.add_Element("ciaooooooo");
 		}
 		
 		
@@ -90,9 +77,9 @@ public class LobbyUI extends GamePanel {
 		 wndHeight = this.getHeight();
 		 
 		 Users.setBounds(wndWidth*3/5, wndHeight/10, wndWidth/5, wndHeight/4);
-		 //Gamestatus.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
 		 User_ready.setBounds( wndWidth*3/5+wndWidth/5, wndHeight/10, User_ready.getWidth(), User_ready.getHeight());
 		 listScroller.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
+		 ScrollList.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
 	}
 	
 	
