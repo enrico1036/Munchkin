@@ -55,7 +55,7 @@ public class LobbyUI extends GamePanel {
 		for(int i =100;i>0;i--)
 		{
 
-			ScrollList.add_Element("ciaooooooo"+i, i);
+			ScrollList.add_Element("ciaooooooo"+i);
 		}
 		
 		
