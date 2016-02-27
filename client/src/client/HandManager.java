@@ -11,8 +11,8 @@ public class HandManager {
 		hand = new ArrayList<ClientCard>();
 		//First draw 
 		for(int i=0; i<2; i++) {
-			drawCard(DeckManager.getDoorCard());
-			drawCard(DeckManager.getTreasureCard());
+			//drawCard(DeckManager.getDoorCard());
+			//drawCard(DeckManager.getTreasureCard());
 		}
 	}
 	
@@ -35,7 +35,7 @@ public class HandManager {
 	}
 	
 	public void discard(ClientCard cardDiscarded){
-		DeckManager.discardCard(hand.remove(hand.indexOf(cardDiscarded)));
+		//DeckManager.discardCard(hand.remove(hand.indexOf(cardDiscarded)));
 	}
 	
 	public int getSize() {

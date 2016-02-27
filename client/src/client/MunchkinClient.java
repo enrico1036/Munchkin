@@ -41,7 +41,7 @@ public class MunchkinClient {
 		}
 		
 		//Initialize decks
-		DeckManager.loadDecks();
+		//DeckManager.loadDecks();
 		
 		// Initialize game window
 		window = new GameWindow();
