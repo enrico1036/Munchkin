@@ -7,15 +7,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-public class ServerConnection {
+public class StreamConnection {
 	private Socket socket;
 	private BufferedReader reader;
 	private BufferedWriter writer;
 
-	public ServerConnection() {
+	public StreamConnection() {
 	}
 
-	public ServerConnection(String hostname, int port) throws IOException {
+	public StreamConnection(String hostname, int port) throws IOException {
 		connect(hostname, port);
 	}
 
@@ -56,10 +56,9 @@ public class ServerConnection {
 		return line;
 	}
 	
-	public void writeLine(String line){
+	public void write(String message){
 		try {
-			writer.write(line);
-			writer.newLine();
+			writer.write(message);
 			writer.flush();
 		}
 		catch (IOException e) {

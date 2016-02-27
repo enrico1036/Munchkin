@@ -27,8 +27,12 @@ public final class ActionResultMessage extends Message{
 		builder.append(messageCode);
 		builder.append(Message.ARG_SEPARATOR);
 		builder.append(result);
-		builder.append(Message.MSG_TERMINATOR);
-		builder.append(reason);
+		builder.append(Message.ARG_SEPARATOR);
+		if(reason != null && !reason.isEmpty()){
+			builder.append(reason);
+		} else {
+			builder.append("NULL_REASON");
+		}
 		builder.append(Message.MSG_TERMINATOR);
 		return builder.toString();
 	}

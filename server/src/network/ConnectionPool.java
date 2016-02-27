@@ -31,6 +31,9 @@ public class ConnectionPool {
 			connection.write(result.getFormattedMessage());
 			connection.close();
 		}
+		// Confirm successful connection
+		ActionResultMessage result = new ActionResultMessage(ActionResultMessage.ACTION_ALLOWED, null);
+		connection.write(result.getFormattedMessage());
 		// Add to map
 		connections.put(connection.getClientId(), connection);
 		// Execute worker run() method

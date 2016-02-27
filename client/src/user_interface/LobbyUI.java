@@ -23,7 +23,7 @@ public class LobbyUI extends GamePanel {
 	private JList<String> Gamestatus_list;
 	private int wndWidth,wndHeight;
 	private JCheckBox User_ready;
-	private JScrollPane listScroller;
+	//private JScrollPane listScroller;
 	private DefaultListModel<String> listModel;
 	private ScrollableList ScrollList;
 	
@@ -78,7 +78,7 @@ public class LobbyUI extends GamePanel {
 		 
 		 Users.setBounds(wndWidth*3/5, wndHeight/10, wndWidth/5, wndHeight/4);
 		 User_ready.setBounds( wndWidth*3/5+wndWidth/5, wndHeight/10, User_ready.getWidth(), User_ready.getHeight());
-		 listScroller.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
+		 //listScroller.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
 		 ScrollList.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
 	}
 	

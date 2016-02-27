@@ -1,5 +1,6 @@
 package user_interface;
 
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -7,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
+import com.sun.corba.se.pept.transport.Connection;
 
 import client.MunchkinClient;
 
@@ -79,7 +82,27 @@ public class MenuUI extends GamePanel{
 		super.actionPerformed(e);
 		switch(e.getActionCommand()){
 		case "connect":
-			window.SetActivePanel(MunchkinClient.getPanel(1));
+			// Show connection dialog
+			ConnectionDialog dialog = new ConnectionDialog();
+			dialog.setModalityType(Dialog.DEFAULT_MODALITY_TYPE);
+			dialog.setLocationRelativeTo(this);
+			dialog.setVisible(true);
+			
+			// Check dialog result
+			if(dialog.positiveResult()){
+				boolean result = MunchkinClient.connection.establish(
+						dialog.getServerAddress(), 
+						dialog.getPort(), 
+						dialog.getPlayerName());
+				
+				// If connected successfully
+				if(result){
+					// Switch panel to Lobby
+					window.SetActivePanel(MunchkinClient.getPanel(1));
+				} else {
+					JOptionPane.showMessageDialog(this, "Could not connect to the server");
+				}
+			}
 			break;
 		case "option":
 			window.SetActivePanel(MunchkinClient.getPanel(4));

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import image.XmlImageLoader;
 import javafx.util.Pair;
+import network.PlayerConnection;
 import user_interface.GameUI;
 import user_interface.GameWindow;
 import user_interface.MenuUI;
@@ -18,17 +19,10 @@ import user_interface.OptionUI;
 public class MunchkinClient {
 
 	private static JPanel[] panels = new JPanel[5];
-	
 	private static HashMap<String, BufferedImage> images;
-	
-
-	
-	public static BufferedImage getImage(String Name) {
-		return images.get(Name);
-	}
-
-
 	private  GameWindow window;
+	public static PlayerConnection connection;
+
 	
 	public MunchkinClient() {
 		// Load images from resource folder
@@ -62,12 +56,19 @@ public class MunchkinClient {
 		
 		// Start game in menu ui
 		window.SetActivePanel(panels[2]);
+		
+		// Create instance of PlayerConnection
+		connection = new PlayerConnection();
 	}
 
 	public static JPanel getPanel(int i) {
 		return panels[i];
 	}
-
+	
+	public static BufferedImage getImage(String Name) {
+		return images.get(Name);
+	}
+	
 	public static void main(String[] args) {
 
 		MunchkinClient client = new MunchkinClient();
