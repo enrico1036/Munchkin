@@ -10,13 +10,14 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
-public class ScrollableList extends JScrollPane {
+public class ScrollableList extends JScrollPane implements AdjustmentListener {
 
 	private JList<String> Gamestatus_list;
 	private DefaultListModel<String> listModel;
 	private int index;
+	private boolean elementAdded;
 	
-	public ScrollableList() {
+	public ScrollableList (){
 		// TODO Auto-generated constructor stub
 		listModel = new DefaultListModel<>();
 		Gamestatus_list = new JList<>(listModel);
@@ -25,8 +26,10 @@ public class ScrollableList extends JScrollPane {
 		Gamestatus_list.setVisibleRowCount(-1);
 		this.setViewportView(Gamestatus_list);
 		this.setPreferredSize(new Dimension(250, 80));
+		getVerticalScrollBar().addAdjustmentListener(this);
+		
 		index=0;
-
+		elementAdded = false;
 	}
 	
 	
@@ -34,22 +37,21 @@ public class ScrollableList extends JScrollPane {
 	{
 		listModel.addElement(new_element);
 		Gamestatus_list.setSelectedIndex(index++);
-		this.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-			
-			@Override
-			public void adjustmentValueChanged(AdjustmentEvent e) {
-				// TODO Auto-generated method stub
-				e.getAdjustable().setValue(e.getAdjustable().getMaximum());
-				
-			}
-		});
-		//this.getVerticalScrollBar().removeAdjustmentListener(getVerticalScrollBar().getAdjustmentListeners()[0]);
-
+		elementAdded = true;
 	}
 	
 	public void remove_Element(String elToDelete)
 	{
 		listModel.removeElement(elToDelete);
+	}
+
+
+	@Override
+	public void adjustmentValueChanged(AdjustmentEvent e) {
+		if(elementAdded){
+			e.getAdjustable().setValue(e.getAdjustable().getMaximum());
+			elementAdded = false;
+		}
 	}
 
 }
