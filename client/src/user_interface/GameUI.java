@@ -20,6 +20,8 @@ public class GameUI extends GamePanel {
 	private ImageIcon inventory;
 	private BufferedImage background,framePlayerStats;
 	private PlayerPanel OpponentPlayers[] = new PlayerPanel[5];
+	
+
 	private HandManager HandCards;
 	
 	//--------Hand JComponents------------
@@ -103,8 +105,8 @@ public class GameUI extends GamePanel {
 		HandCards = new HandManager();
 		ClientCard card1 = new ClientCard("ciao", CardType.Door, MunchkinClient.getImage("door_card"), new Rectangle(Hand.getWidth()/3, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
 		ClientCard card2 = new ClientCard("ciao2", CardType.Door, MunchkinClient.getImage("treasure_card"), new Rectangle(Hand.getWidth()*5/12, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
-		HandCards.addCard(card1);
-		HandCards.addCard(card2);
+		HandCards.drawCard(card1);
+		HandCards.drawCard(card2);
 		
 		zp.setVisible(true);
 		zp.setBounds(ww/3, wh/20, ww/3, wh*5/6);
@@ -343,6 +345,10 @@ public class GameUI extends GamePanel {
 	    
 		
 	} 
+	
+	public PlayerPanel[] getOpponentPlayers() {
+		return OpponentPlayers;
+	}
 	
 	
 

@@ -11,8 +11,8 @@ public class HandManager {
 		hand = new ArrayList<ClientCard>();
 		//First draw 
 		for(int i=0; i<2; i++) {
-			addCard(DeckManager.getDoorCard());
-			addCard(DeckManager.getTreasureCard());
+			drawCard(DeckManager.getDoorCard());
+			drawCard(DeckManager.getTreasureCard());
 		}
 	}
 	
@@ -20,7 +20,7 @@ public class HandManager {
 		return hand;
 	}
 	
-	public void addCard(ClientCard cardDrawn){
+	public void drawCard(ClientCard cardDrawn){
 		hand.add(cardDrawn);
 	}
 	

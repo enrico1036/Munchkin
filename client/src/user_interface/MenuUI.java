@@ -82,7 +82,7 @@ public class MenuUI extends GamePanel{
 		super.actionPerformed(e);
 		switch(e.getActionCommand()){
 		case "connect":
-			// Show connection dialog
+		/*	// Show connection dialog
 			ConnectionDialog dialog = new ConnectionDialog();
 			dialog.setModalityType(Dialog.DEFAULT_MODALITY_TYPE);
 			dialog.setLocationRelativeTo(this);
@@ -97,12 +97,12 @@ public class MenuUI extends GamePanel{
 				
 				// If connected successfully
 				if(result){
-					// Switch panel to Lobby
+					// Switch panel to Lobby*/
 					window.SetActivePanel(MunchkinClient.getPanel(1));
-				} else {
+				/*} else {
 					JOptionPane.showMessageDialog(this, "Could not connect to the server");
 				}
-			}
+			}*/
 			break;
 		case "option":
 			window.SetActivePanel(MunchkinClient.getPanel(4));
