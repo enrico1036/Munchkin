@@ -16,7 +16,6 @@ public class ScrollableList extends JScrollPane {
 	public ScrollableList() {
 		// TODO Auto-generated constructor stub
 		listModel = new DefaultListModel<>();
-		listModel.addElement("Jane Doe");
 		Gamestatus_list = new JList<>(listModel);
 		Gamestatus_list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		Gamestatus_list.setLayoutOrientation(JList.VERTICAL);
@@ -27,9 +26,10 @@ public class ScrollableList extends JScrollPane {
 	}
 	
 	
-	public void add_Element(String new_element)
+	public void add_Element(String new_element,int index)
 	{
 		listModel.addElement(new_element);
+		Gamestatus_list.setSelectedIndex(index);
 	}
 	
 	public void remove_Element(String elToDelete)

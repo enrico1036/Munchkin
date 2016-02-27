@@ -45,17 +45,17 @@ public class LobbyUI extends GamePanel {
 		User_ready.addActionListener(this);
 		this.add(User_ready);
 		
+		
 		ScrollList = new ScrollableList();
 		ScrollList.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
 		this.add(ScrollList);
-		ScrollList.add_Element("ciaooooooo");
 
 		
 		
 		for(int i =100;i>0;i--)
 		{
 
-			ScrollList.add_Element("ciaooooooo");
+			ScrollList.add_Element("ciaooooooo"+i, i);
 		}
 		
 		
