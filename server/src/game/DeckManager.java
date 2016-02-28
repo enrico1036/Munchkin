@@ -21,10 +21,10 @@ public class DeckManager {
 		// TODO: load all cards in decks (maybe from xml file)
 		
 		/* this is just for test purpose */
-		for(Integer i=0; i<50; i++) {
-			doorDeck.add(new Card(i.toString(), CardType.Door));
-			treasureDeck.add(new Card(i.toString(), CardType.Door));
-		}
+//		for(Integer i=0; i<50; i++) {
+//			doorDeck.add(new Card(i.toString(), CardType.Door));
+//			treasureDeck.add(new Card(i.toString(), CardType.Door));
+//		}
 	}
 	
 	public static void shuffleDecks() {

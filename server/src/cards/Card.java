@@ -5,4 +5,8 @@ public abstract class Card {
 		protected CardType type;
 		
 		abstract void effect();
+		
+		public CardType getType() {
+			return type;
+		}
 }
