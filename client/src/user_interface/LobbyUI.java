@@ -141,7 +141,7 @@ public class LobbyUI extends GamePanel {
 			}
 				if(i==6&&!selected)
 				{
-					System.out.println("Errore troppi giocatori");
+					window.SetActivePanel(MunchkinClient.getPanel(0));
 				}
 			}
 				
