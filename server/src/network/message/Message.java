@@ -16,6 +16,11 @@ public abstract class Message {
 	public static final String CLT_REQUEST_CONNECTION = "REQUEST_CONNECTION";
 	// Lobby chat message
 	public static final String CLT_CHAT_MESSAGE = "CHAT_MESSAGE";
+	
+	// Get card from decks
+	public static final String DOOR_CARD_REQUEST = "DOOR_CARD";
+	public static final String TREASURE_CARD_REQUEST = "TREASURE_CARD";
+	public static final String DRAWN_CARD = "DRAWN_CARD";
 	/*
 	 * 	MESSAGE CODES LIST END
 	 */
@@ -38,6 +43,7 @@ public abstract class Message {
 		if(tokens.size() == 0)
 			return null;
 		
+		
 		switch (tokens.get(0)){
 		case Message.CLT_REQUEST_CONNECTION:
 			return new ConnectionRequestMessage(tokens.get(1));
@@ -48,7 +54,12 @@ public abstract class Message {
 		case Message.CLT_CHAT_MESSAGE:
 			return new ChatMessage(tokens.get(1), tokens.get(2));
 			
+		case Message.DRAWN_CARD:
+			return new DrawnCardMessage(tokens.get(1));
+		
 		default:
+			if(tokens.size() == 1)
+				return new NoArgMessage(tokens.get(0));
 			break;
 		}
 		
