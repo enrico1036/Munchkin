@@ -5,12 +5,15 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import client.MunchkinClient;
+import javafx.util.Pair;
+
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
 
 import client.CardType;
 import client.ClientCard;
@@ -18,8 +21,9 @@ import client.HandManager;
 
 public class GameUI extends GamePanel {
 	
-	private ImageIcon inventory,doorCardsImage,doorDiscardImage,TreasureCardsImage,
+	private ImageIcon inventory,doorCardsImage,doorDiscardsImage,TreasureCardsImage,
 	TreasureDiscardsImage; 
+	
 
 	private BufferedImage background,framePlayerStats;
 	private PlayerPanel OpponentPlayers[];
@@ -28,12 +32,17 @@ public class GameUI extends GamePanel {
 	
 	//--------Hand JComponents------------
 	private JButton handInventory;
+	private ArrayList<ClientCard> hand;
 	
+
+		
 	//--------Player 1 JComponents---------
 	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
 	lblPlayerSex,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue,
 	lblPlayerHead,lblPlayerRiarm,lblPlayerBody,lblPlayerLearm,lblPlayerLegs;
 	
+	//----------Deck JComponents---------------
+	private JButton doorCards,doorDiscards,treasureCards,treasureDiscards;
 	
 	/*
 	 * ww= Gamewindow (JFrame) width
@@ -58,6 +67,8 @@ public class GameUI extends GamePanel {
 		OpponentPlayers = new PlayerPanel[5];
 		this.createRandomFramePanel();
 	
+		hand = new ArrayList<ClientCard>();
+		
 		
 		
 		this.background=MunchkinClient.getImage("panel_background");
@@ -109,8 +120,10 @@ public class GameUI extends GamePanel {
 		zp=new ZoomedPanel();
 		
 		HandCards = new HandManager();
-		ClientCard card1 = new ClientCard("ciao", CardType.Door, MunchkinClient.getImage("door_card"), new Rectangle(Hand.getWidth()/3, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
-		ClientCard card2 = new ClientCard("ciao2", CardType.Door, MunchkinClient.getImage("treasure_card"), new Rectangle(Hand.getWidth()*5/12, Hand.getHeight()/4, Hand.getWidth()/6, Hand.getHeight()/2), zp);
+		ClientCard card1 = new ClientCard("door", CardType.Door);
+		card1.CreateCard(MunchkinClient.getImage("door_card"), zp);
+		ClientCard card2 = new ClientCard("treasure", CardType.Treasure);
+		card2.CreateCard(MunchkinClient.getImage("treasure_card"), zp);
 		HandCards.drawCard(card1);
 		HandCards.drawCard(card2);
 		
@@ -120,8 +133,9 @@ public class GameUI extends GamePanel {
 		zp.setLayout(null);
 		
 		this.setComponentZOrder(zp, 0);	
-		Hand.add(HandCards.getCard("ciao"));
-		Hand.add(HandCards.getCard("ciao2"));
+		this.handPositioning();
+		Hand.add(HandCards.getCard("door"));
+		Hand.add(HandCards.getCard("treasure"));
 		
 		/*
 		 * 
@@ -235,8 +249,8 @@ public class GameUI extends GamePanel {
 		doorCardsImage = new ImageIcon();
 		doorCardsImage.setImage(MunchkinClient.getImage("door_back"));
 		
-		doorDiscardImage = new ImageIcon();
-		doorDiscardImage.setImage(MunchkinClient.getImage("door_card"));
+		doorDiscardsImage = new ImageIcon();
+		doorDiscardsImage.setImage(MunchkinClient.getImage("door_card"));
 		
 		TreasureCardsImage = new ImageIcon();
 		TreasureCardsImage.setImage(MunchkinClient.getImage("treasure_back"));
@@ -247,28 +261,30 @@ public class GameUI extends GamePanel {
 		
 		 Decks = new JPanel();
 		 Decks.setOpaque(false);
-		 Decks.setBounds(ww*3/4, wh/3, ww/4, wh/3);
+		 Decks.setBounds(ww/2, wh/3, ww/2, wh/3);
 		add(Decks);
 		Decks.setLayout(null);
 		
 		dw=Decks.getWidth();
 		dh=Decks.getHeight();
 		
-		JButton doorCards = new JButton(doorCardsImage);
-		doorCards.setBounds(dw/9, dh/3, dw/9, dh/3);
+		doorCards = new JButton(doorCardsImage);
+		doorCards.setBounds(dw/25, dh/10, dw/5, dh*8/10);
+		doorCards.setActionCommand("DrawDoor");
 		Decks.add(doorCards);
 		
-		JButton doorDiscard = new JButton(doorDiscardImage);
-		doorDiscard.setBounds(dw*3/9, dh/3, dw/9, dh/3);
-		Decks.add(doorDiscard);
+		doorDiscards = new JButton(doorDiscardsImage);
+		doorDiscards.setBounds(dw*7/25, dh/10, dw/5, dh*8/10);
+		Decks.add(doorDiscards);
 		
-		JButton TreasureCards = new JButton(TreasureCardsImage);
-		TreasureCards.setBounds(dw*5/9, dh/3, dw/9, dh/3);
-		Decks.add(TreasureCards);
+		treasureCards = new JButton(TreasureCardsImage);
+		treasureCards.setBounds(dw*13/25, dh/10, dw/5, dh*8/10);
+		treasureCards.setActionCommand("DrawTreasure");
+		Decks.add(treasureCards);
 		
-		JButton TreasureDiscards = new JButton(TreasureDiscardsImage);
-		TreasureDiscards.setBounds(dw*7/9, dh/3, dw/9, dh/3);
-		Decks.add(TreasureDiscards);
+		treasureDiscards = new JButton(TreasureDiscardsImage);
+		treasureDiscards.setBounds(dw*19/25, dh/10, dw/5, dh*8/10);
+		Decks.add(treasureDiscards);
 		
 		/*
 		 * 
@@ -304,10 +320,11 @@ public class GameUI extends GamePanel {
 		
 		PlayerStats.setBounds(0, wh*2/3, ww*2/5, wh/3);
 		Hand.setBounds(ww*2/5, wh*2/3, ww*3/5, wh/3);
-		Decks.setBounds(ww*3/4, wh/3, ww/4, wh/3);
+		Decks.setBounds(ww/2, wh/3, ww/2, wh/3);
 		Table.setBounds(0, wh/3, ww*3/4, wh/3);
 		zp.setBounds(ww/3, wh/20, ww/3, wh*5/6);
 		
+		this.handPositioning();
 		
 		for(int k=0;k<5;k++)
 		{
@@ -342,23 +359,14 @@ public class GameUI extends GamePanel {
 
 		
 		//Get the width and the height of Player* JPanel (* stands for 2,3,4,5,6). 
-		/*
-		this.resizeButton(doorCards, image, newX, newY, newWidth, newHeight);
-		doorCards.setBounds(dw/9, dh/3, dw/9, dh/3);
-		Decks.add(doorCards);
 		
-		JButton doorDiscard = new JButton(doorDiscardImage);
-		doorDiscard.setBounds(dw*3/9, dh/3, dw/9, dh/3);
-		Decks.add(doorDiscard);
+		this.resizeButton(doorCards, doorCardsImage, dw/25, dh/10, dw/5, dh*8/10);
+		this.resizeButton(doorDiscards, doorDiscardsImage, dw*7/25, dh/10, dw/5, dh*8/10);
+		this.resizeButton(treasureCards, TreasureCardsImage,dw*13/25, dh/10, dw/5, dh*8/10);
+		this.resizeButton(treasureDiscards, TreasureDiscardsImage, dw*19/25, dh/10, dw/5, dh*8/10);
 		
-		JButton TreasureCards = new JButton(TreasureCardsImage);
-		TreasureCards.setBounds(dw*5/9, dh/3, dw/9, dh/3);
-		Decks.add(TreasureCards);
 		
-		JButton TreasureDiscards = new JButton(TreasureDiscardsImage);
-		TreasureDiscards.setBounds(dw*7/9, dh/3, dw/9, dh/3);
-		Decks.add(TreasureDiscards);
-		*/
+		
 	}
 	
 	@Override
@@ -369,13 +377,39 @@ public class GameUI extends GamePanel {
 		
 	}
 	
-	public void getAllPlayers(){
-		//richiesta alla classe 
-		//che ritornera un array di stringhe con i nomi dei giocatori
+	
+	
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		super.actionPerformed(e);
+		switch(e.getActionCommand()){
+		
+		case "DrawDoor":
+			ClientCard card1 = new ClientCard("door", CardType.Door);
+			card1.CreateCard(MunchkinClient.getImage("door_card"),  zp);
+			
+			HandCards.drawCard(card1);
+			this.setComponentZOrder(zp, 0);	
+			this.handPositioning();
+			Hand.add(HandCards.getCard("door"));
+			break;
+		case "DrawTreasure":
+			ClientCard card2 = new ClientCard("treasure", CardType.Treasure);
+					card2.CreateCard( MunchkinClient.getImage("treasure_card"), zp);
+			
+			HandCards.drawCard(card2);
+			this.setComponentZOrder(zp, 0);	
+			this.handPositioning();
+			Hand.add(HandCards.getCard("door"));			
+		
+		}
 	}
-	
-	
-	
+
+
+
+
 	private void createRandomFramePanel(){
 		 int size = 10,k=0;
 	        int[] x = new int[5];
@@ -412,6 +446,20 @@ public class GameUI extends GamePanel {
 		   btn.setBounds(newX,newY,newWidth,newHeight);
 		  
 		   
+	}
+	
+	public void handPositioning(){
+		int handSize,initpos,handWidth,i=0,handHeight;
+		handSize= HandCards.getSize();
+		handWidth=Hand.getWidth();
+		handHeight=Hand.getHeight();
+		initpos=handWidth/2-((handSize/2)*(handWidth/12));
+		for(ClientCard card : hand){
+			card.setBounds(initpos+i*handWidth, handHeight/4, handWidth/6, handHeight/2);
+			i++;
+		}
+		Hand.revalidate();
+		Hand.repaint();
 	}
 
 }

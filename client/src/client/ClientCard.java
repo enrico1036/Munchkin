@@ -13,7 +13,7 @@ import user_interface.ZoomedPanel;
 
 public class ClientCard extends JButton implements MouseListener{
 
-	private static final long serialVersionUID = 675231082196084165L;
+
 	private String title;
 	private BufferedImage image;
 	private CardType type;
@@ -24,14 +24,11 @@ public class ClientCard extends JButton implements MouseListener{
 		this.type = type;
 	}
 	
-	public ClientCard(String title, CardType type, BufferedImage image, Rectangle rectangle, ZoomedPanel zoomedPanel){
-		this.title = title;
-		this.type = type;
+	public void CreateCard(BufferedImage image, ZoomedPanel zoomedPanel){
 		this.image = image;
 		this.setIcon(new ImageIcon(image));
 		this.setBorderPainted(false);
 		this.setVisible(true);
-		this.setBounds(rectangle);
 		this.zoomedPanel = zoomedPanel;
 		this.addMouseListener(this);
 	}
