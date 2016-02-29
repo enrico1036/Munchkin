@@ -7,7 +7,7 @@ import cards.Card;
 import cards.CardType;
 
 
-public class DeckManager {
+public class Decks {
 
 	private static ArrayList<Card> doorDeck = new ArrayList<Card>();
 	private static ArrayList<Card> doorDiscards = new ArrayList<Card>();

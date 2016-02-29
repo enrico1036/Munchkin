@@ -11,7 +11,7 @@ public class Curse extends Card {
 	}
 
 	@Override
-	void effect() {
+	public void effect() {
 		// TODO Auto-generated method stub
 
 	}
