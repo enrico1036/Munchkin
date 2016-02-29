@@ -19,8 +19,7 @@ public class GameUI extends GamePanel {
 	
 	private ImageIcon inventory;
 	private BufferedImage background,framePlayerStats;
-	private PlayerPanel OpponentPlayers[] = new PlayerPanel[5];
-	
+	private PlayerPanel OpponentPlayers[];
 
 	private HandManager HandCards;
 	
@@ -51,10 +50,12 @@ public class GameUI extends GamePanel {
 	 */
 	public GameUI(GameWindow window)  {
 		super(window);
-		
+		OpponentPlayers = new PlayerPanel[5];
 		this.createRandomFramePanel();
 	
-		this.background=MunchkinClient.getImage("lobby_background");
+		
+		
+		this.background=MunchkinClient.getImage("panel_background");
 		this.framePlayerStats=MunchkinClient.getImage("playerstats_frame");
 	
 		this.setOpaque(false);
@@ -212,6 +213,7 @@ public class GameUI extends GamePanel {
 		
 		for(int k=0;k<5;k++)
 		{
+			
 			OpponentPlayers[k].setOpaque(false);
 			OpponentPlayers[k].setBounds(ww*k/5, 0, ww/5, wh/3);
 			add(OpponentPlayers[k]);
@@ -319,7 +321,10 @@ public class GameUI extends GamePanel {
 		
 	}
 	
-	
+	public void getAllPlayers(){
+		//richiesta alla classe 
+		//che ritornera un array di stringhe con i nomi dei giocatori
+	}
 	
 	
 	

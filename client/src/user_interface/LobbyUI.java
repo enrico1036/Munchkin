@@ -33,7 +33,7 @@ public class LobbyUI extends GamePanel {
 	public LobbyUI(GameWindow window) {
 		
 		super(window);
-		this.background=MunchkinClient.getImage("lobby_background");
+		this.background=MunchkinClient.getImage("panel_background");
 		this.dragon=MunchkinClient.getImage("dragon_lobby");
 		this.users=MunchkinClient.getImage("users_lobby");
 		
@@ -142,6 +142,7 @@ public class LobbyUI extends GamePanel {
 				if(i==6&&!selected)
 				{
 					window.SetActivePanel(MunchkinClient.getPanel(0));
+					
 				}
 			}
 				

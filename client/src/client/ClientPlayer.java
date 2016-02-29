@@ -7,6 +7,7 @@ public class ClientPlayer {
 	
 	public String username;
 	public int level;
+	public int force;
 	public ArrayList <ClientCard> table;
 	public ClientCard head;
 	public ClientCard hand1;
@@ -14,7 +15,9 @@ public class ClientPlayer {
 	public ClientCard body;
 	public ClientCard feet;
 	
-	
+	public ClientPlayer(String user){
+		this.username=user;
+	}
 	
 	public String getUsername() {
 		return username;
@@ -64,6 +67,12 @@ public class ClientPlayer {
 	public void setFeet(ClientCard feet) {
 		this.feet = feet;
 	}
-	
+	public int getForce() {
+		return force;
+	}
+
+	public void setForce(int force) {
+		this.force = force;
+	}
 	
 }

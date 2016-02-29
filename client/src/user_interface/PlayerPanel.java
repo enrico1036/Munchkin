@@ -1,6 +1,7 @@
 package user_interface;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -17,6 +18,7 @@ public class PlayerPanel extends PaintPanel {
 	lblPlayerCards,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue;
 	private JButton btnPlayerCards;
 	private int pw,ph;
+	private String PlayerName;
 	
 	
 	private ImageIcon showPlayerCards;
@@ -31,13 +33,15 @@ public class PlayerPanel extends PaintPanel {
 		pw=this.getWidth();
 		ph=this.getHeight();
 		
+		PlayerName="PlayerName"; //Devo fare richiesta al server
+		
 		/*
 		 * 
 		 * PLAYER PANEL JCOMPONENTS
 		 * 
 		 */
 				
-		lblPlayerName = new JLabel("PlayerName");
+		lblPlayerName = new JLabel(PlayerName);
 		lblPlayerName.setBounds(pw/16, 0, pw*7/16, ph/2);
 		this.add(lblPlayerName);
 
@@ -73,6 +77,7 @@ public class PlayerPanel extends PaintPanel {
 		
 		btnPlayerCards = new JButton(showPlayerCards);
 		btnPlayerCards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
+		btnPlayerCards.setActionCommand("show_player");
 		btnPlayerCards.setVisible(true);
 		btnPlayerCards.setContentAreaFilled(false);
 		btnPlayerCards.setBorderPainted(false);
@@ -81,6 +86,15 @@ public class PlayerPanel extends PaintPanel {
 		
 	}
 	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		super.actionPerformed(e);
+		if(e.getActionCommand()=="show_player"){
+			GameWindow window = ((GamePanel)getParent()).window;
+			((GamePanel)getParent()).window.SetActivePanel(new ShowPlayers(window,PlayerName));
+		}
+	}
+
 	public void updatePlayerComponents(){
 	
 		pw=this.getWidth();

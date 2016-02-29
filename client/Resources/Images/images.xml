@@ -17,7 +17,7 @@
         <path>Resources/Images/option.png</path>
     </image>
     <image>
-        <name>lobby_background</name>
+        <name>panel_background</name>
         <path>Resources/Images/background.jpg</path>
     </image>
     <image>

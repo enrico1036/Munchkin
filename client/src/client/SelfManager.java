@@ -5,12 +5,13 @@ import java.util.ArrayList;
 
 public class SelfManager extends ClientPlayer {
 
+	public SelfManager(String user) {
+		super(user);
+	}
+
 	private ArrayList <ClientCard> hand;
 	
-	public SelfManager(){
-		
-		
-	}
+	
 
 	public ArrayList<ClientCard> getHand() {
 		return hand;

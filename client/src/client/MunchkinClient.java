@@ -14,11 +14,13 @@ import user_interface.GameWindow;
 import user_interface.MenuUI;
 import user_interface.LobbyUI;
 import user_interface.PauseUI;
+import user_interface.ShowPlayers;
 import user_interface.OptionUI;
+import user_interface.GamePanel;
 
 public class MunchkinClient {
 
-	private static JPanel[] panels = new JPanel[5];
+	private static GamePanel[] panels = new GamePanel[5];
 	private static HashMap<String, BufferedImage> images;
 	private  GameWindow window;
 	public static PlayerConnection connection;
@@ -51,8 +53,9 @@ public class MunchkinClient {
 		panels[0] = new GameUI(window);
 		panels[1] = new LobbyUI(window);
 		panels[2] = new MenuUI(window);
-		panels[3] = new PauseUI();
-		panels[4] = new OptionUI();
+		panels[3] = new PauseUI(window);
+		panels[4] = new OptionUI(window);
+		
 		
 		// Start game in menu ui
 		window.SetActivePanel(panels[2]);
