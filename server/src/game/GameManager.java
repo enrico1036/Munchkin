@@ -3,22 +3,21 @@ package game;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import cards.Card;
 import utils.Debug;
 
 public class GameManager{
 	private static boolean playerWon;
 	private static ArrayList<game.Player> players;
-	private static ArrayList<cards.Card> doorDeck;
-	private static ArrayList<cards.Card> treasureDeck;
 	
 	
 	private static void begin() {
 		Debug.print("GameManager: Begin");
 		playerWon = false;
 		//TODO: fill player array
-		//TODO: fill decks
-		Collections.shuffle(doorDeck);
-		Collections.shuffle(treasureDeck);
+
+		Decks.loadDecks();
+		Decks.shuffleDecks();
 	}
 	
 	private static void turn() {
@@ -39,15 +38,21 @@ public class GameManager{
 	public static void win() {
 		playerWon = true;
 	}
-	
-	//TODO: look for a method to make static performStep()
 
-	public static void StartGame() {
-			begin();
-			while(!playerWon) {
-				nextPlayer();
-				turn();
-			}
-			end();		
+	public static void startGame() {
+		begin();
+		while(!playerWon) {
+			nextPlayer();
+			turn();
+		}
+		end();		
+	}
+	
+	public static void giveCardToPlayer(Card card, Player player) {
+		player.draw(card);
+	}
+	
+	public static Player getCurrentPlayer() {
+		return players.get(0);
 	}
 }

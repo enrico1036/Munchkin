@@ -22,7 +22,7 @@ public class MainClass {
 		}
 		
 		
-		GameManager.StartGame();
+		GameManager.startGame();
 		
 	}
 

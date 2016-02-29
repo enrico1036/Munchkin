@@ -1,5 +1,8 @@
 package game;
 
+import cards.Card;
+import cards.Category;
+import cards.Monster;
 import utils.StateMachine;
 
 public class Draw extends StateMachine {
@@ -10,11 +13,27 @@ public class Draw extends StateMachine {
 		states[0] = "OpenDoor";
 		states[1] = "LookForTrouble";
 		states[2] = "LootTheRoom";
+		states[3] = "End";
 	}
 
 	
 	private void openDoor() {
-		
+		Card card = Decks.getDoorCard();
+		//if curse play it, if monster start a combat and execute it. In all other cases draw it
+		switch(card.getCategory()) {
+		case Curse:
+			card.effect();
+			break;
+		case Monster:
+			Combat combat = new Combat((Monster) card);
+			while(combat.performStep());
+			currentState = this.states.length-1;
+			break;
+		default:
+			GameManager.giveCardToPlayer(card, GameManager.getCurrentPlayer());
+			break;
+			
+		}
 	}
 	
 	private void lookForTrouble() {
@@ -27,7 +46,6 @@ public class Draw extends StateMachine {
 	
 	@Override
 	public boolean performStep() {
-		// TODO Insert your code here
 		switch(states[currentState]) {
 		case "OpenDoor":
 			openDoor();
@@ -37,6 +55,8 @@ public class Draw extends StateMachine {
 			break;
 		case "LootTheRoom":
 			lootTheRoom();
+			break;
+		case "End":
 			break;
 		}
 		return super.performStep();

@@ -12,9 +12,8 @@ public class Turn extends StateMachine {
 		states = new String[5];
 		states[0] = "Equip";
 		states[1] = "Draw";
-		states[2] = "Combat";
-		states[3] = "Trading";
-		states[4] = "Charity";
+		states[2] = "Trading";
+		states[3] = "Charity";
 	}
 	
 	private void equip() {
@@ -24,11 +23,6 @@ public class Turn extends StateMachine {
 	private void draw() {
 		Draw draw = new Draw();
 		while(draw.performStep());
-	}
-	
-	private void combat() {
-		Combat combat = new Combat();
-		while(combat.performStep());
 	}
 	
 	private void trading() {
@@ -48,9 +42,6 @@ public class Turn extends StateMachine {
 			break;
 		case "Draw":
 			draw();
-			break;
-		case "Combat":
-			combat();
 			break;
 		case "Trading":
 			trading();
