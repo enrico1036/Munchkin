@@ -10,8 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import com.sun.corba.se.pept.transport.Connection;
-
 import client.MunchkinClient;
 
 public class MenuUI extends GamePanel{
