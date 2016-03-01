@@ -27,7 +27,6 @@ public class ClientCard extends JButton implements MouseListener{
 	
 	public void CreateCard(BufferedImage image, ZoomedPanel zoomedPanel){
 		this.image = image;
-		this.setIcon(new ImageIcon(image));
 		this.setBorderPainted(false);
 		this.setVisible(true);
 		this.zoomedPanel = zoomedPanel;
@@ -44,18 +43,6 @@ public class ClientCard extends JButton implements MouseListener{
 	
 	public boolean equals(ClientCard card){
 		return(this.title.equals(card.title));
-	}
-	
-	@Override
-	public void setSize(int width, int height) {
-		this.setIcon(new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_FAST)));
-		super.setSize(width, height);
-	}
-	
-	@Override
-	public void setBounds(int x, int y, int width, int height) {
-		this.setIcon(new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_FAST)));
-		super.setBounds(x, y, width, height);
 	}
 	
 	@Override
