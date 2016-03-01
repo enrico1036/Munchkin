@@ -2,18 +2,24 @@ package client;
 
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 public class HandManager {
 
 	private ArrayList<ClientCard> hand;
+	private JPanel handPanel;
 	
-
-	public HandManager(){
+	public HandManager(JPanel Hand){
+		
+		this.handPanel=Hand;
+		
 		hand = new ArrayList<ClientCard>();
 		//First draw 
 		for(int i=0; i<2; i++) {
 			//drawCard(DeckManager.getDoorCard());
 			//drawCard(DeckManager.getTreasureCard());
 		}
+		
 	}
 	
 	public ArrayList<ClientCard> getHand() {
@@ -22,6 +28,8 @@ public class HandManager {
 	
 	public void drawCard(ClientCard cardDrawn){
 		hand.add(cardDrawn);
+		
+		this.handPositioning();
 	}
 	
 	public ClientCard getCard(String Title){	//TODO: forse non serve però in caso mi sa che è meglio passargli un istanza di carta
@@ -40,5 +48,20 @@ public class HandManager {
 	
 	public int getSize() {
 		return this.hand.size();
+	}
+	public void handPositioning(){
+		int handSize,initpos,handWidth,handHeight;
+		handSize= hand.size();
+		handWidth=handPanel.getWidth();
+		handHeight=handPanel.getHeight();
+		initpos=handWidth/2-((handSize/2)*(handWidth/12));
+		
+		System.out.println(hand.size());
+		for(int i=0;i<hand.size();i++){
+		
+			hand.get(i).setBounds(initpos+i*handWidth/12, handHeight/4, handWidth/6, handHeight/2);
+			
+		}
+	
 	}
 }

@@ -1,5 +1,6 @@
 package client;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
@@ -47,13 +48,13 @@ public class ClientCard extends JButton implements MouseListener{
 	
 	@Override
 	public void setSize(int width, int height) {
-		this.setIcon(new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_SMOOTH)));
+		this.setIcon(new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_FAST)));
 		super.setSize(width, height);
 	}
 	
 	@Override
 	public void setBounds(int x, int y, int width, int height) {
-		this.setIcon(new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_SMOOTH)));
+		this.setIcon(new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_FAST)));
 		super.setBounds(x, y, width, height);
 	}
 	
@@ -84,4 +85,13 @@ public class ClientCard extends JButton implements MouseListener{
 		zoomedPanel.hideCard();
 		
 	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(image, this.getWidth(), this.getHeight(), null);
+		
+	}
+	
+	
 }

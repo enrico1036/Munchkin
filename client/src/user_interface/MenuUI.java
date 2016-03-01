@@ -14,9 +14,8 @@ import client.MunchkinClient;
 
 public class MenuUI extends GamePanel{
 	
-	private BufferedImage background=null;
-	private ImageIcon connetti,option,exit;
-	private JButton button,button1,button2;
+	private BufferedImage background=null,connetti,option,exit;
+	private ImageButton button,button1,button2;
 	private int wndWidth,wndHeight;
 	
 	
@@ -30,11 +29,11 @@ public class MenuUI extends GamePanel{
 		
 		
 		//Create an ImageIcone where we load the connect_button image
-		connetti= new ImageIcon();
-		connetti.setImage(MunchkinClient.getImage("connect_button"));
+		
+		connetti=MunchkinClient.getImage("connect_button");
 				
 		//Create a new button that allows you to connect to the server 
-		button = new JButton(connetti);
+		button = new ImageButton(connetti);
 		button.setActionCommand("connect");
 		button.setMinimumSize(buttdimmin);
 		button.setVisible(true);
@@ -46,11 +45,11 @@ public class MenuUI extends GamePanel{
 		
 
 		//Create an ImageIcone where we load the option_button image
-		option= new ImageIcon();
-		option.setImage(MunchkinClient.getImage("option_button"));
+
+		option=MunchkinClient.getImage("option_button");
 				
 		//Create a new button that allows you to go on the option page 
-		button1 = new JButton(option);
+		button1 = new ImageButton(option);
 		button1.setActionCommand("option");
 		button1.setMinimumSize(buttdimmin);
 		button1.setVisible(true);
@@ -61,11 +60,11 @@ public class MenuUI extends GamePanel{
 		
 
 		//Create an ImageIcone where we load the exit_button image
-		exit= new ImageIcon();
-		exit.setImage(MunchkinClient.getImage("exit_button"));
+		
+		exit=MunchkinClient.getImage("exit_button");
 				
 		//Create a new button that allows you to connect to the server 
-		button2 = new JButton(exit);
+		button2 = new ImageButton(exit);
 		button2.setActionCommand("exit");
 		button2.setMinimumSize(buttdimmin);
 		button2.setVisible(true);
@@ -124,22 +123,12 @@ public class MenuUI extends GamePanel{
 		 wndWidth = this.getWidth();
 		 wndHeight = this.getHeight();
 		
-		 this.resizeButton(button,connetti,wndWidth/5,(wndHeight-button.getHeight())/3,wndWidth/5,	wndHeight/5);
-		 this.resizeButton(button1,option,wndWidth/5,((wndHeight-button.getHeight())/3)+wndHeight*2/12,wndWidth/5,wndHeight/5);
-		 this.resizeButton(button2,exit,wndWidth/5,((wndHeight-button.getHeight())/3)+wndHeight*4/12,wndWidth/5,wndHeight/5);
+		 button.setBounds(wndWidth/5,(wndHeight-button.getHeight())/3,wndWidth/5,	wndHeight/5);
+		 button1.setBounds(wndWidth/5,((wndHeight-button.getHeight())/3)+wndHeight*2/12,wndWidth/5,wndHeight/5);
+		 button2.setBounds(wndWidth/5,((wndHeight-button.getHeight())/3)+wndHeight*4/12,wndWidth/5,wndHeight/5);
 		
 	}
 	
-	
-	public void resizeButton(JButton btn,ImageIcon image,int newX,int newY,int newWidth,int newHeight){
-		 Image img = image.getImage();
-		   Image newimg = img.getScaledInstance(newWidth,newHeight, java.awt.Image.SCALE_SMOOTH ) ;  
-		   ImageIcon x = new ImageIcon(newimg);
-		   btn.setIcon(x);
-		   btn.setBounds(newX,newY,newWidth,newHeight);
-		  
-		   
-	}
 
 	
 }
