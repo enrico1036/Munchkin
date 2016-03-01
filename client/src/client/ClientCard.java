@@ -76,7 +76,7 @@ public class ClientCard extends JButton implements MouseListener{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(image, this.getWidth(), this.getHeight(), null);
+		g.drawImage(image,0,0, this.getWidth(), this.getHeight(), null);
 		
 	}
 	
