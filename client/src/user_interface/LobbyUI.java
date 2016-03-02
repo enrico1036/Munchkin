@@ -14,9 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import client.MunchkinClient;
+import network.GameEventHandler;
+import network.message.ChatMessage;
 
 public class LobbyUI extends GamePanel {
 
@@ -29,6 +32,7 @@ public class LobbyUI extends GamePanel {
 	private DefaultListModel<String> listModel;
 	private ScrollableList ScrollList;
 	private JLabel[][] Users ;
+	private JTextField textBox;
 	
 	public LobbyUI(GameWindow window) {
 		
@@ -58,9 +62,26 @@ public class LobbyUI extends GamePanel {
 			ScrollList.add_Element("ciaooooooo"+i);
 		}
 		
+		textBox = new JTextField("Prova");
+		textBox.addActionListener(this);
+		textBox.setActionCommand("Enter");
+		textBox.setBounds(0,0, 50, 50);
+		this.add(textBox);
 		
 	}
 	
+
+
+	public ScrollableList getScrollList() {
+		return ScrollList;
+	}
+
+
+
+	public void setScrollList(ScrollableList scrollList) {
+		ScrollList = scrollList;
+	}
+
 
 
 	@Override
@@ -97,6 +118,11 @@ public class LobbyUI extends GamePanel {
 		{
 			this.showPlayer();
 			//window.SetActivePanel(MunchkinClient.getPanel(0));
+		}else if(e.getActionCommand()=="Enter"&&textBox.getText().trim()!=""){
+			GameEventHandler.sendMessage(
+					new ChatMessage(GameEventHandler.getConnection().getConnectedPlayerName(),
+							textBox.getText()));
+			textBox.setText("");
 		}
 	}
 	

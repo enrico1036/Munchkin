@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import client.MunchkinClient;
+import network.GameEventHandler;
+import network.PlayerConnection;
 
 public class MenuUI extends GamePanel{
 	
@@ -79,7 +81,7 @@ public class MenuUI extends GamePanel{
 		super.actionPerformed(e);
 		switch(e.getActionCommand()){
 		case "connect":
-		/*	// Show connection dialog
+			// Show connection dialog
 			ConnectionDialog dialog = new ConnectionDialog();
 			dialog.setModalityType(Dialog.DEFAULT_MODALITY_TYPE);
 			dialog.setLocationRelativeTo(this);
@@ -87,19 +89,20 @@ public class MenuUI extends GamePanel{
 			
 			// Check dialog result
 			if(dialog.positiveResult()){
-				boolean result = MunchkinClient.connection.establish(
+				PlayerConnection connection = new PlayerConnection(
 						dialog.getServerAddress(), 
 						dialog.getPort(), 
 						dialog.getPlayerName());
 				
 				// If connected successfully
-				if(result){
+				if(connection.isConnected()){
+					GameEventHandler.initialize(connection);
 					// Switch panel to Lobby*/
 					window.SetActivePanel(MunchkinClient.getPanel(1));
-				/*} else {
+				} else {
 					JOptionPane.showMessageDialog(this, "Could not connect to the server");
 				}
-			}*/
+			}
 			break;
 		case "option":
 			window.SetActivePanel(MunchkinClient.getPanel(4));

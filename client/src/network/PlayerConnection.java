@@ -16,6 +16,8 @@ public class PlayerConnection {
 	}
 	
 	public PlayerConnection(String hostname, int port, String playerName){
+		connection = new StreamConnection();
+		this.playerName = playerName;
 		establish(hostname, port, playerName);
 	}
 	
@@ -24,6 +26,7 @@ public class PlayerConnection {
 		try{
 			connection.connect(hostname, port);
 		} catch (IOException e){
+			e.printStackTrace();
 			return false;
 		}
 		// Send Munchkin server a ConnectionRequestMessage with the given username

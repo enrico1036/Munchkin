@@ -38,6 +38,7 @@ public class ScrollableList extends JScrollPane implements AdjustmentListener {
 		listModel.addElement(new_element);
 		Gamestatus_list.setSelectedIndex(index++);
 		elementAdded = true;
+		getVerticalScrollBar().addAdjustmentListener(this);
 	}
 	
 	public void remove_Element(String elToDelete)

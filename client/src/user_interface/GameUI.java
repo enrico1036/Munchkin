@@ -125,7 +125,7 @@ public class GameUI extends GamePanel {
 		
 		
 		zp.setVisible(true);
-		zp.setBounds(ww/3, wh/20, ww/3, wh*5/6);
+		zp.setBounds(ww/3, wh/20, ww/3, wh*5/8);
 		this.add(zp);
 		zp.setLayout(null);
 		
@@ -267,6 +267,7 @@ public class GameUI extends GamePanel {
 		doorCards = new ImageButton(doorCardsImage);
 		doorCards.setBounds(dw/25, dh/10, dw/5, dh*8/10);
 		doorCards.setActionCommand("DrawDoor");
+		doorCards.addActionListener(this);
 		Decks.add(doorCards);
 		
 		doorDiscards = new ImageButton(doorDiscardsImage);
@@ -276,6 +277,7 @@ public class GameUI extends GamePanel {
 		treasureCards = new ImageButton(TreasureCardsImage);
 		treasureCards.setBounds(dw*13/25, dh/10, dw/5, dh*8/10);
 		treasureCards.setActionCommand("DrawTreasure");
+		treasureCards.addActionListener(this);
 		Decks.add(treasureCards);
 		
 		treasureDiscards = new ImageButton(TreasureDiscardsImage);
@@ -320,7 +322,7 @@ public class GameUI extends GamePanel {
 		Hand.setBounds(ww*2/5, wh*2/3, ww*3/5, wh/3);
 		Decks.setBounds(ww/2, wh/3, ww/2, wh/3);
 		Table.setBounds(0, wh/3, ww*3/4, wh/3);
-		zp.setBounds(ww/3, wh/20, ww/3, wh*5/6);
+		zp.setBounds(ww/3, wh/20, ww/3, wh*5/8);
 		
 		
 		
@@ -366,7 +368,7 @@ public class GameUI extends GamePanel {
 		treasureCards.setBounds(dw*13/25, dh/10, dw/5, dh*8/10);
 		treasureDiscards.setBounds(dw*19/25, dh/10, dw/5, dh*8/10);
 		
-		
+		HandCards.handPositioning();
 		
 	}
 	
@@ -392,17 +394,15 @@ public class GameUI extends GamePanel {
 			card1.CreateCard(MunchkinClient.getImage("door_card"),  zp);
 			
 			HandCards.drawCard(card1);
-			this.setComponentZOrder(zp, 0);	
-			HandCards.handPositioning();
 			Hand.add(HandCards.getCard("door"));
+			Hand.repaint();
+			
 			break;
 		case "DrawTreasure":
 			ClientCard card2 = new ClientCard("treasure", CardType.Treasure);
-			card2.CreateCard( MunchkinClient.getImage("treasure_card"), zp);
+			card2.CreateCard(MunchkinClient.getImage("treasure_card"), zp);
 			
 			HandCards.drawCard(card2);
-			this.setComponentZOrder(zp, 0);	
-			HandCards.handPositioning();
 			Hand.add(HandCards.getCard("treasure"));			
 		
 		}

@@ -71,6 +71,7 @@ public class ConnectionListener implements Runnable{
 		}
 	}
 	
+	
 
 	@Override
 	public void run() {
@@ -95,5 +96,8 @@ public class ConnectionListener implements Runnable{
 		} catch (IOException e) {}	
 	}
 	
-	
+	@Override
+	public String toString(){
+		return servSock.getLocalSocketAddress() + ":" + servSock.getLocalPort();
+	}
 }

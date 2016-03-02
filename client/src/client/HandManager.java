@@ -30,6 +30,8 @@ public class HandManager {
 		hand.add(cardDrawn);
 		
 		this.handPositioning();
+		
+		//handPanel.repaint();
 	}
 	
 	public ClientCard getCard(String Title){	//TODO: forse non serve però in caso mi sa che è meglio passargli un istanza di carta
@@ -56,10 +58,9 @@ public class HandManager {
 		handHeight=handPanel.getHeight();
 		initpos=handWidth/2-((handSize/2)*(handWidth/12));
 		
-		System.out.println(hand.size());
 		for(int i=0;i<hand.size();i++){
 		
-			hand.get(i).setBounds(initpos+i*handWidth/12, handHeight/4, handWidth/6, handHeight/2);
+			hand.get(i).setBounds(initpos+i*handWidth/14, handHeight/4, handWidth/7, handHeight/2);
 			
 		}
 	

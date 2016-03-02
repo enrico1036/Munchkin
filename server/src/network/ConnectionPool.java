@@ -1,6 +1,7 @@
 package network;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
@@ -9,7 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 import com.sun.org.apache.xml.internal.resolver.helpers.Debug;
 
+import javafx.util.Pair;
 import network.message.ActionResultMessage;
+import network.message.Message;
 
 public class ConnectionPool {
 	private final ConcurrentHashMap<String, ClientConnection> connections;
@@ -50,6 +53,13 @@ public class ConnectionPool {
 
 	public final MessageQueue getInputQueue() {
 		return inQueue;
+	}
+	
+	public void broadcast(Message message){
+		for(Map.Entry<String, ClientConnection> pair : connections.entrySet()){
+			ClientConnection conn = pair.getValue();
+			conn.write(message.getFormattedMessage());
+		}
 	}
 	
 	public void closeAll(){
