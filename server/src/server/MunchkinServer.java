@@ -14,7 +14,7 @@ import network.MessageQueue;
 import network.message.Message;
 import utils.Debug;
 
-public class MainClass {
+public class MunchkinServer {
 
 	private static HashMap<String, String> cards;
 	
