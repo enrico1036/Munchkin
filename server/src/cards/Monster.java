@@ -11,6 +11,7 @@ public class Monster extends Card {
 		this.title = title;
 		this.type = CardType.Door;
 		this.level = level;
+		this.category = Category.Monster;
 	}
 	
 	@Override

@@ -9,6 +9,7 @@ public class Equipment extends Card {
 		this.title = title;
 		this.type = CardType.Treasure;
 		this.slot = slot;
+		this.category = Category.Equipment;
 	}
 	
 	public EquipSlot getSlot() {

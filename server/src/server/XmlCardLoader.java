@@ -11,16 +11,25 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import cards.Card;
+import cards.Monster;
 import javafx.util.Pair;
 
 /*
  * 	LEGAL XML FILE:
  * 	<resources>
+ * 		<card name="Dads" type="Door" category="Equipment">
+ * 	
+ * 		<card name="Dads" type="Door" category="Monster">
+ * 			<level>12</level>
+ * 			
+ * 		</card>
  * 		<card>
  * 			<name>	Immagine 			</name>
  * 			<type>  Tipo </type>
  * 			<category> Categoria </category>
  * 		</card>
+ * 
+ * 		<monster>...</monster>
  * 		...
  * 		...
  * 		...
@@ -34,20 +43,19 @@ import javafx.util.Pair;
  */
 
 public class XmlCardLoader {
-	
+
 	private static final String rootTag = "resources";
 	private static final String cardTag = "card";
 	private static final String nameTag = "name";
 	private static final String typeTag = "type";
 	private static final String categoryTag = "category";
-	
-	//Tocca inserire 
-	
-	private ArrayList<Pair<String, String>> loadedCards = null;
-	private ArrayList<Pair<String, String>> notLoaded = null;
+
+	// Tocca inserire
+
+	private ArrayList<Pair<String, Card>> loadedCards = null;
 	private Element root;
-	
-	public XmlCardLoader(File file) throws Exception{
+
+	public XmlCardLoader(File file) throws Exception {
 		// Use a document builder in order to get a document
 		// from the xml input file
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -56,53 +64,75 @@ public class XmlCardLoader {
 
 		// Optimize document tree by removing empty nodes
 		doc.getDocumentElement().normalize();
-		
+
 		// Retrieve root element
 		root = doc.getDocumentElement();
-		
+
 		// Check if given file is a legal resource xml file
-		if(!root.getTagName().equals(rootTag))
-			throw new Exception("Not a legal resource xml file");	
-		
-		loadedCards = new ArrayList<Pair<String, String>>();
-		notLoaded = new ArrayList<Pair<String, String>>();
-		
+		if (!root.getTagName().equals(rootTag))
+			throw new Exception("Not a legal resource xml file");
+
+		loadedCards = new ArrayList<Pair<String, Card>>();
+
 	}
-	
-	public void load() throws Exception{
-		// Retrieve children images
+
+	public void load() throws Exception {
+
 		NodeList cardList = root.getElementsByTagName(cardTag);
-		
-		// Iterate over each image tag and retrieve image info
-		for (int i=0; i<cardList.getLength(); i++){
+
+		for (int i = 0; i < cardList.getLength(); i++) {
 			Element cardElem = (Element) cardList.item(i);
-			
+
 			// Retrieve name and path elements
 			Element cardNameElem = (Element) cardElem.getElementsByTagName(nameTag).item(0);
 			Element cardTypeElem = (Element) cardElem.getElementsByTagName(typeTag).item(0);
-			
+			Element cardCategoryElem = (Element) cardElem.getElementsByTagName(categoryTag).item(0);
+
 			// Continue if null
-			if(cardNameElem == null || cardTypeElem == null)
+			if (cardNameElem == null || cardTypeElem == null || cardCategoryElem == null)
 				continue;
-			
+
 			// Store name
 			String name = cardNameElem.getTextContent().trim();
 			String type = cardTypeElem.getTextContent().trim();
-			
-			// Try to load and store image; if it's not possible,
-			// add its info to the "not loaded" array
-			
-			loadedCards.add(new Pair<String, String>(name, type));
+			String category = cardCategoryElem.getTextContent().trim();
+
+			Card loadedCard = null;
+
+			if (type == "Door") {
+				switch (category) {
+
+				case "Monster":
+					loadedCard = new Monster(name, level);
+					break;
+				case "Curse":
+					break;
+				case "Consumable":
+					break;
+				}
+
+			} else if (type == "Treasure") {
+				switch (category) {
+				case "Class":
+					break;
+				case "Race":
+					break;
+				case "Consumable":
+					break;
+				case "Equipment":
+					break;
+
+				}
+			} else
+				continue;
+
+			if (loadedCard != null)
+				loadedCards.add(new Pair<String, Card>(name, loadedCard));
 		}
 	}
-	
-	public ArrayList<Pair<String,String>> getCards(){
+
+	public ArrayList<Pair<String, Card>> getCards() {
 		return loadedCards;
 	}
-	
-	public ArrayList<Pair<String,String>> getNotLoadedInfo(){
-		return notLoaded;
-	}
-	
-	
+
 }
