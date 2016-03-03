@@ -403,7 +403,8 @@ public class GameUI extends GamePanel {
 			card2.CreateCard(MunchkinClient.getImage("treasure_card"), zp);
 			
 			HandCards.drawCard(card2);
-			Hand.add(HandCards.getCard("treasure"));			
+			Hand.add(HandCards.getCard("treasure"));
+			
 		
 		}
 	}
