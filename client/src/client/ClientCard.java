@@ -17,12 +17,11 @@ public class ClientCard extends JButton implements MouseListener{
 
 	private String title;
 	private BufferedImage image;
-	private CardType type;
 	private ZoomedPanel zoomedPanel;
 	
-	public ClientCard(String title, CardType type) {
+	public ClientCard(String title) {
 		this.title = title;
-		this.type = type;
+		
 	}
 	
 	public void CreateCard(BufferedImage image, ZoomedPanel zoomedPanel){
@@ -36,11 +35,7 @@ public class ClientCard extends JButton implements MouseListener{
 	public String getTitle() {
 		return this.title;
 	}
-	
-	public CardType getType() {
-		return this.type;
-	}
-	
+		
 	public boolean equals(ClientCard card){
 		return(this.title.equals(card.title));
 	}

@@ -7,6 +7,13 @@ public class DrawnCardMessage extends Message{
 		this.cardName = cardName;
 	}
 	
+	
+	
+	public String getCardName() {
+		return cardName;
+	}
+
+
 	@Override
 	public String getFormattedMessage() {
 		StringBuilder builder = new StringBuilder();

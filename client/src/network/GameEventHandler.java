@@ -1,7 +1,9 @@
 package network;
 
+import client.ClientCard;
 import client.MunchkinClient;
 import network.message.ChatMessage;
+import network.message.DrawnCardMessage;
 import network.message.Message;
 import network.message.TreasureRequestMessage;
 import user_interface.LobbyUI;
@@ -21,13 +23,15 @@ public class GameEventHandler {
 					if(received != null){
 						switch(received.getMessageCode()){
 						case Message.CLT_CHAT_MESSAGE:
-							ChatMessage message = (ChatMessage)received;
+							ChatMessage chatMessage = (ChatMessage)received;
 							LobbyUI lobbyPanel = (LobbyUI)MunchkinClient.getPanel(1);
-							lobbyPanel.getScrollList().add_Element(message.getSender() +": " +message.getMessage());
+							lobbyPanel.getScrollList().add_Element(chatMessage.getSender() +": " +chatMessage.getMessage());
 							break;
+						
 							
 						case Message.DRAWN_CARD:
-							// TODO
+							DrawnCardMessage drawnCardMessage=(DrawnCardMessage) received;
+							ClientCard card= new ClientCard(drawnCardMessage.getCardName());
 							break;
 						}
 					}
