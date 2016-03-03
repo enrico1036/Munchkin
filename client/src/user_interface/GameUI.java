@@ -26,10 +26,9 @@ public class GameUI extends GamePanel {
 	
 	//--------Hand JComponents------------
 	private ImageButton handInventory;
-	private ArrayList<ClientCard> hand;
+	
 	
 
-		
 	//--------Player 1 JComponents---------
 	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
 	lblPlayerSex,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue,
@@ -60,10 +59,7 @@ public class GameUI extends GamePanel {
 		super(window);
 		OpponentPlayers = new PlayerPanel[5];
 		this.createRandomFramePanel();
-	
-		hand = new ArrayList<ClientCard>();
-		
-		
+
 		
 		this.background=MunchkinClient.getImage("panel_background");
 		this.framePlayerStats=MunchkinClient.getImage("playerstats_frame");
@@ -395,7 +391,7 @@ public class GameUI extends GamePanel {
 			
 			HandCards.drawCard(card1);
 			Hand.add(HandCards.getCard("door"));
-			Hand.repaint();
+			
 			
 			break;
 		case "DrawTreasure":
@@ -408,6 +404,11 @@ public class GameUI extends GamePanel {
 		
 		}
 	}
+
+
+
+
+	
 
 
 
@@ -438,6 +439,15 @@ public class GameUI extends GamePanel {
 	public PlayerPanel[] getOpponentPlayers() {
 		return OpponentPlayers;
 	}
+
+
+
+
+	public HandManager getHandCards() {
+		return HandCards;
+	}
+	
+	
 	
 }
 	

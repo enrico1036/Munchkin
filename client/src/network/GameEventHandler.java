@@ -3,9 +3,11 @@ package network;
 import client.ClientCard;
 import client.MunchkinClient;
 import network.message.ChatMessage;
+import network.message.DoorRequestMessage;
 import network.message.DrawnCardMessage;
 import network.message.Message;
 import network.message.TreasureRequestMessage;
+import user_interface.GameUI;
 import user_interface.LobbyUI;
 
 public class GameEventHandler {
@@ -32,6 +34,8 @@ public class GameEventHandler {
 						case Message.DRAWN_CARD:
 							DrawnCardMessage drawnCardMessage=(DrawnCardMessage) received;
 							ClientCard card= new ClientCard(drawnCardMessage.getCardName());
+							GameUI gamepanel = (GameUI)MunchkinClient.getPanel(0);
+							gamepanel.getHandCards().drawCard(card);
 							break;
 						}
 					}
@@ -53,7 +57,7 @@ public class GameEventHandler {
 	}
 
 	public static void getDoorCard() {
-
+		connection.send(new DoorRequestMessage());
 	}
 	
 }
