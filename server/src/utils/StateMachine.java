@@ -23,6 +23,7 @@ public abstract class StateMachine {
 	}
 	
 	public boolean performStep(){
+		//TODO: send message to client with the current state
 		return this.stepOver();
 	}
 }

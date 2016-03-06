@@ -25,14 +25,13 @@ public class Player {
 	private final int handSize = 5;
 	
 	public Player(String username) {
-		// TODO Auto-generated constructor stub
-		level = 0;
-		hand = new ArrayList <Card>();
-		table = new ArrayList <Card>();
-		race[0] = new Race("Human");
-		raceAllowed = 1;
-		classAllowed = 1;
-		alive = false;
+		this.level = 0;
+		this.hand = new ArrayList <Card>();
+		this.table = new ArrayList <Card>();
+		this.race[0] = new Race("Human");
+		this.raceAllowed = 1;
+		this.classAllowed = 1;
+		this.alive = false;
 	}
 	
 	public String getUsername() {
@@ -115,6 +114,7 @@ public class Player {
 		}
 	}
 	
+	//true if hand is smaller than max, false otherwise;
 	public boolean cardCheck() {
 		return (this.hand.size() <= this.handSize) ? true : false;		
 	}

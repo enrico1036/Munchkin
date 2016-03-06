@@ -30,7 +30,6 @@ public class Combat extends StateMachine {
 	
 	@Override
 	public boolean performStep() {
-		// TODO Insert your code here
 		switch(states[currentState]) {
 		case "Begin":
 			begin();

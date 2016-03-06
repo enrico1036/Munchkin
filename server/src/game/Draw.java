@@ -27,7 +27,7 @@ public class Draw extends StateMachine {
 		case Monster:
 			Combat combat = new Combat((Monster) card);
 			while(combat.performStep());
-			currentState = this.states.length-1;
+			currentState = this.states.length-1; // skip to the end state
 			break;
 		default:
 			GameManager.giveCardToPlayer(card, GameManager.getCurrentPlayer());
