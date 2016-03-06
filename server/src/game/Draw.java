@@ -42,7 +42,7 @@ public class Draw extends StateMachine {
 		for (Card card : GameManager.getCurrentPlayer().getHand()) {
 			if(card.getCategory() == Category.Monster) {
 				monsters = true;
-				break; //TODO: ask Kappa if correct
+				break;
 			}
 		}
 		if(monsters) {
