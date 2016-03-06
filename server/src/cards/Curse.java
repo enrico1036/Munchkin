@@ -4,16 +4,12 @@ public class Curse extends Card {
 	
 	private boolean immediate; //true if immediate, false if semipermanent
 	
-	public Curse(String title, boolean immediate) {
+	public Curse(String title, boolean immediate, String effectId) {
 		this.title = title;
 		this.type = CardType.Door;
 		this.immediate = immediate;
+		this.effectId = effectId;
 	}
 
-	@Override
-	public void effect() {
-		// TODO Auto-generated method stub
-
-	}
 
 }

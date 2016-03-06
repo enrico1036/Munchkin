@@ -15,8 +15,7 @@ public class GameManager{
 		Debug.print("GameManager: Begin");
 		playerWon = false;
 		//TODO: fill player array
-
-		Decks.loadDecks();
+		
 		Decks.shuffleDecks();
 	}
 	

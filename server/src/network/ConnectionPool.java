@@ -41,14 +41,17 @@ public class ConnectionPool {
 		connections.put(connection.getClientId(), connection);
 		// Execute worker run() method
 		executor.execute(connection);
+		
+		System.out.println("Connection started: " + connection.toString());
 	}
 	
 	public int size(){
 		return connections.size();
 	}
 	
-	public void signalEnd(ClientConnection conn){
-		connections.remove(conn.getClientId());
+	public void signalEnd(ClientConnection connection){
+		connections.remove(connection.getClientId());
+		System.out.println("Connection ended: " + connection.toString());
 	}
 
 	public final MessageQueue getInputQueue() {

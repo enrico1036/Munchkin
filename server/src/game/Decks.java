@@ -1,10 +1,12 @@
 package game;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import cards.Card;
 import cards.CardType;
+import server.XmlCardLoader;
 
 
 public class Decks {
@@ -17,14 +19,12 @@ public class Decks {
 	/* Load the decks with the card in the xml file
 	 * it's MANDATORY to call this method only one time at the begin of the game
 	 * */
-	public static void loadDecks() {
-		// TODO: load all cards in decks (maybe from xml file)
+	public static void loadDecks(String xmlFile) throws Exception {
+		XmlCardLoader loader = new XmlCardLoader(new File(xmlFile));
+		loader.load();
 		
-		/* this is just for test purpose */
-//		for(Integer i=0; i<50; i++) {
-//			doorDeck.add(new Card(i.toString(), CardType.Door));
-//			treasureDeck.add(new Card(i.toString(), CardType.Door));
-//		}
+		doorDeck = loader.getDoors();
+		treasureDeck = loader.getTreasures();
 	}
 	
 	public static void shuffleDecks() {

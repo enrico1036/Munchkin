@@ -2,8 +2,11 @@ package server;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import cards.Card;
+import game.Decks;
 import game.GameManager;
 
 import javafx.util.Pair;
@@ -15,31 +18,41 @@ import utils.Debug;
 
 public class MunchkinServer {
 
-	private static HashMap<String, String> cards;
-	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
+		// Generate decks loaded from xml file
+		try {
+			Decks.loadDecks("Resources/cards.xml");
+			System.out.println("Loaded cards from xml file");
+		} catch (Exception e) {
+			System.err.println("Error: couldn't load cards from xml file");
+			e.printStackTrace(System.err);
+			System.exit(0);
+		}
+
+
+		// Setup server connection listener
 		MessageQueue queue = new MessageQueue();
 		ConnectionPool pool = new ConnectionPool(6, queue);
-		
+
 		ConnectionListener listener = new ConnectionListener(5061, pool);
-		Debug.print("Listening on " + listener.toString());
+		System.out.println("Listening on " + listener.toString());
 		listener.setAcceptTimeout(120000);
 		listener.setConnectionTimeout(60000);
 		listener.start();
-		
-		while(listener.isRunning()){
-			if(!queue.isEmpty()){
+
+		while (listener.isRunning()) {
+			if (!queue.isEmpty()) {
 				Pair<String, Message> pair = queue.remove();
-				if(pair.getValue() == null)
+				if (pair.getValue() == null)
 					continue;
-				
-				switch(pair.getValue().getMessageCode()){
+
+				switch (pair.getValue().getMessageCode()) {
 				case Message.CLT_CHAT_MESSAGE:
 					pool.broadcast(pair.getValue());
 					break;
 				}
 			}
-			
+
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
@@ -47,23 +60,8 @@ public class MunchkinServer {
 			}
 		}
 
-		
-			XmlCardLoader loader = null;
-			try{
-				loader = new XmlCardLoader(new File("Resources/cards.xml"));
-				loader.load();
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
-			
-			cards = new HashMap<String,String>();
-			for(Pair<String, String> pair : loader.getCards()){
-				cards.put(pair.getKey(), pair.getValue());
-			}
-		
 		GameManager.startGame();
-		
+
 	}
 
 }

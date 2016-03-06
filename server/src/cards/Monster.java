@@ -7,18 +7,14 @@ public class Monster extends Card {
 	private int earningTreasures;
 	
 	
-	public Monster(String title, int level) {
+	public Monster(String title, int level, String effectId) {
 		this.title = title;
 		this.type = CardType.Door;
 		this.level = level;
 		this.category = Category.Monster;
+		this.effectId = effectId;
 	}
 	
-	@Override
-	public void effect() {
-		// TODO Act bonus/malus versus different class players
-		System.out.println("Mostro cattivo");
-	}
 	
 	public void badThings(){
 		

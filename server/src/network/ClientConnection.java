@@ -40,8 +40,6 @@ public class ClientConnection implements Runnable {
 		// Receive connection request message to retrieve client id
 		ConnectionRequestMessage message = (ConnectionRequestMessage) Message.parse(readLine());
 		clientId = message.getClientName();
-
-		System.out.println(getClientId() + " created");
 	}
 
 	public String getClientId() {
@@ -66,16 +64,12 @@ public class ClientConnection implements Runnable {
 			// Read from network and append to own channel in IOBuffer
 			String read = readLine();
 			queue.append(clientId, Message.parse(read));
-
-			System.out.println(getClientId() + ": " + read);
 		}
 
 		// Close buffers and socket
 		close();
 		// Signal thread death to own pool
 		pool.signalEnd(this);
-
-		System.out.println(getClientId() + " ended");
 	}
 
 	public String readLine() {
@@ -109,6 +103,11 @@ public class ClientConnection implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public String toString(){
+		return getClientId() + " @ " + sock.getRemoteSocketAddress() + ":" + sock.getPort();
 	}
 
 }

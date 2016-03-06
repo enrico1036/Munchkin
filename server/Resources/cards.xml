@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<resources>
-	<card>
- 		<name>Immagine</name>
- 		<type>Tipo</type>
- 		<category>Categoria</category>
- 	</card>
-
-
-
-
-</resources>
+<cards>
+	<doors>
+		<monster name="Chtulu" level="18" effect="eee" />
+		<monster name="nnn" level="01" effect="fff" />
+		<curse name="ccc" immediate="true" effect="mario" />
+	</doors>
+	<treasures>
+		<consumable name="nnn" effect="dsad" />
+		<equipment name="qqq" slot="head" bonus="4" value="500" />
+	</treasures>
+</cards>

@@ -17,7 +17,7 @@ public class Combat extends StateMachine {
 	}
 	
 	private void begin() {
-		card.effect();
+		// TODO: run effect
 	}
 	
 	private void askForHelp() {

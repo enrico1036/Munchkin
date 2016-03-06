@@ -8,10 +8,5 @@ public class Class extends Card {
 		this.category = Category.Class;
 	}
 
-	@Override
-	public void effect() {
-		// TODO Auto-generated method stub
-
-	}
 
 }

@@ -22,7 +22,7 @@ public class Draw extends StateMachine {
 		//if curse play it, if monster start a combat and execute it. In all other cases draw it
 		switch(card.getCategory()) {
 		case Curse:
-			card.effect();
+			// TODO: Run effect
 			break;
 		case Monster:
 			Combat combat = new Combat((Monster) card);
