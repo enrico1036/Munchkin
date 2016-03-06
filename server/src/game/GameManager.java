@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import cards.Card;
+import network.message.DrawnCardMessage;
 import utils.Debug;
 
 public class GameManager{
@@ -13,8 +14,6 @@ public class GameManager{
 	private static void begin() {
 		Debug.print("GameManager: Begin");
 		playerWon = false;
-		//TODO: fill player array
-		
 		Decks.shuffleDecks();
 	}
 	
@@ -47,6 +46,7 @@ public class GameManager{
 	}
 	
 	public static void giveCardToPlayer(Card card, Player player) {
+		player.sendMessage(new DrawnCardMessage(card.getTitle()));
 		player.draw(card);
 	}
 	

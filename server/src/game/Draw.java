@@ -4,6 +4,8 @@ import cards.Card;
 import cards.CardType;
 import cards.Category;
 import cards.Monster;
+import network.message.DrawnCardMessage;
+import network.message.ShowCardMessage;
 import utils.StateMachine;
 
 public class Draw extends StateMachine {
@@ -20,6 +22,10 @@ public class Draw extends StateMachine {
 	
 	private void openDoor() {
 		Card card = Decks.getDoorCard();
+		for (Player player : GameManager.getPlayers()) {	//TODO: use broadcast message
+			player.sendMessage(new ShowCardMessage(card.getTitle()));
+		}
+		GameManager.getCurrentPlayer().sendMessage(new ShowCardMessage(card.getTitle()));
 		//if curse play it, if monster start a combat and execute it. In all other cases draw it
 		switch(card.getCategory()) {
 		case Curse:
@@ -47,6 +53,8 @@ public class Draw extends StateMachine {
 		}
 		if(monsters) {
 			//TODO: if player choose a monster from the hand perform all the lookForTrouble steps, if player click on door deck call stepOver() 
+			//get the monster selected and uncomment the line below
+			//GameManager.getCurrentPlayer().sendMessage(new ShowCardMessage(card.getTitle()));
 		}
 
 	}

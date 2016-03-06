@@ -18,7 +18,7 @@ public class Turn extends StateMachine {
 	}
 	
 	private void draw() {
-		//TODO: wait a player that ask for a draw action
+		//TODO: wait player click on door deck (DoorRequestMessage incoming)
 		Draw draw = new Draw();
 		while(draw.performStep());
 	}

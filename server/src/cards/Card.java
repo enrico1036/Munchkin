@@ -15,6 +15,10 @@ public abstract class Card {
 			return effectId;
 		}
 		
+		public String getTitle() {
+			return title;
+		}
+		
 		public CardType getType() {
 			return type;
 		}
