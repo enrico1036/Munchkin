@@ -1,6 +1,7 @@
 package game;
 
 import cards.Card;
+import cards.CardType;
 import cards.Category;
 import cards.Monster;
 import utils.StateMachine;
@@ -27,21 +28,31 @@ public class Draw extends StateMachine {
 		case Monster:
 			Combat combat = new Combat((Monster) card);
 			while(combat.performStep());
+			Decks.discardCard(card);
 			currentState = this.states.length-1; // skip to the end state
 			break;
 		default:
 			GameManager.giveCardToPlayer(card, GameManager.getCurrentPlayer());
 			break;
-			
 		}
 	}
 	
 	private void lookForTrouble() {
-		
+		boolean monsters = false; //true if hand contains a monster, false otherwise
+		for (Card card : GameManager.getCurrentPlayer().getHand()) {
+			if(card.getCategory() == Category.Monster) {
+				monsters = true;
+				break; //TODO: ask Kappa if correct
+			}
+		}
+		if(monsters) {
+			//TODO: if player choose a monster from the hand perform all the lookForTrouble steps, if player click on door deck call stepOver() 
+		}
+
 	}
 	
 	private void lootTheRoom() {
-		
+		GameManager.giveCardToPlayer(Decks.getDoorCard(), GameManager.getCurrentPlayer());
 	}
 	
 	@Override

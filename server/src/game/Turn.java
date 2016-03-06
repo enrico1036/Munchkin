@@ -1,8 +1,5 @@
 package game;
 
-import java.util.Timer;
-
-import utils.Debug;
 import utils.StateMachine;
 
 public class Turn extends StateMachine {
@@ -34,7 +31,7 @@ public class Turn extends StateMachine {
 		//TODO: if hand card number higher than max card ask what card should be discarded, if lower skip
 		if(!GameManager.getCurrentPlayer().cardCheck())
 		{
-			//TODO: ask to player what card wants to discard
+			//TODO: ask to player what cards wants to discard, then give them to other players
 		}
 	}
 	

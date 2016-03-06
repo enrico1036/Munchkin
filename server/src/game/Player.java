@@ -119,6 +119,10 @@ public class Player {
 		return (this.hand.size() <= this.handSize) ? true : false;		
 	}
 	
+	public ArrayList<Card> getHand() {
+		return hand;
+	}
+	
 	public boolean discardCard(Card card) {
 		return this.hand.remove(card);
 	}
