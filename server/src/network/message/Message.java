@@ -21,6 +21,18 @@ public abstract class Message {
 	public static final String DOOR_CARD_REQUEST = "DOOR_CARD";
 	public static final String TREASURE_CARD_REQUEST = "TREASURE_CARD";
 	public static final String DRAWN_CARD = "DRAWN_CARD";
+	
+	
+	public static final String PLAYER_LIST = "PLAYER_LIST";
+	public static final String CLT_READY_STATUS = "READY_STATUS";
+	public static final String CLT_EQUIP_CARD = "EQUIP_CARD";
+	public static final String CLT_REQUEST_HELP = "ASK_FOR_HELP";
+	public static final String CLT_PROPOSE_HELP = "PROPOSE_HELP";
+	public static final String CLT_ACCEPT_HELP = "ACCEPT_HELP";
+	public static final String CLT_REJECT_HELP = "REJECT_HELP";
+	public static final String CLT_COMBAT_INTERPOSE_CARD = "PLAY_COMBAT_CARD";
+	
+	
 	/*
 	 * 	MESSAGE CODES LIST END
 	 */
