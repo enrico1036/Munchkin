@@ -28,11 +28,10 @@ public class MunchkinServer {
 			e.printStackTrace(System.err);
 			System.exit(0);
 		}
-
-
+		
 		// Setup server connection listener
 		MessageQueue queue = new MessageQueue();
-		ConnectionPool pool = new ConnectionPool(6, queue);
+		ConnectionPool pool = new ConnectionPool(6, queue, GameManager.getPlayers());
 
 		ConnectionListener listener = new ConnectionListener(5061, pool);
 		System.out.println("Listening on " + listener.toString());
@@ -40,8 +39,12 @@ public class MunchkinServer {
 		listener.setConnectionTimeout(60000);
 		listener.start();
 
+		
 		while (listener.isRunning()) {
+			
 			if (!queue.isEmpty()) {
+				System.out.println("Player num: " + GameManager.getPlayers().size());
+				
 				Pair<String, Message> pair = queue.remove();
 				if (pair.getValue() == null)
 					continue;

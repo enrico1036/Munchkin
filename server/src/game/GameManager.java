@@ -8,8 +8,7 @@ import utils.Debug;
 
 public class GameManager{
 	private static boolean playerWon;
-	private static ArrayList<game.Player> players;
-	
+	private static ArrayList<game.Player> players = new ArrayList<>();
 	
 	private static void begin() {
 		Debug.print("GameManager: Begin");
@@ -53,5 +52,9 @@ public class GameManager{
 	
 	public static Player getCurrentPlayer() {
 		return players.get(0);
+	}
+	
+	public static final ArrayList<Player> getPlayers(){
+		return players;
 	}
 }

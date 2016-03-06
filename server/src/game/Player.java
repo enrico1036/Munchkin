@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import cards.Card;
 import cards.Equipment;
 import cards.Race;
+import network.ClientConnection;
+import network.message.Message;
 
 public class Player {
-	
+	private ClientConnection connection;
 	private String username;
 	private int level;
 	private cards.Race[] race = new cards.Race[2];
@@ -25,6 +27,7 @@ public class Player {
 	private final int handSize = 5;
 	
 	public Player(String username) {
+		this.username = username;
 		this.level = 0;
 		this.hand = new ArrayList <Card>();
 		this.table = new ArrayList <Card>();
@@ -32,6 +35,7 @@ public class Player {
 		this.raceAllowed = 1;
 		this.classAllowed = 1;
 		this.alive = false;
+		this.connection = null;
 	}
 	
 	public String getUsername() {
@@ -169,6 +173,18 @@ public class Player {
 		}
 		
 		return true;
+	}
+	
+	public void sendMessage(Message message){
+		// TODO: send
+	}
+	
+	public boolean isConnected(){
+		return connection != null && connection.isAlive();
+	}
+	
+	public void setConnection(final ClientConnection connection){
+		this.connection = connection;
 	}
 
 }

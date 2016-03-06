@@ -10,46 +10,74 @@ import java.util.concurrent.TimeUnit;
 
 import com.sun.org.apache.xml.internal.resolver.helpers.Debug;
 
+import game.Player;
 import javafx.util.Pair;
 import network.message.ActionResultMessage;
 import network.message.Message;
 
 public class ConnectionPool {
 	private final ConcurrentHashMap<String, ClientConnection> connections;
+	private final ArrayList<Player> players;
 	private final ExecutorService executor;
 	private final MessageQueue inQueue;
-	
-	public ConnectionPool(int capacity, MessageQueue inQueue){
+
+	public ConnectionPool(int capacity, MessageQueue inQueue, ArrayList<Player> players) {
 		connections = new ConcurrentHashMap<>(capacity);
-		executor =Executors.newFixedThreadPool(capacity);
+		executor = Executors.newFixedThreadPool(capacity);
+		this.players = players;
 		this.inQueue = inQueue;
 	}
-	
-	public void add(final ClientConnection connection){
+
+	public void add(final ClientConnection connection) {
 		// Prevent the existence of two or more different connections
-		// with the same client id (each player corresponds to only one connection)
-		if(connections.containsKey(connection.getClientId())){
-			// Deny connection and close it
-			ActionResultMessage result = new ActionResultMessage(ActionResultMessage.ACTION_DENIED, "Player name already in use");
-			connection.write(result.getFormattedMessage());
-			connection.close();
+		// with the same client id (each player corresponds to only one
+		// connection)
+		for (Player player : players) {
+			// Check if a Player with the same name exists
+			if (player.getUsername().equals(connection.getClientId())) {
+				if (player.isConnected()) {
+					// Deny connection and close it if Player is already
+					// connected
+					ActionResultMessage result = new ActionResultMessage(ActionResultMessage.ACTION_DENIED, "Player name already in use");
+					connection.write(result.getFormattedMessage());
+					System.out.println("Connection refused: " + connection.toString());
+					connection.close();
+					return;
+				} else {
+					// Confirm successful connection and update Player's connection
+					ActionResultMessage result = new ActionResultMessage(ActionResultMessage.ACTION_ALLOWED, null);
+					connection.write(result.getFormattedMessage());
+					player.setConnection(connection);
+					// Add to map
+					connections.put(connection.getClientId(), connection);
+					// Execute worker run() method
+					executor.execute(connection);
+					System.out.println("Connection resumed: " + connection.toString());
+					return;
+				}
+			}
 		}
-		// Confirm successful connection
+		
+		// Confirm successful connection 
 		ActionResultMessage result = new ActionResultMessage(ActionResultMessage.ACTION_ALLOWED, null);
 		connection.write(result.getFormattedMessage());
+		// If Player with that name doesn't exist, create it and add to array
+		Player player = new Player(connection.getClientId());
+		player.setConnection(connection);
+		players.add(player);
 		// Add to map
 		connections.put(connection.getClientId(), connection);
 		// Execute worker run() method
 		executor.execute(connection);
-		
+
 		System.out.println("Connection started: " + connection.toString());
 	}
-	
-	public int size(){
+
+	public int size() {
 		return connections.size();
 	}
-	
-	public void signalEnd(ClientConnection connection){
+
+	public void signalEnd(ClientConnection connection) {
 		connections.remove(connection.getClientId());
 		System.out.println("Connection ended: " + connection.toString());
 	}
@@ -57,21 +85,21 @@ public class ConnectionPool {
 	public final MessageQueue getInputQueue() {
 		return inQueue;
 	}
-	
-	public void broadcast(Message message){
-		for(Map.Entry<String, ClientConnection> pair : connections.entrySet()){
+
+	public void broadcast(Message message) {
+		for (Map.Entry<String, ClientConnection> pair : connections.entrySet()) {
 			ClientConnection conn = pair.getValue();
 			conn.write(message.getFormattedMessage());
 		}
 	}
-	
-	public void closeAll(){
+
+	public void closeAll() {
 		// Await termination of the threads still running
 		// If not possible, force shutdown
 		try {
-			if(!executor.awaitTermination(10, TimeUnit.SECONDS)){
+			if (!executor.awaitTermination(10, TimeUnit.SECONDS)) {
 				ArrayList<Runnable> list = (ArrayList<Runnable>) executor.shutdownNow();
-				for (Runnable r : list){
+				for (Runnable r : list) {
 					((ClientConnection) r).close();
 				}
 			}
