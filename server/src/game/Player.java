@@ -56,6 +56,21 @@ public class Player {
 		this.level += x;
 	}
 	
+	public int getLevel() {
+		return level;
+	}
+	
+	public int getCombatLevel() {
+		int combatLevel = 0;
+		combatLevel += this.level;
+		combatLevel += head.getBonus();
+		combatLevel += body.getBonus();
+		combatLevel += hand1.getBonus();
+		combatLevel += hand2.getBonus();
+		combatLevel += feet.getBonus();
+		return combatLevel;
+	}
+	
 	public boolean setRaceAllowed(int num) {
 		switch (num) {
 		case 1:

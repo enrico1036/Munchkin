@@ -16,5 +16,9 @@ public class Equipment extends Card {
 	public EquipSlot getSlot() {
 		return this.slot;
 	}
+	
+	public int getBonus() {
+		return bonus;
+	}
 
 }

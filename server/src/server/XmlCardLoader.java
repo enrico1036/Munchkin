@@ -30,7 +30,7 @@ import javafx.util.Pair;
  *	<cards>
  *		
  *		<doors>
- *			<monster name="mmm" level="00" effect="eee">
+ *			<monster name="mmm" level="00" earningLevels="01" earningTreasures="02" effect="eee">
  *			<monster name="nnn" level="01" effect="fff">
  *			<curse name="ccc" immediate="true" effect="mario">
  *			<consumable name="nnn" effect="dsad">
@@ -64,6 +64,8 @@ public class XmlCardLoader {
 	private static final String slotAttr = "slot";
 	private static final String valueAttr = "value";
 	private static final String bonusAttr = "bonus";
+	private static final String earningLevelAttr = "earningLevels";
+	private static final String earningTreasuresAttr = "earningTreasures";
 
 	// These two arrays will contain loaded doors and treasures to be retrieved
 	// separately
@@ -121,7 +123,9 @@ public class XmlCardLoader {
 			case monsterTag:
 				try {
 					int level = Integer.parseInt(elem.getAttribute(levelAttr));
-					doorCard = new Monster(name, level, effect);
+					int earningLevel = Integer.parseInt(elem.getAttribute(earningLevelAttr));
+					int earningTreasures = Integer.parseInt(elem.getAttribute(earningTreasuresAttr));
+					doorCard = new Monster(name, level, earningLevel, earningTreasures, effect);
 				} catch (NumberFormatException e) {
 					// Level was not a number
 				}

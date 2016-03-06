@@ -52,6 +52,7 @@ public class Draw extends StateMachine {
 	}
 	
 	private void lootTheRoom() {
+		//just draw a card and add it to the current player's hand
 		GameManager.giveCardToPlayer(Decks.getDoorCard(), GameManager.getCurrentPlayer());
 	}
 	

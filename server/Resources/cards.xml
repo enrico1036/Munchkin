@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cards>
 	<doors>
-		<monster name="Chtulu" level="18" effect="eee" />
-		<monster name="nnn" level="01" effect="fff" />
+		<monster name="Chtulu" level="18"  earningLevels="01" earningTreasures="02" effect="eee" />
+		<monster name="nnn" level="01"  earningLevels="01" earningTreasures="03" effect="fff" />
 		<curse name="ccc" immediate="true" effect="mario" />
 	</doors>
 	<treasures>
