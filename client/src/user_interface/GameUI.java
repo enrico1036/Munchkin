@@ -23,11 +23,7 @@ public class GameUI extends GamePanel {
 	private PlayerPanel OpponentPlayers[];
 
 	private HandManager HandCards;
-	
-	//--------Hand JComponents------------
-	private ImageButton handInventory;
-	
-	
+
 
 	//--------Player 1 JComponents---------
 	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
@@ -92,12 +88,6 @@ public class GameUI extends GamePanel {
 		add(Hand);
 		Hand.setLayout(null);
 		
-		handInventory = new ImageButton(inventory);
-		handInventory.setBounds(Hand.getWidth()*7/8,Hand.getHeight()*7/8,Hand.getWidth()/8,Hand.getHeight()/8);
-		handInventory.setVisible(true);
-		handInventory.setContentAreaFilled(false);
-		handInventory.setBorderPainted(false);
-		Hand.add(handInventory);
 		
 		
 		

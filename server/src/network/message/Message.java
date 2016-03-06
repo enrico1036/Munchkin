@@ -48,11 +48,8 @@ public abstract class Message {
 	//All message to get players statistics
 	public static final String REQUEST_PLAYER_LEVEL_VALUE = "PLAYER_LEVEL";
 	public static final String REQUEST_PLAYER_FORCE_VALUE = "PLAYER_FORCE";
-	public static final String REQUEST_PLAYER_HEAD = "PLAYER_HEAD";
-	public static final String REQUEST_PLAYER_BODY = "PLAYER_BODY";
-	public static final String REQUEST_PLAYER_ARM1 = "PLAYER_ARM1";
-	public static final String REQUEST_PLAYER_ARM2 = "PLAYER_ARM2";
-	public static final String REQUEST_PLAYER_FEET = "PLAYER_FEET";
+	public static final String REQUEST_PLAYER_EQUIPMENT = "PLAYER_EQUIPMENT";
+	
 	
 	//public static final String REQUEST_PLAYER_CURSE = "PLAYER_CURSE";
 	
