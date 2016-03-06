@@ -18,7 +18,6 @@ public class ScrollableList extends JScrollPane implements AdjustmentListener {
 	private boolean elementAdded;
 	
 	public ScrollableList (){
-		// TODO Auto-generated constructor stub
 		listModel = new DefaultListModel<>();
 		Gamestatus_list = new JList<>(listModel);
 		Gamestatus_list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);

@@ -6,7 +6,6 @@ public class OptionUI extends GamePanel{
 
 	public OptionUI(GameWindow window) {
 		super(window);
-		// TODO Auto-generated constructor stub
 	}
 
 }

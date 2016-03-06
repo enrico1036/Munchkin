@@ -68,7 +68,6 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
 
 	@Override
 	public void componentHidden(ComponentEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -76,7 +75,6 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
 
 	@Override
 	public void componentMoved(ComponentEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -84,7 +82,6 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
 
 	@Override
 	public void componentShown(ComponentEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
