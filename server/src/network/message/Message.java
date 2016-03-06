@@ -22,15 +22,39 @@ public abstract class Message {
 	public static final String TREASURE_CARD_REQUEST = "TREASURE_CARD";
 	public static final String DRAWN_CARD = "DRAWN_CARD";
 	
-	
+	//Get player list and the ready status of that player
 	public static final String PLAYER_LIST = "PLAYER_LIST";
 	public static final String CLT_READY_STATUS = "READY_STATUS";
+	
+	//Send the card that player want to equip
 	public static final String CLT_EQUIP_CARD = "EQUIP_CARD";
+	
+	//Ask help to other players while the client is on combat phase
 	public static final String CLT_REQUEST_HELP = "ASK_FOR_HELP";
+	
+	//Other players can propose help with how many treasures they want
 	public static final String CLT_PROPOSE_HELP = "PROPOSE_HELP";
+	
+	//Client respond message
 	public static final String CLT_ACCEPT_HELP = "ACCEPT_HELP";
 	public static final String CLT_REJECT_HELP = "REJECT_HELP";
+	
+	//Get the card/s that other players can play to interpose on the client combat
 	public static final String CLT_COMBAT_INTERPOSE_CARD = "PLAY_COMBAT_CARD";
+	
+	//Get the player phase
+	public static final String CLT_PHASE = "PLAYER_PHASE";
+	
+	//All message to get players statistics
+	public static final String REQUEST_PLAYER_LEVEL_VALUE = "PLAYER_LEVEL";
+	public static final String REQUEST_PLAYER_FORCE_VALUE = "PLAYER_FORCE";
+	public static final String REQUEST_PLAYER_HEAD = "PLAYER_HEAD";
+	public static final String REQUEST_PLAYER_BODY = "PLAYER_BODY";
+	public static final String REQUEST_PLAYER_ARM1 = "PLAYER_ARM1";
+	public static final String REQUEST_PLAYER_ARM2 = "PLAYER_ARM2";
+	public static final String REQUEST_PLAYER_FEET = "PLAYER_FEET";
+	
+	//public static final String REQUEST_PLAYER_CURSE = "PLAYER_CURSE";
 	
 	
 	/*
