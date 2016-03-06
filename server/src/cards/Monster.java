@@ -20,4 +20,8 @@ public class Monster extends Card {
 		
 	}
 	
+	public void modifiedLevel(int mod){
+		level+=mod;
+	}
+	
 }
