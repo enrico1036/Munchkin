@@ -3,6 +3,7 @@ package network;
 import client.ClientCard;
 import client.MunchkinClient;
 import network.message.ChatMessage;
+import network.message.ClientGeneralRequestMessage;
 import network.message.DoorRequestMessage;
 import network.message.DrawnCardMessage;
 import network.message.Message;
@@ -14,6 +15,11 @@ import user_interface.LobbyUI;
 public class GameEventHandler {
 	private static PlayerConnection connection;
 	private static Thread thread;
+	
+	private static final String REQUEST_DOOR_CARDS = "DOOR_CARDS";
+	private static final String REQUEST_TREASURE_CARDS = "TREASURE_CARDS";
+	private static final String REQUEST_PLAYERS_LIST = "PLAYERS_LIST";
+	
 
 	public static void initialize(PlayerConnection connection){
 		GameEventHandler.connection = connection;
@@ -56,14 +62,14 @@ public class GameEventHandler {
 		return connection;
 	}
 	public static void getTreasureCard() {
-		connection.send(new TreasureRequestMessage());
+		connection.send(new ClientGeneralRequestMessage(REQUEST_DOOR_CARDS));
 	}
 
 	public static void getDoorCard() {
-		connection.send(new DoorRequestMessage());
+		connection.send(new ClientGeneralRequestMessage(REQUEST_TREASURE_CARDS));
 	}
 	public static void getPlayerList() {
-		connection.send(new PlayerListMessage());
+		connection.send(new ClientGeneralRequestMessage(REQUEST_PLAYERS_LIST));
 	}
 	
 }

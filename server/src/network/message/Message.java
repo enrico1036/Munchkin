@@ -19,10 +19,13 @@ public abstract class Message {
 	// Lobby chat message
 	public static final String CLT_CHAT_MESSAGE = "CHAT_MESSAGE";
 	
-	// Get card from decks
+	// Get card from discard decks
 	public static final String DOOR_CARD_REQUEST = "DOOR_CARD";
 	public static final String TREASURE_CARD_REQUEST = "TREASURE_CARD";
+	
+	//Get card from door deck
 	public static final String DRAWN_CARD = "DRAWN_CARD";
+	public static final String SHOW_CARD = "SHOW_CARD";
 	
 	//Get player list and the ready status of that player
 	public static final String PLAYER_LIST = "PLAYER_LIST";
@@ -58,7 +61,7 @@ public abstract class Message {
 	public static final String REQUEST_PLAYER_EQUIPMENT = "PLAYER_EQUIPMENT";
 	
 	
-	//public static final String REQUEST_PLAYER_CURSE = "PLAYER_CURSE";
+	public static final String CLT_GENERAL_REQUEST = "GENERAL_REQUEST";
 	
 	
 	/*
@@ -100,6 +103,8 @@ public abstract class Message {
 		case Message.PLAYER_LIST:
 			tokens.remove(0);
 			return new PlayerListMessage((String[])tokens.toArray());
+		case Message.SHOW_CARD:
+			return new ShowCardMessage(tokens.get(1));
 		
 		default:
 			if(tokens.size() == 1)
