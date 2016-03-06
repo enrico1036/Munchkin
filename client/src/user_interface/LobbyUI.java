@@ -168,6 +168,7 @@ public class LobbyUI extends GamePanel {
 				if(i==6&&!selected)
 				{
 					window.SetActivePanel(MunchkinClient.getPanel(0));
+					//fai richiesta al server per sapere quanti client ci sono
 					
 				}
 			}

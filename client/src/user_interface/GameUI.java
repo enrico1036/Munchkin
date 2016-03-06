@@ -215,6 +215,8 @@ public class GameUI extends GamePanel {
 		 * 
 		 */
 		
+		 
+		 //k=uguale alla richiesta di quanti utenti ci sono
 		for(int k=0;k<5;k++)
 		{
 			
@@ -419,6 +421,8 @@ public class GameUI extends GamePanel {
 	            k++;
 	        }  
 	    	
+	        
+	        //dovrò chiedere quanti utenti ci sono
 	        for(k=0;k<5;k++){
 	     OpponentPlayers[k] = new PlayerPanel(MunchkinClient.getImage("frameplayer"+x[k]));
 	        }

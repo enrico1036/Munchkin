@@ -2,6 +2,8 @@ package network.message;
 
 import java.util.List;
 
+import game.GameManager;
+
 public abstract class Message {
 	/*
 	 * 	MESSAGE CODES LIST START
@@ -26,8 +28,10 @@ public abstract class Message {
 	public static final String PLAYER_LIST = "PLAYER_LIST";
 	public static final String CLT_READY_STATUS = "READY_STATUS";
 	
-	//Send the card that player want to equip
+	//Send the card that player want to use like equipment, class or race
 	public static final String CLT_EQUIP_CARD = "EQUIP_CARD";
+	public static final String CLT_CHANGE_CLASS = "CHANGE_CLASS";
+	public static final String CLT_CHANGE_RACE = "CHANGE_RACE";
 	
 	//Ask help to other players while the client is on combat phase
 	public static final String CLT_REQUEST_HELP = "ASK_FOR_HELP";
@@ -46,7 +50,10 @@ public abstract class Message {
 	public static final String CLT_PHASE = "PLAYER_PHASE";
 	
 	//All message to get players statistics
-	public static final String REQUEST_PLAYER_LEVEL_VALUE = "PLAYER_LEVEL";
+	public static final String REQUEST_PLAYER_FULL_STATUS = "PLAYER_STATUS";
+	
+	
+	
 	public static final String REQUEST_PLAYER_FORCE_VALUE = "PLAYER_FORCE";
 	public static final String REQUEST_PLAYER_EQUIPMENT = "PLAYER_EQUIPMENT";
 	
@@ -89,6 +96,10 @@ public abstract class Message {
 			
 		case Message.DRAWN_CARD:
 			return new DrawnCardMessage(tokens.get(1));
+			
+		case Message.PLAYER_LIST:
+			tokens.remove(0);
+			return new PlayerListMessage((String[])tokens.toArray());
 		
 		default:
 			if(tokens.size() == 1)

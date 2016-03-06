@@ -8,8 +8,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import com.sun.org.apache.xml.internal.resolver.helpers.Debug;
-
 import game.Player;
 import javafx.util.Pair;
 import network.message.ActionResultMessage;
@@ -107,4 +105,9 @@ public class ConnectionPool {
 			executor.shutdown();
 		}
 	}
+
+
+	
+	
+	
 }

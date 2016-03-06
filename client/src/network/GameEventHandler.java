@@ -6,6 +6,7 @@ import network.message.ChatMessage;
 import network.message.DoorRequestMessage;
 import network.message.DrawnCardMessage;
 import network.message.Message;
+import network.message.PlayerListMessage;
 import network.message.TreasureRequestMessage;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
@@ -29,13 +30,15 @@ public class GameEventHandler {
 							LobbyUI lobbyPanel = (LobbyUI)MunchkinClient.getPanel(1);
 							lobbyPanel.getScrollList().add_Element(chatMessage.getSender() +": " +chatMessage.getMessage());
 							break;
-						
-							
 						case Message.DRAWN_CARD:
 							DrawnCardMessage drawnCardMessage=(DrawnCardMessage) received;
 							ClientCard card= new ClientCard(drawnCardMessage.getCardName());
 							GameUI gamepanel = (GameUI)MunchkinClient.getPanel(0);
 							gamepanel.getHandCards().drawCard(card);
+							break;
+						case Message.PLAYER_LIST:
+							PlayerListMessage playerList = (PlayerListMessage) received;
+							String[] players = playerList.getPlayers();
 							break;
 						}
 					}
@@ -58,6 +61,9 @@ public class GameEventHandler {
 
 	public static void getDoorCard() {
 		connection.send(new DoorRequestMessage());
+	}
+	public static void getPlayerList() {
+		connection.send(new PlayerListMessage());
 	}
 	
 }
