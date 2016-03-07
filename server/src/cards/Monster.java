@@ -5,6 +5,7 @@ public class Monster extends Card {
 	private int level;
 	private int earningLevels;
 	private int earningTreasures;
+	private int totalBonus;
 	
 	
 	public Monster(String title, int level, int earningLevels, int earningTreasures, String effectId) {
@@ -22,6 +23,10 @@ public class Monster extends Card {
 		
 	}
 	
+	public int getTotalBonus(){
+		return totalBonus;
+	}
+	
 	public int getLevel() {
 		return level;
 	}
@@ -32,6 +37,11 @@ public class Monster extends Card {
 	
 	public int getEarningTreasures() {
 		return earningTreasures;
+	}
+	
+	public int setTotalBonus(int bonus){
+		totalBonus+=bonus;
+		return totalBonus;
 	}
 	
 	
