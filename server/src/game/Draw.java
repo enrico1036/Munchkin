@@ -4,7 +4,7 @@ import cards.Card;
 import cards.CardType;
 import cards.Category;
 import cards.Monster;
-import network.message.DrawnCardMessage;
+import network.message.DrawCardMessage;
 import network.message.ShowCardMessage;
 import utils.StateMachine;
 

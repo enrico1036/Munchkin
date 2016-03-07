@@ -2,11 +2,11 @@ package network.message;
 
 public class ShowCardMessage extends Message{
 	
-	private String cardname;
+	private String cardName;
 	
 	public ShowCardMessage(String card){
 		super(Message.SHOW_CARD);
-		this.cardname = card;
+		this.cardName = card;
 	}
 
 	@Override
@@ -14,9 +14,13 @@ public class ShowCardMessage extends Message{
 			StringBuilder builder = new StringBuilder();
 			builder.append(messageCode);
 			builder.append(Message.ARG_SEPARATOR);
-			builder.append(cardname);
+			builder.append(cardName);
 			builder.append(Message.MSG_TERMINATOR);
 			return builder.toString();
 	}
+	public String getCardName() {
+		return cardName;
+	}
+
 
 }

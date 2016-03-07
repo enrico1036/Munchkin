@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import cards.Card;
-import network.message.DrawnCardMessage;
+import network.message.DrawCardMessage;
 import utils.Debug;
 
 public class GameManager{
@@ -46,7 +46,7 @@ public class GameManager{
 	}
 	
 	public static void giveCardToPlayer(Card card, Player player) {
-		player.sendMessage(new DrawnCardMessage(card.getTitle()));
+		player.sendMessage(new DrawCardMessage(card.getTitle()));
 		player.draw(card);
 	}
 	

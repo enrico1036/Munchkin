@@ -12,6 +12,7 @@ public class ImageButton extends JButton {
 	public ImageButton(BufferedImage img){
 		
 		this.image = img;
+		this.setVisible(false);
 		
 	}
 
@@ -20,4 +21,12 @@ public class ImageButton extends JButton {
 		super.paintComponent(g);
 		g.drawImage(image,0,0, this.getWidth(), this.getHeight(), null);
 	}
+
+	public void setImage(BufferedImage image) {
+		this.image = image;
+		if(!isVisible())
+		{setVisible(true);}
+	}
+	
+	
 }

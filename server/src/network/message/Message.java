@@ -24,7 +24,7 @@ public abstract class Message {
 	public static final String TREASURE_CARD_REQUEST = "TREASURE_CARD";
 	
 	//Get card from door deck
-	public static final String DRAWN_CARD = "DRAWN_CARD";
+	public static final String DRAW_CARD = "DRAW_CARD";
 	public static final String SHOW_CARD = "SHOW_CARD";
 	
 	//Get player list and the ready status of that player
@@ -97,8 +97,8 @@ public abstract class Message {
 		case Message.CLT_CHAT_MESSAGE:
 			return new ChatMessage(tokens.get(1), tokens.get(2));
 			
-		case Message.DRAWN_CARD:
-			return new DrawnCardMessage(tokens.get(1));
+		case Message.DRAW_CARD:
+			return new DrawCardMessage(tokens.get(1));
 			
 		case Message.PLAYER_LIST:
 			tokens.remove(0);

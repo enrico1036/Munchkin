@@ -24,6 +24,8 @@ public class GameUI extends GamePanel {
 
 	private HandManager HandCards;
 
+	//----------Table JComponents
+	private ImageButton lblDrawnCard;
 
 	//--------Player 1 JComponents---------
 	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
@@ -288,9 +290,9 @@ public class GameUI extends GamePanel {
 		lblMonster.setBounds(10, 26, 82, 85);
 		Table.add(lblMonster);
 		
-		JLabel lblDranwCard = new JLabel("DranwCard or  Played Card");
-		lblDranwCard.setBounds(136, 25, 155, 86);
-		Table.add(lblDranwCard);
+		lblDrawnCard = new ImageButton(null);
+		lblDrawnCard.setBounds(136, 25, 155, 86);
+		Table.add(lblDrawnCard);
 
 		
 	
@@ -441,6 +443,9 @@ public class GameUI extends GamePanel {
 		return HandCards;
 	}
 	
+	public ImageButton getDrawnCard(){
+		return lblDrawnCard;
+	}
 	
 	
 }

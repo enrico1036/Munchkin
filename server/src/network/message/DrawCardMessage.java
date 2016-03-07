@@ -1,9 +1,9 @@
 package network.message;
 
-public class DrawnCardMessage extends Message{
+public class DrawCardMessage extends Message{
 	private String cardName;
-	public DrawnCardMessage(String cardName) {
-		super(Message.DRAWN_CARD);
+	public DrawCardMessage(String cardName) {
+		super(Message.DRAW_CARD);
 		this.cardName = cardName;
 	}
 	

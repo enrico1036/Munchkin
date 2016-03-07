@@ -53,6 +53,11 @@ public class MunchkinServer {
 				case Message.CLT_CHAT_MESSAGE:
 					pool.broadcast(pair.getValue());
 					break;
+				case Message.SHOW_CARD:
+					
+					Decks.getDoorCard().getTitle();
+					break;
+				
 				}
 			}
 
