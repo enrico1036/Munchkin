@@ -6,7 +6,6 @@ import client.ClientCard;
 import client.MunchkinClient;
 import network.message.ChatMessage;
 import network.message.ClientGeneralRequest;
-import network.message.DoorRequestMessage;
 import network.message.DrawCardMessage;
 import network.message.Message;
 import network.message.PlayerListMessage;
@@ -54,6 +53,10 @@ public class GameEventHandler {
 							ShowCardMessage showCardMessage=(ShowCardMessage)received;
 							ClientCard cardshowed = new ClientCard(showCardMessage.getCardName());
 							gamepanel.getDrawnCard().setImage(MunchkinClient.getImage(cardshowed.getName()));
+						case Message.TREASURE_CARD_REQUEST:
+							TreasureRequestMessage treasureRequestMessage=(TreasureRequestMessage)received;
+							ClientCard treasureshowed = new ClientCard(treasureRequestMessage.getCardName());
+							gamepanel.getHandCards().drawCard(treasureshowed);
 						}
 					}
 				} while(GameEventHandler.connection.isConnected());
