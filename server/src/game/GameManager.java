@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import cards.Card;
+import network.message.Message;
 import network.message.server.DrawCardMessage;
 import utils.Debug;
 
@@ -56,5 +57,11 @@ public class GameManager{
 	
 	public static final ArrayList<Player> getPlayers(){
 		return players;
+	}
+	
+	public static void broadcastMessage(Message message) {
+		for (Player player : GameManager.getPlayers()) {
+			player.sendMessage(message);
+		}
 	}
 }
