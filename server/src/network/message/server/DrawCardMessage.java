@@ -1,4 +1,6 @@
-package network.message;
+package network.message.server;
+
+import network.message.Message;
 
 public class DrawCardMessage extends Message{
 	private String cardName;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import cards.Card;
-import network.message.DrawCardMessage;
+import network.message.server.DrawCardMessage;
 import utils.Debug;
 
 public class GameManager{

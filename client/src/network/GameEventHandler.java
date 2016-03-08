@@ -4,13 +4,12 @@ import java.awt.image.BufferedImage;
 
 import client.ClientCard;
 import client.MunchkinClient;
-import network.message.DrawCardMessage;
 import network.message.Message;
-import network.message.PlayerListMessage;
-
-import network.message.TreasureRequestMessage;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
+import network.message.server.DrawCardMessage;
+import network.message.server.PlayerListMessage;
+import network.message.server.TreasureRequestMessage;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
 

@@ -1,8 +1,9 @@
-package network.message;
+package network.message.server;
 
 import java.util.ArrayList;
 
 import game.Player;
+import network.message.Message;
 
 public final class PlayerListMessage extends Message {
 	private String[] playerslist;

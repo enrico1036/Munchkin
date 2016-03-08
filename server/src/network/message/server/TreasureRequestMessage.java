@@ -1,4 +1,6 @@
-package network.message;
+package network.message.server;
+
+import network.message.Message;
 
 public class TreasureRequestMessage extends Message{
 

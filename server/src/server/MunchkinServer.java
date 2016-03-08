@@ -13,11 +13,11 @@ import javafx.util.Pair;
 import network.ConnectionListener;
 import network.ConnectionPool;
 import network.MessageQueue;
-import network.message.DrawCardMessage;
 import network.message.Message;
-import network.message.PlayerListMessage;
-import network.message.TreasureRequestMessage;
 import network.message.client.ClientGeneralRequest;
+import network.message.server.DrawCardMessage;
+import network.message.server.PlayerListMessage;
+import network.message.server.TreasureRequestMessage;
 import utils.Debug;
 
 public class MunchkinServer {

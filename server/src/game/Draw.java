@@ -4,7 +4,7 @@ import cards.Card;
 import cards.CardType;
 import cards.Category;
 import cards.Monster;
-import network.message.DrawCardMessage;
+import network.message.server.DrawCardMessage;
 import utils.StateMachine;
 
 public class Draw extends StateMachine {

@@ -5,6 +5,8 @@ import java.util.List;
 import game.GameManager;
 import network.message.client.ChatMessage;
 import network.message.client.ConnectionRequestMessage;
+import network.message.server.DrawCardMessage;
+import network.message.server.PlayerListMessage;
 
 public abstract class Message {
 	/*
