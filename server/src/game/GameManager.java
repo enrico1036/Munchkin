@@ -5,7 +5,7 @@ import java.util.Collections;
 
 import cards.Card;
 import network.message.Message;
-import network.message.server.DrawCardMessage;
+import network.message.server.PlayCardMessage;
 import utils.Debug;
 
 public class GameManager{
@@ -47,7 +47,7 @@ public class GameManager{
 	}
 	
 	public static void giveCardToPlayer(Card card, Player player) {
-		player.sendMessage(new DrawCardMessage(card.getTitle(),false));
+		player.sendMessage(new PlayCardMessage(card.getTitle(),false));
 		player.draw(card);
 	}
 	
@@ -63,5 +63,19 @@ public class GameManager{
 		for (Player player : GameManager.getPlayers()) {
 			player.sendMessage(message);
 		}
+	}
+	public static ArrayList<Player> readyPlayers(){
+		
+		ArrayList<Player> readyP = new ArrayList<>();
+		
+		for (Player player : players) {
+			{
+				if(player.isLobby_ready())
+				readyP.add(player);
+					
+			}
+		}
+		return readyP;
+			
 	}
 }

@@ -7,7 +7,7 @@ import client.MunchkinClient;
 import network.message.Message;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
-import network.message.server.DrawCardMessage;
+import network.message.server.PlayCardMessage;
 import network.message.server.PlayerListMessage;
 import network.message.server.TreasureRequestMessage;
 import user_interface.GameUI;
@@ -39,10 +39,10 @@ public class GameEventHandler {
 							LobbyUI lobbyPanel = (LobbyUI)MunchkinClient.getPanel(1);
 							lobbyPanel.getScrollList().add_Element(chatMessage.getSender() +": " +chatMessage.getMessage());
 							break;
-						case Message.DRAW_CARD:
-							DrawCardMessage drawnCardMessage=(DrawCardMessage) received;
-							ClientCard carddrawn= new ClientCard(drawnCardMessage.getCardName());
-							if(drawnCardMessage.getShowed())
+						case Message.PLAY_CARD:
+							PlayCardMessage playCardMessage=(PlayCardMessage) received;
+							ClientCard carddrawn= new ClientCard(playCardMessage.getCardName());
+							if(!playCardMessage.getShowed())
 								gamepanel.getHandCards().drawCard(carddrawn);
 							else
 								gamepanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));

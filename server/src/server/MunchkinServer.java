@@ -15,7 +15,7 @@ import network.ConnectionPool;
 import network.MessageQueue;
 import network.message.Message;
 import network.message.client.ClientGeneralRequest;
-import network.message.server.DrawCardMessage;
+import network.message.server.PlayCardMessage;
 import network.message.server.PlayerListMessage;
 import network.message.server.TreasureRequestMessage;
 import utils.Debug;
@@ -61,7 +61,7 @@ public class MunchkinServer {
 					ClientGeneralRequest req = (ClientGeneralRequest) pair.getValue();
 					switch(req.getRequestType()){
 					case ClientGeneralRequest.REQUEST_DRAWN_CARD:
-						GameManager.getCurrentPlayer().sendMessage(new DrawCardMessage(Decks.getDoorCard().getTitle(),true));
+						GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(Decks.getDoorCard().getTitle(),true));
 						break;
 					case ClientGeneralRequest.REQUEST_PLAYERS_LIST:
 						GameManager.getCurrentPlayer().sendMessage(new PlayerListMessage(GameManager.getPlayers()));

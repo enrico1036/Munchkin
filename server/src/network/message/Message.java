@@ -6,7 +6,7 @@ import game.GameManager;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.ConnectionRequestMessage;
-import network.message.server.DrawCardMessage;
+import network.message.server.PlayCardMessage;
 import network.message.server.PlayerListMessage;
 
 public abstract class Message {
@@ -27,7 +27,7 @@ public abstract class Message {
 	public static final String TREASURE_CARD_REQUEST = "TREASURE_CARD";
 	
 	//Get card from door deck
-	public static final String DRAW_CARD = "DRAW_CARD";
+	public static final String PLAY_CARD = "PLAY_CARD";
 	
 	//Get player list and the ready status of that player
 	public static final String PLAYER_LIST = "PLAYER_LIST";
@@ -99,8 +99,8 @@ public abstract class Message {
 		case Message.CLT_CHAT_MESSAGE:
 			return new ChatMessage(tokens.get(1), tokens.get(2));
 			
-		case Message.DRAW_CARD:
-			return new DrawCardMessage(tokens.get(1),Boolean.getBoolean(tokens.get(2)));
+		case Message.PLAY_CARD:
+			return new PlayCardMessage(tokens.get(1),Boolean.getBoolean(tokens.get(2)));
 			
 		case Message.PLAYER_LIST:
 			tokens.remove(0);

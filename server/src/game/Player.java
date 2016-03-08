@@ -12,6 +12,7 @@ public class Player {
 	private ClientConnection connection;
 	private String username;
 	private int level;
+	private boolean lobby_ready;
 	private cards.Race[] race = new cards.Race[2];
 	private int raceAllowed;
 	private cards.Class[] playerClass = new cards.Class[2];
@@ -42,6 +43,17 @@ public class Player {
 		return username;
 	}
 	
+	
+	
+	
+	public boolean isLobby_ready() {
+		return lobby_ready;
+	}
+
+	public void setLobby_ready(boolean lobby_ready) {
+		this.lobby_ready = lobby_ready;
+	}
+
 	public void die() {
 		this.hand.clear();
 		this.table.clear();

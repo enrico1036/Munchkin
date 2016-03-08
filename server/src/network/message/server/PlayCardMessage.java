@@ -2,12 +2,12 @@ package network.message.server;
 
 import network.message.Message;
 
-public class DrawCardMessage extends Message{
+public class PlayCardMessage extends Message{
 	private String cardName;
 	private boolean showed;
 	
-	public DrawCardMessage(String cardName,boolean show) {
-		super(Message.DRAW_CARD);
+	public PlayCardMessage(String cardName,boolean show) {
+		super(Message.PLAY_CARD);
 		this.cardName = cardName;
 		this.showed=show;
 	}

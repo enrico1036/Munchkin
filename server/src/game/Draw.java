@@ -4,7 +4,7 @@ import cards.Card;
 import cards.CardType;
 import cards.Category;
 import cards.Monster;
-import network.message.server.DrawCardMessage;
+import network.message.server.PlayCardMessage;
 import utils.StateMachine;
 
 public class Draw extends StateMachine {
@@ -21,7 +21,7 @@ public class Draw extends StateMachine {
 	
 	private void openDoor() {
 		Card card = Decks.getDoorCard();
-		GameManager.broadcastMessage(new DrawCardMessage(card.getTitle(),true));
+		GameManager.broadcastMessage(new PlayCardMessage(card.getTitle(),true));
 		//if curse play it, if monster start a combat and execute it. In all other cases draw it
 		switch(card.getCategory()) {
 		case Curse:
