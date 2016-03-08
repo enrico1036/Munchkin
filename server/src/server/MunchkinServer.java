@@ -13,7 +13,13 @@ import javafx.util.Pair;
 import network.ConnectionListener;
 import network.ConnectionPool;
 import network.MessageQueue;
+import network.message.ClientGeneralRequest;
+import network.message.DoorRequestMessage;
+import network.message.DrawCardMessage;
 import network.message.Message;
+import network.message.PlayerListMessage;
+import network.message.ShowCardMessage;
+import network.message.TreasureRequestMessage;
 import utils.Debug;
 
 public class MunchkinServer {
@@ -57,7 +63,26 @@ public class MunchkinServer {
 					
 					Decks.getDoorCard().getTitle();
 					break;
-				
+				case Message.CLT_GENERAL_REQUEST:
+					ClientGeneralRequest req = (ClientGeneralRequest) pair.getValue();
+					switch(req.getRequestType()){
+					case ClientGeneralRequest.REQUEST_FIRST_DRAWN_CARD:
+						GameManager.getCurrentPlayer().sendMessage(new ShowCardMessage(Decks.getDoorCard().getTitle()));
+						break;
+					case ClientGeneralRequest.REQUEST_DOOR_CARDS:
+						GameManager.getCurrentPlayer().sendMessage(new DoorRequestMessage());
+						break;
+					case ClientGeneralRequest.REQUEST_PLAYERS_LIST:
+						GameManager.getCurrentPlayer().sendMessage(new PlayerListMessage(GameManager.getPlayers()));
+						break;
+					case ClientGeneralRequest.REQUEST_TREASURE_CARDS:
+						GameManager.getCurrentPlayer().sendMessage(new TreasureRequestMessage());
+						break;
+					case ClientGeneralRequest.REQUEST_FOLLOWING_DRAW_CARD:
+						GameManager.getCurrentPlayer().sendMessage(new DrawCardMessage(Decks.getDoorCard().getTitle()));
+						break;
+					}
+					break;
 				}
 			}
 
