@@ -1,4 +1,6 @@
-package network.message;
+package network.message.client;
+
+import network.message.Message;
 
 public final class ChatMessage extends Message{
 	private final String clientSender;

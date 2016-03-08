@@ -3,6 +3,8 @@ package network.message;
 import java.util.List;
 
 import game.GameManager;
+import network.message.client.ChatMessage;
+import network.message.client.ConnectionRequestMessage;
 
 public abstract class Message {
 	/*
@@ -19,13 +21,11 @@ public abstract class Message {
 	// Lobby chat message
 	public static final String CLT_CHAT_MESSAGE = "CHAT_MESSAGE";
 	
-	// Get card from discard decks
-	public static final String DOOR_CARD_REQUEST = "DOOR_CARD";
+	// Get card from treasure deck
 	public static final String TREASURE_CARD_REQUEST = "TREASURE_CARD";
 	
 	//Get card from door deck
 	public static final String DRAW_CARD = "DRAW_CARD";
-	public static final String SHOW_CARD = "SHOW_CARD";
 	
 	//Get player list and the ready status of that player
 	public static final String PLAYER_LIST = "PLAYER_LIST";
@@ -54,9 +54,6 @@ public abstract class Message {
 	
 	//All message to get players statistics
 	public static final String REQUEST_PLAYER_FULL_STATUS = "PLAYER_STATUS";
-	
-	
-	
 	public static final String REQUEST_PLAYER_FORCE_VALUE = "PLAYER_FORCE";
 	public static final String REQUEST_PLAYER_EQUIPMENT = "PLAYER_EQUIPMENT";
 	
@@ -98,14 +95,12 @@ public abstract class Message {
 			return new ChatMessage(tokens.get(1), tokens.get(2));
 			
 		case Message.DRAW_CARD:
-			return new DrawCardMessage(tokens.get(1));
+			return new DrawCardMessage(tokens.get(1),Boolean.getBoolean(tokens.get(2)));
 			
 		case Message.PLAYER_LIST:
 			tokens.remove(0);
 			return new PlayerListMessage((String[])tokens.toArray());
-		case Message.SHOW_CARD:
-			return new ShowCardMessage(tokens.get(1));
-		
+
 		default:
 			if(tokens.size() == 1)
 				return new NoArgMessage(tokens.get(0));

@@ -1,6 +1,6 @@
-package network.message;
+package network.message.client;
 
-
+import network.message.Message;
 
 public class ClientGeneralRequest extends Message{
 	

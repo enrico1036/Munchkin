@@ -8,8 +8,8 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-import network.message.ConnectionRequestMessage;
 import network.message.Message;
+import network.message.client.ConnectionRequestMessage;
 import utils.Debug;
 
 public class ClientConnection implements Runnable {

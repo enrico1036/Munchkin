@@ -19,7 +19,7 @@ import javax.swing.ListSelectionModel;
 
 import client.MunchkinClient;
 import network.GameEventHandler;
-import network.message.ChatMessage;
+import network.message.client.ChatMessage;
 
 public class LobbyUI extends GamePanel {
 

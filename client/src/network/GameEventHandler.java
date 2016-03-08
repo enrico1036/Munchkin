@@ -4,13 +4,13 @@ import java.awt.image.BufferedImage;
 
 import client.ClientCard;
 import client.MunchkinClient;
-import network.message.ChatMessage;
-import network.message.ClientGeneralRequest;
 import network.message.DrawCardMessage;
 import network.message.Message;
 import network.message.PlayerListMessage;
-import network.message.ShowCardMessage;
+
 import network.message.TreasureRequestMessage;
+import network.message.client.ChatMessage;
+import network.message.client.ClientGeneralRequest;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
 
@@ -43,16 +43,15 @@ public class GameEventHandler {
 						case Message.DRAW_CARD:
 							DrawCardMessage drawnCardMessage=(DrawCardMessage) received;
 							ClientCard carddrawn= new ClientCard(drawnCardMessage.getCardName());
-							gamepanel.getHandCards().drawCard(carddrawn);
+							if(drawnCardMessage.getShowed())
+								gamepanel.getHandCards().drawCard(carddrawn);
+							else
+								gamepanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));
 							break;
 						case Message.PLAYER_LIST:
 							PlayerListMessage playerList = (PlayerListMessage) received;
 							String[] players = playerList.getPlayers();
 							break;
-						case Message.SHOW_CARD:
-							ShowCardMessage showCardMessage=(ShowCardMessage)received;
-							ClientCard cardshowed = new ClientCard(showCardMessage.getCardName());
-							gamepanel.getDrawnCard().setImage(MunchkinClient.getImage(cardshowed.getName()));
 						case Message.TREASURE_CARD_REQUEST:
 							TreasureRequestMessage treasureRequestMessage=(TreasureRequestMessage)received;
 							ClientCard treasureshowed = new ClientCard(treasureRequestMessage.getCardName());

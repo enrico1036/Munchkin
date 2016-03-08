@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 import game.GameManager;
 import network.message.ActionResultMessage;
-import network.message.ConnectionRequestMessage;
 import network.message.Message;
+import network.message.client.ConnectionRequestMessage;
 
 
 public class ConnectionListener implements Runnable{

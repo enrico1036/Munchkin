@@ -3,8 +3,8 @@ package network;
 import java.io.IOException;
 
 import network.message.ActionResultMessage;
-import network.message.ConnectionRequestMessage;
 import network.message.Message;
+import network.message.client.ConnectionRequestMessage;
 
 public class PlayerConnection {
 	private StreamConnection connection;
