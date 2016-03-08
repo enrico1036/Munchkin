@@ -62,6 +62,9 @@ public abstract class Message {
 	//General client request that groups request client message
 	public static final String CLT_GENERAL_REQUEST = "GENERAL_REQUEST";
 	
+	//Send to server that a card in a client was clicked on
+	public static final String CLT_CARD_SELECTED = "CARD_SELECTED";
+	
 	
 	/*
 	 * 	MESSAGE CODES LIST END

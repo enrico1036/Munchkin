@@ -30,7 +30,7 @@ public class DrawCardMessage extends Message{
 		builder.append(Message.ARG_SEPARATOR);
 		builder.append(showed);
 		builder.append(Message.MSG_TERMINATOR);
-		return null;
+		return builder.toString();
 	}
 
 }
