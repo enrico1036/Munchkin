@@ -60,11 +60,8 @@ public class MunchkinServer {
 				case Message.CLT_GENERAL_REQUEST:
 					ClientGeneralRequest req = (ClientGeneralRequest) pair.getValue();
 					switch(req.getRequestType()){
-					case ClientGeneralRequest.REQUEST_FIRST_DRAWN_CARD:
+					case ClientGeneralRequest.REQUEST_DRAWN_CARD:
 						GameManager.getCurrentPlayer().sendMessage(new DrawCardMessage(Decks.getDoorCard().getTitle(),true));
-						break;
-					case ClientGeneralRequest.REQUEST_FOLLOWING_DRAW_CARD:
-						GameManager.getCurrentPlayer().sendMessage(new DrawCardMessage(Decks.getDoorCard().getTitle(),false));
 						break;
 					case ClientGeneralRequest.REQUEST_PLAYERS_LIST:
 						GameManager.getCurrentPlayer().sendMessage(new PlayerListMessage(GameManager.getPlayers()));
@@ -72,7 +69,6 @@ public class MunchkinServer {
 					case ClientGeneralRequest.REQUEST_TREASURE_CARDS:
 						GameManager.getCurrentPlayer().sendMessage(new TreasureRequestMessage(Decks.getTreasureCard().getTitle()));
 						break;
-				
 					}
 					break;
 				}

@@ -4,11 +4,9 @@ import network.message.Message;
 
 public class ClientGeneralRequest extends Message{
 	
-	public static final String REQUEST_DOOR_CARDS = "DOOR_CARDS";
 	public static final String REQUEST_TREASURE_CARDS = "TREASURE_CARDS";
 	public static final String REQUEST_PLAYERS_LIST = "PLAYERS_LIST";
-	public static final String REQUEST_FIRST_DRAWN_CARD ="FIRST_DRAW";
-	public static final String REQUEST_FOLLOWING_DRAW_CARD = "FOLLOWING_DRAW_CARD";
+	public static final String REQUEST_DRAWN_CARD ="DRAW_CARD";
 	
 	private String cltRequest;
 	

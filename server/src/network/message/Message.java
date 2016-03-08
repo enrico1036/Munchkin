@@ -4,6 +4,7 @@ import java.util.List;
 
 import game.GameManager;
 import network.message.client.ChatMessage;
+import network.message.client.ClientGeneralRequest;
 import network.message.client.ConnectionRequestMessage;
 import network.message.server.DrawCardMessage;
 import network.message.server.PlayerListMessage;
@@ -16,8 +17,7 @@ public abstract class Message {
 	public static final String MSG_TERMINATOR = "\n";
 	// Server response to client action
 	public static final String SRV_ACTION_RESULT = "ACTION_RESULT";
-	public static final String ACTION_ALLOWED = "ACTION_ALLOWED";
-	public static final String ACTION_DENIED = "ACTION_DENIED";
+
 	// Client connection 
 	public static final String CLT_REQUEST_CONNECTION = "REQUEST_CONNECTION";
 	// Lobby chat message
@@ -59,7 +59,7 @@ public abstract class Message {
 	public static final String REQUEST_PLAYER_FORCE_VALUE = "PLAYER_FORCE";
 	public static final String REQUEST_PLAYER_EQUIPMENT = "PLAYER_EQUIPMENT";
 	
-	
+	//General client request that groups request client message
 	public static final String CLT_GENERAL_REQUEST = "GENERAL_REQUEST";
 	
 	
@@ -102,6 +102,8 @@ public abstract class Message {
 		case Message.PLAYER_LIST:
 			tokens.remove(0);
 			return new PlayerListMessage((String[])tokens.toArray());
+		case Message.CLT_GENERAL_REQUEST:
+			return new ClientGeneralRequest(tokens.get(1));
 
 		default:
 			if(tokens.size() == 1)

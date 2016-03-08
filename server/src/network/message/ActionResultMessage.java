@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 public final class ActionResultMessage extends Message{
 	private final String result;
 	private final String reason;
+	public static final String ACTION_ALLOWED = "ACTION_ALLOWED";
+	public static final String ACTION_DENIED = "ACTION_DENIED";
 	
 	public ActionResultMessage(String result, String reason) {
 		super(Message.SRV_ACTION_RESULT);
@@ -14,7 +16,7 @@ public final class ActionResultMessage extends Message{
 	}
 	
 	public boolean isAllowed(){
-		return result.equals(Message.ACTION_ALLOWED);
+		return result.equals(this.ACTION_ALLOWED);
 	}
 	
 	public String getReason(){
