@@ -1,24 +1,25 @@
-package network.message.server;
+ package network.message.server;
 
 import network.message.Message;
 
+/* Message used from server to tell a client to show or draw a card */
+
 public class PlayCardMessage extends Message{
 	private String cardName;
-	private boolean showed;
+	private Action action;
+	public static enum Action {SHOW, DRAW};	//If SHOW just paint the card on the main table, if DRAW put that card in client's hand
 	
-	public PlayCardMessage(String cardName,boolean show) {
+	public PlayCardMessage(String cardName, Action action) {
 		super(Message.PLAY_CARD);
 		this.cardName = cardName;
-		this.showed=show;
+		this.action = action;
 	}
-	
-	
 	
 	public String getCardName() {
 		return cardName;
 	}
-	public boolean getShowed(){
-		return showed;
+	public Action getShowed(){
+		return action;
 	}
 
 	@Override
@@ -28,7 +29,7 @@ public class PlayCardMessage extends Message{
 		builder.append(Message.ARG_SEPARATOR);
 		builder.append(cardName);
 		builder.append(Message.ARG_SEPARATOR);
-		builder.append(showed);
+		builder.append(action.toString());
 		builder.append(Message.MSG_TERMINATOR);
 		return builder.toString();
 	}
