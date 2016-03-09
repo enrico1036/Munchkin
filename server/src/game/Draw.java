@@ -4,6 +4,7 @@ import cards.Card;
 import cards.CardType;
 import cards.Category;
 import cards.Monster;
+import network.message.Message;
 import network.message.client.SelectedCardMessage;
 import network.message.server.PlayCardMessage;
 import network.message.server.PopUpMessage;
@@ -53,14 +54,25 @@ public class Draw extends StateMachine {
 			}
 		}
 		if(monsters) {
-			//TODO: if player choose a monster from the hand perform all the lookForTrouble steps, if player click on door deck call stepOver() 
-			GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Look for trouble? (N)", "Yes", "No", 15000));
-			//TODO: wait for popup result if yes wait for monster, if no stepOver()
-			
-			//TODO: Modify waitForMessage to accept only the message category
-			//GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer(), new SelectedCardMessage(cardName))
-			//get the monster selected and uncomment the line below
-			//GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card.getTitle(), Action.SHOW));
+			//if player choose a monster from the hand perform all the lookForTrouble steps, if player click on door deck call stepOver() 
+
+			SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+			if(message.getCardName() != SelectedCardMessage.DOOR_DECK) {
+				GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(message.getCardName(), Action.SHOW));
+				Monster card = null;
+				for (Card handCard : GameManager.getCurrentPlayer().getHand()) {
+					if(handCard.getTitle() == message.getCardName()) {
+						card = (Monster) handCard;
+						break;
+					}
+				}
+				Combat combat = new Combat(card);
+				while(combat.performStep());
+				Decks.discardCard(card);
+				currentState = this.states.length-1; // skip to the end state
+			} else {
+				stepOver();
+			}
 		}
 
 	}
