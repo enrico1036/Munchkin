@@ -6,7 +6,9 @@ public class ClientGeneralRequest extends Message{
 	
 	public static final String REQUEST_TREASURE_CARDS = "TREASURE_CARDS";
 	public static final String REQUEST_PLAYERS_LIST = "PLAYERS_LIST";
-	public static final String REQUEST_DRAWN_CARD ="DRAW_CARD";
+	public static final String REQUEST_READY_PLAYER_LIST="READY_LIST";
+	public static final String REQUEST_PLAY_CARD ="PLAY_CARD";
+
 	
 	private String cltRequest;
 	
@@ -15,6 +17,7 @@ public class ClientGeneralRequest extends Message{
 		super(Message.CLT_GENERAL_REQUEST);
 		this.cltRequest = request;
 	}
+	
 	
 	public String getRequestType(){
 		return cltRequest;

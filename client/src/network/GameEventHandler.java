@@ -1,15 +1,18 @@
 package network;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import client.ClientCard;
 import client.MunchkinClient;
 import network.message.Message;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
+import network.message.client.PlayerStatusRequest;
 import network.message.server.PlayCardMessage;
+import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerListMessage;
-import network.message.server.TreasureRequestMessage;
+import network.message.server.ReadyLobbyMessage;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
 
@@ -17,11 +20,8 @@ public class GameEventHandler {
 	private static PlayerConnection connection;
 	private static Thread thread;
 	
-	private static final String REQUEST_DOOR_CARDS = "DOOR_CARDS";
-	private static final String REQUEST_TREASURE_CARDS = "TREASURE_CARDS";
-	private static final String REQUEST_PLAYERS_LIST = "PLAYERS_LIST";
-	private static final String REQUEST_FIRST_DRAWN_CARD ="FIRST_DRAW";
 	
+
 
 	public static void initialize(PlayerConnection connection){
 		GameEventHandler.connection = connection;
@@ -42,7 +42,7 @@ public class GameEventHandler {
 						case Message.PLAY_CARD:
 							PlayCardMessage playCardMessage=(PlayCardMessage) received;
 							ClientCard carddrawn= new ClientCard(playCardMessage.getCardName());
-							if(!playCardMessage.getShowed())
+							if(playCardMessage.getShowed()!=Action.SHOW)
 								gamepanel.getHandCards().drawCard(carddrawn);
 							else
 								gamepanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));
@@ -51,10 +51,9 @@ public class GameEventHandler {
 							PlayerListMessage playerList = (PlayerListMessage) received;
 							String[] players = playerList.getPlayers();
 							break;
-						case Message.TREASURE_CARD_REQUEST:
-							TreasureRequestMessage treasureRequestMessage=(TreasureRequestMessage)received;
-							ClientCard treasureshowed = new ClientCard(treasureRequestMessage.getCardName());
-							gamepanel.getHandCards().drawCard(treasureshowed);
+						case Message.CLT_READY_STATUS:
+							ReadyLobbyMessage readyPlayerList = (ReadyLobbyMessage)received;
+							String[] readyPlayers = readyPlayerList.getPlayers();
 						}
 					}
 				} while(GameEventHandler.connection.isConnected());
@@ -67,20 +66,30 @@ public class GameEventHandler {
 	public static void sendMessage(Message message){
 		connection.send(message);
 	}
+	
 	public static final PlayerConnection getConnection(){
 		return connection;
 	}
-	public static void getTreasureCard() {
-		connection.send(new ClientGeneralRequest(REQUEST_DOOR_CARDS));
+	
+	
+	public static void getPlayerList() {
+		connection.send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_PLAYERS_LIST));
+	}
+	
+	public static void getPlayCard() {
+		connection.send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_PLAY_CARD));
+	}
+	
+	public static void getReadyPlayerList(){
+		connection.send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_READY_PLAYER_LIST));
+	}
+	
+	public static void getPlayerStatistics(String Player){
+		connection.send(new PlayerStatusRequest(Player,PlayerStatusRequest.REQUEST_PLAYER_FULL_STATS));
 	}
 
-	public static void getDoorCard() {
-		connection.send(new ClientGeneralRequest(REQUEST_TREASURE_CARDS));
+	public static void getPlayerEquipment(String Player){
+		connection.send(new PlayerStatusRequest(Player,PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT));
 	}
-	public static void getPlayerList() {
-		connection.send(new ClientGeneralRequest(REQUEST_PLAYERS_LIST));
-	}
-	public static void getFirstDrawnCard() {
-		connection.send(new ClientGeneralRequest(REQUEST_FIRST_DRAWN_CARD));
-	}
+	
 }

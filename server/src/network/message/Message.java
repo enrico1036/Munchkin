@@ -24,16 +24,9 @@ public abstract class Message {
 	public static final String CLT_REQUEST_CONNECTION = "REQUEST_CONNECTION";
 	// Lobby chat message
 	public static final String CLT_CHAT_MESSAGE = "CHAT_MESSAGE";
+
 	
-	// Get card from treasure deck
-	public static final String TREASURE_CARD_REQUEST = "TREASURE_CARD";
-	
-	//Get card from door deck
-	public static final String PLAY_CARD = "PLAY_CARD";
-	
-	//Get player list and the ready status of that player
-	public static final String PLAYER_LIST = "PLAYER_LIST";
-	public static final String CLT_READY_STATUS = "READY_STATUS";
+
 	
 	//Send the card that player want to use like equipment, class or race
 	public static final String CLT_EQUIP_CARD = "EQUIP_CARD";
@@ -56,16 +49,48 @@ public abstract class Message {
 	//Get the player phase
 	public static final String CLT_PHASE = "PLAYER_PHASE";
 	
-	//All message to get players statistics
-	public static final String REQUEST_PLAYER_FULL_STATUS = "PLAYER_STATUS";
-	public static final String REQUEST_PLAYER_FORCE_VALUE = "PLAYER_FORCE";
-	public static final String REQUEST_PLAYER_EQUIPMENT = "PLAYER_EQUIPMENT";
+	//Send to server that a card in a client was clicked on
+	public static final String CLT_CARD_SELECTED = "CARD_SELECTED";
+	
+
+	
+	/*
+	 * GENERAL REQUEST
+	 */
 	
 	//General client request that groups request client message
 	public static final String CLT_GENERAL_REQUEST = "GENERAL_REQUEST";
 	
-	//Send to server that a card in a client was clicked on
-	public static final String CLT_CARD_SELECTED = "CARD_SELECTED";
+	//Get player list and the ready status of that player
+	public static final String PLAYER_LIST = "PLAYER_LIST";
+	public static final String CLT_READY_STATUS = "READY_STATUS";
+
+	// Get card from treasure deck
+	public static final String TREASURE_CARD_REQUEST = "TREASURE_CARD";
+	
+	//Get card from door deck
+	public static final String PLAY_CARD = "PLAY_CARD";
+
+	
+	/*
+	 * END GENERAL REQUEST
+	 */
+	
+	
+	
+	/*
+	 * PLAYER STATUS REQUEST
+	 */
+	
+	//Player status request message
+	
+	public static final String PLAYER_STATUS_REQUEST = "PLAYER_STATUS";
+	
+	//All message to get players statistics
+	public static final String REQUEST_PLAYER_FULL_STATS = "PLAYER_STATS";
+	public static final String REQUEST_PLAYER_EQUIPMENT = "PLAYER_EQUIPMENT";
+
+	
 	
 	//Show on a client view a popup message
 	public static final String POPUP = "POPUP";
