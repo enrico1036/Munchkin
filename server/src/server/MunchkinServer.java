@@ -34,9 +34,9 @@ public class MunchkinServer {
 		}
 		
 		// Setup server connection listener
-		MessageQueue queue = new MessageQueue();
+		MessageQueue queue = GameManager.getInQueue();
 		ConnectionPool pool = new ConnectionPool(6, queue, GameManager.getPlayers());
-
+		
 		ConnectionListener listener = new ConnectionListener(5061, pool);
 		System.out.println("Listening on " + listener.toString());
 		listener.setAcceptTimeout(120000);

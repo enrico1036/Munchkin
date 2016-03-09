@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import cards.Card;
+import network.MessageQueue;
 import network.message.Message;
 import network.message.server.PlayCardMessage;
 import utils.Debug;
 
 public class GameManager{
 	private static boolean playerWon;
+	private static MessageQueue queue = new MessageQueue();
 	private static ArrayList<game.Player> players = new ArrayList<>();
+	
 	
 	private static void begin() {
 		Debug.print("GameManager: Begin");
@@ -64,6 +67,7 @@ public class GameManager{
 			player.sendMessage(message);
 		}
 	}
+
 	public static ArrayList<Player> readyPlayers(){
 		
 		ArrayList<Player> readyP = new ArrayList<>();
@@ -77,5 +81,9 @@ public class GameManager{
 		}
 		return readyP;
 			
+	}
+	
+	public static final MessageQueue getInQueue(){
+		return queue;
 	}
 }
