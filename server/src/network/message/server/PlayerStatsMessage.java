@@ -16,8 +16,10 @@ public class PlayerStatsMessage extends PlayerStatusRequest {
 	private String playerName;
 	private int level;
 	private int power;
-	private Race playerRace;
-	private ClassCard playerClass;
+	private Race playerRace1;
+	private ClassCard playerClass1;
+	private Race playerRace2;
+	private ClassCard playerClass2;
 	private int playerNumCards;
 	
 	public PlayerStatsMessage(String request) {
@@ -30,8 +32,10 @@ public class PlayerStatsMessage extends PlayerStatusRequest {
 				playerName=GameManager.getPlayers().get(i).getUsername();
 				level = GameManager.getPlayers().get(i).getLevel();
 				power = GameManager.getPlayers().get(i).getCombatLevel();
-				playerRace = GameManager.getPlayers().get(i).getRace(whichRace.firstRace);
-				playerClass = GameManager.getPlayers().get(i).getClass(whichClass.firstClass);
+				playerRace1 = GameManager.getPlayers().get(i).getRace(whichRace.firstRace);
+				playerClass1 = GameManager.getPlayers().get(i).getClass(whichClass.firstClass);
+				playerRace2 = GameManager.getPlayers().get(i).getRace(whichRace.secondRace);
+				playerClass2 = GameManager.getPlayers().get(i).getClass(whichClass.secondClass);
 				playerNumCards = GameManager.getPlayers().get(i).getHand().size();
 			}
 		}
@@ -50,9 +54,13 @@ public class PlayerStatsMessage extends PlayerStatusRequest {
 		builder.append(Message.ARG_SEPARATOR);
 		builder.append(power);
 		builder.append(Message.ARG_SEPARATOR);
-		builder.append(playerRace.getTitle());
+		builder.append(playerRace1.getTitle());
 		builder.append(Message.ARG_SEPARATOR);
-		builder.append(playerClass.getTitle());
+		builder.append(playerRace2.getTitle());
+		builder.append(Message.ARG_SEPARATOR);
+		builder.append(playerClass1.getTitle());
+		builder.append(Message.ARG_SEPARATOR);
+		builder.append(playerClass2.getTitle());
 		builder.append(Message.ARG_SEPARATOR);
 		builder.append(playerNumCards);
 		builder.append(Message.MSG_TERMINATOR);

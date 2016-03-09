@@ -149,7 +149,7 @@ public abstract class Message {
 		case Message.CLT_CARD_SELECTED:
 			return new SelectedCardMessage(tokens.get(1));
 		case Message.REQUEST_PLAYER_EQUIPMENT:
-			return new PlayerEquipmentMessage();
+			return new PlayerEquipmentMessage(tokens.get(1),tokens.get(2),tokens.get(3),tokens.get(4),tokens.get(5));
 		
 
 		default:
