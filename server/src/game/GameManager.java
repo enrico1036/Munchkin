@@ -7,6 +7,7 @@ import cards.Card;
 import network.MessageQueue;
 import network.message.Message;
 import network.message.server.PlayCardMessage;
+import network.message.server.PlayCardMessage.Action;
 import utils.Debug;
 
 public class GameManager{
@@ -50,7 +51,7 @@ public class GameManager{
 	}
 	
 	public static void giveCardToPlayer(Card card, Player player) {
-		player.sendMessage(new PlayCardMessage(card.getTitle(),false));
+		player.sendMessage(new PlayCardMessage(card.getTitle(), Action.DRAW));
 		player.draw(card);
 	}
 	

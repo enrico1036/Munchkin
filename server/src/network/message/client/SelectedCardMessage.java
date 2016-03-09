@@ -4,11 +4,11 @@ import network.message.Message;
 
 //Card name can be the name of the card that a player select or the selected deck
 
-	public static final String DOOR_DECK = "DOOR_DECK";
-	public static final String TREASURE_DECK = "TREASURE_DECK";
 
 
 	public class SelectedCardMessage extends Message {
+		public static final String DOOR_DECK = "DOOR_DECK";
+		public static final String TREASURE_DECK = "TREASURE_DECK";
 
 		private String cardName;
 	
