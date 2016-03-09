@@ -7,6 +7,7 @@ import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.ConnectionRequestMessage;
 import network.message.server.PlayCardMessage;
+import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerListMessage;
 
 public abstract class Message {
@@ -100,7 +101,7 @@ public abstract class Message {
 			return new ChatMessage(tokens.get(1), tokens.get(2));
 			
 		case Message.PLAY_CARD:
-			return new PlayCardMessage(tokens.get(1),Boolean.getBoolean(tokens.get(2)));
+			return new PlayCardMessage(tokens.get(1), Action.valueOf(tokens.get(2)));
 			
 		case Message.PLAYER_LIST:
 			tokens.remove(0);
