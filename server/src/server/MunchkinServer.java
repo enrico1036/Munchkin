@@ -17,7 +17,6 @@ import network.message.Message;
 import network.message.client.ClientGeneralRequest;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayerListMessage;
-import network.message.server.TreasureRequestMessage;
 import network.message.server.PlayCardMessage.Action;
 import utils.Debug;
 
