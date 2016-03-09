@@ -9,6 +9,7 @@ import network.message.client.ConnectionRequestMessage;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerListMessage;
+import network.message.server.PopUpMessage;
 
 public abstract class Message {
 	/*
@@ -66,6 +67,9 @@ public abstract class Message {
 	//Send to server that a card in a client was clicked on
 	public static final String CLT_CARD_SELECTED = "CARD_SELECTED";
 	
+	//Show on a client view a popup message
+	public static final String POPUP = "POPUP";
+	
 	
 	/*
 	 * 	MESSAGE CODES LIST END
@@ -103,9 +107,13 @@ public abstract class Message {
 		case Message.PLAY_CARD:
 			return new PlayCardMessage(tokens.get(1), Action.valueOf(tokens.get(2)));
 			
+		case Message.POPUP:
+			return new PopUpMessage(tokens.get(1), Boolean.parseBoolean(tokens.get(2)), Boolean.parseBoolean(tokens.get(3)), Integer.parseInt(tokens.get(4)));
+
 		case Message.PLAYER_LIST:
 			tokens.remove(0);
 			return new PlayerListMessage((String[])tokens.toArray());
+			
 		case Message.CLT_GENERAL_REQUEST:
 			return new ClientGeneralRequest(tokens.get(1));
 
