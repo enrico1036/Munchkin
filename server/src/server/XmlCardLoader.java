@@ -16,7 +16,7 @@ import com.sun.org.apache.xml.internal.resolver.readers.CatalogReader;
 
 import cards.Card;
 import cards.CardType;
-import cards.Class;
+import cards.ClassCard;
 import cards.Consumable;
 import cards.Curse;
 import cards.EquipSlot;
@@ -137,7 +137,7 @@ public class XmlCardLoader {
 				break;
 
 			case classTag:
-				doorCard = new Class(name);
+				doorCard = new ClassCard(name);
 				break;
 
 			case raceTag:

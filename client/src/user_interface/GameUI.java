@@ -29,7 +29,7 @@ public class GameUI extends GamePanel {
 
 	//--------Player 1 JComponents---------
 	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
-	lblPlayerSex,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue,
+	lblPlayernumcard,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue,
 	lblPlayerHead,lblPlayerRiarm,lblPlayerBody,lblPlayerLearm,lblPlayerLegs;
 	
 	//----------Deck JComponents---------------
@@ -172,9 +172,9 @@ public class GameUI extends GamePanel {
 		lblPlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
 		PlayerStats.add(lblPlayerClass);
 		
-		 lblPlayerSex = new JLabel("Sex");
-		lblPlayerSex.setBounds(psw*3/8, psh/3, psw/8, psh/4);
-		PlayerStats.add(lblPlayerSex);
+		 lblPlayernumcard = new JLabel("Sex");
+		 lblPlayernumcard.setBounds(psw*3/8, psh/3, psw/8, psh/4);
+		PlayerStats.add(lblPlayernumcard);
 		
 		
 		//BufferedImage img = MunchkinClient.getImage("player_head");
@@ -340,7 +340,7 @@ public class GameUI extends GamePanel {
 		lblPlayerPowerValue.setBounds(psw*3/4, psh/6, psw/4, psh/6);
 		lblPlayerRace.setBounds(psw/8,psh/3, psw/8, psh/4);
 		lblPlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
-		lblPlayerSex.setBounds(psw*3/8, psh/3, psw/8, psh/4);
+		lblPlayernumcard.setBounds(psw*3/8, psh/3, psw/8, psh/4);
 		lblPlayerHead.setBounds(psw*2/3, psh/3, psw/6, psh*2/9);
 		lblPlayerRiarm.setBounds(psw/2, psh*5/9, psw/6, psh*2/9);
 		lblPlayerBody.setBounds(psw*2/3, psh*5/9, psw/6, psh*2/9);

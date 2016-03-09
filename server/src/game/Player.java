@@ -3,6 +3,8 @@ package game;
 import java.util.ArrayList;
 
 import cards.Card;
+import cards.ClassCard;
+import cards.EquipSlot;
 import cards.Equipment;
 import cards.Race;
 import network.ClientConnection;
@@ -13,19 +15,21 @@ public class Player {
 	private String username;
 	private int level;
 	private boolean lobby_ready;
-	private cards.Race[] race = new cards.Race[2];
+	private Race[] race = new Race[2];
 	private int raceAllowed;
-	private cards.Class[] playerClass = new cards.Class[2];
+	private ClassCard[] playerClass = new ClassCard[2];
 	private int classAllowed;
 	private ArrayList <Card> hand;
 	private ArrayList <Card> table;
-	private cards.Equipment head;
-	private cards.Equipment hand1;
-	private cards.Equipment hand2;
-	private cards.Equipment body;
-	private cards.Equipment feet;
+	private Equipment head;
+	private Equipment hand1;
+	private Equipment hand2;
+	private Equipment body;
+	private Equipment feet;
 	private boolean alive;
 	private final int handSize = 5;
+	public enum whichRace {firstRace, secondRace};
+	public enum whichClass {firstClass, secondClass};
 	
 	public Player(String username) {
 		this.username = username;
@@ -76,6 +80,8 @@ public class Player {
 		return level;
 	}
 	
+	
+	
 	public int getCombatLevel() {
 		int combatLevel = 0;
 		combatLevel += this.level;
@@ -102,7 +108,7 @@ public class Player {
 		return true;
 	}
 	
-	enum whichRace {firstRace, secondRace};
+	
 	public Race getRace(whichRace which) {
 		return this.race[which.ordinal()];
 	}
@@ -131,13 +137,13 @@ public class Player {
 		return true;
 	}
 	
-	enum whichClass {firstClass, secondClass};
-	public cards.Class getClass(whichClass which) {
+	
+	public cards.ClassCard getClass(whichClass which) {
 		return this.playerClass[which.ordinal()];
 	}
 	
 	/* setClass(): update the player class. If 2 is allowed update the class selected by which parameter */
-	public void setClass(cards.Class newClass, whichClass which) {
+	public void setClass(cards.ClassCard newClass, whichClass which) {
 		if(this.classAllowed <= 1) {
 			this.playerClass[0] = newClass;
 		} else {
@@ -197,6 +203,28 @@ public class Player {
 	
 	public void setConnection(final ClientConnection connection){
 		this.connection = connection;
+	}
+	
+	public Equipment getEquipment(EquipSlot slot){
+		Equipment card = null;
+		switch (slot) {
+		case head:
+			card = this.head ;
+			break;
+		case body:
+			card=this.body;
+			break;
+		case hand1:
+			card=this.hand1;
+			break;
+		case hand2:
+			card=this.hand2;
+			break;
+		case feet:
+			card=this.feet;
+			break;
+		}
+		return card;
 	}
 
 }

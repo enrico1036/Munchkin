@@ -6,7 +6,10 @@ import game.GameManager;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.ConnectionRequestMessage;
+import network.message.client.PlayerStatusRequest;
+import network.message.client.SelectedCardMessage;
 import network.message.server.PlayCardMessage;
+import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerListMessage;
 import network.message.server.PopUpMessage;
@@ -141,6 +144,13 @@ public abstract class Message {
 			
 		case Message.CLT_GENERAL_REQUEST:
 			return new ClientGeneralRequest(tokens.get(1));
+		case Message.PLAYER_STATUS_REQUEST:
+			return new PlayerStatusRequest(tokens.get(1),tokens.get(2));
+		case Message.CLT_CARD_SELECTED:
+			return new SelectedCardMessage(tokens.get(1));
+		case Message.REQUEST_PLAYER_EQUIPMENT:
+			return new PlayerEquipmentMessage();
+		
 
 		default:
 			if(tokens.size() == 1)
