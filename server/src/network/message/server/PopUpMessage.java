@@ -12,17 +12,17 @@ import network.message.Message;
 public class PopUpMessage extends Message {
 
 	String text;
-	boolean button1, button2;
+	String button1, button2;
 	int timeout_ms;
 	
 	/**
 	 * 
 	 * @param text: what to show on the dialog box
-	 * @param button1: true if the first button should be active, false otherwise
-	 * @param button2: true if the second button should be active, false otherwise
+	 * @param button1: text to write on the first button, if "" button will be disabled
+	 * @param button2: text to write on the second button, if "" button will be disabled
 	 * @param timeout_ms: time in milliseconds to wait before message disappear and automatically click on the second button
 	 */
-	public PopUpMessage(String text, boolean button1, boolean button2, int timeout_ms) {
+	public PopUpMessage(String text, String button1, String button2, int timeout_ms) {
 		super(Message.POPUP);
 		this.text = text;
 		this.button1 = button1;
@@ -40,14 +40,14 @@ public class PopUpMessage extends Message {
 	/**
 	 * @return the button1
 	 */
-	public boolean getButton1() {
+	public String getButton1() {
 		return button1;
 	}
 
 	/**
 	 * @return the button2
 	 */
-	public boolean getButton2() {
+	public String getButton2() {
 		return button2;
 	}
 
@@ -65,9 +65,9 @@ public class PopUpMessage extends Message {
 		builder.append(Message.ARG_SEPARATOR);
 		builder.append(text);
 		builder.append(Message.ARG_SEPARATOR);
-		builder.append(Boolean.toString(button1));
+		builder.append(button1);
 		builder.append(Message.ARG_SEPARATOR);
-		builder.append(Boolean.toString(button2));
+		builder.append(button2);
 		builder.append(Message.ARG_SEPARATOR);
 		builder.append(Integer.toString(timeout_ms));
 		builder.append(Message.MSG_TERMINATOR);

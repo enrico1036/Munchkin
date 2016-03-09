@@ -6,6 +6,7 @@ import cards.Category;
 import cards.Monster;
 import network.message.client.SelectedCardMessage;
 import network.message.server.PlayCardMessage;
+import network.message.server.PopUpMessage;
 import network.message.server.PlayCardMessage.Action;
 import utils.StateMachine;
 
@@ -53,6 +54,11 @@ public class Draw extends StateMachine {
 		}
 		if(monsters) {
 			//TODO: if player choose a monster from the hand perform all the lookForTrouble steps, if player click on door deck call stepOver() 
+			GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Look for trouble? (N)", "Yes", "No", 15000));
+			//TODO: wait for popup result if yes wait for monster, if no stepOver()
+			
+			//TODO: Modify waitForMessage to accept only the message category
+			//GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer(), new SelectedCardMessage(cardName))
 			//get the monster selected and uncomment the line below
 			//GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card.getTitle(), Action.SHOW));
 		}

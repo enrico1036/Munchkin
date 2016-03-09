@@ -133,7 +133,7 @@ public abstract class Message {
 			return new PlayCardMessage(tokens.get(1), Action.valueOf(tokens.get(2)));
 			
 		case Message.POPUP:
-			return new PopUpMessage(tokens.get(1), Boolean.parseBoolean(tokens.get(2)), Boolean.parseBoolean(tokens.get(3)), Integer.parseInt(tokens.get(4)));
+			return new PopUpMessage(tokens.get(1), tokens.get(2), tokens.get(3), Integer.parseInt(tokens.get(4)));
 
 		case Message.PLAYER_LIST:
 			tokens.remove(0);
