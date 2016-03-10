@@ -1,5 +1,6 @@
 package network.message;
 
+import java.io.Serializable;
 import java.util.List;
 
 import game.GameManager;
@@ -15,7 +16,9 @@ import network.message.server.PlayerListMessage;
 import network.message.server.PlayerStatsMessage;
 import network.message.server.PopUpMessage;
 
-public abstract class Message {
+public abstract class Message implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	/*
 	 * 	MESSAGE CODES LIST START
 	 */
