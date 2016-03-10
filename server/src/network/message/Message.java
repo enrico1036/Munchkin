@@ -33,7 +33,7 @@ public abstract class Message {
 
 	
 	//Send the card that player want to use like equipment, class or race
-	public static final String CLT_EQUIP_CARD = "EQUIP_CARD";
+	public static final String CLT_CHANGE_EQUIPMENT = "CHANGE_EQUIPMENT";
 	public static final String CLT_CHANGE_CLASS = "CHANGE_CLASS";
 	public static final String CLT_CHANGE_RACE = "CHANGE_RACE";
 	
@@ -50,8 +50,8 @@ public abstract class Message {
 	//Get the card/s that other players can play to interpose on the client combat
 	public static final String CLT_COMBAT_INTERPOSE_CARD = "PLAY_COMBAT_CARD";
 	
-	//Get the player phase
-	public static final String CLT_PHASE = "PLAYER_PHASE";
+	//Get the player state
+	public static final String STATE_UPDATE = "STATE_UPDATE";
 	
 	//Send to server that a card in a client was clicked on
 	public static final String CLT_CARD_SELECTED = "CARD_SELECTED";
@@ -69,10 +69,7 @@ public abstract class Message {
 	public static final String PLAYER_LIST = "PLAYER_LIST";
 	public static final String CLT_READY_STATUS = "READY_STATUS";
 
-	// Get card from treasure deck
-	public static final String TREASURE_CARD_REQUEST = "TREASURE_CARD";
-	
-	//Get card from door deck
+	//Get card from decks
 	public static final String PLAY_CARD = "PLAY_CARD";
 
 	

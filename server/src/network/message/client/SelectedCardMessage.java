@@ -1,5 +1,6 @@
 package network.message.client;
 
+import cards.CardType;
 import network.message.Message;
 
 //Card name can be the name of the card that a player select or the selected deck
@@ -11,14 +12,20 @@ import network.message.Message;
 		public static final String TREASURE_DECK = "TREASURE_DECK";
 
 		private String cardName;
+		private CardType type;
 	
-		public SelectedCardMessage(String cardName) {
+		public SelectedCardMessage(String cardName,CardType type) {
 			super(Message.CLT_CARD_SELECTED);
 			this.cardName = cardName;
+			this.type=type;
 		}
 	
 		public String getCardName() {
 			return cardName;
+		}
+		
+		public CardType getType(){
+			return type;
 		}
 /*
 		@Override

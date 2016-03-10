@@ -22,6 +22,8 @@ public final class ActionResultMessage extends Message{
 	public String getReason(){
 		return reason;
 	}
+	
+
 	/*
 	@Override
 	public String getFormattedMessage() {

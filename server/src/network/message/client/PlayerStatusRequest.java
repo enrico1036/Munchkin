@@ -15,6 +15,19 @@ public class PlayerStatusRequest extends Message {
 		this.player = Player;
 		this.plr_request = Request;
 	}
+
+	public String getPlayer() {
+		return player;
+	}
+
+	public String getPlr_request() {
+		return plr_request;
+	}
+
+
+	
+	
+	
 	/*
 	@Override
 	public String getFormattedMessage() {

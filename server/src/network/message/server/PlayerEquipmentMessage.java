@@ -12,6 +12,7 @@ import network.message.client.PlayerStatusRequest;
 public class PlayerEquipmentMessage extends PlayerStatusRequest {
 
 	private static String Player;
+	private String playerName;
 	private Equipment head;
 	private Equipment hand1;
 	private Equipment hand2;
@@ -25,6 +26,7 @@ public class PlayerEquipmentMessage extends PlayerStatusRequest {
 		for (int i = 0; i < size&&!founded; i++) {
 			if(Player == GameManager.getPlayers().get(i).getUsername()){
 				founded=true;
+				playerName=GameManager.getPlayers().get(i).getUsername();
 				head=GameManager.getPlayers().get(i).getEquipment(EquipSlot.head);
 				hand1=GameManager.getPlayers().get(i).getEquipment(EquipSlot.hand1);
 				hand2=GameManager.getPlayers().get(i).getEquipment(EquipSlot.hand2);
@@ -35,6 +37,33 @@ public class PlayerEquipmentMessage extends PlayerStatusRequest {
 		
 		
 	}
+
+	public String getPlayer() {
+		return playerName;
+	}
+
+	public Equipment getHead() {
+		return head;
+	}
+
+	public Equipment getHand1() {
+		return hand1;
+	}
+
+	public Equipment getHand2() {
+		return hand2;
+	}
+
+	public Equipment getBody() {
+		return body;
+	}
+
+	public Equipment getFeet() {
+		return feet;
+	}
+	
+	
+	
 	/*
 	@Override
 	public String getFormattedMessage() {

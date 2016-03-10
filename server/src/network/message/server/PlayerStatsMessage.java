@@ -42,6 +42,40 @@ public class PlayerStatsMessage extends PlayerStatusRequest {
 		
 		
 	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public int getPower() {
+		return power;
+	}
+
+	public Race getPlayerRace1() {
+		return playerRace1;
+	}
+
+	public ClassCard getPlayerClass1() {
+		return playerClass1;
+	}
+
+	public Race getPlayerRace2() {
+		return playerRace2;
+	}
+
+	public ClassCard getPlayerClass2() {
+		return playerClass2;
+	}
+
+	public int getPlayerNumCards() {
+		return playerNumCards;
+	}
+	
+	
 	/*
 	@Override
 	public String getFormattedMessage() {
