@@ -17,9 +17,14 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+
 import client.MunchkinClient;
+import game.GameManager;
 import network.GameEventHandler;
+import network.PlayerConnection;
 import network.message.client.ChatMessage;
+import network.message.client.ClientGeneralRequest;
+
 
 public class LobbyUI extends GamePanel {
 
@@ -143,7 +148,8 @@ public class LobbyUI extends GamePanel {
 			}
 			
 		}
-		Users[0][0].setText("Utente");
+		GameEventHandler.getConnection().send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_PLAYERS_LIST));
+		Users[0][0].setText(GameEventHandler.getConnection().getConnectedPlayerName());
 		Users[0][0].setVisible(true);
 		Users[0][1].setVisible(true);
 	}
@@ -167,7 +173,7 @@ public class LobbyUI extends GamePanel {
 			}
 				if(i==6&&!selected)
 				{
-					window.SetActivePanel(MunchkinClient.getPanel(0));
+					window.SetActivePanel(MunchkinClient.getPanel("GameUI"));
 					//fai richiesta al server per sapere quanti client ci sono
 					
 				}

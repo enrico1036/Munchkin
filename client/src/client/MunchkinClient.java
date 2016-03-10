@@ -20,7 +20,7 @@ import user_interface.GamePanel;
 
 public class MunchkinClient {
 
-	private static GamePanel[] panels = new GamePanel[5];
+	private static HashMap<String,GamePanel> panels;
 	private static HashMap<String, BufferedImage> images;
 	private  GameWindow window;
 	public static PlayerConnection connection;
@@ -41,7 +41,7 @@ public class MunchkinClient {
 		for(Pair<String, BufferedImage> pair : loader.getImages()){
 			images.put(pair.getKey(), pair.getValue());
 		}
-		
+		panels= new HashMap<String,GamePanel>();
 		//Initialize decks
 		//DeckManager.loadDecks();
 		
@@ -50,22 +50,27 @@ public class MunchkinClient {
 		window.setVisible(true);
 		
 		// Setup game panels
-		panels[0] = new GameUI(window);
-		panels[1] = new LobbyUI(window);
+		panels.put("MenuUI", new MenuUI(window));
+		//panels.put("GameUI", new GameUI(window)); panels[0];
+		/*panels[1] = new LobbyUI(window);
 		panels[2] = new MenuUI(window);
 		panels[3] = new PauseUI(window);
 		panels[4] = new OptionUI(window);
 		
-		
+		*/
 		// Start game in menu ui
-		window.SetActivePanel(panels[2]);
+		window.SetActivePanel(panels.get("MenuUI"));
 		
 		// Create instance of PlayerConnection
 		connection = new PlayerConnection();
 	}
 
-	public static JPanel getPanel(int i) {
-		return panels[i];
+	public static JPanel getPanel(String panel) {
+		return panels.get(panel);
+	}
+	
+	public static HashMap<String,GamePanel> getPanels(){
+		return panels;
 	}
 	
 	public static BufferedImage getImage(String Name) {

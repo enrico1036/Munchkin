@@ -29,14 +29,14 @@ public class GameEventHandler {
 			
 			@Override
 			public void run() {
-				GameUI gamepanel = (GameUI)MunchkinClient.getPanel(0);
+				GameUI gamepanel = (GameUI)MunchkinClient.getPanel("GameUI");
 				do {
 					Message received = GameEventHandler.connection.receive();
 					if(received != null){
 						switch(received.getMessageCode()){
 						case Message.CLT_CHAT_MESSAGE:
 							ChatMessage chatMessage = (ChatMessage)received;
-							LobbyUI lobbyPanel = (LobbyUI)MunchkinClient.getPanel(1);
+							LobbyUI lobbyPanel = (LobbyUI)MunchkinClient.getPanel("LobbyUI");
 							lobbyPanel.getScrollList().add_Element(chatMessage.getSender() +": " +chatMessage.getMessage());
 							break;
 						case Message.PLAY_CARD:

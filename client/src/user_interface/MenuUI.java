@@ -86,7 +86,8 @@ public class MenuUI extends GamePanel{
 				if(connection.isConnected()){
 					GameEventHandler.initialize(connection);
 					// Switch panel to Lobby*/
-					window.SetActivePanel(MunchkinClient.getPanel(1));
+					MunchkinClient.getPanels().put("LobbyUI", new LobbyUI(window));
+					window.SetActivePanel(MunchkinClient.getPanel("LobbyUI"));
 				} else {
 					JOptionPane.showMessageDialog(this, "Could not connect to the server");
 				}
