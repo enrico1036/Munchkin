@@ -1,5 +1,7 @@
 package game;
 
+import network.message.Message;
+import network.message.client.SelectedCardMessage;
 import utils.StateMachine;
 
 public class Turn extends StateMachine {
@@ -14,11 +16,18 @@ public class Turn extends StateMachine {
 	}
 	
 	private void equip() {
-		//TODO: wait for an equip action. If draw action detected  call stepOver() and skip this phase
+		// wait for an equip action. If draw action detected  call stepOver() and skip this phase
+		SelectedCardMessage message = (SelectedCardMessage)GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+		if(message.getCardName() != SelectedCardMessage.DOOR_DECK) {
+			//TODO: do equipment check and action
+		} else {
+			stepOver();
+		}
+			
+
 	}
 	
 	private void draw() {
-		//TODO: wait player click on door deck (DoorRequestMessage incoming)
 		Draw draw = new Draw();
 		while(draw.performStep());
 	}
