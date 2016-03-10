@@ -14,8 +14,10 @@ public class MessageQueue {
 	}
 
 	public void append(String clientId, Message message) {
-		queue.add(new Pair<String, Message>(clientId, message));
-		queue.notify();
+		synchronized (queue) {
+			queue.add(new Pair<String, Message>(clientId, message));
+			queue.notify();
+		}
 	}
 
 	public Pair<String, Message> remove() {
@@ -25,15 +27,19 @@ public class MessageQueue {
 	}
 
 	public boolean waitForData() {
-		try {
-			if (queue.isEmpty())
-				queue.wait();
-			else 
+		synchronized (queue) {
+			try {
+
+				if (queue.isEmpty())
+					queue.wait();
+				else
+					return false;
+
+			} catch (InterruptedException e) {
 				return false;
-		} catch (InterruptedException e) {
-			return false;
+			}
+			return true;
 		}
-		return true;
 	}
 
 	public Pair<String, Message> waitForMessage(String playerName, Message message) {
@@ -42,8 +48,7 @@ public class MessageQueue {
 		synchronized (queue) {
 			for (int i = 0; i < queue.size(); i++) {
 				pair = queue.poll();
-				if(pair.getKey().equals(playerName) && 
-						pair.getValue().equals(message)){
+				if (pair.getKey().equals(playerName) && pair.getValue().equals(message)) {
 					return pair;
 				} else {
 					queue.add(pair);
@@ -51,27 +56,25 @@ public class MessageQueue {
 			}
 		}
 		// Wait for it to be appended
-		while(waitForData()){
+		while (waitForData()) {
 			pair = queue.poll();
-			if(pair.getKey().equals(playerName) && 
-					pair.getValue().equals(message)){
+			if (pair.getKey().equals(playerName) && pair.getValue().equals(message)) {
 				return pair;
 			} else {
 				queue.add(pair);
 			}
 		}
-		
+
 		return pair;
 	}
-	
+
 	public Pair<String, Message> waitForMessage(String playerName, String messageCode) {
 		Pair<String, Message> pair = null;
 		// Check if desired message is in queue
 		synchronized (queue) {
 			for (int i = 0; i < queue.size(); i++) {
 				pair = queue.poll();
-				if(pair.getKey().equals(playerName) && 
-						pair.getValue().getMessageCode().equals(messageCode)){
+				if (pair.getKey().equals(playerName) && pair.getValue().getMessageCode().equals(messageCode)) {
 					return pair;
 				} else {
 					queue.add(pair);
@@ -79,16 +82,15 @@ public class MessageQueue {
 			}
 		}
 		// Wait for it to be appended
-		while(waitForData()){
+		while (waitForData()) {
 			pair = queue.poll();
-			if(pair.getKey().equals(playerName) && 
-					pair.getValue().getMessageCode().equals(messageCode)){
+			if (pair.getKey().equals(playerName) && pair.getValue().getMessageCode().equals(messageCode)) {
 				return pair;
 			} else {
 				queue.add(pair);
 			}
 		}
-		
+
 		return pair;
 	}
 

@@ -30,8 +30,10 @@ public class ServerConnection {
 		// Create new socket
 		socket = new Socket(hostname, port);
 		// Create read write buffers
-		input = new ObjectInputStream(socket.getInputStream());
+
 		output = new ObjectOutputStream(socket.getOutputStream());
+		output.flush();
+		input = new ObjectInputStream(socket.getInputStream());
 		
 	}
 

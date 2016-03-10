@@ -41,8 +41,11 @@ public class ClientConnection implements Runnable{
 			// Set read timeout
 			this.sock.setSoTimeout(timeout);
 			
-			input = new ObjectInputStream(sock.getInputStream());
+
 			output = new ObjectOutputStream(sock.getOutputStream());
+			output.flush();
+			
+			input = new ObjectInputStream(sock.getInputStream());
 			//reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			//writer = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
 		} catch (IOException e) {
