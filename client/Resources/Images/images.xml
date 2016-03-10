@@ -81,20 +81,12 @@
     	<path>Resources/Images/frameplayer10.png</path>
     </image>
     <image>
-    	<name>treasure_card</name>
-    	<path>Resources/Images/treasurecard.png</path>
-    </image>
-    <image>
     	<name>treasure_back</name>
-    	<path>Resources/Images/treasureback.png</path>
-    </image>
-    <image>
-    	<name>door_card</name>
-    	<path>Resources/Images/doorcard.png</path>
+    	<path>Resources/Images/treasure_back.png</path>
     </image>
     <image>
     	<name>door_back</name>
-    	<path>Resources/Images/doorback.png</path>
+    	<path>Resources/Images/door_back.png</path>
     </image>
      <image>
     	<name>inventory</name>
@@ -105,426 +97,467 @@
     <!-- Door Cards -->
     <image>
     	<name>apriscatole</name>
-    	<path>Resources/Images/apriscatole.png</path>
+    	<path>Resources/Images/Cards/apriscatole.png</path>
     </image>
     <image>
     	<name>buco_nero</name>
-    	<path>Resources/Images/buco_nero.png</path>
+    	<path>Resources/Images/Cards/buco_nero.png</path>
     </image>
     <image>
     	<name>cavo_monocellulare</name>
-    	<path>Resources/Images/cavo_monocellulare.png</path>
+    	<path>Resources/Images/Cards/cavo_monocellulare.png</path>
     </image>
     <image>
     	<name>computerizzato</name>
-    	<path>Resources/Images/computerizzato.png</path>
+    	<path>Resources/Images/Cards/computerizzato.png</path>
     </image>
     <image>
     	<name>da_unaltra_dimensione</name>
-    	<path>Resources/Images/da_unaltra_dimensione.png</path>
+    	<path>Resources/Images/Cards/da_unaltra_dimensione.png</path>
     </image>
     <image>
     	<name>decadimento_orbitale</name>
-    	<path>Resources/Images/decadimento_orbitale.png</path>
+    	<path>Resources/Images/Cards/decadimento_orbitale.png</path>
     </image>
     <image>
     	<name>dolcetto_alieno</name>
-    	<path>Resources/Images/dolcetto_aliento.png</path>
+    	<path>Resources/Images/Cards/dolcetto_aliento.png</path>
     </image>
     <image>
     	<name>e_il_suo_clone</name>
-    	<path>Resources/Images/e_il_suo_clone.png</path>
+    	<path>Resources/Images/Cards/e_il_suo_clone.png</path>
     </image>
     <image>
     	<name>folle</name>
-    	<path>Resources/Images/folle.png</path>    
+    	<path>Resources/Images/Cards/folle.png</path>    
     </image>
     <image>
     	<name>gelatinizzatore</name>
-    	<path>Resources/Images/gelatinizzatore.png</path>
+    	<path>Resources/Images/Cards/gelatinizzatore.png</path>
     </image>
     <image>
     	<name>incompreso</name>
-    	<path>Resources/Images/incompreso.png</path>
+    	<path>Resources/Images/Cards/incompreso.png</path>
 	</image>
 	<image>
 		<name>io_sono_tuo_padre</name>
-		<path>Resources/Images/io_sono_tuo_padre.png</path>
+		<path>Resources/Images/Cards/io_sono_tuo_padre.png</path>
 	</image>
     <image>
     	<name>mutaforma</name>
-    	<path>Resources/Images/mutaforma.png</path>
+    	<path>Resources/Images/Cards/mutaforma.png</path>
     </image>
     <image>
     	<name>obsolescenza_programmata</name>
-    	<path>Resources/Images/obsolescenza_programmata.png</path>
+    	<path>Resources/Images/Cards/obsolescenza_programmata.png</path>
     </image>
     <image>
     	<name>regressione_genetica</name>
-    	<path>Resources/Images/regressione_genetica.png</path>
+    	<path>Resources/Images/Cards/regressione_genetica.png</path>
     </image>
     <image>
     	<name>telepatico</name>
-    	<path>Resources/Images/telepatico.png</path>
+    	<path>Resources/Images/Cards/telepatico.png</path>
     </image>
     <image>
     	<name>ultimo_della_sua_razza</name>
-    	<path>Resources/Images/ultimo_della_sua_razza.png</path>
+    	<path>Resources/Images/Cards/ultimo_della_sua_razza.png</path>
     </image>
     <image>
     	<name>vasca_chimica</name>
-    	<path>Resources/Images/vasca_chimica.png</path>
+    	<path>Resources/Images/Cards/vasca_chimica.png</path>
     </image>
     
     
     <image>
     	<name>blob</name>
-    	<path>Resources/Images/blob.png</path>
+    	<path>Resources/Images/Cards/blob.png</path>
     </image>
     <image>
     	<name>capre_spaziali</name>
-    	<path>Resources/Images/capre_spaziali.png</path>
+    	<path>Resources/Images/Cards/capre_spaziali.png</path>
     </image>
     <image>
     	<name>clowntrooper</name>
-    	<path>Resources/Images/clowntrooper.png</path>
+    	<path>Resources/Images/Cards/clowntrooper.png</path>
     </image>
     <image>
     	<name>creature_della_laguna_rosa</name>
-    	<path>Resources/Images/creature_della_laguna_rosa.png</path>
+    	<path>Resources/Images/Cards/creature_della_laguna_rosa.png</path>
     </image>
     <image>
     	<name>cyborg</name>
-    	<path>Resources/Images/cyborg.png</path>
+    	<path>Resources/Images/Cards/cyborg.png</path>
     </image>
     <image>
     	<name>cyborg1</name>
-    	<path>Resources/Images/cyborg1.png</path>
+    	<path>Resources/Images/Cards/cyborg1.png</path>
     </image>
     <image>
     	<name>darth_water</name>
-    	<path>Resources/Images/darth_water.png</path>
+    	<path>Resources/Images/Cards/darth_water.png</path>
     </image>
     <image>
     	<name>door_back</name>
-    	<path>Resources/Images/door_back.png</path>
+    	<path>Resources/Images/Cards/door_back.png</path>
     </image>
     <image>
     	<name>elvis_dello_spazio_bicefalo</name>
-    	<path>Resources/Images/elvis_dello_spazio_bicefalo.png</path>
+    	<path>Resources/Images/Cards/elvis_dello_spazio_bicefalo.png</path>
     </image>
     <image>
     	<name>felino</name>
-    	<path>Resources/Images/felino.png</path>
+    	<path>Resources/Images/Cards/felino.png</path>
     </image>
     <image>
     	<name>felino1</name>
-    	<path>Resources/Images/felino1.png</path>
+    	<path>Resources/Images/Cards/felino1.png</path>
     </image>
     <image>
     	<name>formiche_giganti</name>
-    	<path>Resources/Images/formiche_giganti.png</path>
+    	<path>Resources/Images/Cards/formiche_giganti.png</path>
     </image>
     <image>
     	<name>gian_giar</name>
-    	<path>Resources/Images/gian_giar.png</path>
+    	<path>Resources/Images/Cards/gian_giar.png</path>
     </image>
     <image>
     	<name>grande_cthulhu</name>
-    	<path>Resources/Images/grande_cthulhu.png</path>
+    	<path>Resources/Images/Cards/grande_cthulhu.png</path>
     </image>
     <image>
     	<name>insettoide</name>
-    	<path>Resources/Images/insettoide.png</path>
+    	<path>Resources/Images/Cards/insettoide.png</path>
     </image>
     <image>
     	<name>insettoide1</name>
-    	<path>Resources/Images/insettoide1.png</path>
+    	<path>Resources/Images/Cards/insettoide1.png</path>
     </image>
     <image>
     	<name>la_chela</name>
-    	<path>Resources/Images/la_chela.png</path>
+    	<path>Resources/Images/Cards/la_chela.png</path>
     </image>
     <image>
     	<name>mezzosangue</name>
-    	<path>Resources/Images/mezzosangue.png</path>
+    	<path>Resources/Images/Cards/mezzosangue.png</path>
     </image>
     <image>
     	<name>mezzosangue1</name>
-    	<path>Resources/Images/mezzosangue1.png</path>
+    	<path>Resources/Images/Cards/mezzosangue1.png</path>
     </image>
     <image>
     	<name>miniaturizzato</name>
-    	<path>Resources/Images/miniaturizzato.png</path>
+    	<path>Resources/Images/Cards/miniaturizzato.png</path>
     </image>
     <image>
     	<name>minuscole_ma_avanzate_creature</name>
-    	<path>Resources/Images/minuscole_ma_avanzate_creature.png</path>
+    	<path>Resources/Images/Cards/minuscole_ma_avanzate_creature.png</path>
     </image>
     <image>
     	<name>mostro_occhiuto</name>
-    	<path>Resources/Images/mostro_occhiuto.png</path>
+    	<path>Resources/Images/Cards/mostro_occhiuto.png</path>
     </image>
     <image>
     	<name>mutante</name>
-    	<path>Resources/Images/mutante.png</path>
+    	<path>Resources/Images/Cards/mutante.png</path>
     </image>
     <image>
     	<name>mutante1</name>
-    	<path>Resources/Images/mutante1.png</path>
+    	<path>Resources/Images/Cards/mutante1.png</path>
     </image>
     <image>
     	<name>noison</name>
-    	<path>Resources/Images/noison.png</path>
+    	<path>Resources/Images/Cards/noison.png</path>
     </image>
     <image>
     	<name>orribile_cosa_verde</name>
-    	<path>Resources/Images/orribile_cosa_verde.png</path>
+    	<path>Resources/Images/Cards/orribile_cosa_verde.png</path>
     </image>
     <image>
     	<name>palladipelo</name>
-    	<path>Resources/Images/palladipelo.png</path>
+    	<path>Resources/Images/Cards/palladipelo.png</path>
     </image>
     <image>
     	<name>pesce_stellare</name>
-    	<path>Resources/Images/pesce_stellare.png</path>
+    	<path>Resources/Images/Cards/pesce_stellare.png</path>
     </image>
     <image>
     	<name>pinguini_assassini</name>
-    	<path>Resources/Images/pinguini_assassini.png</path>
+    	<path>Resources/Images/Cards/pinguini_assassini.png</path>
     </image>
     <image>
     	<name>plasmoide</name>
-    	<path>Resources/Images/plasmoide.png</path>
+    	<path>Resources/Images/Cards/plasmoide.png</path>
     </image>
     <image>
     	<name>psichico</name>
-    	<path>Resources/Images/psichico.png</path>
+    	<path>Resources/Images/Cards/psichico.png</path>
     </image>
     <image>
     	<name>psichico1</name>
-    	<path>Resources/Images/psichico1.png</path>
+    	<path>Resources/Images/Cards/psichico1.png</path>
     </image>
     <image>
     	<name>radioattivo</name>
-    	<path>Resources/Images/radioattivo.png</path>
+    	<path>Resources/Images/Cards/radioattivo.png</path>
     </image>
     <image>
     	<name>ranger_spaziale</name>
-    	<path>Resources/Images/ranger_spaziale.png</path>
+    	<path>Resources/Images/Cards/ranger_spaziale.png</path>
     </image>
     <image>
     	<name>ranger_spaziale1</name>
-    	<path>Resources/Images/ranger_spaziale1.png</path>
+    	<path>Resources/Images/Cards/ranger_spaziale1.png</path>
     </image>
     <image>
     	<name>sciame_pesante</name>
-    	<path>Resources/Images/sciame_pesante.png</path>
+    	<path>Resources/Images/Cards/sciame_pesante.png</path>
     </image>
     <image>
     	<name>spazzatura_postale_autospedente</name>
-    	<path>Resources/Images/spazzatura_postale_autospedente.png</path>
+    	<path>Resources/Images/Cards/spazzatura_postale_autospedente.png</path>
     </image>
     <image>
     	<name>stella_canina</name>
-    	<path>Resources/Images/stella_canina.png</path>
+    	<path>Resources/Images/Cards/stella_canina.png</path>
     </image>
     <image>
     	<name>succhiafaccia</name>
-    	<path>Resources/Images/succhiafaccia.png</path>
+    	<path>Resources/Images/Cards/succhiafaccia.png</path>
     </image>
     <image>
     	<name>super_munchkin</name>
-    	<path>Resources/Images/super_munchkin.png</path>
+    	<path>Resources/Images/Cards/super_munchkin.png</path>
     </image>
     <image>
     	<name>super_munchkin1</name>
-    	<path>Resources/Images/super_munchkin1.png</path>
+    	<path>Resources/Images/Cards/super_munchkin1.png</path>
     </image>
     <image>
     	<name>tettona_bionica</name>
-    	<path>Resources/Images/tettona_bionica.png</path>
+    	<path>Resources/Images/Cards/tettona_bionica.png</path>
     </image>
     <image>
     	<name>ultra_violetta</name>
-    	<path>Resources/Images/ultra_violetta.png</path>
+    	<path>Resources/Images/Cards/ultra_violetta.png</path>
     </image>
     <image>
     	<name>vampiro_spaziale</name>
-    	<path>Resources/Images/vampiro_spaziale.png</path>
+    	<path>Resources/Images/Cards/vampiro_spaziale.png</path>
     </image>
     <image>
     	<name>verminator</name>
-    	<path>Resources/Images/verminator.png</path>
+    	<path>Resources/Images/Cards/verminator.png</path>
     </image>
     <image>
     	<name>xqwzzmp</name>
-    	<path>Resources/Images/xqwzzmp.png</path>
+    	<path>Resources/Images/Cards/xqwzzmp.png</path>
+    </image>
+    <image>
+    	<name>ogre</name>
+    	<path>Resources/Images/Cards/ogre.png</path>
+    </image>
+    <image>
+    	<name>pianta_carnivora</name>
+    	<path>Resources/Images/Cards/pianta_carnivora.png</path>
+    </image>
+    <image>
+    	<name>secchioni_tacchinatori</name>
+    	<path>Resources/Images/Cards/secchioni_tacchinatori.png</path>
+    </image>
+    <image>
+    	<name>sonda_spaziale</name>
+    	<path>Resources/Images/Cards/sonda_spaziale.png</path>
+    </image>
+    <image>
+    	<name>psico_sceriffo</name>
+    	<path>Resources/Images/Cards/psico_sceriffo.png</path>
+    </image>
+    <image>
+    	<name>potrona</name>
+    	<path>Resources/Images/Cards/potrona.png</path>
     </image>
 
     <!-- Treasure Cards -->
     
     <image>
     	<name>amplificatore_mentale</name>
-    	<path>Resources/Images/amplificatore_mentale.png</path>
+    	<path>Resources/Images/Cards/amplificatore_mentale.png</path>
     </image>
     <image>
     	<name>autofuga_1000</name>
-    	<path>Resources/Images/autofuga_1000</path>
+    	<path>Resources/Images/Cards/autofuga_1000</path>
     </image>
     <image>
     	<name>bobaser</name>
-    	<path>Resources/Images/bobaser.png</path>
+    	<path>Resources/Images/Cards/bobaser.png</path>
     </image>
     <image>
     	<name>cannone_al_plasma</name>
-    	<path>Resources/Images/cannone_al_plasma.png</path>
+    	<path>Resources/Images/Cards/cannone_al_plasma.png</path>
     </image>
     <image>
     	<name>maser</name>
-    	<path>Resources/Images/maser.png</path>
+    	<path>Resources/Images/Cards/maser.png</path>
     </image>
     <image>
     	<name>mongolarma</name>
-    	<path>Resources/Images/mongolarma.png</path>
+    	<path>Resources/Images/Cards/mongolarma.png</path>
     </image>
     <image>
     	<name>raser</name>
-    	<path>Resources/Images/raser.png</path>
+    	<path>Resources/Images/Cards/raser.png</path>
     </image>    
     <image>
     	<name>stivali_magnetici</name>
-    	<path>Resources/Images/stivali_magnetici.png</path>
+    	<path>Resources/Images/Cards/stivali_magnetici.png</path>
     </image> 
     <image>
     	<name>stivaloni_ronzanti</name>
-    	<path>Resources/Images/stivaloni_ronzanti.png</path>
+    	<path>Resources/Images/Cards/stivaloni_ronzanti.png</path>
     </image>
     
     
     
     <image>
     	<name>antenne_acustiche</name>
-    	<path>Resources/Images/antenne_acustiche.png</path>
+    	<path>Resources/Images/Cards/antenne_acustiche.png</path>
     </image>
     <image>
     	<name>armatura_di_energia</name>
-    	<path>Resources/Images/armatura_di_energia.png</path>
+    	<path>Resources/Images/Cards/armatura_di_energia.png</path>
     </image>
     <image>
     	<name>campo_di_stasi</name>
-    	<path>Resources/Images/campo_di_stasi.png</path>
+    	<path>Resources/Images/Cards/campo_di_stasi.png</path>
     </image>
     <image>
     	<name>campo_di_stupidità</name>
-    	<path>Resources/Images/campo_di_stupidità.png</path>
+    	<path>Resources/Images/Cards/campo_di_stupidità.png</path>
     </image>
     <image>
     	<name>ciuffo_per-manente</name>
-    	<path>Resources/Images/ciuffo_per-manente.png</path>
+    	<path>Resources/Images/Cards/ciuffo_per-manente.png</path>
     </image>
     <image>
     	<name>congegno_risolutore</name>
-    	<path>Resources/Images/congegno_risolutore.png</path>
+    	<path>Resources/Images/Cards/congegno_risolutore.png</path>
     </image>
     <image>
     	<name>dado_appesantito</name>
-    	<path>Resources/Images/dado_appesantito.png</path>
+    	<path>Resources/Images/Cards/dado_appesantito.png</path>
     </image>
     <image>
     	<name>discorso_del_veniamo_in_pace</name>
-    	<path>Resources/Images/discorso_del_veniamo_in_pace.png</path>
+    	<path>Resources/Images/Cards/discorso_del_veniamo_in_pace.png</path>
     </image>
     <image>
     	<name>elettrotuta</name>
-    	<path>Resources/Images/elettrotuta.png</path>
+    	<path>Resources/Images/Cards/elettrotuta.png</path>
     </image>
     <image>
     	<name>elmetto_a_bolla</name>
-    	<path>Resources/Images/elmetto_a_bolla.png</path>
+    	<path>Resources/Images/Cards/elmetto_a_bolla.png</path>
     </image>
     <image>
     	<name>frusta_neuronica</name>
-    	<path>Resources/Images/frusta_neuronica.png</path>
+    	<path>Resources/Images/Cards/frusta_neuronica.png</path>
     </image>
     <image>
     	<name>gas_del_controllo_mentale</name>
-    	<path>Resources/Images/gas_del_controllo_mentale.png</path>
+    	<path>Resources/Images/Cards/gas_del_controllo_mentale.png</path>
     </image>
     <image>
     	<name>granata_flash_supernova</name>
-    	<path>Resources/Images/granata_flash_supernova.png</path>
+    	<path>Resources/Images/Cards/granata_flash_supernova.png</path>
     </image>
     <image>
     	<name>granata_moltiplicante</name>
-    	<path>Resources/Images/granata_moltiplicante.png</path>
+    	<path>Resources/Images/Cards/granata_moltiplicante.png</path>
+    </image>
+    <image>
+    	<name>granata_allo_yogurt</name>
+    	<path>Resources/Images/Cards/granata_allo_yogurt_gusto_nachos.png</path>
+    </image>
+    <image>
+    	<name>granata_birragasata</name>
+    	<path>Resources/Images/Cards/granata_birragasata.png</path>
+    </image>
+    <image>
+    	<name>palladipelo_zannuta</name>
+    	<path>Resources/Images/Cards/palladipelo_zannuta.png</path>
+    </image>
+    <image>
+    	<name>grigi</name>
+    	<path>Resources/Images/Cards/grigi.png</path>
+    </image>
+    <image>
+    	<name>granata_apriscatole</name>
+    	<path>Resources/Images/Cards/granata_apriscatole.png</path>
     </image>
     <image>
     	<name>granata_sonica_al_ruttoplasma</name>
-    	<path>Resources/Images/granata_sonica_al_ruttoplasma.png</path>
+    	<path>Resources/Images/Cards/granata_sonica_al_ruttoplasma.png</path>
     </image>
     <image>
     	<name>grosso_bottone_rosso</name>
-    	<path>Resources/Images/grosso_bottone_rosso.png</path>
+    	<path>Resources/Images/Cards/grosso_bottone_rosso.png</path>
     </image>
     <image>
     	<name>laser</name>
-    	<path>Resources/Images/laser.png</path>
+    	<path>Resources/Images/Cards/laser.png</path>
     </image>
     <image>
     	<name>monolito</name>
-    	<path>Resources/Images/monolito.png</path>
+    	<path>Resources/Images/Cards/monolito.png</path>
     </image>
     <image>
     	<name>nanogranata_allucinogenica</name>
-    	<path>Resources/Images/nanogranata_allucinogenica.png</path>
+    	<path>Resources/Images/Cards/nanogranata_allucinogenica.png</path>
     </image>
     <image>
     	<name>nastrini_posizionati_strategicamente</name>
-    	<path>Resources/Images/nastrini_posizionati_strategicamente.png</path>
+    	<path>Resources/Images/Cards/nastrini_posizionati_strategicamente.png</path>
     </image>
     <image>
     	<name>obliteri_un_pianeta_pacifico</name>
-    	<path>Resources/Images/obliteri_un_pianeta_pacifico.png</path>
+    	<path>Resources/Images/Cards/obliteri_un_pianeta_pacifico.png</path>
     </image>
     <image>
     	<name>pussaviaser</name>
-    	<path>Resources/Images/pussaviaser.png</path>
+    	<path>Resources/Images/Cards/pussaviaser.png</path>
     </image>
     <image>
     	<name>rastrelliera</name>
-    	<path>Resources/Images/rastrelliera.png</path>
+    	<path>Resources/Images/Cards/rastrelliera.png</path>
     </image>
     <image>
     	<name>rinforzi_i_tuoi_micro-chloridian</name>
-    	<path>Resources/Images/rinforzi_i_tuoi_micro-chloridian.png</path>
+    	<path>Resources/Images/Cards/rinforzi_i_tuoi_micro-chloridian.png</path>
     </image>
     <image>
     	<name>ringraziamenti</name>
-    	<path>Resources/Images/ringraziamenti.png</path>
+    	<path>Resources/Images/Cards/ringraziamenti.png</path>
     </image>
     <image>
     	<name>rum_denubiano</name>
-    	<path>Resources/Images/rum_denubiano.png</path>
+    	<path>Resources/Images/Cards/rum_denubiano.png</path>
     </image>
     <image>
     	<name>ruotini_retrattili</name>
-    	<path>Resources/Images/ruotini_retrattili.png</path>
+    	<path>Resources/Images/Cards/ruotini_retrattili.png</path>
     </image>
     <image>
     	<name>sciabola_fotonica</name>
-    	<path>Resources/Images/sciabola_fotonica.png</path>
+    	<path>Resources/Images/Cards/sciabola_fotonica.png</path>
     </image>
     <image>
     	<name>sprayser</name>
-    	<path>Resources/Images/sprayser.png</path>
+    	<path>Resources/Images/Cards/sprayser.png</path>
     </image>
     <image>
     	<name>vernice_verde</name>
-    	<path>Resources/Images/vernice_verde.png</path>
+    	<path>Resources/Images/Cards/vernice_verde.png</path>
     </image>
-    <image>
-    	<name>treasure_back</name>
-    	<path>Resources/Images/treasure_back.png</path>
-    </image>
+
 </resources>

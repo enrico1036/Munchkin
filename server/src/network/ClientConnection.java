@@ -38,7 +38,7 @@ public class ClientConnection implements Runnable{
 		this.sock = sock;
 		this.pool = pool;
 		alive = true;
-
+		
 		try {
 			// Set read timeout
 			this.sock.setSoTimeout(timeout);
