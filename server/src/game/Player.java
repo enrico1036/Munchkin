@@ -41,6 +41,7 @@ public class Player {
 		this.classAllowed = 1;
 		this.alive = false;
 		this.connection = null;
+		this.lobby_ready=false;
 	}
 	
 	public String getUsername() {

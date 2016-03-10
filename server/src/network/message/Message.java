@@ -62,10 +62,11 @@ public abstract class Message implements Serializable{
 	//General client request that groups request client message
 	public static final String CLT_GENERAL_REQUEST = "GENERAL_REQUEST";
 	
-	//Get player list and the ready status of that player
+	//Get player list ,the ready status of those player and set the toggle of the ready status
 	public static final String PLAYER_LIST = "PLAYER_LIST";
 	public static final String CLT_READY_STATUS = "READY_STATUS";
-
+	public static final String CLT_SET_LOBBY_STATUS="LOBBY_STATUS";
+	
 	//Get card from decks
 	public static final String PLAY_CARD = "PLAY_CARD";
 
