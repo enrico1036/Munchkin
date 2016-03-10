@@ -26,7 +26,7 @@ public class ConnectionPool {
 		this.inQueue = inQueue;
 	}
 
-	public void add(final ClientConnection connection) {
+	public void add(final ClientConnection connection)  {
 		// Prevent the existence of two or more different connections
 		// with the same client id (each player corresponds to only one
 		// connection)
@@ -87,7 +87,7 @@ public class ConnectionPool {
 	public void broadcast(Message message) {
 		for (Map.Entry<String, ClientConnection> pair : connections.entrySet()) {
 			ClientConnection conn = pair.getValue();
-			conn.write(message.getFormattedMessage());
+			conn.write(message);
 		}
 	}
 

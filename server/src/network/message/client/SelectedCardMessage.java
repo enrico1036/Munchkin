@@ -20,7 +20,7 @@ import network.message.Message;
 		public String getCardName() {
 			return cardName;
 		}
-
+/*
 		@Override
 		public String getFormattedMessage() {
 			StringBuilder builder = new StringBuilder();
@@ -29,6 +29,6 @@ import network.message.Message;
 			builder.append(cardName);
 			builder.append(Message.MSG_TERMINATOR);
 			return builder.toString();
-		}
+		}*/
 
 }

@@ -12,6 +12,7 @@ import network.message.server.PlayCardMessage;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerListMessage;
+import network.message.server.PlayerStatsMessage;
 import network.message.server.PopUpMessage;
 
 public abstract class Message {
@@ -112,7 +113,7 @@ public abstract class Message {
 	public String getMessageCode(){
 		return messageCode;
 	}
-	
+	/*
 	public abstract String getFormattedMessage();
 	
 	public static Message parse(String formattedMessage){
@@ -148,8 +149,14 @@ public abstract class Message {
 			return new PlayerStatusRequest(tokens.get(1),tokens.get(2));
 		case Message.CLT_CARD_SELECTED:
 			return new SelectedCardMessage(tokens.get(1));
+		case Message.REQUEST_PLAYER_FULL_STATS:
+			return new PlayerStatsMessage(tokens.get(1),Integer.parseInt(tokens.get(2)),
+					Integer.parseInt(tokens.get(3)),tokens.get(4),tokens.get(5),tokens.get(6),tokens.get(7),
+					Integer.parseInt(tokens.get(8)));
 		case Message.REQUEST_PLAYER_EQUIPMENT:
-			return new PlayerEquipmentMessage(tokens.get(1),tokens.get(2),tokens.get(3),tokens.get(4),tokens.get(5));
+			return new PlayerEquipmentMessage(tokens.get(1),tokens.get(2),tokens.get(3),tokens.get(4),
+					tokens.get(5),tokens.get(6));
+			
 		
 
 		default:
@@ -160,5 +167,5 @@ public abstract class Message {
 		
 		return null;
 		
-	}
+	}*/
 }
