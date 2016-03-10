@@ -24,7 +24,6 @@ public class Draw extends StateMachine {
 
 	
 	private void openDoor() {
-		GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), new SelectedCardMessage(SelectedCardMessage.DOOR_DECK));
 		Card card = Decks.getDoorCard();
 		GameManager.broadcastMessage(new PlayCardMessage(card.getTitle(), Action.SHOW));
 		//if curse play it, if monster start a combat and execute it. In all other cases draw it
