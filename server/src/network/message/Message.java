@@ -36,19 +36,13 @@ public abstract class Message {
 	public static final String CLT_CHANGE_EQUIPMENT = "CHANGE_EQUIPMENT";
 	public static final String CLT_CHANGE_CLASS = "CHANGE_CLASS";
 	public static final String CLT_CHANGE_RACE = "CHANGE_RACE";
-	
-	//Ask help to other players while the client is on combat phase
-	public static final String CLT_REQUEST_HELP = "ASK_FOR_HELP";
+
 	
 	//Other players can propose help with how many treasures they want
 	public static final String CLT_PROPOSE_HELP = "PROPOSE_HELP";
 	
 	//Client respond message
-	public static final String CLT_ACCEPT_HELP = "ACCEPT_HELP";
-	public static final String CLT_REJECT_HELP = "REJECT_HELP";
-	
-	//Get the card/s that other players can play to interpose on the client combat
-	public static final String CLT_COMBAT_INTERPOSE_CARD = "PLAY_COMBAT_CARD";
+	public static final String CLT_ANSWER_HELP = "ACCEPT_HELP";
 	
 	//Get the player state
 	public static final String STATE_UPDATE = "STATE_UPDATE";
