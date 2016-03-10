@@ -15,7 +15,7 @@ public class PlayerStatusRequest extends Message {
 		this.player = Player;
 		this.plr_request = Request;
 	}
-	
+	/*
 	@Override
 	public String getFormattedMessage() {
 		StringBuilder builder = new StringBuilder();
@@ -28,6 +28,6 @@ public class PlayerStatusRequest extends Message {
 		return builder.toString();
 		
 	}
-	
+	*/
 	
 }

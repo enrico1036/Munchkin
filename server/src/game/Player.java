@@ -194,7 +194,7 @@ public class Player {
 	}
 	
 	public void sendMessage(Message message){
-		connection.write(message.getFormattedMessage());
+		connection.write(message);
 	}
 	
 	public boolean isConnected(){

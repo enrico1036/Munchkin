@@ -22,7 +22,7 @@ public class ClientGeneralRequest extends Message{
 	public String getRequestType(){
 		return cltRequest;
 	}
-
+/*
 	@Override
 	public String getFormattedMessage() {
 		StringBuilder builder = new StringBuilder();
@@ -33,5 +33,5 @@ public class ClientGeneralRequest extends Message{
 		return builder.toString();
 		
 		
-	}
+	}*/
 }

@@ -13,7 +13,7 @@ public final class ConnectionRequestMessage extends Message{
 	public String getClientName(){
 		return clientName;
 	}
-
+/*
 	@Override
 	public String getFormattedMessage() {
 		StringBuilder builder = new StringBuilder();
@@ -22,5 +22,5 @@ public final class ConnectionRequestMessage extends Message{
 		builder.append(clientName);
 		builder.append(Message.MSG_TERMINATOR);
 		return builder.toString();
-	}
+	}*/
 }

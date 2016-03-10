@@ -37,14 +37,14 @@ public class ConnectionPool {
 					// Deny connection and close it if Player is already
 					// connected
 					ActionResultMessage result = new ActionResultMessage(ActionResultMessage.ACTION_DENIED, "Player name already in use");
-					connection.write(result.getFormattedMessage());
+					connection.write(result);
 					System.out.println("Connection refused: " + connection.toString());
 					connection.close();
 					return;
 				} else {
 					// Confirm successful connection and update Player's connection
 					ActionResultMessage result = new ActionResultMessage(ActionResultMessage.ACTION_ALLOWED, null);
-					connection.write(result.getFormattedMessage());
+					connection.write(result);
 					player.setConnection(connection);
 					// Add to map
 					connections.put(connection.getClientId(), connection);
@@ -58,7 +58,7 @@ public class ConnectionPool {
 		
 		// Confirm successful connection 
 		ActionResultMessage result = new ActionResultMessage(ActionResultMessage.ACTION_ALLOWED, null);
-		connection.write(result.getFormattedMessage());
+		connection.write(result);
 		// If Player with that name doesn't exist, create it and add to array
 		Player player = new Player(connection.getClientId());
 		player.setConnection(connection);

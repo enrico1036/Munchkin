@@ -19,7 +19,7 @@ public final class ChatMessage extends Message{
 	public String getMessage(){
 		return message;
 	}
-
+/*
 	@Override
 	public String getFormattedMessage() {
 		StringBuilder builder = new StringBuilder();
@@ -31,5 +31,5 @@ public final class ChatMessage extends Message{
 		builder.append(Message.MSG_TERMINATOR);
 		return builder.toString();
 	}
-	
+	*/
 }

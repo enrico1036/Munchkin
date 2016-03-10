@@ -7,16 +7,16 @@ import network.message.Message;
 import network.message.client.ConnectionRequestMessage;
 
 public class PlayerConnection {
-	private StreamConnection connection;
+	private ServerConnection connection;
 	private String playerName;
 
 	public PlayerConnection(){
-		connection = new StreamConnection();
+		connection = new ServerConnection();
 		playerName = null;
 	}
 	
 	public PlayerConnection(String hostname, int port, String playerName){
-		connection = new StreamConnection();
+		connection = new ServerConnection();
 		this.playerName = playerName;
 		establish(hostname, port, playerName);
 	}
@@ -31,10 +31,10 @@ public class PlayerConnection {
 		}
 		// Send Munchkin server a ConnectionRequestMessage with the given username
 		ConnectionRequestMessage req = new ConnectionRequestMessage(playerName);
-		connection.write(req.getFormattedMessage());
+		connection.write(req);
 		
 		// Wait for server response, and check for positive result
-		Message result = Message.parse(connection.readLine());
+		Message result = connection.read();
 		if(result != null && result.getMessageCode().equals(Message.SRV_ACTION_RESULT)){
 			if(((ActionResultMessage) result).isAllowed()){
 				this.playerName = playerName;
@@ -50,11 +50,11 @@ public class PlayerConnection {
 	}
 	
 	public void send(Message message){
-		connection.write(message.getFormattedMessage());
+		connection.write(message);
 	}
 	
 	public Message receive(){
-		return Message.parse(connection.readLine());
+		return (Message) (connection.read());
 	}
 	
 	public boolean isConnected(){

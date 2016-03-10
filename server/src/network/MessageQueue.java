@@ -43,7 +43,7 @@ public class MessageQueue {
 			for (int i = 0; i < queue.size(); i++) {
 				pair = queue.poll();
 				if(pair.getKey().equals(playerName) && 
-						pair.getValue().getFormattedMessage().equals(message.getFormattedMessage())){
+						pair.getValue().equals(message)){
 					return pair;
 				} else {
 					queue.add(pair);
@@ -54,7 +54,7 @@ public class MessageQueue {
 		while(waitForData()){
 			pair = queue.poll();
 			if(pair.getKey().equals(playerName) && 
-					pair.getValue().getFormattedMessage().equals(message.getFormattedMessage())){
+					pair.getValue().equals(message)){
 				return pair;
 			} else {
 				queue.add(pair);

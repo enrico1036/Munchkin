@@ -25,7 +25,7 @@ public class ReadyLobbyMessage extends Message {
 	public String[] getPlayers() {
 		return readyList;
 	}
-
+/*
 	@Override
 	public String getFormattedMessage() {
 		StringBuilder builder = new StringBuilder();
@@ -36,6 +36,6 @@ public class ReadyLobbyMessage extends Message {
 		}
 		builder.append(Message.MSG_TERMINATOR);
 		return builder.toString();
-	}
+	}*/
 
 }

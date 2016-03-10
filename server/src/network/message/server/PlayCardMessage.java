@@ -21,7 +21,7 @@ public class PlayCardMessage extends Message{
 	public Action getShowed(){
 		return action;
 	}
-
+/*
 	@Override
 	public String getFormattedMessage() {
 		StringBuilder builder = new StringBuilder();
@@ -32,6 +32,6 @@ public class PlayCardMessage extends Message{
 		builder.append(action.toString());
 		builder.append(Message.MSG_TERMINATOR);
 		return builder.toString();
-	}
+	}*/
 
 }

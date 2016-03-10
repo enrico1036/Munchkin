@@ -35,7 +35,7 @@ public class PlayerEquipmentMessage extends PlayerStatusRequest {
 		
 		
 	}
-	
+	/*
 	@Override
 	public String getFormattedMessage() {
 		StringBuilder builder = new StringBuilder();
@@ -52,6 +52,6 @@ public class PlayerEquipmentMessage extends PlayerStatusRequest {
 		builder.append(feet.getTitle());
 		builder.append(Message.MSG_TERMINATOR);
 		return builder.toString();
-	}
+	}*/
 
 }

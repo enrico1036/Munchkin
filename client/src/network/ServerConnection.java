@@ -4,18 +4,22 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-public class StreamConnection {
-	private Socket socket;
-	private BufferedReader reader;
-	private BufferedWriter writer;
+import network.message.Message;
 
-	public StreamConnection() {
+public class ServerConnection {
+	private Socket socket;
+	private ObjectInputStream input;
+	private ObjectOutputStream output;
+
+	public ServerConnection() {
 	}
 
-	public StreamConnection(String hostname, int port) throws IOException {
+	public ServerConnection(String hostname, int port) throws IOException {
 		connect(hostname, port);
 	}
 
@@ -26,8 +30,9 @@ public class StreamConnection {
 		// Create new socket
 		socket = new Socket(hostname, port);
 		// Create read write buffers
-		reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+		input = new ObjectInputStream(socket.getInputStream());
+		output = new ObjectOutputStream(socket.getOutputStream());
+		
 	}
 
 	public boolean isConnected() {
@@ -43,25 +48,27 @@ public class StreamConnection {
 		}
 	}
 	
-	public String readLine(){
-		String line = null;
+	public Message read() {
+		Message obj = null;
 		try {
-			line = reader.readLine();
-			if(line == null)
-				socket.close();
-		}
-		catch (IOException e) {
+			try {
+				
+				obj = (Message) input.readObject();
+			} catch (ClassNotFoundException e) {
+				
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return line;
+		return obj;
 	}
 	
-	public void write(String message){
+	public void write(Message obj) {
 		try {
-			writer.write(message);
-			writer.flush();
-		}
-		catch (IOException e) {
+			output.writeObject(obj);
+			output.flush();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

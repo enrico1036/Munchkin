@@ -22,7 +22,7 @@ public final class ActionResultMessage extends Message{
 	public String getReason(){
 		return reason;
 	}
-	
+	/*
 	@Override
 	public String getFormattedMessage() {
 		StringBuilder builder = new StringBuilder();
@@ -37,6 +37,6 @@ public final class ActionResultMessage extends Message{
 		}
 		builder.append(Message.MSG_TERMINATOR);
 		return builder.toString();
-	}
+	}*/
 	
 }

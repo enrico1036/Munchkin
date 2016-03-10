@@ -114,7 +114,7 @@ public abstract class Message {
 		return messageCode;
 	}
 	/*
-	public abstract String getFormattedMessage();
+	
 	
 	public static Message parse(String formattedMessage){
 		List<String> tokens = StringUtils.split(formattedMessage, Message.ARG_SEPARATOR);
@@ -168,4 +168,9 @@ public abstract class Message {
 		return null;
 		
 	}*/
+	
+	
+	
+	
+	
 }

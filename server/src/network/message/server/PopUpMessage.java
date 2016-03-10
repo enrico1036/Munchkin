@@ -110,7 +110,7 @@ public class PopUpMessage extends Message {
 	public boolean isValueSet() {
 		return min_val != max_val;
 	}
-
+/*
 	@Override
 	public String getFormattedMessage() {
 		StringBuilder builder = new StringBuilder();
@@ -129,6 +129,6 @@ public class PopUpMessage extends Message {
 		builder.append(Integer.toString(timeout_ms));
 		builder.append(Message.MSG_TERMINATOR);
 		return builder.toString();
-	}
+	}*/
 
 }
