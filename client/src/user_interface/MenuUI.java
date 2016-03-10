@@ -16,8 +16,8 @@ import network.PlayerConnection;
 
 public class MenuUI extends GamePanel{
 	
-	private BufferedImage background=null,connetti,option,exit;
-	private ImageButton button,button1,button2;
+	private BufferedImage background=null,connetti,exit;
+	private ImageButton button,button2;
 	private int wndWidth,wndHeight;
 	
 	
@@ -46,19 +46,7 @@ public class MenuUI extends GamePanel{
 		
 		
 
-		//Create an ImageIcone where we load the option_button image
-
-		option=MunchkinClient.getImage("option_button");
-				
-		//Create a new button that allows you to go on the option page 
-		button1 = new ImageButton(option);
-		button1.setActionCommand("option");
-		button1.setMinimumSize(buttdimmin);
-		button1.setVisible(true);
-		button1.addActionListener(this);
-		button1.setContentAreaFilled(false);
-		button1.setBorderPainted(false);
-		this.add(button1);
+		
 		
 
 		//Create an ImageIcone where we load the exit_button image
@@ -104,9 +92,6 @@ public class MenuUI extends GamePanel{
 				}
 			}
 			break;
-		case "option":
-			window.SetActivePanel(MunchkinClient.getPanel(4));
-			break;
 		case "exit":
 			System.exit(0);
 			break;
@@ -127,8 +112,7 @@ public class MenuUI extends GamePanel{
 		 wndHeight = this.getHeight();
 		
 		 button.setBounds(wndWidth/5,(wndHeight-button.getHeight())/3,wndWidth/5,	wndHeight/5);
-		 button1.setBounds(wndWidth/5,((wndHeight-button.getHeight())/3)+wndHeight*2/12,wndWidth/5,wndHeight/5);
-		 button2.setBounds(wndWidth/5,((wndHeight-button.getHeight())/3)+wndHeight*4/12,wndWidth/5,wndHeight/5);
+		 button2.setBounds(wndWidth/5,((wndHeight-button.getHeight())/3)+wndHeight/5,wndWidth/5,wndHeight/5);
 		
 	}
 	
