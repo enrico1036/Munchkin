@@ -3,6 +3,40 @@
 	<doors>
 		<monster name="Chtulu" level="18"  earningLevels="01" earningTreasures="02" effect="eee" />
 		<monster name="nnn" level="01"  earningLevels="01" earningTreasures="03" effect="fff" />
+		
+		<monster name="sonda_spaziale" level="16"  earningLevels="02" earningTreasures="04" effect="eee" />
+		<monster name="ogre" level="18"  earningLevels="02" earningTreasures="05" effect="fff" />
+		<monster name="pianta_carnivora" level="02"  earningLevels="01" earningTreasures="01" effect="eee" />
+		<monster name="poltrona" level="01"  earningLevels="01" earningTreasures="01" effect="fff" />
+		<monster name="palladipelo_zannuta" level="06"  earningLevels="01" earningTreasures="02" effect="eee" />
+		<monster name="darth_water" level="16"  earningLevels="02" earningTreasures="04" effect="fff" />
+		<monster name="psico_sceriffo" level="12"  earningLevels="01" earningTreasures="03" effect="eee" />
+		<monster name="secchioni_tacchinari" level="07"  earningLevels="01" earningTreasures="02" effect="fff" />
+		<monster name="pinguini_assassini" level="05"  earningLevels="01" earningTreasures="02" effect="eee" />
+		<monster name="minuscole_ma_avanzate_creature" level="01"  earningLevels="01" earningTreasures="01" effect="fff" />
+		<monster name="spazzatura_postale_autospedente" level="05"  earningLevels="01" earningTreasures="02" effect="eee" />
+		<monster name="formiche_gigante" level="06"  earningLevels="01" earningTreasures="02" effect="fff" />
+		<monster name="tettona_bionica" level="014"  earningLevels="01" earningTreasures="04" effect="eee" />
+		<monster name="xqwzzmp" level="05"  earningLevels="01" earningTreasures="02" effect="fff" />
+		<monster name="stella_canina" level="09"  earningLevels="01" earningTreasures="03" effect="eee" />
+		<monster name="noison" level="07"  earningLevels="01" earningTreasures="02" effect="fff" />
+		<monster name="creatura_della_laguna_rosa" level="08"  earningLevels="01" earningTreasures="02" effect="eee" />
+		<monster name="pesce_stellare" level="08"  earningLevels="01" earningTreasures="02" effect="fff" />
+		<monster name="vampiro_spaziale" level="14"  earningLevels="01" earningTreasures="04" effect="eee" />
+		<monster name="clowntrooper" level="17"  earningLevels="02" earningTreasures="04" effect="fff" />
+		<monster name="grande_cthulhu" level="20"  earningLevels="02" earningTreasures="05" effect="eee" />
+		<monster name="plasmoide" level="18"  earningLevels="02" earningTreasures="05" effect="fff" />
+		<monster name="sciame_pesante" level="11"  earningLevels="01" earningTreasures="03" effect="eee" />
+		<monster name="mostro_occhiuto" level="06"  earningLevels="01" earningTreasures="02" effect="fff" />
+		<monster name="elvis_dello_spazio_bicefalo" level="15"  earningLevels="02" earningTreasures="04" effect="eee" />
+		<monster name="ultra_violetta" level="15"  earningLevels="02" earningTreasures="04" effect="fff" />
+		<monster name="orribile_cosa_verde" level="08"  earningLevels="01" earningTreasures="02" effect="eee" />
+		<monster name="capre_spaziali" level="06"  earningLevels="01" earningTreasures="02" effect="fff" />
+		<monster name="succhiafaccia" level="02"  earningLevels="01" earningTreasures="01" effect="eee" />
+		<monster name="palladipelo" level="01"  earningLevels="01" earningTreasures="01" effect="fff" />
+		<monster name="verminator" level="12"  earningLevels="01" earningTreasures="03" effect="eee" />
+		<monster name="la_chela" level="17"  earningLevels="02" earningTreasures="04" effect="fff" />
+		<monster name="gian_giar" level="4"  earningLevels="01" earningTreasures="02" effect="eee" />
 		<curse name="ccc" immediate="true" effect="mario" />
 	</doors>
 	<treasures>
