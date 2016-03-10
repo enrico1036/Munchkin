@@ -1,5 +1,5 @@
 package cards;
 
 public enum CardType {
-	Door, Treasure
+	Door, Treasure, Any
 }

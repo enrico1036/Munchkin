@@ -1,7 +1,11 @@
 package game;
 
+import java.util.ArrayList;
+
+import cards.CardType;
 import network.message.Message;
 import network.message.client.SelectedCardMessage;
+import network.message.server.PlayCardMessage;
 import utils.StateMachine;
 
 public class Turn extends StateMachine {
@@ -23,8 +27,7 @@ public class Turn extends StateMachine {
 		} else {
 			stepOver();
 		}
-			
-
+		
 	}
 	
 	private void draw() {
@@ -37,10 +40,35 @@ public class Turn extends StateMachine {
 	}
 	
 	private void charity() {
-		//TODO: if hand card number higher than max card ask what card should be discarded, if lower skip
 		if(!GameManager.getCurrentPlayer().cardCheck())
 		{
-			//TODO: ask to player what cards wants to discard, then give them to other players
+			// Tell current player to discard a card
+			GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage("", CardType.Any, PlayCardMessage.Action.DISCARD));
+			// Wait for a card to be received
+			SelectedCardMessage received = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+			
+			// Find the player(s) with the lowest level
+			int lowestPlayerNum = 0;
+			Player lowestPlayer = GameManager.getPlayers().get(0);
+			
+			// Search minumum 
+			for(Player player : GameManager.getPlayers()){
+				if(player.getLevel() < lowestPlayer.getLevel()){
+					lowestPlayer = player;
+					lowestPlayerNum = 1;
+				} else if(player.getLevel() == lowestPlayer.getLevel())
+					++lowestPlayerNum;
+			}
+			
+			// In case the player with the lowest level is current player or there are more than one
+			// put the card into the appropriate garbage stack
+			if(lowestPlayer.equals(GameManager.getCurrentPlayer()) || lowestPlayerNum > 1){
+				Decks.discardCard(GameManager.getCurrentPlayer().pickCard(received.getCardName()));
+			} else {
+				// Otherwise add it to the lowest level player's hand
+				lowestPlayer.draw(GameManager.getCurrentPlayer().pickCard(received.getCardName()));
+			}
+			
 		}
 	}
 	

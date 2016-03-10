@@ -31,7 +31,8 @@ public class ClientConnection implements Runnable{
 	private boolean alive;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
-
+	private InputStream in;
+	private OutputStream out;
 
 	public ClientConnection(Socket sock, int timeout, final ConnectionPool pool) {
 		this.sock = sock;
@@ -41,9 +42,26 @@ public class ClientConnection implements Runnable{
 		try {
 			// Set read timeout
 			this.sock.setSoTimeout(timeout);
-			input = new ObjectInputStream(sock.getInputStream());
-			output = new ObjectOutputStream(sock.getOutputStream());
-
+			in=new InputStream() {
+				
+				@Override
+				public int read() throws IOException {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+			};
+			out = new OutputStream() {
+				
+				@Override
+				public void write(int b) throws IOException {
+					// TODO Auto-generated method stub
+					
+				}
+			};
+			input = new ObjectInputStream(in);
+			output = new ObjectOutputStream(out);
+			//reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+			//writer = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
 		} catch (IOException e) {
 			e.printStackTrace();
 			alive = false;
@@ -85,11 +103,10 @@ public class ClientConnection implements Runnable{
 	}
 
 	public Message read() {
-		Message obj = null;
+		Message line = null;
 		try {
 			try {
-				
-				obj = (Message) input.readObject();
+				line = (Message) input.readObject();
 			} catch (ClassNotFoundException e) {
 				
 				e.printStackTrace();
@@ -97,12 +114,12 @@ public class ClientConnection implements Runnable{
 		} catch (IOException e) {
 			alive = false;
 		} finally {
-			if (obj == null)
+			if (line == null)
 				alive = false;
 		}
-		return obj;
+		return line;
 	}
-	
+
 	public void write(Message obj) {
 		try {
 			output.writeObject(obj);

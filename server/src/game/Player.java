@@ -164,6 +164,16 @@ public class Player {
 		return this.hand.remove(card);
 	}
 	
+	public Card pickCard(String title) {
+		for(Card c : hand){
+			if(c.getTitle().equals(title)){
+				hand.remove(c);
+				return c;
+			}
+		}
+		return null;
+	}
+	
 	public void draw(Card card) {
 		this.hand.add(card);
 	}

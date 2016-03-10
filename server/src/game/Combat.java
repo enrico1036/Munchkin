@@ -34,6 +34,7 @@ public class Combat extends StateMachine {
 		// start help request and communications between client and server
 		GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Do you want to ask for help? If yes, how many treasures do you want to gift? (N)", "No", "Yes", 0, card.getEarningTreasures(), 15000));
 		// TODO: add waitfor popup answer (and message to return values)
+		Message ret = GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.POPUP).getValue();
 		// TODO: if yes, set promisedTreasure and:
 		{
 			for (Player player : GameManager.getPlayers()) { // ask to all except for the current player

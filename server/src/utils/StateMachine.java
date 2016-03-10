@@ -1,6 +1,8 @@
 package utils;
 
+import game.GameManager;
 import javafx.util.Pair;
+import network.message.server.StateUpdateMessage;
 
 public abstract class StateMachine {
 	public int currentState;
@@ -23,7 +25,7 @@ public abstract class StateMachine {
 	}
 	
 	public boolean performStep(){
-		//TODO: send message to client with the current state
+		GameManager.broadcastMessage(new StateUpdateMessage(states[currentState]));
 		return this.stepOver();
 	}
 }
