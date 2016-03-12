@@ -5,7 +5,6 @@ import network.message.Message;
 public class ClientGeneralRequest extends Message{
 	
 	public static final String REQUEST_TREASURE_CARDS = "TREASURE_CARDS";
-	public static final String REQUEST_PLAYERS_LIST = "PLAYERS_LIST";
 	public static final String REQUEST_READY_PLAYER_LIST="READY_LIST";
 	public static final String REQUEST_PLAY_CARD ="PLAY_CARD";
 

@@ -8,6 +8,7 @@ import network.message.Message;
 public class ReadyLobbyMessage extends Message {
 
 	private String[] readyList;
+	private boolean[] readyStatus;
 	
 	public ReadyLobbyMessage(final String[] list){
 		super(Message.CLT_READY_STATUS);
@@ -17,29 +18,20 @@ public class ReadyLobbyMessage extends Message {
 	public ReadyLobbyMessage(final ArrayList<Player> players) {
 		super(Message.CLT_READY_STATUS);
 		readyList = new String[players.size()];
-		int k=0;
+		readyStatus = new boolean[players.size()];
 		for (int i = 0; i < readyList.length; i++) {
-			if(players.get(i).isLobby_ready()){
-			readyList[k] = players.get(i).getUsername();
-			k++;
-			}
+			readyList[i] = players.get(i).getUsername();
+			readyStatus[i] = players.get(i).isLobby_ready();
+			
+			
 		}
 	}
-
+	public boolean[] getStatus(){
+		return readyStatus;
+	}
 	public String[] getPlayers() {
 		return readyList;
 	}
-/*
-	@Override
-	public String getFormattedMessage() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(messageCode);
-		for (int i = 0; i < readyList.length; i++) {
-			builder.append(Message.ARG_SEPARATOR);
-			builder.append(readyList[i]);
-		}
-		builder.append(Message.MSG_TERMINATOR);
-		return builder.toString();
-	}*/
+
 
 }

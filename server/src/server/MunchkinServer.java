@@ -17,7 +17,6 @@ import network.message.Message;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.UpdateReadyPlayerMessage;
 import network.message.server.PlayCardMessage;
-import network.message.server.PlayerListMessage;
 import network.message.server.ReadyLobbyMessage;
 import network.message.server.PlayCardMessage.Action;
 import utils.Debug;
@@ -62,9 +61,6 @@ public class MunchkinServer {
 				case Message.CLT_GENERAL_REQUEST:
 					ClientGeneralRequest req = (ClientGeneralRequest) pair.getValue();
 					switch(req.getRequestType()){
-						case ClientGeneralRequest.REQUEST_PLAYERS_LIST:
-							GameManager.getPlayerByName(pair.getKey()).sendMessage(new PlayerListMessage(GameManager.getPlayers()));
-						break;
 						case ClientGeneralRequest.REQUEST_READY_PLAYER_LIST:
 							GameManager.getPlayerByName(pair.getKey()).sendMessage(new ReadyLobbyMessage(GameManager.getPlayers()));
 						}

@@ -11,7 +11,6 @@ import network.message.client.SelectedCardMessage;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayCardMessage.Action;
-import network.message.server.PlayerListMessage;
 import network.message.server.PlayerStatsMessage;
 import network.message.server.PlayerStatusRequest;
 import network.message.server.PopUpMessage;
@@ -66,8 +65,7 @@ public abstract class Message implements Serializable{
 	//General client request that groups request client message
 	public static final String CLT_GENERAL_REQUEST = "GENERAL_REQUEST";
 	
-	//Get player list ,the players that are ready
-	public static final String PLAYER_LIST = "PLAYER_LIST";
+	//Get the entire players list with the value of their ready status
 	public static final String CLT_READY_STATUS = "READY_STATUS";
 
 	

@@ -24,7 +24,8 @@ public class GameEventHandler {
 	private static PlayerConnection connection;
 	private static Thread thread;
 	private static String[] players;
-	private static String[] readyPlayers; 
+	private static String[] readyPlayers;
+	private static boolean[] readyStatus;
 	
 	
 
@@ -60,7 +61,7 @@ public class GameEventHandler {
 						case Message.CLT_READY_STATUS:
 							ReadyLobbyMessage readyPlayerList = (ReadyLobbyMessage)received;
 							readyPlayers = readyPlayerList.getPlayers();
-						
+							readyStatus = readyPlayerList.getStatus();
 						case Message.CLT_UPDATE_READY_PLAYER_MESSAGE:
 							lobbyPanel.showPlayer();
 							break;
@@ -77,6 +78,10 @@ public class GameEventHandler {
 	}
 	public static String[] getReadyPlayer(){
 		return readyPlayers;
+	}
+	
+	public static boolean[] getReadyStatus(){
+		return readyStatus;
 	}
 	
 	public static void sendMessage(Message message){
