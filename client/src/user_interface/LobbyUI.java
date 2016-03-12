@@ -159,7 +159,7 @@ public class LobbyUI extends GamePanel {
 		}
 
 			for(i=0;i<GameEventHandler.getPlayers().length;i++){
-				if(((String)players[i]).equals(GameEventHandler.getConnection().getConnectedPlayerName())){
+				if(!((String)players[i]).equals(GameEventHandler.getConnection().getConnectedPlayerName())){
 					Users[k][0].setVisible(true);
 					Users[k][1].setVisible(true);
 					Users[k][0].setText(players[i]);
