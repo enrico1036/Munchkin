@@ -1,4 +1,4 @@
-package network.message.client;
+package network.message.server;
 
 import network.message.Message;
 

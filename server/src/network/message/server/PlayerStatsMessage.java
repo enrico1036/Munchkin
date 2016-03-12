@@ -8,7 +8,6 @@ import game.Player;
 import game.Player.whichClass;
 import game.Player.whichRace;
 import network.message.Message;
-import network.message.client.PlayerStatusRequest;
 
 public class PlayerStatsMessage extends PlayerStatusRequest {
 

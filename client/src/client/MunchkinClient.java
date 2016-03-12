@@ -47,15 +47,11 @@ public class MunchkinClient {
 		window = new GameWindow();
 		window.setVisible(true);
 		
-		// Setup game panels
+		// Create MenuUI panel
 		panels.put("MenuUI", new MenuUI(window));
-		//panels.put("GameUI", new GameUI(window)); panels[0];
-		/*panels[1] = new LobbyUI(window);
-		panels[2] = new MenuUI(window);
-		panels[3] = new PauseUI(window);
-		panels[4] = new OptionUI(window);
+
 		
-		*/
+		
 		// Start game in menu ui
 		window.SetActivePanel(panels.get("MenuUI"));
 		

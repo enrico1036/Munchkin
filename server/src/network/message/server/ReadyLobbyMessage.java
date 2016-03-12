@@ -17,8 +17,12 @@ public class ReadyLobbyMessage extends Message {
 	public ReadyLobbyMessage(final ArrayList<Player> players) {
 		super(Message.CLT_READY_STATUS);
 		readyList = new String[players.size()];
+		int k=0;
 		for (int i = 0; i < readyList.length; i++) {
-			readyList[i] = players.get(i).getUsername();
+			if(players.get(i).isLobby_ready()){
+			readyList[k] = players.get(i).getUsername();
+			k++;
+			}
 		}
 	}
 

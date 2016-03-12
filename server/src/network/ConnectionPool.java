@@ -8,10 +8,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.istack.internal.Pool;
+
 import game.Player;
 import javafx.util.Pair;
 import network.message.ActionResultMessage;
 import network.message.Message;
+import network.message.client.UpdateReadyPlayerMessage;
 
 public class ConnectionPool {
 	private final ConcurrentHashMap<String, ClientConnection> connections;
@@ -69,6 +72,7 @@ public class ConnectionPool {
 		executor.execute(connection);
 
 		System.out.println("Connection started: " + connection.toString());
+		this.broadcast(new UpdateReadyPlayerMessage());
 	}
 
 	public int size() {

@@ -1,32 +1,20 @@
 package user_interface;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-
-import com.sun.corba.se.pept.transport.Connection;
-
 import client.MunchkinClient;
-import game.Player;
 import network.GameEventHandler;
-import network.PlayerConnection;
-import network.ServerConnection;
-import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
+import network.message.server.PlayerStatusRequest;
 
 
 public class LobbyUI extends GamePanel {
@@ -41,7 +29,8 @@ public class LobbyUI extends GamePanel {
 	private ScrollableList ScrollList;
 	private JLabel[][] Users ;
 	private JTextField textBox;
-	private ArrayList<Player> players;
+	private String[] players;
+	private String[] readyPlayers;
 	
 	public LobbyUI(GameWindow window) {
 		
@@ -63,9 +52,9 @@ public class LobbyUI extends GamePanel {
 		ScrollList.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
 		this.add(ScrollList);
 
-		players = new ArrayList<Player>();
 		
-		GameEventHandler.getPlayerList();
+		
+		
 		
 		for(int i =100;i>0;i--)
 		{
@@ -127,10 +116,7 @@ public class LobbyUI extends GamePanel {
 		super.actionPerformed(e);
 		if(e.getActionCommand()=="tick")
 		{
-			
-			GameEventHandler.setReadyStatus(..( 
-				((MenuUI)(MunchkinClient.getPanel("MenuUI"))).getConnection().getConnectedPlayerName()));
-			this.showPlayer();
+			GameEventHandler.setReadyStatus();
 			
 		}else if(e.getActionCommand()=="Enter"&&textBox.getText().trim()!=""){
 			GameEventHandler.sendChatMessage(GameEventHandler.getConnection().getConnectedPlayerName(),
@@ -156,7 +142,7 @@ public class LobbyUI extends GamePanel {
 			}
 			
 		}
-		GameEventHandler.getConnection().send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_PLAYERS_LIST));
+		
 		Users[0][0].setText(GameEventHandler.getConnection().getConnectedPlayerName());
 		Users[0][0].setVisible(true);
 		Users[0][1].setVisible(true);
@@ -164,30 +150,46 @@ public class LobbyUI extends GamePanel {
 	
 	public void showPlayer(){
 		
-		int i;
-		boolean selected = false;
-			
-			players=GameManager.getPlayers();
-			for(i=1;){
-				if(!(Users[i][0].isVisible())){
-					Users[i][0].setVisible(true);
-					Users[i][1].setVisible(true);
-					Users[i][0].setText("Utente "+i);
-					selected=true;
-				}else{
-					System.out.println("Non trovato "+i);
-					
-				}
-				i++;	
-			}
-				if(i==6&&!selected)
-				{
-					window.SetActivePanel(MunchkinClient.getPanel("GameUI"));
-					//fai richiesta al server per sapere quanti client ci sono
-					
-				}
+		int i,k=1;
+
+		GameEventHandler.getConnection().send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_PLAYERS_LIST));
+			players=GameEventHandler.getPlayers();
+		for(i=1;i<6;i++){
+			Users[i][0].setVisible(false);
+		}
+
+			for(i=0;i<GameEventHandler.getPlayers().length;i++){
+				if(((String)players[i]).equals(GameEventHandler.getConnection().getConnectedPlayerName())){
+					Users[k][0].setVisible(true);
+					Users[k][1].setVisible(true);
+					Users[k][0].setText(players[i]);
+					Users[k][1].setText("Non Pronto");
+					k++;
+		
+				}	
 			}
 				
+		GameEventHandler.getReadyPlayerList();
+		readyPlayers=GameEventHandler.getReadyPlayer();
+		
+			for(int r=0;r<players.length;r++){
+				for(int s=0;s<players.length;s++){
+					if(Users[s][0].getText().equals(readyPlayers[r])){
+						Users[s][1].setText("Pronto");
+					}
+					
+				}
+			}
+			
+			if(readyPlayers.length==players.length)
+			{
+			//TODO Insert a timer of 6 second
+			MunchkinClient.getPanels().put("GameUI", new GameUI(window));
+			window.SetActivePanel(MunchkinClient.getPanel("GameUI"));
+			
+			
+			}
+	}	
 	
 	
 }

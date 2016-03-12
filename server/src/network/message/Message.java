@@ -7,13 +7,13 @@ import game.GameManager;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.ConnectionRequestMessage;
-import network.message.client.PlayerStatusRequest;
 import network.message.client.SelectedCardMessage;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerListMessage;
 import network.message.server.PlayerStatsMessage;
+import network.message.server.PlayerStatusRequest;
 import network.message.server.PopUpMessage;
 
 public abstract class Message implements Serializable{
@@ -32,10 +32,11 @@ public abstract class Message implements Serializable{
 	// Lobby chat message
 	public static final String CLT_CHAT_MESSAGE = "CHAT_MESSAGE";
 	
-	//Send a message to the Lobby for advice that a player change his ready status
+	//Send a message to the Users' LobbyUIs to advice them that one or more players change their ready status
 	public static final String CLT_UPDATE_READY_PLAYER_MESSAGE="UPDATE_READY_PLAYER";
 
-	
+	//Toggle the ready status of one player
+	public static final String CLT_SET_LOBBY_STATUS="LOBBY_STATUS";
 
 	
 	//Send the card that player want to use like equipment, class or race
@@ -65,10 +66,10 @@ public abstract class Message implements Serializable{
 	//General client request that groups request client message
 	public static final String CLT_GENERAL_REQUEST = "GENERAL_REQUEST";
 	
-	//Get player list ,the ready status of those player and set the toggle of the ready status
+	//Get player list ,the players that are ready
 	public static final String PLAYER_LIST = "PLAYER_LIST";
 	public static final String CLT_READY_STATUS = "READY_STATUS";
-	public static final String CLT_SET_LOBBY_STATUS="LOBBY_STATUS";
+
 	
 	//Get card from decks
 	public static final String PLAY_CARD = "PLAY_CARD";
