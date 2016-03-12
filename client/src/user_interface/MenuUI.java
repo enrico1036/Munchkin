@@ -19,6 +19,7 @@ public class MenuUI extends GamePanel{
 	private BufferedImage background=null,connetti,exit;
 	private ImageButton button,button2;
 	private int wndWidth,wndHeight;
+	private PlayerConnection connection;
 	
 	
 	public MenuUI(GameWindow window) {
@@ -77,7 +78,7 @@ public class MenuUI extends GamePanel{
 			
 			// Check dialog result
 			if(dialog.positiveResult()){
-				PlayerConnection connection = new PlayerConnection(
+				 connection = new PlayerConnection(
 						dialog.getServerAddress(), 
 						dialog.getPort(), 
 						dialog.getPlayerName());
@@ -116,6 +117,11 @@ public class MenuUI extends GamePanel{
 		 button2.setBounds(wndWidth/5,((wndHeight-button.getHeight())/3)+wndHeight/5,wndWidth/5,wndHeight/5);
 		
 	}
+
+	public PlayerConnection getConnection() {
+		return connection;
+	}
+	
 	
 
 	

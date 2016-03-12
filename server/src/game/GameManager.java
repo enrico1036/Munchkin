@@ -87,4 +87,18 @@ public class GameManager{
 	public static final MessageQueue getInQueue(){
 		return queue;
 	}
+	
+	public static Player getPlayerByName(String playerName){
+		
+		Player selectedPlayer = null;
+		
+		for (Player player : players) {
+			{
+				if(player.getUsername()==playerName)
+				selectedPlayer=player;
+					
+			}
+		}
+		return selectedPlayer;
+	}
 }

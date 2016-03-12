@@ -31,6 +31,9 @@ public abstract class Message implements Serializable{
 	public static final String CLT_REQUEST_CONNECTION = "REQUEST_CONNECTION";
 	// Lobby chat message
 	public static final String CLT_CHAT_MESSAGE = "CHAT_MESSAGE";
+	
+	//Send a message to the Lobby for advice that a player change his ready status
+	public static final String CLT_UPDATE_READY_PLAYER_MESSAGE="UPDATE_READY_PLAYER";
 
 	
 

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import client.ClientCard;
 import client.MunchkinClient;
+import game.GameManager;
+import game.Player;
 import network.message.Message;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
@@ -13,12 +15,14 @@ import network.message.server.PlayCardMessage;
 import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerListMessage;
 import network.message.server.ReadyLobbyMessage;
+import network.message.server.ReadyStatusMessage;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
 
 public class GameEventHandler {
 	private static PlayerConnection connection;
 	private static Thread thread;
+	private static String[] players;
 	
 	
 
@@ -30,13 +34,13 @@ public class GameEventHandler {
 			@Override
 			public void run() {
 				GameUI gamepanel = (GameUI)MunchkinClient.getPanel("GameUI");
+				LobbyUI lobbyPanel = (LobbyUI)MunchkinClient.getPanel("LobbyUI");
 				do {
 					Message received = GameEventHandler.connection.receive();
 					if(received != null){
 						switch(received.getMessageCode()){
 						case Message.CLT_CHAT_MESSAGE:
 							ChatMessage chatMessage = (ChatMessage)received;
-							LobbyUI lobbyPanel = (LobbyUI)MunchkinClient.getPanel("LobbyUI");
 							lobbyPanel.getScrollList().add_Element(chatMessage.getSender() +": " +chatMessage.getMessage());
 							break;
 						case Message.PLAY_CARD:
@@ -49,18 +53,25 @@ public class GameEventHandler {
 							break;
 						case Message.PLAYER_LIST:
 							PlayerListMessage playerList = (PlayerListMessage) received;
-							String[] players = playerList.getPlayers();
+							players = playerList.getPlayers();
 							break;
 						case Message.CLT_READY_STATUS:
 							ReadyLobbyMessage readyPlayerList = (ReadyLobbyMessage)received;
 							String[] readyPlayers = readyPlayerList.getPlayers();
-						}
+						
+						case Message.CLT_UPDATE_READY_PLAYER_MESSAGE:
+							lobbyPanel.showPlayer();
+							break;
+						}	
 					}
 				} while(GameEventHandler.connection.isConnected());
 				
 			}
 		});
 		GameEventHandler.thread.start();
+	}
+	public static String[] getPlayers(){
+		return players;
 	}
 	
 	public static void sendMessage(Message message){
@@ -69,6 +80,14 @@ public class GameEventHandler {
 	
 	public static final PlayerConnection getConnection(){
 		return connection;
+	}
+	
+	public static void sendChatMessage(String clientSender,String message){
+		connection.send(new ChatMessage(clientSender, message));
+	}
+	
+	public static void setReadyStatus(Player player){
+		connection.send(new ReadyStatusMessage(player));
 	}
 	
 	

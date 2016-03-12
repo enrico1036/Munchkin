@@ -15,6 +15,7 @@ import network.ConnectionPool;
 import network.MessageQueue;
 import network.message.Message;
 import network.message.client.ClientGeneralRequest;
+import network.message.client.UpdateReadyPlayerMessage;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayerListMessage;
 import network.message.server.PlayCardMessage.Action;
@@ -50,8 +51,8 @@ public class MunchkinServer {
 				System.out.println("Player num: " + GameManager.getPlayers().size());
 				
 				Pair<String, Message> pair = queue.remove();
-				if (pair.getValue() == null)
-					continue;
+				if (pair.getValue() != null){
+				
 
 				switch (pair.getValue().getMessageCode()) {
 				case Message.CLT_CHAT_MESSAGE:
@@ -60,11 +61,15 @@ public class MunchkinServer {
 				case Message.CLT_GENERAL_REQUEST:
 					ClientGeneralRequest req = (ClientGeneralRequest) pair.getValue();
 					switch(req.getRequestType()){
-					case ClientGeneralRequest.REQUEST_PLAYERS_LIST:
-						GameManager.getCurrentPlayer().sendMessage(new PlayerListMessage(GameManager.getPlayers()));
+						case ClientGeneralRequest.REQUEST_PLAYERS_LIST:
+							..GameManager.getCurrentPlayer().sendMessage(new PlayerListMessage(GameManager.getPlayers()));
 						break;
-					}
+						}
 					break;
+				case Message.CLT_SET_LOBBY_STATUS:
+					pool.broadcast(new UpdateReadyPlayerMessage());
+					break;
+				}
 				}
 			}
 

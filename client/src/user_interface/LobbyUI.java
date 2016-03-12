@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -17,11 +18,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+import com.sun.corba.se.pept.transport.Connection;
 
 import client.MunchkinClient;
-import game.GameManager;
+import game.Player;
 import network.GameEventHandler;
 import network.PlayerConnection;
+import network.ServerConnection;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
 
@@ -38,6 +41,7 @@ public class LobbyUI extends GamePanel {
 	private ScrollableList ScrollList;
 	private JLabel[][] Users ;
 	private JTextField textBox;
+	private ArrayList<Player> players;
 	
 	public LobbyUI(GameWindow window) {
 		
@@ -59,7 +63,9 @@ public class LobbyUI extends GamePanel {
 		ScrollList.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5, wndHeight/4);
 		this.add(ScrollList);
 
+		players = new ArrayList<Player>();
 		
+		GameEventHandler.getPlayerList();
 		
 		for(int i =100;i>0;i--)
 		{
@@ -121,12 +127,14 @@ public class LobbyUI extends GamePanel {
 		super.actionPerformed(e);
 		if(e.getActionCommand()=="tick")
 		{
+			
+			GameEventHandler.setReadyStatus(..( 
+				((MenuUI)(MunchkinClient.getPanel("MenuUI"))).getConnection().getConnectedPlayerName()));
 			this.showPlayer();
-			//window.SetActivePanel(MunchkinClient.getPanel(0));
+			
 		}else if(e.getActionCommand()=="Enter"&&textBox.getText().trim()!=""){
-			GameEventHandler.sendMessage(
-					new ChatMessage(GameEventHandler.getConnection().getConnectedPlayerName(),
-							textBox.getText()));
+			GameEventHandler.sendChatMessage(GameEventHandler.getConnection().getConnectedPlayerName(),
+							textBox.getText());
 			textBox.setText("");
 		}
 	}
@@ -156,10 +164,11 @@ public class LobbyUI extends GamePanel {
 	
 	public void showPlayer(){
 		
-		int i=1;
+		int i;
 		boolean selected = false;
-		
-			while(!selected&&i<6){
+			
+			players=GameManager.getPlayers();
+			for(i=1;){
 				if(!(Users[i][0].isVisible())){
 					Users[i][0].setVisible(true);
 					Users[i][1].setVisible(true);
