@@ -88,19 +88,23 @@ public class GameEventHandler {
 						
 						case Message.POPUP:
 							PopUpMessage popup = (PopUpMessage)received;
+							
+							// Show popup dialog and wait for response
 							PopUpDialog dialog= new PopUpDialog(popup.getText(), popup.getButton1(), 
 									popup.getButton2(),	popup.getTimeout_ms(), popup.getMin_val(),
 									popup.getMax_val());
-							if(!popup.isButton1Set())
-							dialog.getButton1().setVisible(false);
+							dialog.setVisible(true);
 							
-							if(!popup.isButton2Set())
-								dialog.getButton2().setVisible(false);
-
-							if(popup.getMin_val()==popup.getMax_val())
-								dialog.getSpinner().setVisible(false);
-								dialog.getLblValue().setVisible(false);
+							// Send response message based on user's choice
+							if(dialog.wasTimedOut()){
+								sendMessage(new PopUpResultMessage());
+							} else {
+								sendMessage(new PopUpResultMessage(dialog.wasOkPressed(), 
+										dialog.wasCancelPressed(), 
+										dialog.getSpinnerValue()));
+							}
 							break;
+							
 						case Message.PLAYER_FULL_STATS:
 							PlayerFullStatsMessage statistics = (PlayerFullStatsMessage)received;
 							if(statistics.getPlayerName().equals(

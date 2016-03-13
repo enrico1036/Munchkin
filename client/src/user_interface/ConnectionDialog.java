@@ -106,6 +106,5 @@ public class ConnectionDialog extends JDialog implements ActionListener{
 		}
 		
 		setVisible(false);
-		dispose();
 	}
 }
