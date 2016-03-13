@@ -155,6 +155,14 @@ public class Player {
 		return hand;
 	}
 	
+	public Card getHandCard(String title) {
+		for (Card card : hand) {
+			if(card.getTitle() == title)
+				return card;
+		}
+		return null;
+	}
+	
 	public boolean discardCard(Card card) {
 		return this.hand.remove(card);
 	}
