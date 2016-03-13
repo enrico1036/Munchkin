@@ -62,6 +62,8 @@ public class LobbyUI extends GamePanel {
 		textBox.setActionCommand("Enter");
 		textBox.setBounds(0, 0, 50, 50);
 		this.add(textBox);
+		
+		this.showPlayer();
 
 	}
 
