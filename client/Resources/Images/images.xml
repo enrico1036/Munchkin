@@ -286,10 +286,6 @@
     	<path>Resources/Images/Cards/pinguini_assassini.png</path>
     </image>
     <image>
-    	<name>plasmoide</name>
-    	<path>Resources/Images/Cards/plasmoide.png</path>
-    </image>
-    <image>
     	<name>psichico</name>
     	<path>Resources/Images/Cards/psichico.png</path>
     </image>
@@ -314,10 +310,6 @@
     	<path>Resources/Images/Cards/sciame_pesante.png</path>
     </image>
     <image>
-    	<name>spazzatura_postale_autospedente</name>
-    	<path>Resources/Images/Cards/spazzatura_postale_autospedente.png</path>
-    </image>
-    <image>
     	<name>stella_canina</name>
     	<path>Resources/Images/Cards/stella_canina.png</path>
     </image>
@@ -334,10 +326,6 @@
     	<path>Resources/Images/Cards/ultra_violetta.png</path>
     </image>
     <image>
-    	<name>vampiro_spaziale</name>
-    	<path>Resources/Images/Cards/vampiro_spaziale.png</path>
-    </image>
-    <image>
     	<name>xqwzzmp</name>
     	<path>Resources/Images/Cards/xqwzzmp.png</path>
     </image>
@@ -348,14 +336,6 @@
     <image>
     	<name>pianta_carnivora</name>
     	<path>Resources/Images/Cards/pianta_carnivora.png</path>
-    </image>
-    <image>
-    	<name>secchioni_tacchinatori</name>
-    	<path>Resources/Images/Cards/secchioni_tacchinatori.png</path>
-    </image>
-    <image>
-    	<name>sonda_spaziale</name>
-    	<path>Resources/Images/Cards/sonda_spaziale.png</path>
     </image>
     <image>
     	<name>psico_sceriffo</name>
