@@ -1,21 +1,11 @@
 package game;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import cards.Card;
-import cards.CardType;
 import cards.Category;
-import cards.Monster;
 import cards.Equipment;
 import network.message.Message;
 import network.message.client.PopUpResultMessage;
 import network.message.client.SelectedCardMessage;
-import network.message.server.PlayCardMessage;
-import network.message.server.PlayerFullStatsMessage;
-import network.message.server.PlayCardMessage.Action;
 import network.message.server.PopUpMessage;
 import utils.StateMachine;
 
@@ -31,28 +21,24 @@ public class Turn extends StateMachine {
 	}
 
 	private void equip() {
-		// wait for an equip action. If draw action detected call stepOver() and skip this phase
-		boolean equipSelected = false;
-		do {
-			SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
-			if (message.getCardName() != SelectedCardMessage.DOOR_DECK) {
-				Card card = GameManager.getCurrentPlayer().getHandCard(message.getCardName());
-				if (card != null && card.getCategory() == Category.Equipment) {
-					equipSelected = true;
-					GameManager.getCurrentPlayer().equip(((Equipment) card).getSlot(), (Equipment) card);
-					// TODO: do equipment check and action, set combatBonus in player
+		// wait for an equip action. If draw action detected skip this phase
+		SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+		while (message.getCardName() != SelectedCardMessage.DOOR_DECK) {
+			Card card = GameManager.getCurrentPlayer().getHandCard(message.getCardName());
+			if (card != null && card.getCategory() == Category.Equipment) {
+				if (GameManager.getCurrentPlayer().equip(((Equipment) card).getSlot(), (Equipment) card)) {
+					GameManager.getCurrentPlayer().discardCard(card);
+				} else {
+					GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("You cannot equip this card", "OK", 3000));
 				}
-			} else {
-				return;
 			}
-		} while (!equipSelected);
-
+			message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+		}
 	}
 
 	private void draw() {
 		Draw draw = new Draw();
-		while (draw.performStep())
-			;
+		while (draw.performStep());
 	}
 
 	private void trading() {
@@ -73,7 +59,7 @@ public class Turn extends StateMachine {
 				if (card.getCategory() == Category.Equipment) {
 					GameManager.getCurrentPlayer().discardCard(card);
 					Decks.discardCard(card);
-					
+
 					value += ((Equipment) card).getValue();
 				} else {
 					i--;
