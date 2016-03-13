@@ -62,7 +62,7 @@ public class Turn extends StateMachine {
 				equipments++;
 		}
 		if (equipments > 0) {
-			// TODO: ask to player what to sell if nothing skip
+			// ask to player what to sell if nothing skip
 			GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("How many cards do you want to sell? (0)", "OK", 0, equipments, 10000));
 			PopUpResultMessage answer = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT).getValue();
 			int value = 0;
