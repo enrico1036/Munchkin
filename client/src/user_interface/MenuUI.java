@@ -95,6 +95,7 @@ public class MenuUI extends GamePanel{
 			}
 			break;
 		case "exit":
+			GameEventHandler.signalExit();
 			System.exit(0);
 			break;
 		}

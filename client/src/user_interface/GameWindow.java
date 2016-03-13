@@ -4,14 +4,17 @@ import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.event.WindowStateListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import network.GameEventHandler;
 
 
-public class GameWindow extends JFrame implements WindowStateListener,ComponentListener{
+
+public class GameWindow extends JFrame implements WindowStateListener,ComponentListener,WindowListener{
 
 	boolean maximized = false;
 	Dimension dimmin= new Dimension(800,450);
@@ -32,7 +35,7 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
      	this.setLocation(x, y);
      	this.setMinimumSize(dimmin);
     	this.addComponentListener(this);
-     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+     
   
     }
 
@@ -52,6 +55,7 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
 		} else if (e.getOldState() == MAXIMIZED_BOTH){
 			maximized = false;
 		}
+		
 		
 	}
 
@@ -82,6 +86,62 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
 
 	@Override
 	public void componentShown(ComponentEvent e) {
+		
+	}
+
+
+
+	@Override
+	public void windowActivated(WindowEvent arg0) {
+		
+		
+	}
+
+
+
+	@Override
+	public void windowClosed(WindowEvent arg0) {
+	
+		
+	}
+
+
+
+	@Override
+	public void windowClosing(WindowEvent arg0) {
+		GameEventHandler.signalExit();
+		System.exit(0);
+		
+	}
+
+
+
+	@Override
+	public void windowDeactivated(WindowEvent arg0) {
+		
+	}
+
+
+
+	@Override
+	public void windowDeiconified(WindowEvent arg0) {
+		
+		
+	}
+
+
+
+	@Override
+	public void windowIconified(WindowEvent arg0) {
+		
+		
+	}
+
+
+
+	@Override
+	public void windowOpened(WindowEvent arg0) {
+		
 		
 	}
 

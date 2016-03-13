@@ -1,24 +1,11 @@
 package network;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
-
-import com.sun.corba.se.pept.encoding.InputObject;
-import com.sun.corba.se.pept.encoding.OutputObject;
-import com.sun.corba.se.pept.protocol.MessageMediator;
-
 import network.message.Message;
 import network.message.client.ConnectionRequestMessage;
-import utils.Debug;
 
 public class ClientConnection implements Runnable{
 	private final Socket sock;
