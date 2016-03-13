@@ -15,12 +15,12 @@ import javax.swing.JTextField;
 public class PopUpDialog extends JDialog implements ActionListener{
 
 	private final JPanel contentPanel = new JPanel();
-	private JLabel textValue,intValue;
+	private JLabel lbltextValue,lblintValue;
 	private JButton button1,button2;
 	private boolean result;
 	
 
-	public PopUpDialog() {
+	public PopUpDialog(String textValue,String button1Value,String button2Value,int timeOut,int minValue,int maxValue) {
 		setResizable(false);
 		setTitle("PopUp Dialog");
 		setBounds(100, 100, 300, 180);
@@ -29,79 +29,41 @@ public class PopUpDialog extends JDialog implements ActionListener{
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		textValue = new JLabel("Server address:");
-		lblServerAddress.setBounds(10, 11, 81, 14);
-		contentPanel.add(lblServerAddress);
+		lbltextValue = new JLabel(textValue);
+		lbltextValue.setBounds(10, 11, 81, 14);
+		contentPanel.add(lbltextValue);
 		
-		addressField = new JTextField();
-		addressField.setBounds(10, 28, 179, 20);
-		contentPanel.add(addressField);
-		addressField.setColumns(10);
-		
-		JLabel lblPort = new JLabel("Port:");
-		lblPort.setBounds(199, 11, 46, 14);
-		contentPanel.add(lblPort);
-		
-		portField = new JTextField();
-		portField.setBounds(199, 28, 86, 20);
-		contentPanel.add(portField);
-		portField.setColumns(10);
-		
-		JLabel lblPlayerName = new JLabel("Player name:");
-		lblPlayerName.setBounds(10, 59, 81, 14);
-		contentPanel.add(lblPlayerName);
-		
-		playerField = new JTextField();
-		playerField.setBounds(10, 75, 179, 20);
-		contentPanel.add(playerField);
-		playerField.setColumns(10);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Connect");
-				okButton.setActionCommand("OK");
-				okButton.addActionListener(this);
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				button1 = new JButton(button1Value);
+				button1.setActionCommand("button1");
+				button1.addActionListener(this);
+				buttonPane.add(button1);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				cancelButton.addActionListener(this);
-				buttonPane.add(cancelButton);
+				button2 = new JButton(button2Value);
+				button2.setActionCommand("button2");
+				button2.addActionListener(this);
+				buttonPane.add(button2);
 			}
 		}
 		
 		result = false;
 	}
-	
-	public String getServerAddress(){
-		return addressField.getText();
-	}
-	
-	public int getPort(){
-		return Integer.parseInt(portField.getText());
-	}
-	
-	public String getPlayerName(){
-		return playerField.getText();
-	}
-	
+
 	public boolean positiveResult(){
 		return result;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()){
-		case "OK":
-			result = true;
-			break;
-		case "CANCEL":
-			result = false;
-			break;
+		if(e.getActionCommand().equals("button1")){
+			
+		else
+		
 		}
 		
 		setVisible(false);

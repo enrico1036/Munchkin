@@ -8,6 +8,7 @@ import network.message.Message;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.DisconnectionMessage;
+import network.message.client.PopUpResultMessage;
 import network.message.client.SelectedCardMessage;
 import network.message.server.ChangeClassMessage;
 import network.message.server.ChangeEquipmentMessage;
@@ -80,10 +81,10 @@ public class GameEventHandler {
 							gamepanel.changeEquipment(newEquip.getEquipment().getSlot(), newEquip.getEquipment().getTitle());
 						case Message.POPUP:
 							PopUpMessage popup = (PopUpMessage)received;
-							popup.getText()
-							popup.getButton1()
-							popup.getButton2()
-							popup.getTimeout_ms()
+							popup.getText();
+							popup.getButton1();
+							popup.getButton2();
+							popup.getTimeout_ms();
 							popup.getMin_val()
 							popup.getMax_val()
 							
@@ -126,6 +127,9 @@ public class GameEventHandler {
 		connection.send(new SelectedCardMessage(cardName));
 	}
 	
+	public static void sendPopUpResult(){
+		connection.send(new PopUpResultMessage());
+	}
 	
 	public static void getReadyPlayerList(){
 		connection.send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_READY_PLAYER_LIST));
@@ -138,6 +142,8 @@ public class GameEventHandler {
 	public static void getPlayerEquipment(String Player){
 		connection.send(new PlayerStatusRequest(Player,PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT));
 	}
+	
+	
 	
 	public static void signalExit(){
 		if(connection != null && connection.isConnected()){
