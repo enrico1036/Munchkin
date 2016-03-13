@@ -72,7 +72,6 @@ public class ConnectionPool {
 		executor.execute(connection);
 
 		System.out.println("Connection started: " + connection.toString());
-		this.broadcast(new UpdateReadyPlayerMessage());
 	}
 
 	public int size() {

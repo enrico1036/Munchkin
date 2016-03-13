@@ -35,8 +35,7 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
      	this.setLocation(x, y);
      	this.setMinimumSize(dimmin);
     	this.addComponentListener(this);
-     
-  
+        this.addWindowListener(this);  
     }
 
 

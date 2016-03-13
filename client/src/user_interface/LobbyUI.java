@@ -145,9 +145,11 @@ public class LobbyUI extends GamePanel {
 		for (int i = 1; i < 6; i++) {
 			Users[i][0].setVisible(false);
 			Users[i][1].setVisible(false);
+			Users[i][0].setText("");
+			Users[i][1].setText("");
 		}
 		
-		GameEventHandler.getReadyPlayerList();
+		//GameEventHandler.getReadyPlayerList();
 		readyPlayers = GameEventHandler.getReadyPlayer();
 		readyStatus = GameEventHandler.getReadyStatus();
 		
