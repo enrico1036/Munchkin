@@ -16,9 +16,12 @@ import network.MessageQueue;
 import network.message.Message;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.UpdateReadyPlayerMessage;
-import network.message.server.PlayCardMessage;
 import network.message.server.ReadyLobbyMessage;
-import network.message.server.PlayCardMessage.Action;
+import network.message.server.DrawCardMessage.Action;
+import network.message.server.DrawCardMessage;
+import network.message.server.PlayerEquipmentMessage;
+import network.message.server.PlayerFullStatsMessage;
+import network.message.server.PlayerStatusRequest;
 import utils.Debug;
 
 public class MunchkinServer {
@@ -76,6 +79,13 @@ public class MunchkinServer {
 						GameManager.getPlayers().remove(GameManager.getPlayerByName(pair.getKey()));
 						pool.broadcast(new ReadyLobbyMessage(GameManager.getPlayers()));
 						//pool.broadcast(new UpdateReadyPlayerMessage());
+						break;
+					case Message.PLAYER_STATUS_REQUEST:
+						PlayerStatusRequest prequest = (PlayerStatusRequest) pair.getValue();
+						if(prequest.getPlr_request().equals(PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT))
+							GameManager.getPlayerByName(pair.getKey()).sendMessage(new PlayerEquipmentMessage());
+						else
+							GameManager.getPlayerByName(pair.getKey()).sendMessage(new PlayerFullStatsMessage());
 						break;
 					}
 				}

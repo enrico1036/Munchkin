@@ -20,21 +20,15 @@ public class PlayerEquipmentMessage extends PlayerStatusRequest {
 	
 	public PlayerEquipmentMessage() {
 		super(Player,PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT);
-		boolean founded=false;
-		int size = GameManager.getPlayers().size();
-		for (int i = 0; i < size&&!founded; i++) {
-			if(Player == GameManager.getPlayers().get(i).getUsername()){
-				founded=true;
-				playerName=GameManager.getPlayers().get(i).getUsername();
-				head=GameManager.getPlayers().get(i).getEquipment(EquipSlot.head);
-				hand1=GameManager.getPlayers().get(i).getEquipment(EquipSlot.hand1);
-				hand2=GameManager.getPlayers().get(i).getEquipment(EquipSlot.hand2);
-				body=GameManager.getPlayers().get(i).getEquipment(EquipSlot.body);
-				feet=GameManager.getPlayers().get(i).getEquipment(EquipSlot.feet);
-			}
-		}
-		
-		
+		Player player= GameManager.getPlayerByName(Player);
+				
+				playerName=player.getUsername();
+				head=player.getEquipment(EquipSlot.head);
+				hand1=player.getEquipment(EquipSlot.hand1);
+				hand2=player.getEquipment(EquipSlot.hand2);
+				body=player.getEquipment(EquipSlot.body);
+				feet=player.getEquipment(EquipSlot.feet);
+
 	}
 
 	public String getPlayer() {

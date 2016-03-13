@@ -29,4 +29,14 @@ public class ImageButton extends JButton {
 	}
 	
 	
+	public boolean equals(ImageButton bnt){
+		boolean result=false;
+		if(this.getName().equals(bnt.getName())){
+			result=true;
+		}
+		return result;
+		
+	}
+	
+	
 }

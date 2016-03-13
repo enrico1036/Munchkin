@@ -1,6 +1,9 @@
 package user_interface;
 
 import javax.swing.JPanel;
+
+import cards.EquipSlot;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,7 +24,7 @@ public class GameUI extends GamePanel {
 	
 
 	private BufferedImage background,framePlayerStats,doorCardsImage,
-	doorDiscardsImage,TreasureCardsImage,TreasureDiscardsImage; 
+	doorDiscardsImage,TreasureCardsImage,TreasureDiscardsImage,head,hand1,body,hand2,feet;
 	private PlayerPanel OpponentPlayers[];
 
 	private HandManager HandCards;
@@ -30,9 +33,10 @@ public class GameUI extends GamePanel {
 	private ImageButton lblDrawnCard;
 
 	//--------Player 1 JComponents---------
-	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
-	lblPlayernumcard,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue,
-	lblPlayerHead,lblPlayerRiarm,lblPlayerBody,lblPlayerLearm,lblPlayerLegs;
+	private JLabel lblPlayerName,lblPlayerLevel,
+	lblPlayernumcard,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue;
+	
+	private ClientCard PlayerHead,PlayerHand1,PlayerBody,PlayerHand2,PlayerFeet,PlayerRace,PlayerClass;
 	
 	//----------Deck JComponents---------------
 	private ImageButton doorCards,doorDiscards,treasureCards,treasureDiscards;
@@ -95,7 +99,7 @@ public class GameUI extends GamePanel {
 		add(Dice);
 		Dice.setLayout(null);
 		
-		 int dice1=(int)(Math.random()*6+1);
+	
 		 
 	
 		
@@ -192,46 +196,52 @@ public class GameUI extends GamePanel {
 		 lblPlayerPowerValue.setBounds(psw*3/4, psh/6, psw/4, psh/6);
 		PlayerStats.add(lblPlayerPowerValue);
 	
-		 lblPlayerRace = new JLabel("Race");
-		lblPlayerRace.setBounds(psw/8,psh/3, psw/8, psh/4);
-		PlayerStats.add(lblPlayerRace);
+		 PlayerRace = new ClientCard("Race");
+		PlayerRace.setBounds(psw/8,psh/3, psw/8, psh/4);
+		PlayerStats.add(PlayerRace);
 		
-		 lblPlayerClass = new JLabel("Class");
-		lblPlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
-		PlayerStats.add(lblPlayerClass);
+		 PlayerClass = new ClientCard("Class");
+		PlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
+		PlayerStats.add(PlayerClass);
 		
-		 lblPlayernumcard = new JLabel("Sex");
+		 lblPlayernumcard = new JLabel("NumCard");
 		 lblPlayernumcard.setBounds(psw*3/8, psh/3, psw/8, psh/4);
 		PlayerStats.add(lblPlayernumcard);
 		
 		
-		//BufferedImage img = MunchkinClient.getImage("player_head");
-		
-		 lblPlayerHead = new JLabel("Head");
-		 lblPlayerHead.setBounds(psw*2/3, psh/3, psw/6, psh*2/9);
-		/* Image dimg = img.getScaledInstance(lblPlayerHead.getWidth(), lblPlayerHead.getHeight(),
-			        Image.SCALE_FAST);
-		 ImageIcon head= new ImageIcon(dimg);
-		 lblPlayerHead.setIcon(head);*/
-		 PlayerStats.add(lblPlayerHead);
+		 head = MunchkinClient.getImage("player_head");
+		 hand1 = MunchkinClient.getImage("player_hand1");
+		 body = MunchkinClient.getImage("player_body");
+		 hand2 = MunchkinClient.getImage("player_hand2");
+		 feet = MunchkinClient.getImage("player_feet");
 		
 		
+		 PlayerHead = new ClientCard("head");
+		 PlayerHead.setBounds(psw*2/3, psh/3, psw/6, psh*2/9);
+		 PlayerHead.CreateCard(head, zp);
+		 PlayerStats.add(PlayerHead);
 		
-		 lblPlayerRiarm = new JLabel("RiArm");
-		 lblPlayerRiarm.setBounds(psw/2, psh*5/9, psw/6, psh*2/9);
-		PlayerStats.add(lblPlayerRiarm);
 		
-		 lblPlayerBody = new JLabel("Body");
-		 lblPlayerBody.setBounds(psw*2/3, psh*5/9, psw/6, psh*2/9);
-		PlayerStats.add(lblPlayerBody);
 		
-		 lblPlayerLearm = new JLabel("LeArm");
-		 lblPlayerLearm.setBounds(psw*5/6, psh*5/9,psw/6, psh*2/9);
-		PlayerStats.add(lblPlayerLearm);
+		 PlayerHand1 = new ClientCard("hand1");
+		 PlayerHand1.setBounds(psw/2, psh*5/9, psw/6, psh*2/9);
+		 PlayerHand1.CreateCard(hand1, zp);
+		PlayerStats.add(PlayerHand1);
 		
-		 lblPlayerLegs = new JLabel("Legs");
-		 lblPlayerLegs.setBounds(psw*2/3, psh*7/9, psw/6, psh*2/9);
-		 PlayerStats.add(lblPlayerLegs);
+		 PlayerBody = new ClientCard("body");
+		 PlayerBody.setBounds(psw*2/3, psh*5/9, psw/6, psh*2/9);
+		 PlayerBody.CreateCard(body, zp);
+		PlayerStats.add(PlayerBody);
+		
+		PlayerHand2 = new ClientCard("hand2");
+		PlayerHand2.setBounds(psw*5/6, psh*5/9,psw/6, psh*2/9);
+		PlayerHand2.CreateCard(hand2, zp);
+		PlayerStats.add(PlayerHand2);
+		
+		 PlayerFeet = new ClientCard("feet");
+		 PlayerFeet.setBounds(psw*2/3, psh*7/9, psw/6, psh*2/9);
+		 PlayerFeet.CreateCard(feet, zp);
+		 PlayerStats.add(PlayerFeet);
 		
 				
 		
@@ -366,14 +376,15 @@ public class GameUI extends GamePanel {
 		lblPlayerLevelValue.setBounds(psw*3/4,0, psw/4, psh/6);
 		lblPlayerPower.setBounds(psw/2, psh/6, psw/4, psh/6);
 		lblPlayerPowerValue.setBounds(psw*3/4, psh/6, psw/4, psh/6);
-		lblPlayerRace.setBounds(psw/8,psh/3, psw/8, psh/4);
-		lblPlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
+		PlayerRace.setBounds(psw/8,psh/3, psw/8, psh/4);
+		PlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
 		lblPlayernumcard.setBounds(psw*3/8, psh/3, psw/8, psh/4);
-		lblPlayerHead.setBounds(psw*2/3, psh/3, psw/6, psh*2/9);
-		lblPlayerRiarm.setBounds(psw/2, psh*5/9, psw/6, psh*2/9);
-		lblPlayerBody.setBounds(psw*2/3, psh*5/9, psw/6, psh*2/9);
-		lblPlayerLearm.setBounds(psw*5/6, psh*5/9,psw/6, psh*2/9);
-		lblPlayerLegs.setBounds(psw*2/3, psh*7/9, psw/6, psh*2/9);
+		lblPlayernumcard.setText(String.valueOf(HandCards.getSize()));
+		PlayerHead.setBounds(psw*2/3, psh/3, psw/6, psh*2/9);
+		PlayerHand1.setBounds(psw/2, psh*5/9, psw/6, psh*2/9);
+		PlayerBody.setBounds(psw*2/3, psh*5/9, psw/6, psh*2/9);
+		PlayerHand2.setBounds(psw*5/6, psh*5/9,psw/6, psh*2/9);
+		PlayerFeet.setBounds(psw*2/3, psh*7/9, psw/6, psh*2/9);
 
 		
 		dw=Decks.getWidth();
@@ -405,6 +416,7 @@ public class GameUI extends GamePanel {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
+
 		switch(e.getActionCommand()){
 		
 		case "DrawDoor":
@@ -422,15 +434,56 @@ public class GameUI extends GamePanel {
 			
 			HandCards.drawCard(card2);
 			Hand.add(HandCards.getCard("treasure"));
-			
+		break;
 		
+	
+		}
+	}
+	
+	public void changeEquipment(EquipSlot e,String EquipmentName){
+		
+		BufferedImage image= MunchkinClient.getImage(EquipmentName);
+		
+		switch(e){
+		case head:
+			PlayerHead.setImage(image);
+			break;
+		case hand1:
+			PlayerHand1.setImage(image);
+			break;
+		case hand2:
+			PlayerHand2.setImage(image);
+			break;
+		case body:
+			PlayerBody.setImage(image);
+			break;
+		case feet:
+			PlayerFeet.setImage(image);
+			break;
+			
 		}
 	}
 
 
+	public void changeRace(String raceName){
+		
+		BufferedImage image = MunchkinClient.getImage(raceName);
+		
+		if(PlayerRace.imageIsNull())
+			PlayerRace.CreateCard(image, zp);
+		else
+			PlayerRace.setImage(image);
+	}
 
-
-	
+	public void changeClass(String className){
+		
+		BufferedImage image = MunchkinClient.getImage(className);
+		
+		if(PlayerClass.imageIsNull())
+			PlayerClass.CreateCard(image, zp);
+		else
+			PlayerClass.setImage(image);
+	}
 
 
 

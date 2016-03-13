@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import cards.CardType;
 import network.message.Message;
 import network.message.client.SelectedCardMessage;
-import network.message.server.PlayCardMessage;
+import network.message.server.DrawCardMessage;
 import utils.StateMachine;
 
 public class Turn extends StateMachine {
@@ -43,7 +43,7 @@ public class Turn extends StateMachine {
 		if(!GameManager.getCurrentPlayer().cardCheck())
 		{
 			// Tell current player to discard a card
-			GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage("", CardType.Any, PlayCardMessage.Action.DISCARD));
+			GameManager.getCurrentPlayer().sendMessage(new DrawCardMessage("", CardType.Any, DrawCardMessage.Action.DISCARD));
 			// Wait for a card to be received
 			SelectedCardMessage received = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
 			

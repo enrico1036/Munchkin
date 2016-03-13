@@ -6,9 +6,9 @@ import cards.Category;
 import cards.Monster;
 import network.message.Message;
 import network.message.client.SelectedCardMessage;
-import network.message.server.PlayCardMessage;
+import network.message.server.DrawCardMessage;
 import network.message.server.PopUpMessage;
-import network.message.server.PlayCardMessage.Action;
+import network.message.server.DrawCardMessage.Action;
 import utils.StateMachine;
 
 public class Draw extends StateMachine {
@@ -25,7 +25,7 @@ public class Draw extends StateMachine {
 	
 	private void openDoor() {
 		Card card = Decks.getDoorCard();
-		GameManager.broadcastMessage(new PlayCardMessage(card.getTitle(),card.getType(), Action.SHOW));
+		GameManager.broadcastMessage(new DrawCardMessage(card.getTitle(),card.getType(), Action.SHOW));
 		//if curse play it, if monster start a combat and execute it. In all other cases draw it
 		switch(card.getCategory()) {
 		case Curse:
@@ -57,7 +57,7 @@ public class Draw extends StateMachine {
 
 			SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
 			if(message.getCardName() != SelectedCardMessage.DOOR_DECK) {
-				GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(message.getCardName(),message.getType(), Action.SHOW));
+				GameManager.getCurrentPlayer().sendMessage(new DrawCardMessage(message.getCardName(),message.getType(), Action.SHOW));
 				Monster card = null;
 				for (Card handCard : GameManager.getCurrentPlayer().getHand()) {
 					if(handCard.getTitle() == message.getCardName()) {

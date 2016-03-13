@@ -33,6 +33,22 @@
     	<path>Resources/Images/head.png</path>
     </image>
     <image>
+    	<name>player_hand1</name>
+    	<path>Resources/Images/hand1.png</path>
+    </image>
+    <image>
+    	<name>player_body</name>
+    	<path>Resources/Images/body.png</path>
+    </image>
+    <image>
+    	<name>player_hand2</name>
+    	<path>Resources/Images/hand2.png</path>
+    </image>
+    <image>
+    	<name>player_feet</name>
+    	<path>Resources/Images/feet.png</path>
+    </image>
+    <image>
     	<name>cards</name>
     	<path>Resources/Images/card.png</path>
     </image>

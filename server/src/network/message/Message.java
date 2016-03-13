@@ -1,19 +1,6 @@
 package network.message;
 
 import java.io.Serializable;
-import java.util.List;
-
-import game.GameManager;
-import network.message.client.ChatMessage;
-import network.message.client.ClientGeneralRequest;
-import network.message.client.ConnectionRequestMessage;
-import network.message.client.SelectedCardMessage;
-import network.message.server.PlayCardMessage;
-import network.message.server.PlayerEquipmentMessage;
-import network.message.server.PlayCardMessage.Action;
-import network.message.server.PlayerStatsMessage;
-import network.message.server.PlayerStatusRequest;
-import network.message.server.PopUpMessage;
 
 public abstract class Message implements Serializable{
 
@@ -57,6 +44,7 @@ public abstract class Message implements Serializable{
 	//Send to server that a card in a client was clicked on
 	public static final String CLT_CARD_SELECTED = "CARD_SELECTED";
 	
+	
 
 	
 	/*
@@ -71,9 +59,10 @@ public abstract class Message implements Serializable{
 
 	
 	//Get card from decks
-	public static final String PLAY_CARD = "PLAY_CARD";
+	public static final String DRAW_CARD = "DRAW_CARD";
 
-	
+	//Play a general card
+	public static final String PLAY_GENERAL_CARD="GENERAL_CARD";
 	/*
 	 * END GENERAL REQUEST
 	 */
@@ -96,6 +85,8 @@ public abstract class Message implements Serializable{
 	
 	//Show on a client view a popup message
 	public static final String POPUP = "POPUP";
+	//Show the result of a popup message
+	public static final String CLT_POPUP_RESULT="POPUP_RESULT";
 	
 	
 	/*
@@ -111,61 +102,6 @@ public abstract class Message implements Serializable{
 	public String getMessageCode(){
 		return messageCode;
 	}
-	/*
-	
-	
-	public static Message parse(String formattedMessage){
-		List<String> tokens = StringUtils.split(formattedMessage, Message.ARG_SEPARATOR);
-		
-		if(tokens.size() == 0)
-			return null;
-		
-		
-		switch (tokens.get(0)){
-		case Message.CLT_REQUEST_CONNECTION:
-			return new ConnectionRequestMessage(tokens.get(1));
-			
-		case Message.SRV_ACTION_RESULT:
-			return new ActionResultMessage(tokens.get(1), tokens.get(2));
-		
-		case Message.CLT_CHAT_MESSAGE:
-			return new ChatMessage(tokens.get(1), tokens.get(2));
-			
-		case Message.PLAY_CARD:
-			return new PlayCardMessage(tokens.get(1), Action.valueOf(tokens.get(2)));
-			
-		case Message.POPUP:
-			return new PopUpMessage(tokens.get(1), tokens.get(2), tokens.get(3), Integer.parseInt(tokens.get(4)));
-
-		case Message.PLAYER_LIST:
-			tokens.remove(0);
-			return new PlayerListMessage((String[])tokens.toArray());
-			
-		case Message.CLT_GENERAL_REQUEST:
-			return new ClientGeneralRequest(tokens.get(1));
-		case Message.PLAYER_STATUS_REQUEST:
-			return new PlayerStatusRequest(tokens.get(1),tokens.get(2));
-		case Message.CLT_CARD_SELECTED:
-			return new SelectedCardMessage(tokens.get(1));
-		case Message.REQUEST_PLAYER_FULL_STATS:
-			return new PlayerStatsMessage(tokens.get(1),Integer.parseInt(tokens.get(2)),
-					Integer.parseInt(tokens.get(3)),tokens.get(4),tokens.get(5),tokens.get(6),tokens.get(7),
-					Integer.parseInt(tokens.get(8)));
-		case Message.REQUEST_PLAYER_EQUIPMENT:
-			return new PlayerEquipmentMessage(tokens.get(1),tokens.get(2),tokens.get(3),tokens.get(4),
-					tokens.get(5),tokens.get(6));
-			
-		
-
-		default:
-			if(tokens.size() == 1)
-				return new NoArgMessage(tokens.get(0));
-			break;
-		}
-		
-		return null;
-		
-	}*/
 	
 	
 	

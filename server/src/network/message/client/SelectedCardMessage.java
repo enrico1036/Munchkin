@@ -12,30 +12,15 @@ import network.message.Message;
 		public static final String TREASURE_DECK = "TREASURE_DECK";
 
 		private String cardName;
-		private CardType type;
 	
-		public SelectedCardMessage(String cardName,CardType type) {
+		public SelectedCardMessage(String cardName) {
 			super(Message.CLT_CARD_SELECTED);
 			this.cardName = cardName;
-			this.type=type;
 		}
 	
 		public String getCardName() {
 			return cardName;
 		}
 		
-		public CardType getType(){
-			return type;
-		}
-/*
-		@Override
-		public String getFormattedMessage() {
-			StringBuilder builder = new StringBuilder();
-			builder.append(messageCode);
-			builder.append(Message.ARG_SEPARATOR);
-			builder.append(cardName);
-			builder.append(Message.MSG_TERMINATOR);
-			return builder.toString();
-		}*/
 
 }

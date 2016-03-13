@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import user_interface.ZoomedPanel;
 
@@ -35,6 +36,17 @@ public class ClientCard extends JButton implements MouseListener{
 	public String getTitle() {
 		return this.title;
 	}
+	public void setImage(BufferedImage image){
+		this.image=image;
+	}
+	public boolean imageIsNull(){
+		boolean result=true;
+		if(this.image!=null)
+			result=false;
+		
+		return result;
+	}
+	
 		
 	public boolean equals(ClientCard card){
 		return(this.title.equals(card.title));
@@ -42,6 +54,7 @@ public class ClientCard extends JButton implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 	}
 
 	@Override

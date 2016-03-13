@@ -6,11 +6,12 @@ import network.message.Message;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.DisconnectionMessage;
-import network.message.server.PlayCardMessage;
-import network.message.server.PlayCardMessage.Action;
+import network.message.client.SelectedCardMessage;
+import network.message.server.DrawCardMessage;
 import network.message.server.PlayerStatusRequest;
 import network.message.server.ReadyLobbyMessage;
 import network.message.server.ReadyStatusMessage;
+import network.message.server.DrawCardMessage.Action;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
 
@@ -42,8 +43,8 @@ public class GameEventHandler {
 							ChatMessage chatMessage = (ChatMessage)received;
 							lobbyPanel.getScrollList().add_Element(chatMessage.getSender() +": " +chatMessage.getMessage());
 							break;
-						case Message.PLAY_CARD:
-							PlayCardMessage playCardMessage=(PlayCardMessage) received;
+						case Message.DRAW_CARD:
+							DrawCardMessage playCardMessage=(DrawCardMessage) received;
 							ClientCard carddrawn= new ClientCard(playCardMessage.getCardName());
 							if(playCardMessage.getShowed()!=Action.SHOW)
 								gamepanel.getHandCards().drawCard(carddrawn);
@@ -92,10 +93,10 @@ public class GameEventHandler {
 		connection.send(new ReadyStatusMessage());
 	}
 	
-		
-	public static void getPlayCard() {
-		connection.send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_PLAY_CARD));
+	public static void selectCard(String cardName){
+		connection.send(new SelectedCardMessage(cardName));
 	}
+	
 	
 	public static void getReadyPlayerList(){
 		connection.send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_READY_PLAYER_LIST));
