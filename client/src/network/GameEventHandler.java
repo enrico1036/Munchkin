@@ -62,6 +62,9 @@ public class GameEventHandler {
 								gamepanel.getHandCards().drawCard(carddrawn);
 								break;
 							case DISCARD:
+								gamepanel
+								break;
+							case REMOVE:
 								break;
 							}
 							break;
@@ -127,8 +130,8 @@ public class GameEventHandler {
 		connection.send(new SelectedCardMessage(cardName));
 	}
 	
-	public static void sendPopUpResult(){
-		connection.send(new PopUpResultMessage());
+	public static void sendPopUpResult(boolean button1, boolean button2, int value){
+		connection.send(new PopUpResultMessage(button1,button2,value));
 	}
 	
 	public static void getReadyPlayerList(){
