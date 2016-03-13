@@ -22,6 +22,7 @@ import network.message.server.PlayCardMessage.Action;
 import user_interface.ConnectionDialog;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
+import user_interface.PopUpDialog;
 
 public class GameEventHandler {
 	private static PlayerConnection connection;
@@ -84,12 +85,18 @@ public class GameEventHandler {
 							gamepanel.changeEquipment(newEquip.getEquipment().getSlot(), newEquip.getEquipment().getTitle());
 						case Message.POPUP:
 							PopUpMessage popup = (PopUpMessage)received;
-//							popup.getText();
-//							popup.getButton1();
-//							popup.getButton2();
-//							popup.getTimeout_ms();
-//							popup.getMin_val()
-//							popup.getMax_val()
+							PopUpDialog dialog= new PopUpDialog(popup.getText(), popup.getButton1(), 
+									popup.getButton2(),	popup.getTimeout_ms(), popup.getMin_val(),
+									popup.getMax_val());
+							if(!popup.isButton1Set())
+							dialog.getButton1().setVisible(false);
+							
+							if(!popup.isButton2Set())
+								dialog.getButton2().setVisible(false);
+
+							if(popup.getMin_val()==popup.getMax_val())
+								dialog.getSpinner().setVisible(false);
+								dialog.getLblValue().setVisible(false);
 							
 						}	
 					}
