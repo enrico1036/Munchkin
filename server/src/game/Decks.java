@@ -6,6 +6,8 @@ import java.util.Collections;
 
 import cards.Card;
 import cards.CardType;
+import network.message.server.PlayCardMessage;
+import network.message.server.PlayCardMessage.Action;
 import server.XmlCardLoader;
 
 
@@ -42,6 +44,7 @@ public class Decks {
 			Collections.shuffle(doorDeck);
 		}
 		card = doorDeck.remove(0);
+		
 		return card;
 	}
 	
@@ -66,5 +69,6 @@ public class Decks {
 			doorDiscards.add(card);
 		else
 			treasureDiscards.add(card);
+		GameManager.broadcastMessage(new PlayCardMessage(card, Action.DISCARD));
 	}
 }

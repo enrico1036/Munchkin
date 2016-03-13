@@ -38,7 +38,7 @@ public class Draw extends StateMachine {
 			currentState = this.states.length - 1; // skip to the end state
 			break;
 		default:
-			GameManager.giveCardToPlayer(card, GameManager.getCurrentPlayer());
+			GameManager.getCurrentPlayer().draw(card);
 
 			break;
 		}
@@ -62,12 +62,10 @@ public class Draw extends StateMachine {
 				if (card != null && card.getCategory() == Category.Monster) {
 					monsterSelected = true;
 					GameManager.getCurrentPlayer().discardCard(card);
-					GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card, Action.REMOVE));
 					GameManager.broadcastMessage(new PlayCardMessage(card, Action.SHOW));
 					Combat combat = new Combat((Monster) card);
 					while (combat.performStep());
 					Decks.discardCard(card);
-					GameManager.broadcastMessage(new PlayCardMessage(card, Action.DISCARD));
 					currentState = this.states.length - 1; // skip to the end state
 				}
 			} else {
@@ -81,7 +79,7 @@ public class Draw extends StateMachine {
 
 	private void lootTheRoom() {
 		// just draw a card and add it to the current player's hand
-		GameManager.giveCardToPlayer(Decks.getDoorCard(), GameManager.getCurrentPlayer());
+		GameManager.getCurrentPlayer().draw(Decks.getDoorCard());
 	}
 
 	@Override

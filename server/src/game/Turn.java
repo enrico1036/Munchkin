@@ -72,15 +72,14 @@ public class Turn extends StateMachine {
 				card = GameManager.getCurrentPlayer().getHandCard(selCard.getCardName());
 				if (card.getCategory() == Category.Equipment) {
 					GameManager.getCurrentPlayer().discardCard(card);
-					GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card, Action.REMOVE));
-					GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card, Action.DISCARD));
+					Decks.discardCard(card);
+					
 					value += ((Equipment) card).getValue();
 				} else {
 					i--;
 				}
 			}
 			GameManager.getCurrentPlayer().leveleUp(value % 1000);
-			GameManager.broadcastMessage(new PlayerFullStatsMessage(GameManager.getCurrentPlayer()));
 		}
 	}
 
@@ -109,13 +108,9 @@ public class Turn extends StateMachine {
 			Card card = GameManager.getCurrentPlayer().pickCard(received.getCardName());
 			if (lowestPlayer.equals(GameManager.getCurrentPlayer()) || lowestPlayerNum > 1) {
 				Decks.discardCard(card);
-				GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card, Action.REMOVE));
-				GameManager.broadcastMessage(new PlayCardMessage(card, Action.DISCARD));
 			} else {
 				// Otherwise add it to the lowest level player's hand
 				lowestPlayer.draw(card);
-				GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card, Action.REMOVE));
-				lowestPlayer.sendMessage(new PlayCardMessage(card, Action.DRAW));
 			}
 
 		}

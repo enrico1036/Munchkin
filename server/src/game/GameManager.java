@@ -1,13 +1,16 @@
 package game;
 
+import java.awt.PopupMenu;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import cards.Card;
+import javafx.stage.Popup;
 import network.MessageQueue;
 import network.message.Message;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayCardMessage.Action;
+import network.message.server.PopUpMessage;
 import utils.Debug;
 
 public class GameManager{
@@ -30,6 +33,7 @@ public class GameManager{
 	private static void end() {
 		Debug.print("GameManager: End");
 		Debug.print(players.get(0).getUsername() + "Won!!!");
+		broadcastMessage(new PopUpMessage(players.get(0).getUsername() + "Won!!!", 30000));
 	}
 	
 	private static void nextPlayer() {
@@ -50,11 +54,6 @@ public class GameManager{
 		end();		
 	}
 	
-	public static void giveCardToPlayer(Card card, Player player) {
-		player.sendMessage(new PlayCardMessage(card, Action.DRAW));
-		player.draw(card);
-	}
-	
 	public static Player getCurrentPlayer() {
 		return players.get(0);
 	}
@@ -70,7 +69,6 @@ public class GameManager{
 	}
 
 	public static ArrayList<Player> readyPlayers(){
-		
 		ArrayList<Player> readyP = new ArrayList<>();
 		
 		for (Player player : players) {
@@ -81,7 +79,6 @@ public class GameManager{
 			}
 		}
 		return readyP;
-			
 	}
 	
 	public static final MessageQueue getInQueue(){
@@ -89,13 +86,12 @@ public class GameManager{
 	}
 	
 	public static Player getPlayerByName(String playerName){
-		
 		Player selectedPlayer = null;
 		
 		for (Player player : players) {
 			{
-				if(player.getUsername()==playerName)
-				selectedPlayer=player;
+				if(player.getUsername() == playerName)
+				selectedPlayer = player;
 					
 			}
 		}
