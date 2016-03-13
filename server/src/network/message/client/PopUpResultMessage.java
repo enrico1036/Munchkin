@@ -15,6 +15,10 @@ public class PopUpResultMessage extends Message {
 		this(button1, false, value);
 	}
 	
+	public PopUpResultMessage(boolean button1, boolean button2) {
+		this(button1, button2, 0);
+	}
+	
 	public PopUpResultMessage(boolean button1, boolean button2, int value) {
 		super(Message.CLT_POPUP_RESULT);
 		if(button1) {
