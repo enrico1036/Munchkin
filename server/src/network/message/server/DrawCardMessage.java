@@ -21,7 +21,7 @@ public class DrawCardMessage extends Message{
 	public String getCardName() {
 		return cardName;
 	}
-	public Action getShowed(){
+	public Action getAction(){
 		return action;
 	}
 

@@ -50,10 +50,16 @@ public class GameEventHandler {
 						case Message.DRAW_CARD:
 							DrawCardMessage playCardMessage=(DrawCardMessage) received;
 							HandCards carddrawn= new HandCards(playCardMessage.getCardName());
-							if(playCardMessage.getShowed()!=Action.SHOW)
-								gamepanel.getHandCards().drawCard(carddrawn);
-							else
+							switch(playCardMessage.getAction()) {
+							case SHOW:
 								gamepanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));
+								break;
+							case DRAW:
+								gamepanel.getHandCards().drawCard(carddrawn);
+								break;
+							case DISCARD:
+								break;
+							}
 							break;
 						case Message.CLT_READY_STATUS:
 							ReadyLobbyMessage readyPlayerList = (ReadyLobbyMessage)received;
