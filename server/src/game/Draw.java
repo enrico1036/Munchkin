@@ -65,8 +65,8 @@ public class Draw extends StateMachine {
 					Combat combat = new Combat((Monster) card);
 					while (combat.performStep());
 					Decks.discardCard(card);
+					currentState = this.states.length - 1; // skip to the end state
 				}
-				currentState = this.states.length - 1; // skip to the end state
 			} else {
 				stepOver();
 				return;
