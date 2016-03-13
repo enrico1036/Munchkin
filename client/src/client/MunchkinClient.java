@@ -49,7 +49,7 @@ public class MunchkinClient {
 		
 		// Create MenuUI panel
 		panels.put("MenuUI", new MenuUI(window));
-
+		
 		
 		
 		// Start game in menu ui

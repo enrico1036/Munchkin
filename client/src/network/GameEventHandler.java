@@ -1,19 +1,12 @@
 package network;
 
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
 import client.ClientCard;
 import client.MunchkinClient;
-import game.GameManager;
-import game.Player;
 import network.message.Message;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
-import network.message.client.UpdateReadyPlayerMessage;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayCardMessage.Action;
-import network.message.server.PlayerListMessage;
 import network.message.server.PlayerStatusRequest;
 import network.message.server.ReadyLobbyMessage;
 import network.message.server.ReadyStatusMessage;
@@ -36,11 +29,13 @@ public class GameEventHandler {
 			
 			@Override
 			public void run() {
-				GameUI gamepanel = (GameUI)MunchkinClient.getPanel("GameUI");
-				LobbyUI lobbyPanel = (LobbyUI)MunchkinClient.getPanel("LobbyUI");
+				
 				do {
 					Message received = GameEventHandler.connection.receive();
+					
 					if(received != null){
+						GameUI gamepanel = (GameUI)MunchkinClient.getPanel("GameUI");
+						LobbyUI lobbyPanel = (LobbyUI)MunchkinClient.getPanel("LobbyUI");
 						switch(received.getMessageCode()){
 						case Message.CLT_CHAT_MESSAGE:
 							ChatMessage chatMessage = (ChatMessage)received;
@@ -53,10 +48,6 @@ public class GameEventHandler {
 								gamepanel.getHandCards().drawCard(carddrawn);
 							else
 								gamepanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));
-							break;
-						case Message.PLAYER_LIST:
-							PlayerListMessage playerList = (PlayerListMessage) received;
-							players = playerList.getPlayers();
 							break;
 						case Message.CLT_READY_STATUS:
 							ReadyLobbyMessage readyPlayerList = (ReadyLobbyMessage)received;
@@ -100,11 +91,7 @@ public class GameEventHandler {
 		connection.send(new ReadyStatusMessage());
 	}
 	
-	
-	public static void getPlayerList() {
-		connection.send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_PLAYERS_LIST));
-	}
-	
+		
 	public static void getPlayCard() {
 		connection.send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_PLAY_CARD));
 	}
