@@ -8,7 +8,7 @@ import java.util.HashMap;
 import cards.Card;
 import game.Decks;
 import game.GameManager;
-
+import game.Player;
 import javafx.util.Pair;
 import network.ConnectionListener;
 import network.ConnectionPool;
@@ -38,10 +38,10 @@ public class MunchkinServer {
 		MessageQueue queue = GameManager.getInQueue();
 		ConnectionPool pool = new ConnectionPool(6, queue, GameManager.getPlayers());
 		
-		ConnectionListener listener = new ConnectionListener(5061, pool);
+		ConnectionListener listener = new ConnectionListener(35267, pool);
 		System.out.println("Listening on " + listener.toString());
-		listener.setAcceptTimeout(120000);
-		listener.setConnectionTimeout(60000);
+		listener.setAcceptTimeout(0);
+		listener.setConnectionTimeout(0);
 		listener.start();
 
 		
@@ -68,8 +68,18 @@ public class MunchkinServer {
 				case Message.CLT_SET_LOBBY_STATUS:
 					GameManager.getPlayerByName(pair.getKey()).setLobby_ready(!
 							GameManager.getPlayerByName(pair.getKey()).isLobby_ready());
+					pool.broadcast(new ReadyLobbyMessage(GameManager.getPlayers()));
 					pool.broadcast(new UpdateReadyPlayerMessage());
+					break;
 					
+				case Message.CLT_DISCONNECTION:
+					for(Player p : GameManager.getPlayers()){
+						if(p.getUsername().equals(pair.getKey())){
+							GameManager.getPlayers().remove(p);
+						}
+					}
+					pool.broadcast(new ReadyLobbyMessage(GameManager.getPlayers()));
+					pool.broadcast(new UpdateReadyPlayerMessage());
 					break;
 				}
 				}
