@@ -43,7 +43,7 @@ public class Turn extends StateMachine {
 		if(!GameManager.getCurrentPlayer().cardCheck())
 		{
 			// Tell current player to discard a card
-			GameManager.getCurrentPlayer().sendMessage(new DrawCardMessage("", CardType.Any, DrawCardMessage.Action.DISCARD));
+			GameManager.getCurrentPlayer().sendMessage(new DrawCardMessage("", DrawCardMessage.Action.DISCARD));
 			// Wait for a card to be received
 			SelectedCardMessage received = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
 			
