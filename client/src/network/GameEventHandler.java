@@ -3,6 +3,7 @@ package network;
 import client.ClientCard;
 import client.HandCards;
 import client.MunchkinClient;
+import javafx.stage.Popup;
 import network.message.Message;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
@@ -13,9 +14,11 @@ import network.message.server.ChangeEquipmentMessage;
 import network.message.server.ChangeRaceMessage;
 import network.message.server.DrawCardMessage;
 import network.message.server.PlayerStatusRequest;
+import network.message.server.PopUpMessage;
 import network.message.server.ReadyLobbyMessage;
 import network.message.server.ReadyStatusMessage;
 import network.message.server.DrawCardMessage.Action;
+import user_interface.ConnectionDialog;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
 
@@ -75,6 +78,15 @@ public class GameEventHandler {
 						case Message.CLT_CHANGE_EQUIPMENT:
 							ChangeEquipmentMessage newEquip = (ChangeEquipmentMessage)received;
 							gamepanel.changeEquipment(newEquip.getEquipment().getSlot(), newEquip.getEquipment().getTitle());
+						case Message.POPUP:
+							PopUpMessage popup = (PopUpMessage)received;
+							popup.getText()
+							popup.getButton1()
+							popup.getButton2()
+							popup.getTimeout_ms()
+							popup.getMin_val()
+							popup.getMax_val()
+							
 						}	
 					}
 				} while(GameEventHandler.connection.isConnected());

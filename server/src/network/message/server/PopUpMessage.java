@@ -110,25 +110,14 @@ public class PopUpMessage extends Message {
 	public boolean isValueSet() {
 		return min_val != max_val;
 	}
-/*
-	@Override
-	public String getFormattedMessage() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(messageCode);
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(text);
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(button1);
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(button2);
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(Integer.toString(min_val));
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(Integer.toString(max_val));
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(Integer.toString(timeout_ms));
-		builder.append(Message.MSG_TERMINATOR);
-		return builder.toString();
-	}*/
 
+	public int getMin_val() {
+		return min_val;
+	}
+
+	public int getMax_val() {
+		return max_val;
+	}
+
+	
 }

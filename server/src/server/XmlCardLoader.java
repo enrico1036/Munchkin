@@ -61,6 +61,7 @@ public class XmlCardLoader {
 	private static final String levelAttr = "level";
 	private static final String effectAttr = "effect";
 	private static final String curseImmAttr = "immediate";
+	private static final String consCombatAttr="onlyCombat";
 	private static final String slotAttr = "slot";
 	private static final String valueAttr = "value";
 	private static final String bonusAttr = "bonus";
@@ -145,7 +146,8 @@ public class XmlCardLoader {
 				break;
 
 			case consumableTag:
-				doorCard = new Consumable(name, CardType.Door, effect);
+				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute("onlyCombat"));
+				doorCard = new Consumable(name, CardType.Door, effect,onlyCombat);
 				break;
 
 			default:
@@ -186,7 +188,8 @@ public class XmlCardLoader {
 			switch (elem.getTagName()) {
 
 			case consumableTag:
-				treasureCard = new Consumable(name, CardType.Treasure, effect);
+				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute("onlyCombat"));
+				treasureCard = new Consumable(name, CardType.Treasure, effect,onlyCombat);
 				break;
 
 			case equipmentTag:

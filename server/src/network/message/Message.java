@@ -31,13 +31,6 @@ public abstract class Message implements Serializable{
 	public static final String CLT_CHANGE_CLASS = "CHANGE_CLASS";
 	public static final String CLT_CHANGE_RACE = "CHANGE_RACE";
 
-	
-	//Other players can propose help with how many treasures they want
-	public static final String CLT_PROPOSE_HELP = "PROPOSE_HELP";
-	
-	//Client respond message
-	public static final String CLT_ANSWER_HELP = "ACCEPT_HELP";
-	
 	//Get the player state
 	public static final String STATE_UPDATE = "STATE_UPDATE";
 	

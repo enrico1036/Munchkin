@@ -46,7 +46,7 @@
 		<curse name="gelatizzatore" immediate="true" effect="mario" />
 	</doors>
 	<treasures>
-		<consumable name="nnn" effect="dsad" />
+		<consumable name="nnn" effect="dsad" onlyCombat="true"/>
 		<equipment name="qqq" slot="head" bonus="4" value="500" />
 	</treasures>
 </cards>
