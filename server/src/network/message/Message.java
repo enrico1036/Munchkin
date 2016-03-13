@@ -17,7 +17,7 @@ import network.message.server.PopUpMessage;
 
 public abstract class Message implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+	protected static final long serialVersionUID = 1L;
 	/*
 	 * 	MESSAGE CODES LIST START
 	 */

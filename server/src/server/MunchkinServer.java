@@ -69,7 +69,7 @@ public class MunchkinServer {
 					GameManager.getPlayerByName(pair.getKey()).setLobby_ready(!
 							GameManager.getPlayerByName(pair.getKey()).isLobby_ready());
 					pool.broadcast(new ReadyLobbyMessage(GameManager.getPlayers()));
-					pool.broadcast(new UpdateReadyPlayerMessage());
+					//pool.broadcast(new UpdateReadyPlayerMessage());
 					break;
 					
 				case Message.CLT_DISCONNECTION:
@@ -79,7 +79,7 @@ public class MunchkinServer {
 						}
 					}
 					pool.broadcast(new ReadyLobbyMessage(GameManager.getPlayers()));
-					pool.broadcast(new UpdateReadyPlayerMessage());
+					//pool.broadcast(new UpdateReadyPlayerMessage());
 					break;
 				}
 				}

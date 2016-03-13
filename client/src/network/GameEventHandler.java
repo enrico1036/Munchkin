@@ -54,9 +54,9 @@ public class GameEventHandler {
 							ReadyLobbyMessage readyPlayerList = (ReadyLobbyMessage)received;
 							readyPlayers = readyPlayerList.getPlayers();
 							readyStatus = readyPlayerList.getStatus();
-						case Message.CLT_UPDATE_READY_PLAYER_MESSAGE:
 							lobbyPanel.showPlayer();
-							break;
+						/*case Message.CLT_UPDATE_READY_PLAYER_MESSAGE:
+							break;*/
 						}	
 					}
 				} while(GameEventHandler.connection.isConnected());

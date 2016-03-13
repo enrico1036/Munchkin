@@ -63,7 +63,7 @@ public class LobbyUI extends GamePanel {
 		textBox.setBounds(0, 0, 50, 50);
 		this.add(textBox);
 		
-		this.showPlayer();
+		//this.showPlayer();
 
 	}
 
