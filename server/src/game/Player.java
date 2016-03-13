@@ -15,9 +15,9 @@ public class Player {
 	private String username;
 	private int level;
 	private boolean lobby_ready;
-	private Race[] race = new Race[2];
+	private Race race;
 	private int raceAllowed;
-	private ClassCard[] playerClass = new ClassCard[2];
+	private ClassCard playerClass ;
 	private int classAllowed;
 	private ArrayList <Card> hand;
 	private ArrayList <Card> table;
@@ -28,15 +28,13 @@ public class Player {
 	private Equipment feet;
 	private boolean alive;
 	private final int handSize = 5;
-	public enum whichRace {firstRace, secondRace};
-	public enum whichClass {firstClass, secondClass};
 	
 	public Player(String username) {
 		this.username = username;
 		this.level = 0;
 		this.hand = new ArrayList <Card>();
 		this.table = new ArrayList <Card>();
-		this.race[0] = new Race("Human");
+		this.race = new Race("Human");
 		this.raceAllowed = 1;
 		this.classAllowed = 1;
 		this.alive = false;
@@ -110,17 +108,15 @@ public class Player {
 	}
 	
 	
-	public Race getRace(whichRace which) {
-		return this.race[which.ordinal()];
+	public Race getRace() {
+		return this.race;
 	}
 	
 	/* setRace(): update the player race. If 2 is allowed update the race selected by which parameter */
-	public void setRace(Race newRace, whichRace which) {
-		if(this.raceAllowed <= 1) {
-			this.race[0] = newRace;
-		} else {
-			this.race[which.ordinal()] = newRace; 
-		}
+	public void setRace(Race newRace) {
+	
+			this.race= newRace;
+		
 	}
 	
 	public boolean setClassAllowed(int num) {
@@ -139,17 +135,15 @@ public class Player {
 	}
 	
 	
-	public cards.ClassCard getClass(whichClass which) {
-		return this.playerClass[which.ordinal()];
+	public ClassCard getCardClass() {
+		return this.playerClass;
 	}
 	
-	/* setClass(): update the player class. If 2 is allowed update the class selected by which parameter */
-	public void setClass(cards.ClassCard newClass, whichClass which) {
-		if(this.classAllowed <= 1) {
-			this.playerClass[0] = newClass;
-		} else {
-			this.playerClass[which.ordinal()] = newClass; 
-		}
+	
+	public void setClass(ClassCard newClass) {
+		
+			this.playerClass = newClass;
+		
 	}
 	
 	//true if hand is smaller than max, false otherwise;

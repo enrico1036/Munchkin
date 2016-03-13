@@ -1,12 +1,16 @@
 package network;
 
 import client.ClientCard;
+import client.HandCards;
 import client.MunchkinClient;
 import network.message.Message;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.DisconnectionMessage;
 import network.message.client.SelectedCardMessage;
+import network.message.server.ChangeClassMessage;
+import network.message.server.ChangeEquipmentMessage;
+import network.message.server.ChangeRaceMessage;
 import network.message.server.DrawCardMessage;
 import network.message.server.PlayerStatusRequest;
 import network.message.server.ReadyLobbyMessage;
@@ -45,7 +49,7 @@ public class GameEventHandler {
 							break;
 						case Message.DRAW_CARD:
 							DrawCardMessage playCardMessage=(DrawCardMessage) received;
-							ClientCard carddrawn= new ClientCard(playCardMessage.getCardName());
+							HandCards carddrawn= new HandCards(playCardMessage.getCardName());
 							if(playCardMessage.getShowed()!=Action.SHOW)
 								gamepanel.getHandCards().drawCard(carddrawn);
 							else
@@ -56,8 +60,15 @@ public class GameEventHandler {
 							readyPlayers = readyPlayerList.getPlayers();
 							readyStatus = readyPlayerList.getStatus();
 							lobbyPanel.showPlayer();
-						/*case Message.CLT_UPDATE_READY_PLAYER_MESSAGE:
-							break;*/
+						case Message.CLT_CHANGE_CLASS:
+							ChangeClassMessage newClass = (ChangeClassMessage)received;
+							gamepanel.changeClass(newClass.getClassCard().getTitle());
+						case Message.CLT_CHANGE_RACE:
+							ChangeRaceMessage newRace = (ChangeRaceMessage)received;
+							gamepanel.changeRace(newRace.getRace().getTitle());
+						case Message.CLT_CHANGE_EQUIPMENT:
+							ChangeEquipmentMessage newEquip = (ChangeEquipmentMessage)received;
+							gamepanel.changeEquipment(newEquip.getEquipment().getSlot(), newEquip.getEquipment().getTitle());
 						}	
 					}
 				} while(GameEventHandler.connection.isConnected());

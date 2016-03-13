@@ -5,8 +5,6 @@ import cards.Race;
 import cards.ClassCard;
 import game.GameManager;
 import game.Player;
-import game.Player.whichClass;
-import game.Player.whichRace;
 import network.message.Message;
 
 public class PlayerFullStatsMessage extends PlayerStatusRequest {
@@ -15,10 +13,8 @@ public class PlayerFullStatsMessage extends PlayerStatusRequest {
 	private String playerName;
 	private int level;
 	private int power;
-	private Race playerRace1;
-	private ClassCard playerClass1;
-	private Race playerRace2;
-	private ClassCard playerClass2;
+	private Race playerRace;
+	private ClassCard playerClass;
 	private int playerNumCards;
 	
 	public PlayerFullStatsMessage() {
@@ -28,10 +24,8 @@ public class PlayerFullStatsMessage extends PlayerStatusRequest {
 				playerName=player.getUsername();
 				level = player.getLevel();
 				power = player.getCombatLevel();
-				playerRace1 = player.getRace(whichRace.firstRace);
-				playerClass1 = player.getClass(whichClass.firstClass);
-				playerRace2 = player.getRace(whichRace.secondRace);
-				playerClass2 = player.getClass(whichClass.secondClass);
+				playerRace = player.getRace();
+				playerClass = player.getCardClass();
 				playerNumCards = player.getHand().size();
 			
 		
@@ -52,20 +46,13 @@ public class PlayerFullStatsMessage extends PlayerStatusRequest {
 	}
 
 	public Race getPlayerRace1() {
-		return playerRace1;
+		return playerRace;
 	}
 
 	public ClassCard getPlayerClass1() {
-		return playerClass1;
+		return playerClass;
 	}
 
-	public Race getPlayerRace2() {
-		return playerRace2;
-	}
-
-	public ClassCard getPlayerClass2() {
-		return playerClass2;
-	}
 
 	public int getPlayerNumCards() {
 		return playerNumCards;

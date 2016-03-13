@@ -15,7 +15,7 @@ public class ChangeRaceMessage extends Message {
 		
 	}
 	
-	public Race getEquipment(){
+	public Race getRace(){
 		return selected;
 	}
 	

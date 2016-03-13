@@ -15,7 +15,7 @@ public class ChangeClassMessage extends Message {
 		
 	}
 	
-	public ClassCard getEquipment(){
+	public ClassCard getClassCard(){
 		return selected;
 	}
 	
