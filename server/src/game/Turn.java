@@ -1,11 +1,20 @@
 package game;
 
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import cards.Card;
 import cards.CardType;
+import cards.Category;
+import cards.Monster;
+import cards.Equipment;
 import network.message.Message;
 import network.message.client.SelectedCardMessage;
-import network.message.server.DrawCardMessage;
+import network.message.server.PlayCardMessage;
+import network.message.server.PlayCardMessage.Action;
+import network.message.server.PopUpMessage;
 import utils.StateMachine;
 
 public class Turn extends StateMachine {
@@ -21,12 +30,20 @@ public class Turn extends StateMachine {
 	
 	private void equip() {
 		// wait for an equip action. If draw action detected  call stepOver() and skip this phase
-		SelectedCardMessage message = (SelectedCardMessage)GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
-		if(message.getCardName() != SelectedCardMessage.DOOR_DECK) {
-			//TODO: do equipment check and action
+		boolean equipSelected = false;
+		do {
+		SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+		if (message.getCardName() != SelectedCardMessage.DOOR_DECK) {
+			Card card = GameManager.getCurrentPlayer().getHandCard(message.getCardName());
+			if (card != null && card.getCategory() == Category.Equipment) {
+				equipSelected = true;
+				GameManager.getCurrentPlayer().equip(((Equipment) card).getSlot(), (Equipment)card);
+				//TODO: do equipment check and action, set combatBonus in player
+			}
 		} else {
-			stepOver();
+			return;
 		}
+		}while(!equipSelected);
 		
 	}
 	
@@ -40,10 +57,10 @@ public class Turn extends StateMachine {
 	}
 	
 	private void charity() {
-		if(!GameManager.getCurrentPlayer().cardCheck())
+		while(!GameManager.getCurrentPlayer().cardCheck())
 		{
 			// Tell current player to discard a card
-			GameManager.getCurrentPlayer().sendMessage(new DrawCardMessage("", DrawCardMessage.Action.DISCARD));
+			GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Choose a card to discard!", "OK", 3000));
 			// Wait for a card to be received
 			SelectedCardMessage received = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
 			

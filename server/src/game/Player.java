@@ -45,10 +45,7 @@ public class Player {
 	public String getUsername() {
 		return username;
 	}
-	
-	
-	
-	
+
 	public boolean isLobby_ready() {
 		return lobby_ready;
 	}
@@ -79,8 +76,6 @@ public class Player {
 		return level;
 	}
 	
-	
-	
 	public int getCombatLevel() {
 		int combatLevel = 0;
 		combatLevel += this.level;
@@ -92,47 +87,44 @@ public class Player {
 		return combatLevel;
 	}
 	
-	public boolean setRaceAllowed(int num) {
-		switch (num) {
-		case 1:
-			this.raceAllowed = 1;
-			break;
-		case 2:
-			this.raceAllowed = 2;
-			break;
-		default:
-			this.raceAllowed = 1;
-			return false;
-		}
-		return true;
-	}
+//	public boolean setRaceAllowed(int num) {
+//		switch (num) {
+//		case 1:
+//			this.raceAllowed = 1;
+//			break;
+//		case 2:
+//			this.raceAllowed = 2;
+//			break;
+//		default:
+//			this.raceAllowed = 1;
+//			return false;
+//		}
+//		return true;
+//	}
 	
 	
 	public Race getRace() {
 		return this.race;
 	}
 	
-	/* setRace(): update the player race. If 2 is allowed update the race selected by which parameter */
 	public void setRace(Race newRace) {
-	
-			this.race= newRace;
-		
+		this.race = newRace;
 	}
 	
-	public boolean setClassAllowed(int num) {
-		switch (num) {
-		case 1:
-			this.classAllowed = 1;
-			break;
-		case 2:
-			this.classAllowed = 2;
-			break;
-		default:
-			this.classAllowed = 1;
-			return false;
-		}
-		return true;
-	}
+//	public boolean setClassAllowed(int num) {
+//		switch (num) {
+//		case 1:
+//			this.classAllowed = 1;
+//			break;
+//		case 2:
+//			this.classAllowed = 2;
+//			break;
+//		default:
+//			this.classAllowed = 1;
+//			return false;
+//		}
+//		return true;
+//	}
 	
 	
 	public ClassCard getCardClass() {
@@ -225,16 +217,16 @@ public class Player {
 			card = this.head ;
 			break;
 		case body:
-			card=this.body;
+			card = this.body;
 			break;
 		case hand1:
-			card=this.hand1;
+			card = this.hand1;
 			break;
 		case hand2:
-			card=this.hand2;
+			card = this.hand2;
 			break;
 		case feet:
-			card=this.feet;
+			card = this.feet;
 			break;
 		}
 		return card;

@@ -13,12 +13,12 @@ import network.message.client.SelectedCardMessage;
 import network.message.server.ChangeClassMessage;
 import network.message.server.ChangeEquipmentMessage;
 import network.message.server.ChangeRaceMessage;
-import network.message.server.DrawCardMessage;
+import network.message.server.PlayCardMessage;
 import network.message.server.PlayerStatusRequest;
 import network.message.server.PopUpMessage;
 import network.message.server.ReadyLobbyMessage;
 import network.message.server.ReadyStatusMessage;
-import network.message.server.DrawCardMessage.Action;
+import network.message.server.PlayCardMessage.Action;
 import user_interface.ConnectionDialog;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
@@ -52,8 +52,8 @@ public class GameEventHandler {
 							lobbyPanel.getScrollList().add_Element(chatMessage.getSender() +": " +chatMessage.getMessage());
 							break;
 						case Message.DRAW_CARD:
-							DrawCardMessage playCardMessage=(DrawCardMessage) received;
-							HandCards carddrawn= new HandCards(playCardMessage.getCardName());
+							PlayCardMessage playCardMessage=(PlayCardMessage) received;
+							HandCards carddrawn = new HandCards(playCardMessage.getCard().getTitle());
 							switch(playCardMessage.getAction()) {
 							case SHOW:
 								gamepanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));
@@ -62,7 +62,7 @@ public class GameEventHandler {
 								gamepanel.getHandCards().drawCard(carddrawn);
 								break;
 							case DISCARD:
-								gamepanel
+//								gamepanel
 								break;
 							case REMOVE:
 								break;
@@ -84,12 +84,12 @@ public class GameEventHandler {
 							gamepanel.changeEquipment(newEquip.getEquipment().getSlot(), newEquip.getEquipment().getTitle());
 						case Message.POPUP:
 							PopUpMessage popup = (PopUpMessage)received;
-							popup.getText();
-							popup.getButton1();
-							popup.getButton2();
-							popup.getTimeout_ms();
-							popup.getMin_val()
-							popup.getMax_val()
+//							popup.getText();
+//							popup.getButton1();
+//							popup.getButton2();
+//							popup.getTimeout_ms();
+//							popup.getMin_val()
+//							popup.getMax_val()
 							
 						}	
 					}
