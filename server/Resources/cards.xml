@@ -37,7 +37,16 @@
 		<monster name="verminator" level="12"  earningLevels="01" earningTreasures="03" effect="eee" />
 		<monster name="la_chela" level="17"  earningLevels="02" earningTreasures="04" effect="fff" />
 		<monster name="gian_giar" level="4"  earningLevels="01" earningTreasures="02" effect="eee" />
-		<curse name="ccc" immediate="true" effect="mario" />
+		
+		<curse name="dolcetto_alieno" immediate="true" effect="mario" />
+		<curse name="cavo_monocellulare" immediate="true" effect="mario" />
+		<curse name="aggressione_genetica" immediate="true" effect="mario" />
+		<curse name="apriscatole" immediate="true" effect="mario" />
+		<curse name="buco_nero" immediate="true" effect="mario" />
+		<curse name="obsolescenza_programmata" immediate="true" effect="mario" />
+		<curse name="vasca_chimica" immediate="true" effect="mario" />
+		<curse name="decadimento_orbitale" immediate="true" effect="mario" />
+		<curse name="gelatizzatore" immediate="true" effect="mario" />
 	</doors>
 	<treasures>
 		<consumable name="nnn" effect="dsad" />

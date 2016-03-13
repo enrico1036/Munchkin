@@ -3,16 +3,15 @@ package cards;
 
  public class Effect {
 	 
-
-	  public static void bonusMonster (int bonus, Monster currentMonster){
-		  currentMonster.setTotalBonus(bonus);
-	 }
-	  
+	 
 	  //dropobject(tipeObject)
 	  
+	  //dropRace()
 	  
 	  
-	  //malus/bonus Player
+	  //bonus_combat(boolean choose,tesoro extra)
+	  
+	  //clone()
 	  
 	  //loseLevel
 	  
