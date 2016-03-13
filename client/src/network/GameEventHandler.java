@@ -5,6 +5,7 @@ import client.MunchkinClient;
 import network.message.Message;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
+import network.message.client.DisconnectionMessage;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerStatusRequest;
@@ -110,7 +111,7 @@ public class GameEventHandler {
 	
 	public static void signalExit(){
 		if(connection != null && connection.isConnected()){
-			connection.send(new );
+			connection.send(new DisconnectionMessage());
 			connection.close();
 		}
 	}
