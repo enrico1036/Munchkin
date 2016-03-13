@@ -190,10 +190,6 @@
     	<path>Resources/Images/Cards/blob.png</path>
     </image>
     <image>
-    	<name>capre_spaziali</name>
-    	<path>Resources/Images/Cards/capre_spaziali.png</path>
-    </image>
-    <image>
     	<name>clowntrooper</name>
     	<path>Resources/Images/Cards/clowntrooper.png</path>
     </image>
@@ -216,10 +212,6 @@
     <image>
     	<name>door_back</name>
     	<path>Resources/Images/Cards/door_back.png</path>
-    </image>
-    <image>
-    	<name>elvis_dello_spazio_bicefalo</name>
-    	<path>Resources/Images/Cards/elvis_dello_spazio_bicefalo.png</path>
     </image>
     <image>
     	<name>felino</name>
@@ -252,14 +244,6 @@
     <image>
     	<name>la_chela</name>
     	<path>Resources/Images/Cards/la_chela.png</path>
-    </image>
-    <image>
-    	<name>mezzosangue</name>
-    	<path>Resources/Images/Cards/mezzosangue.png</path>
-    </image>
-    <image>
-    	<name>mezzosangue1</name>
-    	<path>Resources/Images/Cards/mezzosangue1.png</path>
     </image>
     <image>
     	<name>miniaturizzato</name>
@@ -342,14 +326,6 @@
     	<path>Resources/Images/Cards/succhiafaccia.png</path>
     </image>
     <image>
-    	<name>super_munchkin</name>
-    	<path>Resources/Images/Cards/super_munchkin.png</path>
-    </image>
-    <image>
-    	<name>super_munchkin1</name>
-    	<path>Resources/Images/Cards/super_munchkin1.png</path>
-    </image>
-    <image>
     	<name>tettona_bionica</name>
     	<path>Resources/Images/Cards/tettona_bionica.png</path>
     </image>
@@ -360,10 +336,6 @@
     <image>
     	<name>vampiro_spaziale</name>
     	<path>Resources/Images/Cards/vampiro_spaziale.png</path>
-    </image>
-    <image>
-    	<name>verminator</name>
-    	<path>Resources/Images/Cards/verminator.png</path>
     </image>
     <image>
     	<name>xqwzzmp</name>

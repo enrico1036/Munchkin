@@ -5,6 +5,7 @@ package cards;
 	 
 	 
 	  //dropobject(tipeObject)
+	 
 	  
 	  //dropRace()
 	  
@@ -13,15 +14,28 @@ package cards;
 	  
 	  //clone()
 	  
-	  //loseLevel
+	  //loseLevel(int number_level)
 	  
 	  
 	  //drop class
 	  
-	  //cambio sesso
-	  
-	  
-	  //mostro errante
+	 
+	 //draw_door_card
+	 
+	 
+	 //bonusEscape
+	 
+	 
+	 //bonusRace
+	 
+	 //dead
+	 
+	 //dropHandCard
+	 
+	 
+	 
+	 
+	 
 	  
 	  
 	  

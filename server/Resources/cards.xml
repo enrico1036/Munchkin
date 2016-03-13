@@ -28,13 +28,10 @@
 		<monster name="plasmoide" level="18"  earningLevels="02" earningTreasures="05" effect="fff" />
 		<monster name="sciame_pesante" level="11"  earningLevels="01" earningTreasures="03" effect="eee" />
 		<monster name="mostro_occhiuto" level="06"  earningLevels="01" earningTreasures="02" effect="fff" />
-		<monster name="elvis_dello_spazio_bicefalo" level="15"  earningLevels="02" earningTreasures="04" effect="eee" />
 		<monster name="ultra_violetta" level="15"  earningLevels="02" earningTreasures="04" effect="fff" />
 		<monster name="orribile_cosa_verde" level="08"  earningLevels="01" earningTreasures="02" effect="eee" />
-		<monster name="capre_spaziali" level="06"  earningLevels="01" earningTreasures="02" effect="fff" />
 		<monster name="succhiafaccia" level="02"  earningLevels="01" earningTreasures="01" effect="eee" />
 		<monster name="palladipelo" level="01"  earningLevels="01" earningTreasures="01" effect="fff" />
-		<monster name="verminator" level="12"  earningLevels="01" earningTreasures="03" effect="eee" />
 		<monster name="la_chela" level="17"  earningLevels="02" earningTreasures="04" effect="fff" />
 		<monster name="gian_giar" level="4"  earningLevels="01" earningTreasures="02" effect="eee" />
 		
