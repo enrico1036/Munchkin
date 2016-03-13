@@ -11,8 +11,10 @@ import cards.Category;
 import cards.Monster;
 import cards.Equipment;
 import network.message.Message;
+import network.message.client.PopUpResultMessage;
 import network.message.client.SelectedCardMessage;
 import network.message.server.PlayCardMessage;
+import network.message.server.PlayerFullStatsMessage;
 import network.message.server.PlayCardMessage.Action;
 import network.message.server.PopUpMessage;
 import utils.StateMachine;
@@ -27,71 +29,101 @@ public class Turn extends StateMachine {
 		states[2] = "Trading";
 		states[3] = "Charity";
 	}
-	
+
 	private void equip() {
-		// wait for an equip action. If draw action detected  call stepOver() and skip this phase
+		// wait for an equip action. If draw action detected call stepOver() and skip this phase
 		boolean equipSelected = false;
 		do {
-		SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
-		if (message.getCardName() != SelectedCardMessage.DOOR_DECK) {
-			Card card = GameManager.getCurrentPlayer().getHandCard(message.getCardName());
-			if (card != null && card.getCategory() == Category.Equipment) {
-				equipSelected = true;
-				GameManager.getCurrentPlayer().equip(((Equipment) card).getSlot(), (Equipment)card);
-				//TODO: do equipment check and action, set combatBonus in player
+			SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+			if (message.getCardName() != SelectedCardMessage.DOOR_DECK) {
+				Card card = GameManager.getCurrentPlayer().getHandCard(message.getCardName());
+				if (card != null && card.getCategory() == Category.Equipment) {
+					equipSelected = true;
+					GameManager.getCurrentPlayer().equip(((Equipment) card).getSlot(), (Equipment) card);
+					// TODO: do equipment check and action, set combatBonus in player
+				}
+			} else {
+				return;
 			}
-		} else {
-			return;
-		}
-		}while(!equipSelected);
-		
+		} while (!equipSelected);
+
 	}
-	
+
 	private void draw() {
 		Draw draw = new Draw();
-		while(draw.performStep());
+		while (draw.performStep())
+			;
 	}
-	
+
 	private void trading() {
-		//TODO: ask to player what to sell if nothing skip
+		int equipments = 0; // counts the number of equipment cards present in hand
+		for (Card card : GameManager.getCurrentPlayer().getHand()) {
+			if (card.getCategory() == Category.Equipment)
+				equipments++;
+		}
+		if (equipments > 0) {
+			// TODO: ask to player what to sell if nothing skip
+			GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("How many cards do you want to sell? (0)", "OK", 0, equipments, 10000));
+			PopUpResultMessage answer = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT).getValue();
+			int value = 0;
+			Card card = null;
+			for (int i = 0; i < answer.getValue(); i++) {
+				SelectedCardMessage selCard = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+				card = GameManager.getCurrentPlayer().getHandCard(selCard.getCardName());
+				if (card.getCategory() == Category.Equipment) {
+					GameManager.getCurrentPlayer().discardCard(card);
+					GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card, Action.REMOVE));
+					GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card, Action.DISCARD));
+					value += ((Equipment) card).getValue();
+				} else {
+					i--;
+				}
+			}
+			GameManager.getCurrentPlayer().leveleUp(value % 1000);
+			GameManager.broadcastMessage(new PlayerFullStatsMessage(GameManager.getCurrentPlayer()));
+		}
 	}
-	
+
 	private void charity() {
-		while(!GameManager.getCurrentPlayer().cardCheck())
-		{
+		while (!GameManager.getCurrentPlayer().cardCheck()) {
 			// Tell current player to discard a card
 			GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Choose a card to discard!", "OK", 3000));
 			// Wait for a card to be received
 			SelectedCardMessage received = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
-			
+
 			// Find the player(s) with the lowest level
 			int lowestPlayerNum = 0;
 			Player lowestPlayer = GameManager.getPlayers().get(0);
-			
-			// Search minumum 
-			for(Player player : GameManager.getPlayers()){
-				if(player.getLevel() < lowestPlayer.getLevel()){
+
+			// Search minumum
+			for (Player player : GameManager.getPlayers()) {
+				if (player.getLevel() < lowestPlayer.getLevel()) {
 					lowestPlayer = player;
 					lowestPlayerNum = 1;
-				} else if(player.getLevel() == lowestPlayer.getLevel())
+				} else if (player.getLevel() == lowestPlayer.getLevel())
 					++lowestPlayerNum;
 			}
-			
+
 			// In case the player with the lowest level is current player or there are more than one
 			// put the card into the appropriate garbage stack
-			if(lowestPlayer.equals(GameManager.getCurrentPlayer()) || lowestPlayerNum > 1){
-				Decks.discardCard(GameManager.getCurrentPlayer().pickCard(received.getCardName()));
+			Card card = GameManager.getCurrentPlayer().pickCard(received.getCardName());
+			if (lowestPlayer.equals(GameManager.getCurrentPlayer()) || lowestPlayerNum > 1) {
+				Decks.discardCard(card);
+				GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card, Action.REMOVE));
+				GameManager.broadcastMessage(new PlayCardMessage(card, Action.DISCARD));
 			} else {
 				// Otherwise add it to the lowest level player's hand
-				lowestPlayer.draw(GameManager.getCurrentPlayer().pickCard(received.getCardName()));
+				lowestPlayer.draw(card);
+				GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card, Action.REMOVE));
+				lowestPlayer.sendMessage(new PlayCardMessage(card, Action.DRAW));
 			}
-			
+
 		}
 	}
-	
+
 	@Override
 	public boolean performStep() {
-		switch(this.states[currentState]) {
+		switch (this.states[currentState]) {
 		case "Equip":
 			equip();
 			break;

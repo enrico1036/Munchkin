@@ -1,7 +1,11 @@
 package game;
 
+import cards.Card;
+import cards.Category;
 import cards.Monster;
 import network.message.Message;
+import network.message.client.PopUpResultMessage;
+import network.message.client.SelectedCardMessage;
 import network.message.server.PopUpMessage;
 import utils.StateMachine;
 
@@ -27,37 +31,58 @@ public class Combat extends StateMachine {
 	}
 
 	private void begin() {
-		// TODO: run effect and set initial values
+		// TODO: card effect and set initial values
 	}
 
 	private void askForHelp() {
 		// start help request and communications between client and server
 		GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Do you want to ask for help? If yes, how many treasures do you want to gift? (N)", "No", "Yes", 0, card.getEarningTreasures(), 15000));
-		// TODO: add waitfor popup answer (and message to return values)
-		Message ret = GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.POPUP).getValue();
-		// TODO: if yes, set promisedTreasure and:
-		{
+		//waitfor popup answer (and message to return values)
+		PopUpResultMessage ret = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT).getValue();
+		//if yes, set promisedTreasure and:
+		if(ret.isButton2Pressed()){
 			for (Player player : GameManager.getPlayers()) { // ask to all except for the current player
 				if (player.getUsername() != GameManager.getCurrentPlayer().getUsername())
 					player.sendMessage(new PopUpMessage("Do you want to help " + GameManager.getCurrentPlayer().getUsername() + " for " + Integer.toString(promisedTreasure) + "? (N)", "No", "Yes", 10000));
 			}
+			
+			//TODO-ISSUE: I want to wait for a message coming from all the players
+			//ret = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(???, Message.CLT_POPUP_RESULT).getValue();
 			// TODO: wait for popup answer, if yes manage it and set helperPlayer
 		}
 	}
 
 	private void interferInCombat() {
 		boolean allNo = true; // true if all players answer "No"
-		// TODO: ask via client server interface if someone wants to interfere in combat and sets playerBonus
+		// ask via client server interface if someone wants to interfere in combat and sets playerBonus
 		do {
 			allNo = true;
-			for (Player player : GameManager.getPlayers()) { // ask to all except for the current player
+			for (Player player : GameManager.getPlayers()) { // ask to all players
 				player.sendMessage(new PopUpMessage("Do you want to interfer in combat? (N)", "No", "Yes", 7000));
-				// TODO: wait for popup answer
-				// TODO: if yes
-				{
+				// wait for popup answer
+				PopUpResultMessage popUpRet = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT).getValue();
+				// if yes
+				if(popUpRet.isButton2Pressed()){
 					allNo = false;
-					GameManager.getInQueue().waitForMessage(player.getUsername(), Message.CLT_CARD_SELECTED);
-					// TODO: manage returned card (check if card.category is allowed)
+					boolean cardSelected = false;
+					do {
+					SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(player.getUsername(), Message.CLT_CARD_SELECTED).getValue();
+					// manage returned card (check if card.category is allowed)
+					Card card = player.getHandCard(message.getCardName());
+					switch(card.getCategory()) {
+					case Consumable:
+						cardSelected = true;
+						//TODO: card effect
+						break;
+					case Curse:
+						cardSelected = true;
+						//TODO: card effect
+						break;
+					default:
+						cardSelected = false;
+						break;
+					}
+					}while(!cardSelected);
 				}
 			}
 		}while(!allNo);

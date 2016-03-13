@@ -28,7 +28,7 @@ public class Draw extends StateMachine {
 		// if curse play it, if monster start a combat and execute it. In all other cases draw it
 		switch (card.getCategory()) {
 		case Curse:
-			// TODO: Run effect
+			// TODO: card effect
 			break;
 		case Monster:
 			Combat combat = new Combat((Monster) card);
@@ -61,10 +61,13 @@ public class Draw extends StateMachine {
 				Card card = GameManager.getCurrentPlayer().getHandCard(message.getCardName());
 				if (card != null && card.getCategory() == Category.Monster) {
 					monsterSelected = true;
-					GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card, Action.SHOW));
+					GameManager.getCurrentPlayer().discardCard(card);
+					GameManager.getCurrentPlayer().sendMessage(new PlayCardMessage(card, Action.REMOVE));
+					GameManager.broadcastMessage(new PlayCardMessage(card, Action.SHOW));
 					Combat combat = new Combat((Monster) card);
 					while (combat.performStep());
 					Decks.discardCard(card);
+					GameManager.broadcastMessage(new PlayCardMessage(card, Action.DISCARD));
 					currentState = this.states.length - 1; // skip to the end state
 				}
 			} else {

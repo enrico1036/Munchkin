@@ -17,31 +17,21 @@ public class PopUpMessage extends Message {
 	int min_val, max_val;
 	int timeout_ms;
 	
-	/**
-	 * @param text: what to show on the dialog box
-	 * @param timeout_ms: time in milliseconds to wait before message disappear and automatically click on the second button
-	 */
+
 	public PopUpMessage(String text, int timeout_ms) {
 		this(text, "", "", 0, 0, timeout_ms);
 	}
-	
-	/**
-	 * @param text: what to show on the dialog box
-	 * @param button1: text to write on the first button, if "" button will be disabled
-	 * @param timeout_ms: time in milliseconds to wait before message disappear and automatically click on the second button
-	 */
+
 	public PopUpMessage(String text, String button1, int timeout_ms) {
 		this(text, button1, "", 0, 0, timeout_ms);
 	}
 	
-	/**
-	 * @param text: what to show on the dialog box
-	 * @param button1: text to write on the first button, if "" button will be disabled
-	 * @param button2: text to write on the second button, if "" button will be disabled
-	 * @param timeout_ms: time in milliseconds to wait before message disappear and automatically click on the second button
-	 */
 	public PopUpMessage(String text, String button1, String button2, int timeout_ms) {
 		this(text, button1, button2, 0, 0, timeout_ms);
+	}
+	
+	public PopUpMessage(String text, String button1, int min, int max, int timeout_ms) {
+		this(text, button1, "", min, max, timeout_ms);
 	}
 
 	/**

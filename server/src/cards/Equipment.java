@@ -10,6 +10,7 @@ public class Equipment extends Card {
 		this.title = title;
 		this.type = CardType.Treasure;
 		this.slot = slot;
+		this.value = value;
 		this.category = Category.Equipment;
 	}
 	
@@ -19,6 +20,10 @@ public class Equipment extends Card {
 	
 	public int getBonus() {
 		return bonus;
+	}
+	
+	public int getValue() {
+		return value;
 	}
 
 }

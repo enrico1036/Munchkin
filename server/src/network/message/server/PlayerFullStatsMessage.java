@@ -7,55 +7,37 @@ import game.GameManager;
 import game.Player;
 import network.message.Message;
 
-public class PlayerFullStatsMessage extends PlayerStatusRequest {
+public class PlayerFullStatsMessage extends Message{
 
-	private static String Player;
-	private String playerName;
-	private int level;
-	private int power;
-	private Race playerRace;
-	private ClassCard playerClass;
-	private int playerNumCards;
+	private Player player;
 	
-	public PlayerFullStatsMessage() {
-		super(Player,PlayerStatusRequest.REQUEST_PLAYER_FULL_STATS);
-		
-		Player player= GameManager.getPlayerByName(Player);
-				playerName=player.getUsername();
-				level = player.getLevel();
-				power = player.getCombatLevel();
-				playerRace = player.getRace();
-				playerClass = player.getCardClass();
-				playerNumCards = player.getHand().size();
-			
-		
-		
-		
+	public PlayerFullStatsMessage(Player player) {
+		super(Message.PLAYER_FULL_STATS);	
+		this.player = player;
 	}
 
 	public String getPlayerName() {
-		return playerName;
+		return player.getUsername();
 	}
 
 	public int getLevel() {
-		return level;
+		return player.getLevel();
 	}
 
 	public int getPower() {
-		return power;
+		return player.getCombatLevel();
 	}
 
-	public Race getPlayerRace1() {
-		return playerRace;
+	public Race getPlayerRace() {
+		return player.getRace();
 	}
 
-	public ClassCard getPlayerClass1() {
-		return playerClass;
+	public ClassCard getPlayerClass() {
+		return player.getCardClass();
 	}
-
-
+	
 	public int getPlayerNumCards() {
-		return playerNumCards;
+		return player.getHand().size();
 	}
 	
 	
