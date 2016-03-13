@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import client.MunchkinClient;
+import game.GameManager;
+import network.GameEventHandler;
 
 public class ShowPlayers extends GamePanel{
 	
@@ -18,11 +20,17 @@ public class ShowPlayers extends GamePanel{
 	lblPlayerHead,lblPlayerRiarm,lblPlayerBody,lblPlayerLearm,lblPlayerLegs;
 	private JButton returnBack;
 	
+	private String playerName;
+	
 	private int psw,psh;
 	
 	public ShowPlayers(GameWindow window, String Player){
 		super(window);
 		this.background=MunchkinClient.getImage("panel_background");
+		this.playerName=Player;
+		
+		GameEventHandler.getPlayerStatistics(playerName);
+		GameEventHandler.getPlayerEquipment(playerName);
 		
 		psw=this.getWidth();
 		psh=this.getHeight();
@@ -96,12 +104,10 @@ public class ShowPlayers extends GamePanel{
 		 lblPlayerLegs.setBounds(psw*2/3, psh*7/9, psw/6, psh*2/9);
 		 this.add(lblPlayerLegs);
 	
-			returnBack = new JButton();
+			returnBack = new JButton("Return");
 			returnBack.setBounds(psw*7/8,psh*7/8,psw/8,psh/8);
 			returnBack.setActionCommand("return");
 			returnBack.setVisible(true);
-			//returnBack.setContentAreaFilled(false);
-			//returnBack.setBorderPainted(false);
 			this.add(returnBack);
 		
 		

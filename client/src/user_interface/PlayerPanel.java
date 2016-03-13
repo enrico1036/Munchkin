@@ -18,13 +18,13 @@ public class PlayerPanel extends PaintPanel {
 	lblPlayerCards,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue;
 	private JButton btnPlayerCards;
 	private int pw,ph;
-	private String PlayerName;
+	private String playerName;
 	
 	
 	private ImageIcon showPlayerCards;
 	
 	
-	public PlayerPanel(BufferedImage image) {
+	public PlayerPanel(BufferedImage image,String playerName) {
 		super(image);
 		
 		showPlayerCards = new ImageIcon();
@@ -33,7 +33,7 @@ public class PlayerPanel extends PaintPanel {
 		pw=this.getWidth();
 		ph=this.getHeight();
 		
-		PlayerName="PlayerName"; //Devo fare richiesta al server
+		this.playerName=playerName; //Devo fare richiesta al server
 		
 		/*
 		 * 
@@ -41,7 +41,7 @@ public class PlayerPanel extends PaintPanel {
 		 * 
 		 */
 				
-		lblPlayerName = new JLabel(PlayerName);
+		lblPlayerName = new JLabel(playerName);
 		lblPlayerName.setBounds(pw/16, 0, pw*7/16, ph/2);
 		this.add(lblPlayerName);
 
@@ -91,7 +91,7 @@ public class PlayerPanel extends PaintPanel {
 		super.actionPerformed(e);
 		if(e.getActionCommand()=="show_player"){
 			GameWindow window = ((GamePanel)getParent()).window;
-			((GamePanel)getParent()).window.SetActivePanel(new ShowPlayers(window,PlayerName));
+			((GamePanel)getParent()).window.SetActivePanel(new ShowPlayers(window,playerName));
 		}
 	}
 

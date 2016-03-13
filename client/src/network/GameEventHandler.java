@@ -19,6 +19,8 @@ import network.message.server.PopUpMessage;
 import network.message.server.ReadyLobbyMessage;
 import network.message.server.ReadyStatusMessage;
 import network.message.server.PlayCardMessage.Action;
+import network.message.server.PlayerEquipmentMessage;
+import network.message.server.PlayerFullStatsMessage;
 import user_interface.ConnectionDialog;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
@@ -83,6 +85,7 @@ public class GameEventHandler {
 						case Message.CLT_CHANGE_EQUIPMENT:
 							ChangeEquipmentMessage newEquip = (ChangeEquipmentMessage)received;
 							gamepanel.changeEquipment(newEquip.getEquipment().getSlot(), newEquip.getEquipment().getTitle());
+						
 						case Message.POPUP:
 							PopUpMessage popup = (PopUpMessage)received;
 							PopUpDialog dialog= new PopUpDialog(popup.getText(), popup.getButton1(), 
@@ -97,7 +100,24 @@ public class GameEventHandler {
 							if(popup.getMin_val()==popup.getMax_val())
 								dialog.getSpinner().setVisible(false);
 								dialog.getLblValue().setVisible(false);
+							break;
+						case Message.PLAYER_FULL_STATS:
+							PlayerFullStatsMessage statistics = (PlayerFullStatsMessage)received;
+							if(statistics.getPlayerName().equals(
+									GameEventHandler.getConnection().getConnectedPlayerName())){
+								gamepanel.changeStatistics(statistics.getLevel(),
+															statistics.getPower(),
+															statistics.getPlayerClass(),
+															statistics.getPlayerRace(),
+															statistics.getPlayerNumCards());
+							}
+								
+									
+							break;
+						case Message.PLAYER_EQUIPMENT:
+							PlayerEquipmentMessage equip =(PlayerEquipmentMessage)received;
 							
+							break;
 						}	
 					}
 				} while(GameEventHandler.connection.isConnected());

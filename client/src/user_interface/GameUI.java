@@ -2,7 +2,9 @@ package user_interface;
 
 import javax.swing.JPanel;
 
+import cards.ClassCard;
 import cards.EquipSlot;
+import cards.Race;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -66,7 +68,7 @@ public class GameUI extends GamePanel {
 	 */
 	public GameUI(GameWindow window)  {
 		super(window);
-		OpponentPlayers = new PlayerPanel[GameEventHandler.getPlayers().length];
+		OpponentPlayers = new PlayerPanel[GameEventHandler.getPlayers().length-1];
 		this.createRandomFramePanel();
 
 		
@@ -177,7 +179,7 @@ public class GameUI extends GamePanel {
 		psw=PlayerStats.getWidth();
 		psh=PlayerStats.getHeight();
 		
-		lblPlayerName = new JLabel("PlayerName");
+		lblPlayerName = new JLabel(GameEventHandler.getConnection().getConnectedPlayerName());
 		lblPlayerName.setBounds(psw/16, 0, psw*7/16, psh/3);
 		PlayerStats.add(lblPlayerName);
 
@@ -185,7 +187,7 @@ public class GameUI extends GamePanel {
 		lblPlayerLevel.setBounds(psw/2,0, psw/4,psh/6);
 		PlayerStats.add(lblPlayerLevel);
 
-		 lblPlayerLevelValue = new JLabel("Level Value");
+		 lblPlayerLevelValue = new JLabel(String.valueOf(1));
 		lblPlayerLevelValue.setBounds(psw*3/4,0, psw/4, psh/6);
 		PlayerStats.add(lblPlayerLevelValue);
 		
@@ -193,7 +195,7 @@ public class GameUI extends GamePanel {
 		lblPlayerPower.setBounds(psw/2, psh/6, psw/4, psh/6);
 		PlayerStats.add(lblPlayerPower);
 
-		 lblPlayerPowerValue = new JLabel("Power Value");
+		 lblPlayerPowerValue = new JLabel(String.valueOf(0));
 		 lblPlayerPowerValue.setBounds(psw*3/4, psh/6, psw/4, psh/6);
 		PlayerStats.add(lblPlayerPowerValue);
 	
@@ -205,7 +207,7 @@ public class GameUI extends GamePanel {
 		PlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
 		PlayerStats.add(PlayerClass);
 		
-		 lblPlayernumcard = new JLabel("NumCard");
+		 lblPlayernumcard = new JLabel(String.valueOf(0));
 		 lblPlayernumcard.setBounds(psw*3/8, psh/3, psw/8, psh/4);
 		PlayerStats.add(lblPlayernumcard);
 		
@@ -491,7 +493,7 @@ public class GameUI extends GamePanel {
 
 	private void createRandomFramePanel(){
 		 int size = 10,k=0;
-	        int[] x = new int[GameEventHandler.getPlayers().length];
+	        int[] x = new int[GameEventHandler.getPlayers().length-1];
 	        
 	        ArrayList<Integer> list = new ArrayList<Integer>(size);
 	        for(int i = 1; i <= size; i++) {
@@ -499,16 +501,21 @@ public class GameUI extends GamePanel {
 	        }
 
 	        Random rand = new Random();
-	        while(list.size() > 0&&k<GameEventHandler.getPlayers().length) {
+	        while(list.size() > 0&&k<GameEventHandler.getPlayers().length-1) {
 	            int index = rand.nextInt(list.size());
 	            x[k]=list.remove(index);
 	            k++;
 	        }  
 	    	
 	        
-	        //dovrò chiedere quanti utenti ci sono
-	        for(k=0;k<GameEventHandler.getPlayers().length;k++){
-	     OpponentPlayers[k] = new PlayerPanel(MunchkinClient.getImage("frameplayer"+x[k]));
+	   
+	        int j=0;
+	        for(k=0;k<GameEventHandler.getPlayers().length-1;k++){
+	        	if(!(GameEventHandler.getPlayers()[k].equals(
+	        			GameEventHandler.getConnection().getConnectedPlayerName())))
+	        		
+	     OpponentPlayers[j] = new PlayerPanel(MunchkinClient.getImage("frameplayer"+x[j]),
+	    		 GameEventHandler.getPlayers()[k]);
 	        }
 	    
 		
@@ -532,6 +539,15 @@ public class GameUI extends GamePanel {
 	public DiceManager getDiceManager(){
 		return Dice;
 	}
+
+
+
+	public void changeStatistics(int levelValue, int powerValue, ClassCard newClass, Race newRace, int numCard){
+		
+	}
+
+
+
 	
 	
 }
