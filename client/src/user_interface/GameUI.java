@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import client.MunchkinClient;
+import network.GameEventHandler;
+
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,7 +20,7 @@ import client.HandManager;
 public class GameUI extends GamePanel {
 	
 
-	private BufferedImage background,framePlayerStats,inventory,doorCardsImage,
+	private BufferedImage background,framePlayerStats,doorCardsImage,
 	doorDiscardsImage,TreasureCardsImage,TreasureDiscardsImage; 
 	private PlayerPanel OpponentPlayers[];
 
@@ -35,6 +37,9 @@ public class GameUI extends GamePanel {
 	//----------Deck JComponents---------------
 	private ImageButton doorCards,doorDiscards,treasureCards,treasureDiscards;
 	
+	//-----------Dice JComponents-------------
+	private JLabel diceLabel;
+	
 	/*
 	 * ww= Gamewindow (JFrame) width
 	 * wh= Gamewindow (JFrame) height
@@ -47,6 +52,7 @@ public class GameUI extends GamePanel {
 	
 	//There are all the JPanels in GameUI
 	private JPanel PlayerStats,Hand,Decks,Table;
+	private DiceManager Dice;
 	private ZoomedPanel zp;
 	
 
@@ -55,7 +61,7 @@ public class GameUI extends GamePanel {
 	 */
 	public GameUI(GameWindow window)  {
 		super(window);
-		OpponentPlayers = new PlayerPanel[5];
+		OpponentPlayers = new PlayerPanel[GameEventHandler.getPlayers().length];
 		this.createRandomFramePanel();
 
 		
@@ -70,8 +76,30 @@ public class GameUI extends GamePanel {
 		wh=window.getContentPane().getHeight();
 		
 		
-		inventory=MunchkinClient.getImage("inventory");
+		/*
+		 * 
+		 * 
+		 * 
+		 * DICE PANEL AND ITS COMPONENTS
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
 		
+		
+		Dice = new DiceManager(window);
+		Dice.setOpaque(false);
+		Dice.setBounds(ww*2/5, wh*2/3, ww*3/5, wh/3);
+		Dice.setVisible(false);
+		add(Dice);
+		Dice.setLayout(null);
+		
+		 int dice1=(int)(Math.random()*6+1);
+		 
+	
+		
+	
 		/*
 		 * 
 		 * 
@@ -409,7 +437,7 @@ public class GameUI extends GamePanel {
 
 	private void createRandomFramePanel(){
 		 int size = 10,k=0;
-	        int[] x = new int[5];
+	        int[] x = new int[GameEventHandler.getPlayers().length];
 	        
 	        ArrayList<Integer> list = new ArrayList<Integer>(size);
 	        for(int i = 1; i <= size; i++) {
@@ -417,7 +445,7 @@ public class GameUI extends GamePanel {
 	        }
 
 	        Random rand = new Random();
-	        while(list.size() > 0&&k<5) {
+	        while(list.size() > 0&&k<GameEventHandler.getPlayers().length) {
 	            int index = rand.nextInt(list.size());
 	            x[k]=list.remove(index);
 	            k++;
@@ -425,7 +453,7 @@ public class GameUI extends GamePanel {
 	    	
 	        
 	        //dovrò chiedere quanti utenti ci sono
-	        for(k=0;k<5;k++){
+	        for(k=0;k<GameEventHandler.getPlayers().length;k++){
 	     OpponentPlayers[k] = new PlayerPanel(MunchkinClient.getImage("frameplayer"+x[k]));
 	        }
 	    
@@ -445,6 +473,10 @@ public class GameUI extends GamePanel {
 	
 	public ImageButton getDrawnCard(){
 		return lblDrawnCard;
+	}
+	
+	public DiceManager getDiceManager(){
+		return Dice;
 	}
 	
 	

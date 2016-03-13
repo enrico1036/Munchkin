@@ -6,6 +6,7 @@ public class DisconnectionMessage extends Message {
 
 	public DisconnectionMessage() {
 		super(Message.CLT_DISCONNECTION);
+		
 	}
 	
 }

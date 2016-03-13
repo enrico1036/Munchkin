@@ -31,7 +31,7 @@ public class HandManager {
 		
 		this.handPositioning();
 		
-		//handPanel.repaint();
+		
 	}
 	
 	public ClientCard getCard(String Title){	//TODO: forse non serve però in caso mi sa che è meglio passargli un istanza di carta

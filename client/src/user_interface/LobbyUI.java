@@ -49,22 +49,17 @@ public class LobbyUI extends GamePanel {
 		this.add(User_ready);
 
 		ScrollList = new ScrollableList();
-		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight / 2, wndWidth / 5, wndHeight / 4);
+		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight / 2, wndWidth*2 / 5, wndHeight / 3);
 		this.add(ScrollList);
 
-		for (int i = 100; i > 0; i--) {
-
-			ScrollList.add_Element("ciaooooooo" + i);
-		}
 
 		textBox = new JTextField("Prova");
 		textBox.addActionListener(this);
 		textBox.setActionCommand("Enter");
-		textBox.setBounds(0, 0, 50, 50);
+		textBox.setBounds(wndWidth * 3 / 5, wndHeight*5/6,  wndWidth*2 / 5, wndHeight / 6);
 		this.add(textBox);
 		
-		//this.showPlayer();
-
+		GameEventHandler.getReadyPlayerList();
 	}
 
 	public ScrollableList getScrollList() {
@@ -98,9 +93,9 @@ public class LobbyUI extends GamePanel {
 		}
 		User_ready.setBounds(wndWidth * 3 / 5 + wndWidth / 5, wndHeight / 10, User_ready.getWidth(),
 				User_ready.getHeight());
-		// listScroller.setBounds( wndWidth*3/5, wndHeight/2, wndWidth/5,
-		// wndHeight/4);
-		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight / 2, wndWidth / 5, wndHeight / 4);
+		
+		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight/2,  wndWidth*2 / 5, wndHeight / 3);
+		textBox.setBounds(wndWidth * 3 / 5, wndHeight*5/6,  wndWidth*2 / 5, wndHeight / 6);
 	}
 
 	public void actionPerformed(ActionEvent e) {
