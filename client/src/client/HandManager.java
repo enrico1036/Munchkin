@@ -6,14 +6,14 @@ import javax.swing.JPanel;
 
 public class HandManager {
 
-	private ArrayList<ClientCard> hand;
+	private ArrayList<HandCards> hand;
 	private JPanel handPanel;
 	
 	public HandManager(JPanel Hand){
 		
 		this.handPanel=Hand;
 		
-		hand = new ArrayList<ClientCard>();
+		hand = new ArrayList<HandCards>();
 		//First draw 
 		for(int i=0; i<2; i++) {
 			//drawCard(DeckManager.getDoorCard());
@@ -22,11 +22,11 @@ public class HandManager {
 		
 	}
 	
-	public ArrayList<ClientCard> getHand() {
+	public ArrayList<HandCards> getHand() {
 		return hand;
 	}
 	
-	public void drawCard(ClientCard cardDrawn){
+	public void drawCard(HandCards cardDrawn){
 		hand.add(cardDrawn);
 		
 		this.handPositioning();
@@ -34,9 +34,9 @@ public class HandManager {
 		
 	}
 	
-	public ClientCard getCard(String Title){	//TODO: forse non serve però in caso mi sa che è meglio passargli un istanza di carta
-		ClientCard selected = null;
-		for(ClientCard card : hand){
+	public HandCards getCard(String Title){	//TODO: forse non serve però in caso mi sa che è meglio passargli un istanza di carta
+		HandCards selected = null;
+		for(HandCards card : hand){
 			if(card.getTitle().equals(Title)){
 				selected = card;
 			}
@@ -44,7 +44,7 @@ public class HandManager {
 		return selected;
 	}
 	
-	public void discard(ClientCard cardDiscarded){
+	public void discard(HandCards cardDiscarded){
 		//DeckManager.discardCard(hand.remove(hand.indexOf(cardDiscarded)));
 	}
 	

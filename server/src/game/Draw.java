@@ -25,7 +25,7 @@ public class Draw extends StateMachine {
 	
 	private void openDoor() {
 		Card card = Decks.getDoorCard();
-		GameManager.broadcastMessage(new DrawCardMessage(card.getTitle(),card.getType(), Action.SHOW));
+		GameManager.broadcastMessage(new DrawCardMessage(card.getTitle(), Action.SHOW));
 		//if curse play it, if monster start a combat and execute it. In all other cases draw it
 		switch(card.getCategory()) {
 		case Curse:
@@ -57,7 +57,7 @@ public class Draw extends StateMachine {
 
 			SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
 			if(message.getCardName() != SelectedCardMessage.DOOR_DECK) {
-				GameManager.getCurrentPlayer().sendMessage(new DrawCardMessage(message.getCardName(),message.getType(), Action.SHOW));
+				GameManager.getCurrentPlayer().sendMessage(new DrawCardMessage(message.getCardName(),Action.SHOW));
 				Monster card = null;
 				for (Card handCard : GameManager.getCurrentPlayer().getHand()) {
 					if(handCard.getTitle() == message.getCardName()) {

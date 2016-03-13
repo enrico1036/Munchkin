@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import client.MunchkinClient;
 import network.GameEventHandler;
+import client.HandCards;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -133,9 +134,9 @@ public class GameUI extends GamePanel {
 		
 		zp=new ZoomedPanel();
 				
-		ClientCard card1 = new ClientCard("door");
+		HandCards card1 = new HandCards("door");
 		card1.CreateCard(MunchkinClient.getImage("door_card"), zp);
-		ClientCard card2 = new ClientCard("treasure");
+		HandCards card2 = new HandCards("treasure");
 		card2.CreateCard(MunchkinClient.getImage("treasure_card"), zp);
 		
 		
@@ -420,7 +421,7 @@ public class GameUI extends GamePanel {
 		switch(e.getActionCommand()){
 		
 		case "DrawDoor":
-			ClientCard card1 = new ClientCard("door");
+			HandCards card1 = new HandCards("door");
 			card1.CreateCard(MunchkinClient.getImage("door_card"),  zp);
 			
 			HandCards.drawCard(card1);
@@ -429,7 +430,7 @@ public class GameUI extends GamePanel {
 			
 			break;
 		case "DrawTreasure":
-			ClientCard card2 = new ClientCard("treasure");
+			HandCards card2 = new HandCards("treasure");
 			card2.CreateCard(MunchkinClient.getImage("treasure_card"), zp);
 			
 			HandCards.drawCard(card2);

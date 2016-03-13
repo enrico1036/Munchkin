@@ -51,7 +51,7 @@ public class GameManager{
 	}
 	
 	public static void giveCardToPlayer(Card card, Player player) {
-		player.sendMessage(new DrawCardMessage(card.getTitle(),card.getType(), Action.DRAW));
+		player.sendMessage(new DrawCardMessage(card.getTitle(), Action.DRAW));
 		player.draw(card);
 	}
 	
