@@ -61,5 +61,8 @@ public class PlayerConnection {
 		return connection.isConnected() && (playerName != null);
 	}
 	
+	public void close(){
+		connection.disconnect();
+	}
 
 }

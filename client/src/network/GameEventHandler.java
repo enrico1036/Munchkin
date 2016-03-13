@@ -108,4 +108,11 @@ public class GameEventHandler {
 		connection.send(new PlayerStatusRequest(Player,PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT));
 	}
 	
+	public static void signalExit(){
+		if(connection != null && connection.isConnected()){
+			connection.send(new );
+			connection.close();
+		}
+	}
+	
 }

@@ -28,6 +28,7 @@ public abstract class Message implements Serializable{
 
 	// Client connection 
 	public static final String CLT_REQUEST_CONNECTION = "REQUEST_CONNECTION";
+	public static final String CLT_DISCONNECTION = "DISCONNECTION";
 	// Lobby chat message
 	public static final String CLT_CHAT_MESSAGE = "CHAT_MESSAGE";
 	
