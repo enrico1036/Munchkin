@@ -72,6 +72,7 @@ public class GameUI extends GamePanel {
 		
 		//Create the gameUI ZoomedPanel
 		zp=new ZoomedPanel();
+		GameEventHandler.getReadyPlayerList();
 		OpponentPlayers = new PlayerPanel[GameEventHandler.getPlayers().length-1];
 		this.createRandomFramePanel();
 
