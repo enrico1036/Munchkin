@@ -15,6 +15,7 @@ import network.message.server.PlayerStatusRequest;
 import network.message.server.PopUpMessage;
 import network.message.server.ReadyLobbyMessage;
 import network.message.server.ReadyStatusMessage;
+import network.message.server.StateUpdateMessage;
 import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayerFullStatsMessage;
@@ -158,13 +159,22 @@ public class GameEventHandler {
 																											equip.getFeet());
 							}
 								}
+							}
 							break;
+							case Message.STATE_UPDATE:
+							StateUpdateMessage update = (StateUpdateMessage)received;
+							update.getState().equals("begin");
+							MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow()));
+							MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
+							
 						}	
 					}
-						}
-				} while(GameEventHandler.connection.isConnected());
+						
 				
-			}
+				}while(GameEventHandler.connection.isConnected());
+		
+		}
+	
 		});
 		GameEventHandler.thread.start();
 	}

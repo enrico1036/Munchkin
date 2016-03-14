@@ -152,13 +152,10 @@ public class LobbyUI extends GamePanel {
 			
 		}
 
-	/*
-		if (readyPlayers.length == readyPlayers.length) {
-			// TODO Insert a timer of 6 second
-			MunchkinClient.getPanels().put("GameUI", new GameUI(window));
-			window.SetActivePanel(MunchkinClient.getPanel("GameUI"));
-
-		}*/
+	
+		
+		
+		
 	}
 
 }

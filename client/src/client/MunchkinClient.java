@@ -29,7 +29,7 @@ public class MunchkinClient {
  */
 	private static HashMap<String,GamePanel> panels;
 	private static HashMap<String, BufferedImage> images;
-	private  GameWindow window;
+	private static  GameWindow window;
 	public static PlayerConnection connection;
 
 	
@@ -106,6 +106,13 @@ public class MunchkinClient {
 	 */
 	public static BufferedImage getImage(String Name) {
 		return images.get(Name);
+	}
+	/**
+	 * It's used to get the active gameWindow
+	 * @return the active gameWindow 
+	 */
+	public static GameWindow getWindow(){
+		return window;
 	}
 	
 	public static void main(String[] args) {
