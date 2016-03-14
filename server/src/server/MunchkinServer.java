@@ -54,20 +54,7 @@ public class MunchkinServer {
 		listener.start();
 		
 
-		int timerCount = 5;
-		Timer lobbyTimer = new Timer();
-		CountdownTask task = new CountdownTask(5) {
-			
-			@Override
-			public void run() {
-				GameManager.broadcastMessage(new ChatMessage("Server", "Game starting in " + (target - count) + " seconds"));
-				if(this.count == this.target){
-					this.complete = true;
-			        this.cancel();
-				}
-				this.count++;
-			}
-		};
+		CountdownTask task = new CountdownTask(5);
 		
 		while (listener.isRunning() && !task.hasCompleted()) {
 
@@ -102,12 +89,10 @@ public class MunchkinServer {
 							allReady &= p.isLobby_ready();
 						
 						if(allReady){
-							timerCount = 5;
-							lobbyTimer.schedule(task, 0, 1000);
+							task = new CountdownTask(5);
+							new Timer().schedule(task, 0, 1000);
 						} else {
 							task.cancel();
-							task.reset();
-							lobbyTimer.cancel();
 							GameManager.broadcastMessage(new ChatMessage("server", "Starting stopped"));
 						}
 						break;
@@ -137,7 +122,7 @@ public class MunchkinServer {
 		
 		// Communicate clients to switch to game scene
 		GameManager.broadcastMessage(new PopUpMessage("SEEE WORKA DIO CAR", 5000));
-
+		System.out.println("Lobby ended");
 		GameManager.startGame();
 
 	}
