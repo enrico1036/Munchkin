@@ -31,7 +31,7 @@ public class PlayerEquipmentMessage extends PlayerStatusRequest {
 
 	}
 
-	public String getPlayer() {
+	public String getPlayerName() {
 		return playerName;
 	}
 
@@ -56,24 +56,4 @@ public class PlayerEquipmentMessage extends PlayerStatusRequest {
 	}
 	
 	
-	
-	/*
-	@Override
-	public String getFormattedMessage() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(messageCode);
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(head.getTitle());
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(hand1.getTitle());
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(hand2.getTitle());
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(body.getTitle());
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(feet.getTitle());
-		builder.append(Message.MSG_TERMINATOR);
-		return builder.toString();
-	}*/
-
 }

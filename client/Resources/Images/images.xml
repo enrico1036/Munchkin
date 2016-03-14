@@ -108,7 +108,10 @@
     	<name>inventory</name>
     	<path>Resources/Images/inventory.png</path>
     </image>
-    
+    <image>
+    	<name>return_back</name>
+    	<path>Resources/Images/returnback.png</path>
+    </image>
     
     <!-- Door Cards -->
     <image>

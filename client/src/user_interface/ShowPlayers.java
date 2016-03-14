@@ -7,6 +7,9 @@ import java.awt.image.BufferedImage;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import cards.EquipSlot;
+import cards.Equipment;
+import client.ClientCard;
 import client.HandCards;
 import client.HandManager;
 import client.MunchkinClient;
@@ -15,12 +18,13 @@ import network.GameEventHandler;
 
 public class ShowPlayers extends GamePanel{
 	
-	private BufferedImage background;
+	private BufferedImage background,head,hand1,body,hand2,feet;;
 	//---------Player JComponents------------
-	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
-	lblPlayerCards,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue,
-	lblPlayerHead,lblPlayerRiarm,lblPlayerBody,lblPlayerLearm,lblPlayerLegs;
-	private JButton returnBack;
+	private JLabel lblPlayerName,lblPlayerLevel,
+	lblPlayerNumCards,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue;
+	
+	private ClientCard PlayerHead,PlayerHand1,PlayerBody,PlayerHand2,PlayerFeet,PlayerRace,PlayerClass;
+	private ImageButton returnBack;
 	
 	private String playerName;
 	
@@ -33,20 +37,21 @@ public class ShowPlayers extends GamePanel{
 		this.background=MunchkinClient.getImage("panel_background");
 		this.playerName=Player;
 		
+		zp=new ZoomedPanel();
+		
 		GameEventHandler.getPlayerStatistics(playerName);
 		GameEventHandler.getPlayerEquipment(playerName);
 		
 		psw=this.getWidth();
 		psh=this.getHeight();
 		
-		//TODO Risistemare tutte le grandezze DA FEDE AHAHAH
 		
-		zp=new ZoomedPanel();
+		
 
 		
 		
 		zp.setVisible(true);
-		zp.setBounds(psw/3, psh/20, psw/3, psh*5/8);
+		zp.setBounds(psw*2/3, 0, psw/3, psh);
 		this.add(zp);
 		zp.setLayout(null);
 		
@@ -67,66 +72,73 @@ public class ShowPlayers extends GamePanel{
 		
 	
 		
-		lblPlayerName = new JLabel("PlayerName");
-		lblPlayerName.setBounds(psw/16, 0, psw*7/16, psh/3);
+		lblPlayerName = new JLabel(playerName);
+		lblPlayerName.setBounds(0, psh/10, psw/3, psh*2/10);
 		this.add(lblPlayerName);
 
 		lblPlayerLevel = new JLabel("Level");
-		lblPlayerLevel.setBounds(psw/2,0, psw/4,psh/6);
+		lblPlayerLevel.setBounds(0,psh*4/10,psw/3, psh*2/10);
 		this.add(lblPlayerLevel);
 
-		 lblPlayerLevelValue = new JLabel("Level Value");
-		lblPlayerLevelValue.setBounds(psw*3/4,0, psw/4, psh/6);
+		 lblPlayerLevelValue = new JLabel(String.valueOf(1));
+		lblPlayerLevelValue.setBounds(psw/3,psh*4/10,psw/3, psh*2/10);
 		this.add(lblPlayerLevelValue);
 		
 		lblPlayerPower = new JLabel("Power");
-		lblPlayerPower.setBounds(psw/2, psh/6, psw/4, psh/6);
+		lblPlayerPower.setBounds(0, psh*7/10, psw/3, psh*2/10);
 		this.add(lblPlayerPower);
 
-		 lblPlayerPowerValue = new JLabel("Power Value");
-		 lblPlayerPowerValue.setBounds(psw*3/4, psh/6, psw/4, psh/6);
+		 lblPlayerPowerValue = new JLabel(String.valueOf(0));
+		 lblPlayerPowerValue.setBounds(psw/3, psh*7/10, psw/3, psh*2/10);
 		 this.add(lblPlayerPowerValue);
 	
-		 lblPlayerRace = new JLabel("Race");
-		lblPlayerRace.setBounds(psw/8,psh/3, psw/8, psh/4);
-		this.add(lblPlayerRace);
+		 PlayerRace = new ClientCard("Race");
+		PlayerRace.setBounds(0,psh/2, psw/3, psh/6);
+		this.add(PlayerRace);
 		
-		 lblPlayerClass = new JLabel("Class");
-		lblPlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
-		this.add(lblPlayerClass);
+		 PlayerClass = new ClientCard("Class");
+		PlayerClass.setBounds(0, psh*4/6,  psw/3, psh/6);
+		this.add(PlayerClass);
 		
-		 lblPlayerCards = new JLabel("N Cards");
-		 lblPlayerCards.setBounds(psw*3/8, psh/3, psw/8, psh/4);;
-		 this.add(lblPlayerCards);
+		 lblPlayerNumCards = new JLabel("N Cards");
+		 lblPlayerNumCards.setBounds(0, psh*5/6,  psw/3, psh/6);;
+		 this.add(lblPlayerNumCards);
 		
-		
-		
-		
+		 head = MunchkinClient.getImage("player_head");
+		 hand1 = MunchkinClient.getImage("player_hand1");
+		 body = MunchkinClient.getImage("player_body");
+		 hand2 = MunchkinClient.getImage("player_hand2");
+		 feet = MunchkinClient.getImage("player_feet");
 		
 	
-		 lblPlayerHead = new JLabel("Head");
-		 lblPlayerHead.setBounds(psw*2/3, psh/3, psw/6, psh*2/9);
-		 this.add(lblPlayerHead);
+		 PlayerHead = new ClientCard("Head");
+		 PlayerHead.setBounds(psw*4/9, psh*3/6, psw/9, psh/6);
+		 PlayerHead.CreateCard(head, zp);	
+		 this.add(PlayerHead);
+
+		 
+		 PlayerHand1 = new ClientCard("hand1");
+		 PlayerHand1.setBounds(psw*3/9, psh*4/6,psw/9, psh/6);
+		 PlayerHand1.CreateCard(hand1, zp);
+		 this.add(PlayerHand1);
 		
+		 
+		 PlayerBody = new ClientCard("body");
+		 PlayerBody.setBounds(psw*4/9, psh*4/6,psw/9, psh/6);
+		 PlayerBody.CreateCard(body, zp);
+		 this.add(PlayerBody);
 		
+		PlayerHand2 = new ClientCard("hand2");
+		PlayerHand2.setBounds(psw*5/9, psh*4/6,psw/9, psh/6);
+		PlayerHand2.CreateCard(hand2, zp);
+		this.add(PlayerHand2);
 		
-		 lblPlayerRiarm = new JLabel("RiArm");
-		 lblPlayerRiarm.setBounds(psw/2, psh*5/9, psw/6, psh*2/9);
-		 this.add(lblPlayerRiarm);
+		 PlayerFeet = new ClientCard("feet");
+		 PlayerFeet.setBounds(psw*4/9, psh*5/6, psw/9, psh/6);
+		 PlayerFeet.CreateCard(feet, zp);
+		 this.add(PlayerFeet);
 		
-		 lblPlayerBody = new JLabel("Body");
-		 lblPlayerBody.setBounds(psw*2/3, psh*5/9, psw/6, psh*2/9);
-		 this.add(lblPlayerBody);
-		
-		 lblPlayerLearm = new JLabel("LeArm");
-		 lblPlayerLearm.setBounds(psw*5/6, psh*5/9,psw/6, psh*2/9);
-		 this.add(lblPlayerLearm);
-		
-		 lblPlayerLegs = new JLabel("Legs");
-		 lblPlayerLegs.setBounds(psw*2/3, psh*7/9, psw/6, psh*2/9);
-		 this.add(lblPlayerLegs);
-	
-			returnBack = new JButton("Return");
+			returnBack = new ImageButton(MunchkinClient.getImage("return_back"));
 			returnBack.setBounds(psw*7/8,psh*7/8,psw/8,psh/8);
 			returnBack.setActionCommand("return");
 			returnBack.setVisible(true);
@@ -151,4 +163,45 @@ public class ShowPlayers extends GamePanel{
 		g.drawImage(background, 0,0, this.getWidth(), this.getHeight(),null);
 		
 	}
+	public void changeStatistics(int levelValue, int powerValue, String newClass,
+			String newRace, int numCard){
+		
+		//update the player level and power value
+		lblPlayerLevelValue.setText(String.valueOf(levelValue));
+		lblPlayerPowerValue.setText(String.valueOf(powerValue));
+		
+		//update the player race
+		BufferedImage image = MunchkinClient.getImage(newRace);
+		
+		if(PlayerRace.imageIsNull())
+			PlayerRace.CreateCard(image, zp);
+		else
+			PlayerRace.setImage(image);
+		
+		//update the player class
+		image = MunchkinClient.getImage(newClass);
+		
+		if(PlayerClass.imageIsNull())
+			PlayerClass.CreateCard(image, zp);
+		else
+			PlayerClass.setImage(image);
+		
+		//update the size of the player hand
+		lblPlayerNumCards.setText(String.valueOf(numCard));
+	
+		
+	}
+	
+	public void changeEquipment(Equipment head,Equipment hand1,Equipment hand2,
+			Equipment body,Equipment feet){
+		
+			PlayerHead.setImage(MunchkinClient.getImage(head.getTitle()));
+			PlayerHand1.setImage(MunchkinClient.getImage(hand1.getTitle()));
+			PlayerHand2.setImage(MunchkinClient.getImage(hand2.getTitle()));
+			PlayerBody.setImage(MunchkinClient.getImage(body.getTitle()));
+			PlayerFeet.setImage(MunchkinClient.getImage(feet.getTitle()));
+
+	}
+	
+	
 }

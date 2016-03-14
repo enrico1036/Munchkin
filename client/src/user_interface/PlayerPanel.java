@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import cards.Equipment;
 import client.ClientCard;
 import client.MunchkinClient;
 
@@ -30,9 +31,9 @@ public class PlayerPanel extends PaintPanel {
 	
 	private BufferedImage showPlayerCards;
 	private ShowPlayers detailsPanel;
+	private ZoomedPanel zp;
 	
-	
-	public PlayerPanel(BufferedImage image,String playerName,GameWindow wnd) {
+	public PlayerPanel(BufferedImage image,String playerName,GameWindow wnd,ZoomedPanel zp) {
 		super(image);
 		
 		showPlayerCards = MunchkinClient.getImage("cards");
@@ -42,6 +43,7 @@ public class PlayerPanel extends PaintPanel {
 		
 		this.playerName=playerName; 
 		this.wnd=wnd;
+		this.zp=zp;
 		/*
 		 * 
 		 * PLAYER PANEL JCOMPONENTS
@@ -155,7 +157,37 @@ public class PlayerPanel extends PaintPanel {
 		return lblPlayerNumCards;
 	}
 	
+	public void changeStatistics(int levelValue, int powerValue, String newClass,
+			String newRace, int numCard){
+		
+		//update the player level and power value
+		lblPlayerLevelValue.setText(String.valueOf(levelValue));
+		lblPlayerPowerValue.setText(String.valueOf(powerValue));
+		
+		//update the player race
+		BufferedImage image = MunchkinClient.getImage(newRace);
+		
+		if(PlayerRace.imageIsNull())
+			PlayerRace.CreateCard(image, zp);
+		else
+			PlayerRace.setImage(image);
+		
+		//update the player class
+		image = MunchkinClient.getImage(newClass);
+		
+		if(PlayerClass.imageIsNull())
+			PlayerClass.CreateCard(image, zp);
+		else
+			PlayerClass.setImage(image);
+		
+		//update the number of the player hand
+		lblPlayerNumCards.setText(String.valueOf(numCard));
 	
-	//TODO INSERIRE UN METODO PER SETTARE TUTTO ANCHE SHOW PLAYERS
+		
+		
+		detailsPanel.changeStatistics(levelValue, powerValue, newClass, newRace, numCard);
+	}
+	
+	
 	
 }

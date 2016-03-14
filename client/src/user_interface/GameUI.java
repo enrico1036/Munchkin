@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import cards.ClassCard;
 import cards.EquipSlot;
+import cards.Equipment;
 import cards.Race;
 
 import javax.swing.JLabel;
@@ -68,6 +69,9 @@ public class GameUI extends GamePanel {
 	 */
 	public GameUI(GameWindow window)  {
 		super(window);
+		
+		//Create the gameUI ZoomedPanel
+		zp=new ZoomedPanel();
 		OpponentPlayers = new PlayerPanel[GameEventHandler.getPlayers().length-1];
 		this.createRandomFramePanel();
 
@@ -134,7 +138,7 @@ public class GameUI extends GamePanel {
 		 * 
 		 */
 		
-		zp=new ZoomedPanel();
+		
 				
 		HandCards card1 = new HandCards("door");
 		card1.CreateCard(MunchkinClient.getImage("door_card"), zp);
@@ -442,29 +446,17 @@ public class GameUI extends GamePanel {
 		}
 	}
 	
-	public void changeEquipment(EquipSlot e,String EquipmentName){
+	public void changeEquipment(Equipment head,Equipment hand1,Equipment hand2,
+			Equipment body,Equipment feet){
 		
-		BufferedImage image= MunchkinClient.getImage(EquipmentName);
-		
-		switch(e){
-		case head:
-			PlayerHead.setImage(image);
-			break;
-		case hand1:
-			PlayerHand1.setImage(image);
-			break;
-		case hand2:
-			PlayerHand2.setImage(image);
-			break;
-		case body:
-			PlayerBody.setImage(image);
-			break;
-		case feet:
-			PlayerFeet.setImage(image);
-			break;
-			
-		}
+			PlayerHead.setImage(MunchkinClient.getImage(head.getTitle()));
+			PlayerHand1.setImage(MunchkinClient.getImage(hand1.getTitle()));
+			PlayerHand2.setImage(MunchkinClient.getImage(hand2.getTitle()));
+			PlayerBody.setImage(MunchkinClient.getImage(body.getTitle()));
+			PlayerFeet.setImage(MunchkinClient.getImage(feet.getTitle()));
+
 	}
+	
 
 
 	private void createRandomFramePanel(){
@@ -491,7 +483,7 @@ public class GameUI extends GamePanel {
 	        			GameEventHandler.getConnection().getConnectedPlayerName())))
 	        		
 	     OpponentPlayers[j] = new PlayerPanel(MunchkinClient.getImage("frameplayer"+x[j]),
-	    		 GameEventHandler.getPlayers()[k],window);
+	    		 GameEventHandler.getPlayers()[k],window,zp);
 	        }
 	    
 		

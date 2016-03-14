@@ -26,11 +26,6 @@ public abstract class Message implements Serializable{
 	public static final String CLT_SET_LOBBY_STATUS="LOBBY_STATUS";
 
 	
-	//Send the card that player want to use like equipment, class or race
-	public static final String CLT_CHANGE_EQUIPMENT = "CHANGE_EQUIPMENT";
-	public static final String CLT_CHANGE_CLASS = "CHANGE_CLASS";
-	public static final String CLT_CHANGE_RACE = "CHANGE_RACE";
-
 	//Get the player state
 	public static final String STATE_UPDATE = "STATE_UPDATE";
 	

@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.nio.channels.ReadPendingException;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -15,18 +13,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import client.MunchkinClient;
 import network.GameEventHandler;
-import network.message.client.ClientGeneralRequest;
-import network.message.server.PlayerStatusRequest;
 
 public class LobbyUI extends GamePanel {
 
 	private BufferedImage background, dragon, users;
-	private JTextArea Gamestatus;
-	private JList<String> Gamestatus_list;
 	private int wndWidth, wndHeight;
 	private JButton User_ready;
-	// private JScrollPane listScroller;
-	private DefaultListModel<String> listModel;
 	private ScrollableList ScrollList;
 	private JLabel[][] Users;
 	private JTextField textBox;
@@ -49,14 +41,14 @@ public class LobbyUI extends GamePanel {
 		this.add(User_ready);
 
 		ScrollList = new ScrollableList();
-		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight / 2, wndWidth*2 / 5, wndHeight / 3);
+		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight*7/10,  wndWidth*2 / 5, wndHeight*27/100);
 		this.add(ScrollList);
 
 
-		textBox = new JTextField("Prova");
+		textBox = new JTextField("Enter your text here");
 		textBox.addActionListener(this);
 		textBox.setActionCommand("Enter");
-		textBox.setBounds(wndWidth * 3 / 5, wndHeight*5/6,  wndWidth*2 / 5, wndHeight / 6);
+		textBox.setBounds(wndWidth * 3 / 5, wndHeight*99/100,  wndWidth*2 / 5, wndHeight /100);
 		this.add(textBox);
 		
 		GameEventHandler.getReadyPlayerList();
@@ -94,8 +86,8 @@ public class LobbyUI extends GamePanel {
 		User_ready.setBounds(wndWidth * 3 / 5 + wndWidth / 5, wndHeight / 10, User_ready.getWidth(),
 				User_ready.getHeight());
 		
-		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight/2,  wndWidth*2 / 5, wndHeight / 3);
-		textBox.setBounds(wndWidth * 3 / 5, wndHeight*5/6,  wndWidth*2 / 5, wndHeight / 6);
+		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight*7/10,  wndWidth*2 / 5, wndHeight*27/100);
+		textBox.setBounds(wndWidth * 3 / 5, wndHeight*99/100,  wndWidth*2 / 5, wndHeight /100);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -136,7 +128,7 @@ public class LobbyUI extends GamePanel {
 
 		
 		
-		// Clear the table
+		// Clear the list of Jlabels
 		for (int i = 1; i < 6; i++) {
 			Users[i][0].setVisible(false);
 			Users[i][1].setVisible(false);
@@ -144,7 +136,7 @@ public class LobbyUI extends GamePanel {
 			Users[i][1].setText("");
 		}
 		
-		//GameEventHandler.getReadyPlayerList();
+		
 		readyPlayers = GameEventHandler.getReadyPlayer();
 		readyStatus = GameEventHandler.getReadyStatus();
 		

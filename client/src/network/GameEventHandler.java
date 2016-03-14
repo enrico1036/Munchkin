@@ -10,9 +10,6 @@ import network.message.client.ClientGeneralRequest;
 import network.message.client.DisconnectionMessage;
 import network.message.client.PopUpResultMessage;
 import network.message.client.SelectedCardMessage;
-import network.message.server.ChangeClassMessage;
-import network.message.server.ChangeEquipmentMessage;
-import network.message.server.ChangeRaceMessage;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayerStatusRequest;
 import network.message.server.PopUpMessage;
@@ -65,9 +62,11 @@ public class GameEventHandler {
 								gamepanel.getHandCards().drawCard(carddrawn);
 								break;
 							case DISCARD:
+								//TODO CASE DISCARD
 //								gamepanel
 								break;
 							case REMOVE:
+								//TODO CASE REMOVE
 								break;
 							}
 							break;
@@ -109,13 +108,17 @@ public class GameEventHandler {
 							else{
 								int i=0;
 								boolean founded=false;
-								while(founded==false){
+								while(!founded){
 									if(!(gamepanel.getOpponentPlayers()[i].getPlayerName().equals(
 											statistics.getPlayerName())))
 									i++;
 									else{
 										founded=true;
-										//TODO CHIAMARE IL METODO DI PLAYER PANEL PER SETTARE TUTTO
+										gamepanel.getOpponentPlayers()[i].changeStatistics(statistics.getLevel(),
+																						statistics.getPower(),
+																						statistics.getPlayerClass().getTitle(),
+																						statistics.getPlayerRace().getTitle(),
+																						statistics.getPlayerNumCards());
 									
 									}
 										
@@ -128,10 +131,35 @@ public class GameEventHandler {
 							break;
 						case Message.PLAYER_EQUIPMENT:
 							PlayerEquipmentMessage equip =(PlayerEquipmentMessage)received;
-							
+							if(equip.getPlayerName().equals(
+									GameEventHandler.getConnection().getConnectedPlayerName())){
+								gamepanel.changeEquipment(equip.getHead(),
+															equip.getHand1(),
+															equip.getHand2(),
+															equip.getBody(), 
+															equip.getFeet());
+								
+								
+							}else{
+								int i=0;
+								boolean founded=false;
+								while(!founded){
+									if(!(gamepanel.getOpponentPlayers()[i].getPlayerName().equals(
+											equip.getPlayerName())))
+									i++;
+									else{
+										founded=true;
+										gamepanel.getOpponentPlayers()[i].getDetailsPanel().changeEquipment(equip.getHead(),
+																											equip.getHand1(),
+																											equip.getHand2(),
+																											equip.getBody(), 
+																											equip.getFeet());
+							}
+								}
 							break;
 						}	
 					}
+						}
 				} while(GameEventHandler.connection.isConnected());
 				
 			}
