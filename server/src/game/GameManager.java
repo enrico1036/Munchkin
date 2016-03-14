@@ -54,6 +54,7 @@ public class GameManager{
 		end();		
 	}
 	
+	
 	public static Player getCurrentPlayer() {
 		return players.get(0);
 	}

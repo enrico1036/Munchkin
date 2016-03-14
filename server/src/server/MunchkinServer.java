@@ -4,8 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cards.Card;
+import cards.Consumable;
+import cards.Monster;
 import game.Decks;
 import game.GameManager;
 import game.Player;
@@ -14,6 +18,7 @@ import network.ConnectionListener;
 import network.ConnectionPool;
 import network.MessageQueue;
 import network.message.Message;
+import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.UpdateReadyPlayerMessage;
 import network.message.server.ReadyLobbyMessage;
@@ -22,6 +27,7 @@ import network.message.server.PlayCardMessage;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayerFullStatsMessage;
 import network.message.server.PlayerStatusRequest;
+import network.message.server.PopUpMessage;
 import utils.Debug;
 
 public class MunchkinServer {
@@ -46,8 +52,24 @@ public class MunchkinServer {
 		listener.setAcceptTimeout(0);
 		listener.setConnectionTimeout(0);
 		listener.start();
+		
 
-		while (listener.isRunning()) {
+		int timerCount = 5;
+		Timer lobbyTimer = new Timer();
+		CountdownTask task = new CountdownTask(5) {
+			
+			@Override
+			public void run() {
+				GameManager.broadcastMessage(new ChatMessage("Server", "Game starting in " + (target - count) + " seconds"));
+				if(this.count == this.target){
+					this.complete = true;
+			        this.cancel();
+				}
+				this.count++;
+			}
+		};
+		
+		while (listener.isRunning() && !task.hasCompleted()) {
 
 			if (!queue.isEmpty()) {
 				System.out.println("Player num: " + GameManager.getPlayers().size());
@@ -70,10 +92,24 @@ public class MunchkinServer {
 							break;
 						}
 						break;
+						
 					case Message.CLT_SET_LOBBY_STATUS:
 						GameManager.getPlayerByName(pair.getKey()).setLobby_ready(!GameManager.getPlayerByName(pair.getKey()).isLobby_ready());
 						pool.broadcast(new ReadyLobbyMessage(GameManager.getPlayers()));
-						//pool.broadcast(new UpdateReadyPlayerMessage());
+						
+						boolean allReady = true;
+						for(Player p : GameManager.getPlayers())
+							allReady &= p.isLobby_ready();
+						
+						if(allReady){
+							timerCount = 5;
+							lobbyTimer.schedule(task, 0, 1000);
+						} else {
+							task.cancel();
+							task.reset();
+							lobbyTimer.cancel();
+							GameManager.broadcastMessage(new ChatMessage("server", "Starting stopped"));
+						}
 						break;
 
 					case Message.CLT_DISCONNECTION:
@@ -98,9 +134,13 @@ public class MunchkinServer {
 				e.printStackTrace();
 			}
 		}
+		
+		// Communicate clients to switch to game scene
+		GameManager.broadcastMessage(new PopUpMessage("SEEE WORKA DIO CAR", 5000));
 
 		GameManager.startGame();
 
 	}
+	
 
 }

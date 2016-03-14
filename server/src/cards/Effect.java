@@ -3,7 +3,7 @@ package cards;
 
  public class Effect {
 	 
-//	 runEffect(StateMachine gamePhase) {
+//	 runEffect(StateMachine gamePhase, param1, parma2,,,,) {
 //		 switch(effectString){
 //		 call right method with gamePhase and needed parameters
 //		 }
