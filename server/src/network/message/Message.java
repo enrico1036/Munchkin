@@ -62,20 +62,23 @@ public abstract class Message implements Serializable{
 	 */
 	
 	//Player status request message
-	
 	public static final String PLAYER_STATUS_REQUEST = "PLAYER_STATUS";
 	
 	//All message to get players statistics
 	public static final String PLAYER_FULL_STATS = "PLAYER_STATS";
 	public static final String PLAYER_EQUIPMENT = "PLAYER_EQUIPMENT";
 
-	
+	/*
+	 * 	COMMAND MESSAGE
+	 */
 	
 	//Show on a client view a popup message
 	public static final String POPUP = "POPUP";
 	//Show the result of a popup message
 	public static final String CLT_POPUP_RESULT="POPUP_RESULT";
 	
+	//Tell to a client to show with the dice on the correct face 
+	public static final String DICE_RESULT = "DICE_RESULT";
 	
 	/*
 	 * 	MESSAGE CODES LIST END

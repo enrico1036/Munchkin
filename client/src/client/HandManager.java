@@ -80,10 +80,12 @@ public class HandManager {
 	 * It is used to remove a card from the player hand
 	 * @param cardDiscarded: the card that we want to remove
 	 */
-	public void discard(HandCards cardDiscarded){
-		//TODO DEVO SCARTARE LA CARTE E METTERLA DOVE??
+	public void remove(HandCards cardDiscarded){
+		//TODO Q:DEVO SCARTARE LA CARTE E METTERLA DOVE?? - A:da nessuna parte..semplicemente non deve essere piu fatta vedere nella mano
 		//DeckManager.discardCard(hand.remove(hand.indexOf(cardDiscarded)));
 	}
+	
+	
 	/**
 	 * Return the size of the player hand
 	 * @return an int that stands for the player hand size

@@ -6,6 +6,7 @@ import cards.Monster;
 import network.message.Message;
 import network.message.client.PopUpResultMessage;
 import network.message.client.SelectedCardMessage;
+import network.message.server.DiceResultMessage;
 import network.message.server.PopUpMessage;
 import utils.StateMachine;
 
@@ -95,25 +96,41 @@ public class Combat extends StateMachine {
 	}
 
 	private void end() {
-		if (helperPlayer != null) {
-			if (helperPlayer.getCombatLevel() + GameManager.getCurrentPlayer().getCombatLevel() + playerBonus > this.card.getLevel()) {
+		playerWon = false;
+		if (helperPlayer != null) {	// helperPlayer present
+			if (helperPlayer.getCombatLevel() + GameManager.getCurrentPlayer().getCombatLevel() + playerBonus > card.getLevel()) {
 				playerWon = true;
-			}
-		} else {
-			if (GameManager.getCurrentPlayer().getCombatLevel() + playerBonus > this.card.getLevel()) {
-				playerWon = true;
-				promisedTreasure = 0;
-			}
-		}
-
-		// if player won against monster give him earned levels and divide treasures between him and helper
-		if (playerWon) {
-			GameManager.getCurrentPlayer().leveleUp(card.getEarningLevels());
-			if (promisedTreasure <= card.getEarningTreasures()) {
+				GameManager.getCurrentPlayer().leveleUp(card.getEarningLevels());
 				for (int i = 0; i < promisedTreasure; i++)
 					helperPlayer.draw(Decks.getTreasureCard());
 				for (int i = 0; i < card.getEarningLevels() - promisedTreasure; i++)
 					GameManager.getCurrentPlayer().draw(Decks.getTreasureCard());
+			} else {	// player loose
+				// roll die and check if escape
+				int die = (int) Math.random()*5+1;
+				GameManager.getCurrentPlayer().sendMessage(new DiceResultMessage(die));
+				if(die < GameManager.getCurrentPlayer().getEscapeTreshold()) {
+					//run bad things
+				}
+				die = (int) Math.random()*5+1;
+				helperPlayer.sendMessage(new DiceResultMessage(die));
+				if(die < helperPlayer.getEscapeTreshold()) {
+					//run bad things
+				}
+			}
+		} else { // No one helped player
+			if (GameManager.getCurrentPlayer().getCombatLevel() + playerBonus > card.getLevel()) {
+				playerWon = true;
+				GameManager.getCurrentPlayer().leveleUp(card.getEarningLevels());
+				for (int i = 0; i < card.getEarningLevels(); i++)
+					GameManager.getCurrentPlayer().draw(Decks.getTreasureCard());
+			} else {	//player loose
+				// roll die and check if escape
+				int die = (int) Math.random()*5+1;
+				GameManager.getCurrentPlayer().sendMessage(new DiceResultMessage(die));
+				if(die < GameManager.getCurrentPlayer().getEscapeTreshold()) {
+					//run bad things
+				}
 			}
 		}
 	}

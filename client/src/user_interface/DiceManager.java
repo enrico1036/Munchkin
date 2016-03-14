@@ -7,10 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class DiceManager extends JPanel implements MouseListener {
-
 	
-	 //TODO SISTEMARLO NEL SERVER
-	 private JLabel diceLabel;
+	 //TODO Modificarlo in modo da poter ricevere il risultato dall'esterno (in particolare dal messaggio DiceResultMessage ricevuto dal server)
+	 
+	private JLabel diceLabel;
 	 private int diceValue;
 	 
 	 

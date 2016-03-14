@@ -30,6 +30,7 @@ public class Player {
 	private Equipment body;
 	private Equipment feet;
 	private boolean alive;
+	private int escapeTreshold;	// you can escape from monster only if rolling a die the result is higher or equal
 	private final int handSize = 5;
 
 	public Player(String username) {
@@ -43,18 +44,11 @@ public class Player {
 		this.alive = false;
 		this.connection = null;
 		this.lobby_ready = false;
+		this.escapeTreshold = 5;
 	}
 
 	public String getUsername() {
 		return username;
-	}
-
-	public boolean isLobby_ready() {
-		return lobby_ready;
-	}
-
-	public void setLobby_ready(boolean lobby_ready) {
-		this.lobby_ready = lobby_ready;
 	}
 
 	public void die() {
@@ -90,6 +84,14 @@ public class Player {
 		combatLevel += feet.getBonus();
 		return combatLevel;
 	}
+	
+	public int getEscapeTreshold() {
+		return escapeTreshold;
+	}
+	
+	public void setEscapeTreshold(int treshold) {
+		this.escapeTreshold = treshold;
+	}
 
 	// public boolean setRaceAllowed(int num) {
 	// switch (num) {
@@ -110,11 +112,6 @@ public class Player {
 		return this.race;
 	}
 
-	public void setRace(Race newRace) {
-		this.race = newRace;
-		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
-	}
-
 	// public boolean setClassAllowed(int num) {
 	// switch (num) {
 	// case 1:
@@ -132,6 +129,11 @@ public class Player {
 
 	public ClassCard getCardClass() {
 		return this.playerClass;
+	}
+
+	public void setRace(Race newRace) {
+		this.race = newRace;
+		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
 	}
 
 	public void setClass(ClassCard newClass) {
@@ -156,11 +158,6 @@ public class Player {
 		return null;
 	}
 
-	public boolean discardCard(Card card) {
-		this.sendMessage(new PlayCardMessage(card, Action.REMOVE));
-		return this.hand.remove(card);
-	}
-
 	public Card pickCard(String title) {
 		for (Card c : hand) {
 			if (c.getTitle().equals(title)) {
@@ -175,6 +172,11 @@ public class Player {
 	public void draw(Card card) {
 		this.sendMessage(new PlayCardMessage(card, Action.DRAW));
 		this.hand.add(card);
+	}
+
+	public boolean discardCard(Card card) {
+		this.sendMessage(new PlayCardMessage(card, Action.REMOVE));
+		return this.hand.remove(card);
 	}
 
 	public boolean equip(cards.EquipSlot slot, cards.Equipment card) {
@@ -203,18 +205,6 @@ public class Player {
 		return true;
 	}
 
-	public void sendMessage(Message message) {
-		connection.write(message);
-	}
-
-	public boolean isConnected() {
-		return connection != null && connection.isAlive();
-	}
-
-	public void setConnection(final ClientConnection connection) {
-		this.connection = connection;
-	}
-
 	public Equipment getEquipment(EquipSlot slot) {
 		Equipment card = null;
 		switch (slot) {
@@ -235,6 +225,26 @@ public class Player {
 			break;
 		}
 		return card;
+	}
+
+	public void sendMessage(Message message) {
+		connection.write(message);
+	}
+
+	public boolean isLobby_ready() {
+		return lobby_ready;
+	}
+
+	public void setLobby_ready(boolean lobby_ready) {
+		this.lobby_ready = lobby_ready;
+	}
+
+	public boolean isConnected() {
+		return connection != null && connection.isAlive();
+	}
+
+	public void setConnection(final ClientConnection connection) {
+		this.connection = connection;
 	}
 
 }
