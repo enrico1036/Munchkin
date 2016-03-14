@@ -8,10 +8,10 @@ import utils.StateMachine;
 public class Effect {
 	 
 	 public static void runEffect(StateMachine gamePhase, String effectID, HashMap<String, String> parameters) {
-		 switch(){
+//		 switch(){
 //		 call right method with gamePhase and needed parameters
-		 }
- 	}
+//		 }
+     }
 	 
 	 //???? non so se serve
 //	 runEffect() {
