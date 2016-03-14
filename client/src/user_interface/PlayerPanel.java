@@ -8,33 +8,40 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import client.ClientCard;
 import client.MunchkinClient;
 
 public class PlayerPanel extends PaintPanel {
 
 
 	//---------Player JComponents------------
-	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
-	lblPlayerCards,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue;
+	private JLabel lblPlayerName,lblPlayerLevel,
+	lblPlayerNumCards,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue;
 	private JButton btnPlayerCards;
+	private ClientCard PlayerRace,PlayerClass;
+	
+	
+	
 	private int pw,ph;
 	private String playerName;
+	private GameWindow wnd;
 	
 	
-	private ImageIcon showPlayerCards;
+	
+	private BufferedImage showPlayerCards;
+	private ShowPlayers detailsPanel;
 	
 	
-	public PlayerPanel(BufferedImage image,String playerName) {
+	public PlayerPanel(BufferedImage image,String playerName,GameWindow wnd) {
 		super(image);
 		
-		showPlayerCards = new ImageIcon();
-		showPlayerCards.setImage(MunchkinClient.getImage("cards"));
+		showPlayerCards = MunchkinClient.getImage("cards");
 		
 		pw=this.getWidth();
 		ph=this.getHeight();
 		
-		this.playerName=playerName; //Devo fare richiesta al server
-		
+		this.playerName=playerName; 
+		this.wnd=wnd;
 		/*
 		 * 
 		 * PLAYER PANEL JCOMPONENTS
@@ -49,7 +56,7 @@ public class PlayerPanel extends PaintPanel {
 		lblPlayerLevel.setBounds(pw/2,0, pw/4, ph/4);
 		this.add(lblPlayerLevel);
 
-		 lblPlayerLevelValue = new JLabel("Level Value");
+		 lblPlayerLevelValue = new JLabel(String.valueOf(1));
 		 lblPlayerLevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
 		 this.add(lblPlayerLevelValue);
 		
@@ -57,25 +64,25 @@ public class PlayerPanel extends PaintPanel {
 		lblPlayerPower.setBounds(pw/2, ph/4, pw/4, ph/4);
 		this.add(lblPlayerPower);
 
-		 lblPlayerPowerValue = new JLabel("Power Value");
+		 lblPlayerPowerValue = new JLabel(String.valueOf(0));
 		 lblPlayerPowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
 		 this.add(lblPlayerPowerValue);
-	
-		 lblPlayerRace = new JLabel("Race");
-		lblPlayerRace.setBounds(pw/4,ph/2, pw/4, ph/4);
-		this.add(lblPlayerRace);
+	     
+		 PlayerRace = new ClientCard("Race");
+		PlayerRace.setBounds(pw/4,ph/2, pw/4, ph/4);
+		this.add(PlayerRace);
 		
-		 lblPlayerClass = new JLabel("Class");
-		lblPlayerClass.setBounds(pw/2,ph/2, pw/4, ph/4);
-		this.add(lblPlayerClass);
+		 PlayerClass = new ClientCard("Class");
+		PlayerClass.setBounds(pw/2,ph/2, pw/4, ph/4);
+		this.add(PlayerClass);
 		
-		 lblPlayerCards = new JLabel("N Cards");
-		 lblPlayerCards.setBounds(pw*3/4, ph/2, pw/4, ph/4);
-		 this.add(lblPlayerCards);
+		 lblPlayerNumCards = new JLabel(String.valueOf(0));
+		 lblPlayerNumCards.setBounds(pw*3/4, ph/2, pw/4, ph/4);
+		 this.add(lblPlayerNumCards);
 		
 		
 		
-		btnPlayerCards = new JButton(showPlayerCards);
+		btnPlayerCards = new ImageButton(showPlayerCards);
 		btnPlayerCards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
 		btnPlayerCards.setActionCommand("show_player");
 		btnPlayerCards.setVisible(true);
@@ -83,6 +90,7 @@ public class PlayerPanel extends PaintPanel {
 		btnPlayerCards.setBorderPainted(false);
 		this.add(btnPlayerCards);
 		
+		detailsPanel=new ShowPlayers(wnd,playerName);
 		
 	}
 	
@@ -90,8 +98,7 @@ public class PlayerPanel extends PaintPanel {
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
 		if(e.getActionCommand()=="show_player"){
-			GameWindow window = ((GamePanel)getParent()).window;
-			((GamePanel)getParent()).window.SetActivePanel(new ShowPlayers(window,playerName));
+			wnd.SetActivePanel(detailsPanel);
 		}
 	}
 
@@ -105,9 +112,9 @@ public class PlayerPanel extends PaintPanel {
 		lblPlayerLevelValue.setBounds(pw*3/4,0, pw/4, ph/4);
 		lblPlayerPower.setBounds(pw/2, ph/4, pw/4, ph/4);
 		lblPlayerPowerValue.setBounds(pw*3/4, ph/4, pw/4, ph/4);
-		lblPlayerRace.setBounds(pw/4,ph/2, pw/4, ph/4);
-		lblPlayerClass.setBounds(pw/2,ph/2, pw/4, ph/4);
-		lblPlayerCards.setBounds(pw*3/4, ph/2, pw/4, ph/4);
+		PlayerRace.setBounds(pw/4,ph/2, pw/4, ph/4);
+		PlayerClass.setBounds(pw/2,ph/2, pw/4, ph/4);
+		lblPlayerNumCards.setBounds(pw*3/4, ph/2, pw/4, ph/4);
 		btnPlayerCards.setBounds(pw*7/8,ph*7/8,pw/8,ph/8);
 
 	}
@@ -120,4 +127,35 @@ public class PlayerPanel extends PaintPanel {
 		g.drawImage(background, 0,0,this.getWidth(),this.getHeight(),this);
 	}
 
+	public ShowPlayers getDetailsPanel() {
+		return detailsPanel;
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public ClientCard getLblPlayerRace() {
+		return PlayerRace;
+	}
+
+	public ClientCard getLblPlayerClass() {
+		return PlayerClass;
+	}
+
+	public JLabel getLblPlayerPowerValue() {
+		return lblPlayerPowerValue;
+	}
+
+	public JLabel getLblPlayerLevelValue() {
+		return lblPlayerLevelValue;
+	}
+
+	public JLabel getLblPlayerNumCards() {
+		return lblPlayerNumCards;
+	}
+	
+	
+	//TODO INSERIRE UN METODO PER SETTARE TUTTO ANCHE SHOW PLAYERS
+	
 }

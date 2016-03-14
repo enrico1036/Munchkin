@@ -25,8 +25,8 @@ public class PopUpDialog extends JDialog implements ActionListener{
 
 	private final JPanel contentPanel = new JPanel();
 	private final JSpinner spinner;
-	private final JButton okButton;
-	private final JButton cancelButton;
+	private final JButton button1;
+	private final JButton button2;
 	private String buttonPressed;
 
 	public PopUpDialog(String text, String okButtonText, String cancelButtonText, long autoCloseMillis, int spinMinVal, int spinMaxVal) {
@@ -66,20 +66,20 @@ public class PopUpDialog extends JDialog implements ActionListener{
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
 		// Ok button (add only if its name is passed)
-		okButton = new JButton(okButtonText);
-		okButton.setActionCommand(okButton.getText());
+		button1 = new JButton(okButtonText);
+		button1.setActionCommand(button1.getText());
 		if(okButtonText != null && !okButtonText.isEmpty()){
-			okButton.addActionListener(this);
-			buttonPane.add(okButton);
-			getRootPane().setDefaultButton(okButton);
+			button1.addActionListener(this);
+			buttonPane.add(button1);
+			getRootPane().setDefaultButton(button1);
 		}
 		
 		// Cancel button (add only if its name is passed)
-		cancelButton = new JButton(cancelButtonText);
-		cancelButton.setActionCommand(cancelButton.getText());
+		button2 = new JButton(cancelButtonText);
+		button2.setActionCommand(button2.getText());
 		if(cancelButtonText != null && !cancelButtonText.isEmpty()){
-			cancelButton.addActionListener(this);
-			buttonPane.add(cancelButton);
+			button2.addActionListener(this);
+			buttonPane.add(button2);
 		}
 		
 		// Start auto close timer
@@ -102,12 +102,12 @@ public class PopUpDialog extends JDialog implements ActionListener{
 		super.setVisible(b);
 	}
 	
-	public boolean wasOkPressed(){
-		return buttonPressed.equals(okButton.getText());
+	public boolean wasButton1Pressed(){
+		return buttonPressed.equals(button1.getText());
 	}
 	
-	public boolean wasCancelPressed(){
-		return buttonPressed.equals(cancelButton.getText());
+	public boolean wasButton2Pressed(){
+		return buttonPressed.equals(button2.getText());
 	}
 	
 	public boolean wasTimedOut(){

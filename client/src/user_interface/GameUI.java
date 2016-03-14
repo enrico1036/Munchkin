@@ -382,7 +382,6 @@ public class GameUI extends GamePanel {
 		PlayerRace.setBounds(psw/8,psh/3, psw/8, psh/4);
 		PlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
 		lblPlayernumcard.setBounds(psw*3/8, psh/3, psw/8, psh/4);
-		lblPlayernumcard.setText(String.valueOf(HandCards.getSize()));
 		PlayerHead.setBounds(psw*2/3, psh/3, psw/6, psh*2/9);
 		PlayerHand1.setBounds(psw/2, psh*5/9, psw/6, psh*2/9);
 		PlayerBody.setBounds(psw*2/3, psh*5/9, psw/6, psh*2/9);
@@ -468,29 +467,6 @@ public class GameUI extends GamePanel {
 	}
 
 
-	public void changeRace(String raceName){
-		
-		BufferedImage image = MunchkinClient.getImage(raceName);
-		
-		if(PlayerRace.imageIsNull())
-			PlayerRace.CreateCard(image, zp);
-		else
-			PlayerRace.setImage(image);
-	}
-
-	public void changeClass(String className){
-		
-		BufferedImage image = MunchkinClient.getImage(className);
-		
-		if(PlayerClass.imageIsNull())
-			PlayerClass.CreateCard(image, zp);
-		else
-			PlayerClass.setImage(image);
-	}
-
-
-
-
 	private void createRandomFramePanel(){
 		 int size = 10,k=0;
 	        int[] x = new int[GameEventHandler.getPlayers().length-1];
@@ -515,7 +491,7 @@ public class GameUI extends GamePanel {
 	        			GameEventHandler.getConnection().getConnectedPlayerName())))
 	        		
 	     OpponentPlayers[j] = new PlayerPanel(MunchkinClient.getImage("frameplayer"+x[j]),
-	    		 GameEventHandler.getPlayers()[k]);
+	    		 GameEventHandler.getPlayers()[k],window);
 	        }
 	    
 		
@@ -542,8 +518,32 @@ public class GameUI extends GamePanel {
 
 
 
-	public void changeStatistics(int levelValue, int powerValue, ClassCard newClass, Race newRace, int numCard){
+	public void changeStatistics(int levelValue, int powerValue, String newClass,
+			String newRace, int numCard){
 		
+		//update the player level and power value
+		lblPlayerLevelValue.setText(String.valueOf(levelValue));
+		lblPlayerPowerValue.setText(String.valueOf(powerValue));
+		
+		//update the player race
+		BufferedImage image = MunchkinClient.getImage(newRace);
+		
+		if(PlayerRace.imageIsNull())
+			PlayerRace.CreateCard(image, zp);
+		else
+			PlayerRace.setImage(image);
+		
+		//update the player class
+		image = MunchkinClient.getImage(newClass);
+		
+		if(PlayerClass.imageIsNull())
+			PlayerClass.CreateCard(image, zp);
+		else
+			PlayerClass.setImage(image);
+		
+		//update the number of the player hand
+		lblPlayernumcard.setText(String.valueOf(numCard));
+	
 	}
 
 

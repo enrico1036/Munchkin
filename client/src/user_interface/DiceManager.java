@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class DiceManager extends JPanel implements MouseListener {
 
 	
-	 
+	 //TODO SISTEMARLO NEL SERVER
 	 private JLabel diceLabel;
 	 private int diceValue;
 	 

@@ -26,21 +26,6 @@ public class PlayerStatusRequest extends Message {
 
 
 	
-	
-	
-	/*
-	@Override
-	public String getFormattedMessage() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(messageCode);
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(player);
-		builder.append(Message.ARG_SEPARATOR);
-		builder.append(plr_request);
-		builder.append(Message.MSG_TERMINATOR);
-		return builder.toString();
-		
-	}
-	*/
+
 	
 }

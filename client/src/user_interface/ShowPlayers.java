@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import client.HandCards;
+import client.HandManager;
 import client.MunchkinClient;
 import game.GameManager;
 import network.GameEventHandler;
@@ -16,13 +18,15 @@ public class ShowPlayers extends GamePanel{
 	private BufferedImage background;
 	//---------Player JComponents------------
 	private JLabel lblPlayerName,lblPlayerLevel,lblPlayerRace,lblPlayerClass,
-	lblPlayerSex,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue,
+	lblPlayerCards,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue,
 	lblPlayerHead,lblPlayerRiarm,lblPlayerBody,lblPlayerLearm,lblPlayerLegs;
 	private JButton returnBack;
 	
 	private String playerName;
 	
 	private int psw,psh;
+	private ZoomedPanel zp;
+
 	
 	public ShowPlayers(GameWindow window, String Player){
 		super(window);
@@ -34,6 +38,21 @@ public class ShowPlayers extends GamePanel{
 		
 		psw=this.getWidth();
 		psh=this.getHeight();
+		
+		//TODO Risistemare tutte le grandezze DA FEDE AHAHAH
+		
+		zp=new ZoomedPanel();
+
+		
+		
+		zp.setVisible(true);
+		zp.setBounds(psw/3, psh/20, psw/3, psh*5/8);
+		this.add(zp);
+		zp.setLayout(null);
+		
+		this.setComponentZOrder(zp, 0);	
+		
+		
 		
 		/*
 		 * 
@@ -76,9 +95,12 @@ public class ShowPlayers extends GamePanel{
 		lblPlayerClass.setBounds(psw/4, psh/3, psw/8, psh/4);
 		this.add(lblPlayerClass);
 		
-		 lblPlayerSex = new JLabel("Sex");
-		lblPlayerSex.setBounds(psw*3/8, psh/3, psw/8, psh/4);
-		this.add(lblPlayerSex);
+		 lblPlayerCards = new JLabel("N Cards");
+		 lblPlayerCards.setBounds(psw*3/8, psh/3, psw/8, psh/4);;
+		 this.add(lblPlayerCards);
+		
+		
+		
 		
 		
 	

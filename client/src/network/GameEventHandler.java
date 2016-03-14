@@ -76,16 +76,6 @@ public class GameEventHandler {
 							readyPlayers = readyPlayerList.getPlayers();
 							readyStatus = readyPlayerList.getStatus();
 							lobbyPanel.showPlayer();
-						case Message.CLT_CHANGE_CLASS:
-							ChangeClassMessage newClass = (ChangeClassMessage)received;
-							gamepanel.changeClass(newClass.getClassCard().getTitle());
-						case Message.CLT_CHANGE_RACE:
-							ChangeRaceMessage newRace = (ChangeRaceMessage)received;
-							gamepanel.changeRace(newRace.getRace().getTitle());
-						case Message.CLT_CHANGE_EQUIPMENT:
-							ChangeEquipmentMessage newEquip = (ChangeEquipmentMessage)received;
-							gamepanel.changeEquipment(newEquip.getEquipment().getSlot(), newEquip.getEquipment().getTitle());
-						
 						case Message.POPUP:
 							PopUpMessage popup = (PopUpMessage)received;
 							
@@ -97,11 +87,12 @@ public class GameEventHandler {
 							
 							// Send response message based on user's choice
 							if(dialog.wasTimedOut()){
-								sendMessage(new PopUpResultMessage());
+								sendMessage(new PopUpResultMessage(connection.getConnectedPlayerName()));
 							} else {
-								sendMessage(new PopUpResultMessage(dialog.wasOkPressed(), 
-										dialog.wasCancelPressed(), 
-										dialog.getSpinnerValue()));
+								sendMessage(new PopUpResultMessage(dialog.wasButton1Pressed(), 
+										dialog.wasButton2Pressed(), 
+										dialog.getSpinnerValue(),
+										connection.getConnectedPlayerName()));
 							}
 							break;
 							
@@ -111,9 +102,26 @@ public class GameEventHandler {
 									GameEventHandler.getConnection().getConnectedPlayerName())){
 								gamepanel.changeStatistics(statistics.getLevel(),
 															statistics.getPower(),
-															statistics.getPlayerClass(),
-															statistics.getPlayerRace(),
+															statistics.getPlayerClass().getTitle(),
+															statistics.getPlayerRace().getTitle(),
 															statistics.getPlayerNumCards());
+							}
+							else{
+								int i=0;
+								boolean founded=false;
+								while(founded==false){
+									if(!(gamepanel.getOpponentPlayers()[i].getPlayerName().equals(
+											statistics.getPlayerName())))
+									i++;
+									else{
+										founded=true;
+										//TODO CHIAMARE IL METODO DI PLAYER PANEL PER SETTARE TUTTO
+									
+									}
+										
+									
+									
+								}
 							}
 								
 									
@@ -161,9 +169,6 @@ public class GameEventHandler {
 		connection.send(new SelectedCardMessage(cardName));
 	}
 	
-	public static void sendPopUpResult(boolean button1, boolean button2, int value){
-		connection.send(new PopUpResultMessage(button1,button2,value));
-	}
 	
 	public static void getReadyPlayerList(){
 		connection.send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_READY_PLAYER_LIST));

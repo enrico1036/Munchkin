@@ -61,6 +61,7 @@ public class MunchkinServer {
 					case Message.CLT_CHAT_MESSAGE:
 						pool.broadcast(pair.getValue());
 						break;
+						
 					case Message.CLT_GENERAL_REQUEST:
 						ClientGeneralRequest req = (ClientGeneralRequest) pair.getValue();
 						switch (req.getRequestType()) {
@@ -85,7 +86,7 @@ public class MunchkinServer {
 						if(prequest.getPlr_request().equals(PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT))
 							GameManager.getPlayerByName(pair.getKey()).sendMessage(new PlayerEquipmentMessage());
 						else
-							GameManager.getPlayerByName(pair.getKey()).sendMessage(new PlayerFullStatsMessage());
+							GameManager.getPlayerByName(pair.getKey()).sendMessage(new PlayerFullStatsMessage(GameManager.getPlayerByName(prequest.getPlayer())));
 						break;
 					}
 				}
