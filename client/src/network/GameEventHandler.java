@@ -163,10 +163,10 @@ public class GameEventHandler {
 							break;
 							case Message.STATE_UPDATE:
 							StateUpdateMessage update = (StateUpdateMessage)received;
-							update.getState().equals("begin");
+							if(update.getState().equals("begin")){
 							MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow()));
 							MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
-							
+							}
 						}	
 					}
 						
