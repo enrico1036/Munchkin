@@ -75,6 +75,8 @@ public class GameEventHandler {
 							readyPlayers = readyPlayerList.getPlayers();
 							readyStatus = readyPlayerList.getStatus();
 							lobbyPanel.showPlayer();
+							break;
+							
 						case Message.POPUP:
 							PopUpMessage popup = (PopUpMessage)received;
 							
