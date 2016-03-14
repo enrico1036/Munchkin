@@ -411,10 +411,6 @@
     	<path>Resources/Images/Cards/ciuffo_per-manente.png</path>
     </image>
     <image>
-    	<name>congegno_risolutore</name>
-    	<path>Resources/Images/Cards/congegno_risolutore.png</path>
-    </image>
-    <image>
     	<name>dado_appesantito</name>
     	<path>Resources/Images/Cards/dado_appesantito.png</path>
     </image>
@@ -441,10 +437,6 @@
     <image>
     	<name>granata_flash_supernova</name>
     	<path>Resources/Images/Cards/granata_flash_supernova.png</path>
-    </image>
-    <image>
-    	<name>granata_moltiplicante</name>
-    	<path>Resources/Images/Cards/granata_moltiplicante.png</path>
     </image>
     <image>
     	<name>granata_allo_yogurt</name>

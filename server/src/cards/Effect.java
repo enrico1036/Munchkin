@@ -29,10 +29,10 @@ package cards;
 	  //loseLevel(int number_level)
 	  
 	 
-	 //draw_door_card
+	 //drawDoor(int number, boolean coperta)
+	 //drawTreasure(int number, boolean coperta)
 	 
-	 
-	 //bonusEscape
+	 //bonusEscape(int bonus)
 	 
 	 
 	 //bonus/malusRace
@@ -60,11 +60,14 @@ package cards;
 	 //EscapeAutomatic(race,treasure,levelEarned)
 	 //EscapeAutomatic(class,treasure,levelEarned)
 	 //EscapeAutomatic(object,treasure,levelEarned)
-	//EscapeAutomatic(object,treasure,levelEarned)
+	 //EscapeAutomatic(object,treasure,levelEarned)
+	 //EscapeAutomatic(treasure,levelEarned)  // per le carte tesoro
 	 
-	 //tettonaBionica(calzatura)
+	 //FailEscape
 	 
-	 //
+	 //tettonaBionica(calzatura)  pure questo si potrebbe evitare visti gli escape automatic
+	 
+	 //dieWeighted(int resultsRoll)
 	  
-
+	 //addHand
 }
