@@ -3,6 +3,18 @@ package cards;
 
  public class Effect {
 	 
+//	 runEffect(StateMachine gamePhase) {
+//		 switch(effectString){
+//		 call right method with gamePhase and needed parameters
+//		 }
+// 	}
+	 
+	 //???? non so se serve
+//	 runEffect() {
+//	 switch(effectString){
+//	 call right method with needed parameters
+//	 }
+//	}
 	 
 	  //dropobject(tipeObject)
 	 
