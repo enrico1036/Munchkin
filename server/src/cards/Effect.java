@@ -1,13 +1,17 @@
 package cards;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 
- public class Effect {
+import utils.StateMachine;
+
+public class Effect {
 	 
-//	 runEffect(StateMachine gamePhase, param1, parma2,,,,) {
-//		 switch(effectString){
+	 public static void runEffect(StateMachine gamePhase, String effectID, HashMap<String, String> parameters) {
+		 switch(){
 //		 call right method with gamePhase and needed parameters
-//		 }
-// 	}
+		 }
+ 	}
 	 
 	 //???? non so se serve
 //	 runEffect() {
@@ -17,7 +21,7 @@ package cards;
 //	}
 	 
 	  //dropobject(tipeObject)
-	 
+	
 	  
 	  //dropRace()
 	  //dropClass()
