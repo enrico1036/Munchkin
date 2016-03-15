@@ -7,11 +7,9 @@ public class Equipment extends Card {
 
 	
 	public Equipment(String title, EquipSlot slot, int bonus, int value) {
-		this.title = title;
-		this.type = CardType.Treasure;
+		super(title, CardType.Treasure, Category.Equipment);
 		this.slot = slot;
 		this.value = value;
-		this.category = Category.Equipment;
 	}
 	
 	public EquipSlot getSlot() {

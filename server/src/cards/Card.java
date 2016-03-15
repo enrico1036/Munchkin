@@ -1,5 +1,11 @@
 package cards;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import game.Player;
+import javafx.util.Pair;
+
 public abstract class Card {
 	
 		protected String title;			// The name and unique identificator of the card
@@ -8,11 +14,26 @@ public abstract class Card {
 		
 		protected Category category;	// Monster, Curse, Equipment ecc
 		
-		protected String effectId;		// Identificator of the effect, needed by the main server loop to
-										// send to the clients the appropriate sequence of commands
+		protected ArrayList<Pair<String, HashMap<String, String>>> effects;	// List containing effectsID and a list of parameter for each effect 
 		
-		public String getEffectId(){
-			return effectId;
+		protected Player owner;	// Card owner
+		
+		public Card(String title, CardType type, Category category) {
+			this.title = title;
+			this.type = type;
+			this.category = category;
+		}
+		
+		public ArrayList<Pair<String, HashMap<String, String>>> getEffects(){
+			return effects;
+		}
+		
+		public void addEffect(Pair<String, HashMap<String, String>> effect) {
+			effects.add(effect);
+		}
+		
+		public void setOwner(Player owner) {
+			this.owner = owner;
 		}
 		
 		public void effect(){

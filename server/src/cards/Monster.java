@@ -8,14 +8,11 @@ public class Monster extends Card {
 	private int totalBonus;
 	
 	
-	public Monster(String title, int level, int earningLevels, int earningTreasures, String effectId) {
-		this.title = title;
-		this.type = CardType.Door;
+	public Monster(String title, int level, int earningLevels, int earningTreasures) {
+		super(title, CardType.Door, Category.Monster);
 		this.level = level;
 		this.earningLevels = earningLevels;
 		this.earningTreasures = earningTreasures;
-		this.category = Category.Monster;
-		this.effectId = effectId;
 	}
 	
 	

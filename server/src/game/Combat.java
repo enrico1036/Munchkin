@@ -16,7 +16,8 @@ public class Combat extends StateMachine {
 	private boolean playerWon;
 	private Player helperPlayer; // bind with the one that accept to help the player, if someone do it
 	private int promisedTreasure; // must be set to 0 if no one helps the player
-	private int playerBonus; // positive number if bonus goes to player, negative if goes to monster
+	private int playerCombatBonus; // positive number if bonus goes to player, negative if goes to monster
+	private int playerTreasureBonus; // positive number if bonus goes to player, negative if goes to monster
 
 	public Combat(Monster card) {
 		super();
@@ -24,7 +25,7 @@ public class Combat extends StateMachine {
 		playerWon = false;
 		promisedTreasure = 0;
 		helperPlayer = null;
-		playerBonus = 0;
+		playerCombatBonus = 0;
 		states = new String[2];
 		states[0] = "Begin";
 		states[1] = "AskForHelp";
@@ -98,12 +99,12 @@ public class Combat extends StateMachine {
 	private void end() {
 		playerWon = false;
 		if (helperPlayer != null) {	// helperPlayer present
-			if (helperPlayer.getCombatLevel() + GameManager.getCurrentPlayer().getCombatLevel() + playerBonus > card.getLevel()) {
+			if (helperPlayer.getCombatLevel() + GameManager.getCurrentPlayer().getCombatLevel() + playerCombatBonus > card.getLevel()) {
 				playerWon = true;
 				GameManager.getCurrentPlayer().leveleUp(card.getEarningLevels());
 				for (int i = 0; i < promisedTreasure; i++)
 					helperPlayer.draw(Decks.getTreasureCard());
-				for (int i = 0; i < card.getEarningLevels() - promisedTreasure; i++)
+				for (int i = 0; i < card.getEarningTreasures() - promisedTreasure; i++)
 					GameManager.getCurrentPlayer().draw(Decks.getTreasureCard());
 			} else {	// player loose
 				// roll die and check if escape
@@ -119,10 +120,10 @@ public class Combat extends StateMachine {
 				}
 			}
 		} else { // No one helped player
-			if (GameManager.getCurrentPlayer().getCombatLevel() + playerBonus > card.getLevel()) {
+			if (GameManager.getCurrentPlayer().getCombatLevel() + playerCombatBonus > card.getLevel()) {
 				playerWon = true;
 				GameManager.getCurrentPlayer().leveleUp(card.getEarningLevels());
-				for (int i = 0; i < card.getEarningLevels(); i++)
+				for (int i = 0; i < card.getEarningTreasures(); i++)
 					GameManager.getCurrentPlayer().draw(Decks.getTreasureCard());
 			} else {	//player loose
 				// roll die and check if escape
@@ -133,6 +134,14 @@ public class Combat extends StateMachine {
 				}
 			}
 		}
+	}
+	
+	public void addPlayerCombatBonus(int playerCombatBonus) {
+		this.playerCombatBonus += playerCombatBonus;
+	}
+	
+	public void addPlayerTreasureBonus(int playerTreasureBonus) {
+		this.playerTreasureBonus += playerTreasureBonus;
 	}
 
 	@Override

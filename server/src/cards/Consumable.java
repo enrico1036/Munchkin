@@ -1,14 +1,12 @@
 package cards;
 
+
 public class Consumable extends Card {
 	
 	private boolean combatOnly;
 	
-	public Consumable(String title, CardType type, String effectId, boolean combat) {
-		this.title = title;
-		this.type = type;
-		this.category = Category.Consumable;
-		this.effectId = effectId;
+	public Consumable(String title, CardType type, boolean combat) {
+		super(title, type, Category.Consumable);
 		this.combatOnly = combat;
 	}
 
