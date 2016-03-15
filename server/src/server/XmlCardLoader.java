@@ -111,7 +111,7 @@ public class XmlCardLoader {
 			}
 			// Retrieve common attributes
 			String name = elem.getAttribute(nameAttr);
-			String effect = elem.getAttribute(effectAttr);
+			//String effect = elem.getAttribute(effectAttr);
 
 			// Do not add cards without a valid name
 			if (name.isEmpty())
@@ -126,7 +126,7 @@ public class XmlCardLoader {
 					int level = Integer.parseInt(elem.getAttribute(levelAttr));
 					int earningLevel = Integer.parseInt(elem.getAttribute(earningLevelAttr));
 					int earningTreasures = Integer.parseInt(elem.getAttribute(earningTreasuresAttr));
-					doorCard = new Monster(name, level, earningLevel, earningTreasures, effect);
+					doorCard = new Monster(name, level, earningLevel, earningTreasures);
 				} catch (NumberFormatException e) {
 					// Level was not a number
 				}
@@ -134,7 +134,7 @@ public class XmlCardLoader {
 
 			case curseTag:
 				boolean immediate = Boolean.parseBoolean(elem.getAttribute(curseImmAttr));
-				doorCard = new Curse(name, immediate, effect);
+				doorCard = new Curse(name, immediate);
 				break;
 
 			case classTag:
@@ -147,7 +147,7 @@ public class XmlCardLoader {
 
 			case consumableTag:
 				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute("onlyCombat"));
-				doorCard = new Consumable(name, CardType.Door, effect,onlyCombat);
+				doorCard = new Consumable(name, CardType.Door,onlyCombat);
 				break;
 
 			default:
@@ -189,7 +189,7 @@ public class XmlCardLoader {
 
 			case consumableTag:
 				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute("onlyCombat"));
-				treasureCard = new Consumable(name, CardType.Treasure, effect,onlyCombat);
+				treasureCard = new Consumable(name, CardType.Treasure, onlyCombat);
 				break;
 
 			case equipmentTag:
