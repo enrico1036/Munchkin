@@ -11,6 +11,7 @@ import network.message.Message;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayCardMessage.Action;
 import network.message.server.PopUpMessage;
+import network.message.server.StateUpdateMessage;
 import utils.Debug;
 
 public class GameManager{
@@ -23,6 +24,7 @@ public class GameManager{
 		Debug.print("GameManager: Begin");
 		playerWon = false;
 		Decks.shuffleDecks();
+		broadcastMessage(new StateUpdateMessage("begin"));
 	}
 	
 	private static void turn() {

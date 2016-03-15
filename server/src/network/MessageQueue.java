@@ -8,16 +8,17 @@ import network.message.Message;
 public class MessageQueue {
 
 	private ConcurrentLinkedQueue<Pair<String, Message>> queue;
+	private final Object lock = new Object();
 
 	public MessageQueue() {
 		queue = new ConcurrentLinkedQueue<>();
 	}
 
 	public void append(String clientId, Message message) {
-		synchronized (queue) {
-			queue.add(new Pair<String, Message>(clientId, message));
-			queue.notify();
+		synchronized (lock) {
+			lock.notify();
 		}
+		queue.add(new Pair<String, Message>(clientId, message));
 	}
 
 	public Pair<String, Message> remove() {
@@ -26,20 +27,16 @@ public class MessageQueue {
 		return null;
 	}
 
-	public boolean waitForData() {
-		synchronized (queue) {
+	public synchronized boolean waitForData() {
+		synchronized (lock) {
 			try {
-
-				if (queue.isEmpty())
-					queue.wait();
-				else
-					return false;
-
-			} catch (InterruptedException e) {
+				lock.wait();
+			} catch (InterruptedException | IllegalMonitorStateException e) {
+				e.printStackTrace();
 				return false;
 			}
-			return true;
-		}
+		}	
+		return true;
 	}
 
 	public Pair<String, Message> waitForMessage(String playerName, Message message) {
@@ -93,7 +90,7 @@ public class MessageQueue {
 
 		return pair;
 	}
-	
+
 	public Pair<String, Message> waitForMessage(String messageCode) {
 		Pair<String, Message> pair = null;
 		// Check if desired message is in queue
@@ -119,8 +116,6 @@ public class MessageQueue {
 
 		return pair;
 	}
-	
-	
 
 	public int size() {
 		return queue.size();

@@ -22,7 +22,7 @@ public class LobbyUI extends GamePanel {
 	private ScrollableList ScrollList;
 	private JLabel[][] Users;
 	private JTextField textBox;
-	private String[] readyPlayers;
+	private String[] players;
 	private boolean[] readyStatus;
 
 	public LobbyUI(GameWindow window) {
@@ -137,14 +137,14 @@ public class LobbyUI extends GamePanel {
 		}
 		
 		
-		readyPlayers = GameEventHandler.getReadyPlayer();
+		players = GameEventHandler.getPlayers();
 		readyStatus = GameEventHandler.getReadyStatus();
 		
 		// Update status of connected players
-		for (int i = 0; i < readyPlayers.length; i++) {
+		for (int i = 0; i < players.length; i++) {
 			Users[i][0].setVisible(true);
 			Users[i][1].setVisible(true);
-			Users[i][0].setText(readyPlayers[i]);
+			Users[i][0].setText(players[i]);
 			if(readyStatus[i]!=true)
 				Users[i][1].setText("Non Pronto");
 			else
