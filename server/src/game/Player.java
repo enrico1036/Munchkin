@@ -226,6 +226,30 @@ public class Player {
 		}
 		return card;
 	}
+	
+	public Equipment removeEquipment(EquipSlot slot) {
+		Equipment card = null;
+		switch (slot) {
+		case head:
+			card = this.head;
+			break;
+		case body:
+			card = this.body;
+			break;
+		case hand1:
+			card = this.hand1;
+			break;
+		case hand2:
+			card = this.hand2;
+			break;
+		case feet:
+			card = this.feet;
+			break;
+		}
+		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
+		return card;
+	}
+	
 
 	public void sendMessage(Message message) {
 		connection.write(message);

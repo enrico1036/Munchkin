@@ -1,11 +1,17 @@
 package cards;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javafx.util.Pair;
+
 public class Monster extends Card {
 
 	private int level;
 	private int earningLevels;
 	private int earningTreasures;
 	private int totalBonus;
+	protected ArrayList<Pair<String, HashMap<String, String>>> badThings; // List containing effectsID and a list of parameter for each effect to be called on player loose
 	
 	
 	public Monster(String title, int level, int earningLevels, int earningTreasures) {

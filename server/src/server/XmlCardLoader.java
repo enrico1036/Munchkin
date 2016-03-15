@@ -44,6 +44,8 @@ import javafx.util.Pair;
  *	</cards>
  */
 
+//TODO: Add effects, badthings and de-effects loading
+
 public class XmlCardLoader {
 	// Tag constant strings
 	private static final String rootTag = "cards";
