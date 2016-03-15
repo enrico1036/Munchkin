@@ -1,4 +1,4 @@
-package server;
+package cards;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,15 +14,6 @@ import org.w3c.dom.NodeList;
 
 import com.sun.org.apache.xml.internal.resolver.readers.CatalogReader;
 
-import cards.Card;
-import cards.CardType;
-import cards.ClassCard;
-import cards.Consumable;
-import cards.Curse;
-import cards.EquipSlot;
-import cards.Equipment;
-import cards.Monster;
-import cards.Race;
 import javafx.util.Pair;
 
 /*

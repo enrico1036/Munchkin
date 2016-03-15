@@ -6,9 +6,9 @@ import java.util.Collections;
 
 import cards.Card;
 import cards.CardType;
+import cards.XmlCardLoader;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayCardMessage.Action;
-import server.XmlCardLoader;
 
 
 public class Decks {

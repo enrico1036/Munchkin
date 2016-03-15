@@ -1,4 +1,4 @@
-package client;
+package user_interface;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -10,8 +10,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
-import user_interface.ZoomedPanel;
 
 /**
  * 

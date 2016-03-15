@@ -9,9 +9,6 @@ import javax.swing.JLabel;
 
 import cards.EquipSlot;
 import cards.Equipment;
-import client.ClientCard;
-import client.HandCards;
-import client.HandManager;
 import client.MunchkinClient;
 import game.GameManager;
 import network.GameEventHandler;

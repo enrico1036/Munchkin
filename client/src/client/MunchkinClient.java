@@ -33,7 +33,7 @@ public class MunchkinClient {
 	public static PlayerConnection connection;
 
 	
-	public MunchkinClient() {
+	public static void startGame() {
 		/** 
 		 * Load images from resource folder
 		 * Throw an exception for every exception that this loading can generate
@@ -117,7 +117,7 @@ public class MunchkinClient {
 	
 	public static void main(String[] args) {
 
-		MunchkinClient client = new MunchkinClient();
+		MunchkinClient.startGame();
 
 		
 	}

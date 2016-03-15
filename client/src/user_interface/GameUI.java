@@ -12,17 +12,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import client.MunchkinClient;
 import network.GameEventHandler;
-import client.HandCards;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
-
-import client.CardType;
-import client.ClientCard;
-import client.HandManager;
 
 public class GameUI extends GamePanel {
 

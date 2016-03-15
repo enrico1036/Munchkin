@@ -1,4 +1,4 @@
-package client;
+package user_interface;
 
 import java.util.ArrayList;
 

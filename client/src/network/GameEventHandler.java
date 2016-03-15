@@ -1,7 +1,5 @@
 package network;
 
-import client.ClientCard;
-import client.HandCards;
 import client.MunchkinClient;
 import javafx.stage.Popup;
 import network.message.Message;
@@ -19,8 +17,10 @@ import network.message.server.StateUpdateMessage;
 import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayerFullStatsMessage;
+import user_interface.ClientCard;
 import user_interface.ConnectionDialog;
 import user_interface.GameUI;
+import user_interface.HandCards;
 import user_interface.LobbyUI;
 import user_interface.PopUpDialog;
 

@@ -1,9 +1,10 @@
-package client;
+package user_interface;
 
 import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 
+import client.MunchkinClient;
 import network.GameEventHandler;
 /**
  * 

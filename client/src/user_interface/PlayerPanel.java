@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import cards.Equipment;
-import client.ClientCard;
 import client.MunchkinClient;
 
 public class PlayerPanel extends PaintPanel {
