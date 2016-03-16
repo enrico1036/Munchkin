@@ -28,28 +28,28 @@ public class LobbyUI extends GamePanel {
 	public LobbyUI(GameWindow window) {
 
 		super(window);
-		this.background = MunchkinClient.getImage("panel_background");
-		this.dragon = MunchkinClient.getImage("dragon_lobby");
-		this.users = MunchkinClient.getImage("users_lobby");
+		background = MunchkinClient.getImage("panel_background");
+		dragon = MunchkinClient.getImage("dragon_lobby");
+		users = MunchkinClient.getImage("users_lobby");
 
 		Users = new JLabel[6][2];
-		this.instancePlayersMatrix();
+		instancePlayersMatrix();
 
-		this.User_ready = new JButton();
+		User_ready = new JButton("READY");
 		User_ready.setActionCommand("tick");
 		User_ready.addActionListener(this);
-		this.add(User_ready);
+		add(User_ready);
 
 		ScrollList = new ScrollableList();
 		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight*7/10,  wndWidth*2 / 5, wndHeight*27/100);
-		this.add(ScrollList);
+		add(ScrollList);
 
 
 		textBox = new JTextField("Enter your text here");
 		textBox.addActionListener(this);
 		textBox.setActionCommand("Enter");
 		textBox.setBounds(wndWidth * 3 / 5, wndHeight*9/10,  wndWidth*2 / 5, wndHeight /10);
-		this.add(textBox);
+		add(textBox);
 		
 		GameEventHandler.getReadyPlayerList();
 	}
@@ -114,7 +114,7 @@ public class LobbyUI extends GamePanel {
 				Users[i][k].setBorder(BorderFactory.createLineBorder(Color.black));
 				Users[i][k].setBounds(wndWidth * (3) / 5 + wndWidth * k / 10, wndHeight * (i + 1) / 10, wndWidth / 10,
 						wndHeight / 10);
-				this.add(Users[i][k]);
+				add(Users[i][k]);
 			}
 
 		}
