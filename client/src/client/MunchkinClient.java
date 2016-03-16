@@ -47,7 +47,7 @@ public class MunchkinClient {
 			e.printStackTrace();
 		}
 		/**
-		 * Put,from the xmlImageLoader every image in the HashMap images
+		 * Put,from the xmlImageLoader every images in the HashMap images
 		 */
 		images = new HashMap<String,BufferedImage>();
 		for(Pair<String, BufferedImage> pair : loader.getImages()){
