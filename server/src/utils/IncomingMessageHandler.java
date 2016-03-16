@@ -20,26 +20,28 @@ public class IncomingMessageHandler {
 	 * @param pair
 	 * @return true if message was used, false otherwise
 	 */
-	public static boolean handle(Pair<String, Message> pair) {
+	public static boolean handle(Message message, Player player) {
 		
 		boolean messageUsed = true;
 		
 		CountdownTask task = new CountdownTask(5);
 
-		if (pair.getValue() != null) {
+		if (message != null) {
 
-			System.out.println("From: " + pair.getKey() + " code: " + pair.getValue().getMessageCode());
+			System.out.println("From: " + player.getUsername() + " code: " + message.getMessageCode());
 
-			switch (pair.getValue().getMessageCode()) {
+			switch (message.getMessageCode()) {
 			case Message.CLT_CHAT_MESSAGE:
-				GameManager.broadcastMessage(pair.getValue());
+				player.getEventListener().chatMessage(message);
 				break;
-
+			case Message.CLT_REQUEST_CONNECTION:
+				player.getEventListener().playerConnected(player);
+				break;
 			case Message.CLT_GENERAL_REQUEST:
-				ClientGeneralRequest req = (ClientGeneralRequest) pair.getValue();
+				ClientGeneralRequest req = (ClientGeneralRequest) message;
 				switch (req.getRequestType()) {
 				case ClientGeneralRequest.REQUEST_READY_PLAYER_LIST:
-					GameManager.getPlayerByName(pair.getKey()).sendMessage(new ReadyLobbyMessage(GameManager.getPlayers()));
+					player.sendMessage(new ReadyLobbyMessage(GameManager.getPlayers()));
 					break;
 				}
 				break;
@@ -67,7 +69,7 @@ public class IncomingMessageHandler {
 				// pool.broadcast(new UpdateReadyPlayerMessage());
 				break;
 			case Message.PLAYER_STATUS_REQUEST:
-				PlayerStatusRequest prequest = (PlayerStatusRequest) pair.getValue();
+				PlayerStatusRequest prequest = (PlayerStatusRequest) message;
 				if (prequest.getPlr_request().equals(PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT))
 					GameManager.getPlayerByName(pair.getKey()).sendMessage(new PlayerEquipmentMessage());
 				else

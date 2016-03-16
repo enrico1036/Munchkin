@@ -12,9 +12,11 @@ import network.message.Message;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayerFullStatsMessage;
 import network.message.server.PlayCardMessage.Action;
+import utils.PlayerEventListener;
 
 public class Player {
 	private ClientConnection connection;
+	private PlayerEventListener eventListener;
 	private String username;
 	private int level;
 	private boolean lobby_ready;
@@ -269,6 +271,20 @@ public class Player {
 
 	public void setConnection(final ClientConnection connection) {
 		this.connection = connection;
+	}
+
+	/**
+	 * @return the eventListener
+	 */
+	public PlayerEventListener getEventListener() {
+		return eventListener;
+	}
+
+	/**
+	 * @param eventListener the eventListener to set
+	 */
+	public void setEventListener(PlayerEventListener eventListener) {
+		this.eventListener = eventListener;
 	}
 
 }

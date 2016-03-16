@@ -14,6 +14,7 @@ import game.Decks;
 import game.GameManager;
 import game.Player;
 import javafx.util.Pair;
+import network.ClientConnection;
 import network.ConnectionListener;
 import network.ConnectionPool;
 import network.MessageQueue;
@@ -30,8 +31,9 @@ import network.message.server.PlayerStatusRequest;
 import network.message.server.PopUpMessage;
 import utils.CountdownTask;
 import utils.Debug;
+import utils.PlayerEventListener;
 
-public class MunchkinServer {
+public class MunchkinServer implements PlayerEventListener{
 
 	public static void main(String[] args) throws Exception {
 		// Generate decks loaded from xml file
@@ -51,6 +53,38 @@ public class MunchkinServer {
 		System.out.println("Lobby ended");
 		GameManager.startGame();
 
+	}
+
+	@Override
+	public void chatMessage(Message message) {
+		GameManager.broadcastMessage(message);		
+	}
+
+	@Override
+	public void lobbyStatusChanged(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void playerConnected(String username, ClientConnection connection) {
+		boolean refuseConnection = false;
+		
+		for(Player p: GameManager.getPlayers()) {
+			if(p.getUsername() == username) {
+				if(p.isConnected())
+					refuseConnection = true;
+				else
+					p.setConnection(connection);
+			}
+		}
+		
+	}
+
+	@Override
+	public void playerDisconnected(Player player) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

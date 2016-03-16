@@ -15,19 +15,19 @@ import javafx.util.Pair;
 import network.message.ActionResultMessage;
 import network.message.Message;
 import network.message.client.UpdateReadyPlayerMessage;
+import utils.PlayerEventListener;
 
 public class ConnectionPool {
 	private final ConcurrentHashMap<String, ClientConnection> connections;
-	private final ArrayList<Player> players;
+	private final PlayerEventListener eventListener;
 	private final ExecutorService executor;
 	private final MessageQueue inQueue;
 
-	public ConnectionPool(int capacity, MessageQueue inQueue, ArrayList<Player> players) {
+	public ConnectionPool(int capacity, MessageQueue inQueue) {
 		connections = new ConcurrentHashMap<>(capacity);
-		executor = Executors.newFixedThreadPool(capacity);
-		this.players = players;
+		executor = Executors.newFixedThreadPool(capacity)
 		this.inQueue = inQueue;
-	}
+	} 
 
 	public void add(final ClientConnection connection)  {
 		// Prevent the existence of two or more different connections

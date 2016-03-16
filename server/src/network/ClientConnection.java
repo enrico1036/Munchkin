@@ -4,31 +4,28 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import game.Player;
 import network.message.Message;
 import network.message.client.ConnectionRequestMessage;
+import utils.IncomingMessageHandler;
 
 public class ClientConnection implements Runnable{
 	private final Socket sock;
-	//private BufferedReader reader;
-	//private BufferedWriter writer;
-
-	private final ConnectionPool pool;
-
-	private final String clientId;
+	private Player owner;
 	private boolean alive;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 
-	public ClientConnection(Socket sock, int timeout, final ConnectionPool pool) {
+	public ClientConnection(Socket sock, int timeout) {
 		this.sock = sock;
-		this.pool = pool;
+		owner = null;
 		alive = true;
 		
 		try {
 			// Set read timeout
 			this.sock.setSoTimeout(timeout);
 			
-
 			output = new ObjectOutputStream(sock.getOutputStream());
 			output.flush();
 			
@@ -39,24 +36,19 @@ public class ClientConnection implements Runnable{
 			e.printStackTrace();
 			alive = false;
 		}
-
-		// Receive connection request message to retrieve client id
-		ConnectionRequestMessage message = (ConnectionRequestMessage) read();
-		clientId = message.getClientName();
-	}
-
-	public String getClientId() {
-		return clientId;
 	}
 
 	public boolean isAlive() {
 		return alive;
 	}
+	
+	public void attachToPlayer(Player player){
+		owner = player;
+	}
 
 	@Override
 	public void run() {
-		final MessageQueue queue = pool.getInputQueue();
-
+		
 		// Terminate thread if the socket does not exist
 		if (sock == null) {
 			close();
@@ -66,13 +58,12 @@ public class ClientConnection implements Runnable{
 		while (alive && sock.isConnected() && !sock.isInputShutdown() && !sock.isOutputShutdown()) {
 			// Read from network and append to own channel in IOBuffer
 			Message msgread = read();
-			queue.append(clientId,msgread);
+			IncomingMessageHandler.handle(msgread, owner);
 		}
 
 		// Close buffers and socket
 		close();
 		// Signal thread death to own pool
-		pool.signalEnd(this);
 	}
 
 	public Message read() {
@@ -115,7 +106,7 @@ public class ClientConnection implements Runnable{
 	
 	@Override
 	public String toString(){
-		return getClientId() + " @ " + sock.getRemoteSocketAddress() + ":" + sock.getPort();
+		return sock.getRemoteSocketAddress() + ":" + sock.getPort();
 	}
 
 
