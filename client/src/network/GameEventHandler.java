@@ -61,7 +61,6 @@ public class GameEventHandler {
 								break;
 							case DISCARD:
 								// TODO CASE DISCARD
-								// gamepanel
 								break;
 							case REMOVE:
 								// TODO CASE REMOVE
@@ -148,6 +147,7 @@ public class GameEventHandler {
 								MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow()));
 								MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
 								break;
+								//TODO @GAMBI DEVO AGGIUNGERE DICERESULTMESSAGE? 
 							}
 						}
 					}

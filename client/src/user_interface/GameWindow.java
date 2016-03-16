@@ -27,23 +27,23 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
     	int w= (int) ( width*0.8);
     	int h= (int) ( height*0.8);
     	    	
-    	this.addWindowStateListener(this);
-    	this.setSize(w, h);
+    	addWindowStateListener(this);
+    	setSize(w, h);
     	
     	int x = (int) ((width-w)/2);
     	int y = (int) ((height-h)/2);
-     	this.setLocation(x, y);
-     	this.setMinimumSize(dimmin);
-    	this.addComponentListener(this);
-        this.addWindowListener(this);  
+     	setLocation(x, y);
+     	setMinimumSize(dimmin);
+    	addComponentListener(this);
+        addWindowListener(this);  
     }
 
 
 
     public void SetActivePanel(JPanel a)
     {
-    	this.setContentPane(a);
-    	this.revalidate();
+    	setContentPane(a);
+    	revalidate();
     }
 
 
@@ -63,7 +63,7 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
 	public void componentResized(ComponentEvent e) {
 		
 		if(!maximized)
-			this.setSize(this.getSize().width, (int) (this.getSize().width * 9.0f/16.0f));
+			setSize(this.getSize().width, (int) (this.getSize().width * 9.0f/16.0f));
 		
 	}
 
