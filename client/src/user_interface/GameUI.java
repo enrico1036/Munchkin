@@ -198,7 +198,7 @@ public class GameUI extends GamePanel {
 		PlayerStats.add(PlayerHead);
 
 		PlayerHand1 = new ClientCard("hand1");
-		PlayerHand1.setBounds(psw / 2, psh * 5 / 9, psw / 6, psh * 2 / 9);
+		PlayerHand1.setBounds(psw *7/12, psh * 5 / 9, psw / 12, psh * 2 / 9);
 		PlayerHand1.CreateCard(hand1, zp);
 		PlayerStats.add(PlayerHand1);
 
@@ -208,7 +208,7 @@ public class GameUI extends GamePanel {
 		PlayerStats.add(PlayerBody);
 
 		PlayerHand2 = new ClientCard("hand2");
-		PlayerHand2.setBounds(psw * 5 / 6, psh * 5 / 9, psw / 6, psh * 2 / 9);
+		PlayerHand2.setBounds(psw * 5 / 6, psh * 5 / 9, psw / 12, psh * 2 / 9);
 		PlayerHand2.CreateCard(hand2, zp);
 		PlayerStats.add(PlayerHand2);
 

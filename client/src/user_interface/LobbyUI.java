@@ -48,7 +48,7 @@ public class LobbyUI extends GamePanel {
 		textBox = new JTextField("Enter your text here");
 		textBox.addActionListener(this);
 		textBox.setActionCommand("Enter");
-		textBox.setBounds(wndWidth * 3 / 5, wndHeight*99/100,  wndWidth*2 / 5, wndHeight /100);
+		textBox.setBounds(wndWidth * 3 / 5, wndHeight*9/10,  wndWidth*2 / 5, wndHeight /10);
 		this.add(textBox);
 		
 		GameEventHandler.getReadyPlayerList();
