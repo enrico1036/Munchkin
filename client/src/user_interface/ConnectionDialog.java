@@ -4,6 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -76,6 +83,24 @@ public class ConnectionDialog extends JDialog implements ActionListener{
 		}
 		
 		result = false;
+		
+		// Load last used values from file
+		try{
+			File lastConnFile = new File("Resources/last_connection.txt");
+			BufferedReader reader = new BufferedReader(new FileReader(lastConnFile));
+			
+			// Load server address
+			addressField.setText(reader.readLine());
+			// Load port
+			portField.setText(reader.readLine());
+			// Load player name
+			playerField.setText(reader.readLine());
+			
+			reader.close();
+			
+		} catch (IOException e){
+			// Leave fields empty
+		}
 	}
 	
 	public String getServerAddress(){
@@ -103,6 +128,24 @@ public class ConnectionDialog extends JDialog implements ActionListener{
 		case "CANCEL":
 			result = false;
 			break;
+		}
+		
+		// Write new values on file
+		try{
+			File lastConnFile = new File("Resources/last_connection.txt");
+			BufferedWriter writer = new BufferedWriter(new FileWriter(lastConnFile));
+			
+			writer.write(addressField.getText());
+			writer.newLine();
+			writer.write(portField.getText());
+			writer.newLine();
+			writer.write(playerField.getText());
+			writer.newLine();
+			writer.flush();
+			
+			writer.close();
+		} catch (IOException exc){
+			// Write nothing
 		}
 		
 		setVisible(false);
