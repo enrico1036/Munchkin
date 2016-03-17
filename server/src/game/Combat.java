@@ -26,6 +26,7 @@ public class Combat extends StateMachine {
 		promisedTreasure = 0;
 		helperPlayer = null;
 		playerCombatBonus = 0;
+		playerTreasureBonus = 0;
 		states = new String[2];
 		states[0] = "Begin";
 		states[1] = "AskForHelp";
@@ -45,7 +46,7 @@ public class Combat extends StateMachine {
 		// if yes, set promisedTreasure and:
 		if (ret.isButton2Pressed()) {
 			for (Player player : GameManager.getPlayers()) { // ask to all except for the current player
-				if (player.getUsername() != GameManager.getCurrentPlayer().getUsername())
+				if (!player.getUsername().equals(GameManager.getCurrentPlayer().getUsername()))
 					player.sendMessage(new PopUpMessage("Do you want to help " + GameManager.getCurrentPlayer().getUsername() + " for " + Integer.toString(promisedTreasure) + "? (N)", "No", "Yes", 10000));
 			}
 
@@ -104,7 +105,7 @@ public class Combat extends StateMachine {
 				GameManager.getCurrentPlayer().leveleUp(card.getEarningLevels());
 				for (int i = 0; i < promisedTreasure; i++)
 					helperPlayer.draw(Decks.getTreasureCard());
-				for (int i = 0; i < card.getEarningTreasures() - promisedTreasure; i++)
+				for (int i = 0; i < playerTreasureBonus + card.getEarningTreasures() - promisedTreasure; i++)
 					GameManager.getCurrentPlayer().draw(Decks.getTreasureCard());
 			} else {	// player loose
 				// roll die and check if escape
@@ -123,7 +124,7 @@ public class Combat extends StateMachine {
 			if (GameManager.getCurrentPlayer().getCombatLevel() + playerCombatBonus > card.getLevel()) {
 				playerWon = true;
 				GameManager.getCurrentPlayer().leveleUp(card.getEarningLevels());
-				for (int i = 0; i < card.getEarningTreasures(); i++)
+				for (int i = 0; i < playerTreasureBonus + card.getEarningTreasures(); i++)
 					GameManager.getCurrentPlayer().draw(Decks.getTreasureCard());
 			} else {	//player loose
 				// roll die and check if escape

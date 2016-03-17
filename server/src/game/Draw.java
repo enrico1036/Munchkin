@@ -57,7 +57,7 @@ public class Draw extends StateMachine {
 			boolean monsterSelected = false;
 			do {
 			SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
-			if (message.getCardName() != SelectedCardMessage.DOOR_DECK) {
+			if (!message.getCardName().equals(SelectedCardMessage.DOOR_DECK)) {
 				Card card = GameManager.getCurrentPlayer().getHandCard(message.getCardName());
 				if (card != null && card.getCategory() == Category.Monster) {
 					monsterSelected = true;
