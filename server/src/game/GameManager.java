@@ -20,7 +20,9 @@ public class GameManager {
 	private static ArrayList<game.Player> players = new ArrayList<>();
 
 	private static void begin() {
+		broadcastMessage(new StateUpdateMessage("begin"));
 		Debug.print("GameManager: Begin");
+		
 		playerWon = false;
 		Decks.shuffleDecks();
 		for (Player player : players) {
@@ -29,7 +31,6 @@ public class GameManager {
 				player.draw(Decks.getTreasureCard());
 			}
 		}
-		broadcastMessage(new StateUpdateMessage("begin"));
 	}
 
 	private static void turn() {

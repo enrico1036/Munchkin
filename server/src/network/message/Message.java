@@ -47,7 +47,7 @@ public abstract class Message implements Serializable{
 
 	
 	//Get card from decks
-	public static final String DRAW_CARD = "DRAW_CARD";
+	public static final String PLAY_CARD = "DRAW_CARD";
 
 	//Play a general card
 	public static final String PLAY_GENERAL_CARD="GENERAL_CARD";

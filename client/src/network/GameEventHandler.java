@@ -20,7 +20,7 @@ import network.message.server.PlayerFullStatsMessage;
 import user_interface.ClientCard;
 import user_interface.ConnectionDialog;
 import user_interface.GameUI;
-import user_interface.HandCards;
+import user_interface.HandCard;
 import user_interface.LobbyUI;
 import user_interface.PopUpDialog;
 
@@ -49,9 +49,10 @@ public class GameEventHandler {
 							ChatMessage chatMessage = (ChatMessage) received;
 							lobbyPanel.getChatArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
 							break;
-						case Message.DRAW_CARD:
+						case Message.PLAY_CARD:
 							PlayCardMessage playCardMessage = (PlayCardMessage) received;
-							HandCards carddrawn = new HandCards(playCardMessage.getCard().getTitle());
+							// Create new HandCard from its name
+							HandCard carddrawn = new HandCard(playCardMessage.getCardName());
 							switch (playCardMessage.getAction()) {
 							case SHOW:
 								gamepanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));
@@ -92,16 +93,16 @@ public class GameEventHandler {
 						case Message.PLAYER_FULL_STATS:
 							PlayerFullStatsMessage statistics = (PlayerFullStatsMessage) received;
 							if (statistics.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
-								gamepanel.changeStatistics(statistics.getLevel(), statistics.getPower(), statistics.getPlayerClass().getTitle(), statistics.getPlayerRace().getTitle(), statistics.getPlayerNumCards());
+								gamepanel.changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
 							} else {
 								int i = 0;
-								boolean founded = false;
-								while (!founded) {
+								boolean found = false;
+								while (!found) {
 									if (!(gamepanel.getOpponentPlayers()[i].getPlayerName().equals(statistics.getPlayerName())))
 										i++;
 									else {
-										founded = true;
-										gamepanel.getOpponentPlayers()[i].changeStatistics(statistics.getLevel(), statistics.getPower(), statistics.getPlayerClass().getTitle(), statistics.getPlayerRace().getTitle(), statistics.getPlayerNumCards());
+										found = true;
+										gamepanel.getOpponentPlayers()[i].changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
 
 									}
 

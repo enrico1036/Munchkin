@@ -114,11 +114,11 @@ public class GameUI extends GamePanel {
 		 * ZOOMED PANEL AND ITS COMPONENTS
 		 * 
 		 */
-		//TODO è stata caricata già la mano?? O la carichiamo sul costruttore
+		//TODO ï¿½ stata caricata giï¿½ la mano?? O la carichiamo sul costruttore
 		// di handmanager???
-		HandCards card1 = new HandCards("door");
+		HandCard card1 = new HandCard("door");
 		card1.CreateCard(MunchkinClient.getImage("door_card"), zp);
-		HandCards card2 = new HandCards("treasure");
+		HandCard card2 = new HandCard("treasure");
 		card2.CreateCard(MunchkinClient.getImage("treasure_card"), zp);
 
 		HandCards = new HandManager(Hand);
@@ -371,7 +371,7 @@ public class GameUI extends GamePanel {
 		switch (e.getActionCommand()) {
 
 		case "DrawDoor":
-			HandCards card1 = new HandCards("door");
+			HandCard card1 = new HandCard("door");
 			card1.CreateCard(MunchkinClient.getImage("door_card"), zp);
 
 			HandCards.drawCard(card1);
@@ -379,7 +379,7 @@ public class GameUI extends GamePanel {
 
 			break;
 		case "DrawTreasure":
-			HandCards card2 = new HandCards("treasure");
+			HandCard card2 = new HandCard("treasure");
 			card2.CreateCard(MunchkinClient.getImage("treasure_card"), zp);
 
 			HandCards.drawCard(card2);

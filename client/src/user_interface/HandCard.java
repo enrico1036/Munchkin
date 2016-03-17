@@ -15,13 +15,13 @@ import network.GameEventHandler;
  * 
  *
  */
-public class HandCards extends ClientCard {
+public class HandCard extends ClientCard {
 
 	/**
 	 * 
 	 * @param title: the title of the card
 	 */
-	public HandCards(String title) {
+	public HandCard(String title) {
 		super(title);
 		
 	}

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  */
 public class HandManager {
 
-	private ArrayList<HandCards> hand;
+	private ArrayList<HandCard> hand;
 	private JPanel handPanel;
 	
 	/**
@@ -26,7 +26,7 @@ public class HandManager {
 		 * Create the arraylist of hand card and set the handpanel
 		 */
 		handPanel=Hand;
-		hand = new ArrayList<HandCards>();
+		hand = new ArrayList<HandCard>();
 		
 		
 		/**
@@ -47,14 +47,14 @@ public class HandManager {
 	 * Get the arraylist of the card in the client hand
 	 * @return The arrayList of Hand Cards
 	 */
-	public ArrayList<HandCards> getHand() {
+	public ArrayList<HandCard> getHand() {
 		return hand;
 	}
 	/**
 	 * It is used when a player draw a card and it add that card in the player hand
 	 * @param cardDrawn: the card that has drawn
 	 */
-	public void drawCard(HandCards cardDrawn){
+	public void drawCard(HandCard cardDrawn){
 		hand.add(cardDrawn);
 		
 		handPositioning();
@@ -67,9 +67,9 @@ public class HandManager {
 	 * @param Title: the title of the card that we want to find
 	 * @return a handcards that has the same title of the param Title
 	 */
-	public HandCards getCard(String Title){	
-		HandCards selected = null;
-		for(HandCards card : hand){
+	public HandCard getCard(String Title){	
+		HandCard selected = null;
+		for(HandCard card : hand){
 			if(card.getTitle().equals(Title)){
 				selected = card;
 			}
@@ -80,7 +80,7 @@ public class HandManager {
 	 * It is used to remove a card from the player hand
 	 * @param cardDiscarded: the card that we want to remove
 	 */
-	public void remove(HandCards cardDiscarded){
+	public void remove(HandCard cardDiscarded){
 		//TODO Q:DEVO SCARTARE LA CARTE E METTERLA DOVE?? - A:da nessuna parte..semplicemente non deve essere piu fatta vedere nella mano
 		//DeckManager.discardCard(hand.remove(hand.indexOf(cardDiscarded)));
 	}

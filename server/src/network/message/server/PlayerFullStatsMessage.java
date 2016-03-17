@@ -9,35 +9,45 @@ import network.message.Message;
 
 public class PlayerFullStatsMessage extends Message{
 
-	private Player player;
+	private String username;
+	private int level;
+	private int combatLevel;
+	private String raceCard;
+	private String classCard;
+	private int handSize;
 	
 	public PlayerFullStatsMessage(Player player) {
 		super(Message.PLAYER_FULL_STATS);	
-		this.player = player;
+		username = player.getUsername();
+		combatLevel = player.getCombatLevel();
+		level = player.getLevel();
+		handSize = player.getHand().size();
+		raceCard = player.getRace().getTitle();
+		classCard = player.getCardClass().getTitle();
 	}
 
 	public String getPlayerName() {
-		return player.getUsername();
+		return username;
 	}
 
 	public int getLevel() {
-		return player.getLevel();
+		return level;
 	}
 
-	public int getPower() {
-		return player.getCombatLevel();
+	public int getCombatLevel() {
+		return combatLevel;
 	}
 
-	public Race getPlayerRace() {
-		return player.getRace();
+	public String getRaceCard() {
+		return raceCard;
 	}
 
-	public ClassCard getPlayerClass() {
-		return player.getCardClass();
+	public String getClassCard() {
+		return classCard;
 	}
 	
-	public int getPlayerNumCards() {
-		return player.getHand().size();
+	public int getHandSize() {
+		return handSize;
 	}
 	
 	
