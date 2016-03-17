@@ -16,8 +16,8 @@ import utils.Debug;
 
 public class GameManager {
 	private static boolean playerWon;
-	private static MessageQueue queue = new MessageQueue();
-	private static ArrayList<game.Player> players = new ArrayList<>();
+	private static MessageQueue queue;
+	private static ArrayList<game.Player> players;
 
 	private static void begin() {
 		broadcastMessage(new StateUpdateMessage("begin"));
@@ -80,7 +80,10 @@ public class GameManager {
 	}
 
 	public static final MessageQueue getInQueue() {
-		return queue;
+		return GameManager.queue;
+	}
+	public static void setInQueue(final MessageQueue queue) {
+		GameManager.queue = queue;
 	}
 
 	public static Player getPlayerByName(String playerName) {

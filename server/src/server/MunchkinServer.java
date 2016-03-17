@@ -10,6 +10,7 @@ import game.Decks;
 import game.GameManager;
 import game.Player;
 import network.ConnectionListener;
+import network.MessageQueue;
 import network.message.ActionResultMessage;
 import network.message.Message;
 import network.message.client.ChatMessage;
@@ -23,6 +24,8 @@ public class MunchkinServer implements PlayerEventListener {
 	private final ArrayList<Player> players;
 	// Tcp listener
 	private ConnectionListener connListener;
+	// Common message queue shared between players
+	private MessageQueue queue;
 	// Timer used to pass from lobby to main game loop
 	private CountdownTask countTask;
 	private Timer timer;
@@ -42,7 +45,11 @@ public class MunchkinServer implements PlayerEventListener {
 	public MunchkinServer(int port, int maxPlayers, int minPlayers) {
 		// Create player array
 		players = new ArrayList<Player>();
+		// Create queue
+		queue = new MessageQueue();
+		
 		GameManager.setPlayers(players);
+		GameManager.setInQueue(queue);
 
 		// Create ConnectionListener, specifying port, max connections and
 		// PlayerListener
@@ -50,6 +57,8 @@ public class MunchkinServer implements PlayerEventListener {
 			connListener = new ConnectionListener(port, maxPlayers);
 			connListener.setAcceptTimeout(0);
 			connListener.setConnectionTimeout(0);
+			// Set this queue to be attached to each connection
+			connListener.setCommonMessageQueue(queue);
 		} catch (IOException e) {
 			// Error during socket binding, exit the program
 			System.err.println("ERROR: could not create ServerSocket on port " + port);
@@ -193,8 +202,7 @@ public class MunchkinServer implements PlayerEventListener {
 				} else {
 					// The player is still connected, refuse new connection and
 					// return
-					player.sendMessage(
-							new ActionResultMessage(ActionResultMessage.ACTION_DENIED, "Username lready in use"));
+					player.sendMessage(	new ActionResultMessage(ActionResultMessage.ACTION_DENIED, "Username lready in use"));
 					connListener.stopConnection(player.getConnection());
 					return;
 				}

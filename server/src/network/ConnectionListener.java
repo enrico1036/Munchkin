@@ -29,6 +29,7 @@ public class ConnectionListener implements Runnable {
 	private boolean running;
 	private int connTimeout;
 	private PlayerEventListener eventListener;
+	private MessageQueue queue;
 
 	public ConnectionListener(int port, int maxConnections) throws IOException {
 		// Initialize and bind socket on port
@@ -57,6 +58,10 @@ public class ConnectionListener implements Runnable {
 	
 	public void setPlayerEventListener(PlayerEventListener listener){
 		this.eventListener = listener;
+	}
+	
+	public void setCommonMessageQueue(MessageQueue queue){
+		this.queue = queue;
 	}
 
 	public boolean isRunning() {
@@ -108,7 +113,9 @@ public class ConnectionListener implements Runnable {
 			try {
 				// Accept new socket and create a new runnable ClientConnection
 				conn = new ClientConnection(servSock.accept(), connTimeout);
-
+				// Attach queue to connection
+				conn.attachToQueue(queue);
+				
 				// Create an anonymous Player
 				Player anonPlayer = new Player(eventListener);
 				anonPlayer.setConnection(conn);

@@ -16,6 +16,7 @@ public class ClientConnection implements Runnable {
 	private boolean alive;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
+	private MessageQueue queue;
 
 	public ClientConnection(Socket sock, int timeout) {
 		this.sock = sock;
@@ -45,6 +46,10 @@ public class ClientConnection implements Runnable {
 	public void attachToPlayer(Player player) {
 		owner = player;
 	}
+	
+	public void attachToQueue(MessageQueue queue){
+		this.queue = queue;
+	}
 
 	@Override
 	public void run() {
@@ -58,7 +63,9 @@ public class ClientConnection implements Runnable {
 		while (alive && sock.isConnected() && !sock.isInputShutdown() && !sock.isOutputShutdown()) {
 			// Read from network and append to own channel in IOBuffer
 			Message msgread = read();
-			IncomingMessageHandler.handle(msgread, owner);
+			if(!IncomingMessageHandler.handle(msgread, owner)){
+				queue.append(owner.getUsername(), msgread);
+			}
 		}
 
 		// Close buffers and socket
