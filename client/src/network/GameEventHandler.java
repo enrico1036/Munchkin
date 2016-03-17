@@ -47,7 +47,7 @@ public class GameEventHandler {
 						switch (received.getMessageCode()) {
 						case Message.CLT_CHAT_MESSAGE:
 							ChatMessage chatMessage = (ChatMessage) received;
-							lobbyPanel.getScrollList().add_Element(chatMessage.getSender() + ": " + chatMessage.getMessage());
+							lobbyPanel.getChatArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
 							break;
 						case Message.DRAW_CARD:
 							PlayCardMessage playCardMessage = (PlayCardMessage) received;

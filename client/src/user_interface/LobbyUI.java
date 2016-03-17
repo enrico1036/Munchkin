@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import com.sun.javafx.charts.ChartLayoutAnimator;
+
 import client.MunchkinClient;
 import network.GameEventHandler;
 
@@ -24,6 +27,7 @@ public class LobbyUI extends GamePanel {
 	private JTextField textBox;
 	private String[] players;
 	private boolean[] readyStatus;
+	private ChatArea chatArea;
 
 	public LobbyUI(GameWindow window) {
 
@@ -40,21 +44,31 @@ public class LobbyUI extends GamePanel {
 		User_ready.addActionListener(this);
 		add(User_ready);
 
-		ScrollList = new ScrollableList();
-		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
-		add(ScrollList);
+		/*
+		 * ScrollList = new ScrollableList(); ScrollList.setBounds(wndWidth * 3
+		 * / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
+		 * add(ScrollList);
+		 * 
+		 * textBox = new JTextField("Enter your text here");
+		 * textBox.addActionListener(this); textBox.setActionCommand("Enter");
+		 * textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2
+		 * / 5, wndHeight / 10); add(textBox);
+		 */
 
-		textBox = new JTextField("Enter your text here");
-		textBox.addActionListener(this);
-		textBox.setActionCommand("Enter");
-		textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10);
-		add(textBox);
+		chatArea = new ChatArea(0.5f);
+		//chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
+		chatArea.addActionListener(this);
+		add(chatArea);
 
 		GameEventHandler.getReadyPlayerList();
 	}
 
 	public ScrollableList getScrollList() {
 		return ScrollList;
+	}
+	
+	public final ChatArea getChatArea(){
+		return chatArea;
 	}
 
 	public void setScrollList(ScrollableList scrollList) {
@@ -68,7 +82,6 @@ public class LobbyUI extends GamePanel {
 		g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
 		g.drawImage(dragon, 0, 0, this.getWidth() * 2 / 5, this.getHeight(), null);
 		g.drawImage(users, this.getWidth() * 3 / 5, 0, users.getWidth(), users.getHeight(), null);
-
 	}
 
 	private void updateComponents() {
@@ -82,9 +95,9 @@ public class LobbyUI extends GamePanel {
 
 		}
 		User_ready.setBounds(wndWidth * 3 / 5 + wndWidth / 5, wndHeight / 10, User_ready.getWidth(), User_ready.getHeight());
-
-		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
-		textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10);
+		chatArea.setLocation(wndWidth * 3 / 5, wndHeight * 7 / 10);
+		//ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
+		//textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -92,10 +105,20 @@ public class LobbyUI extends GamePanel {
 		if (e.getActionCommand() == "tick") {
 			GameEventHandler.setReadyStatus();
 
-		} else if (e.getActionCommand() == "Enter" && textBox.getText().trim() != "") {
-			GameEventHandler.sendChatMessage(GameEventHandler.getConnection().getConnectedPlayerName(), textBox.getText());
-			textBox.setText("");
+		} /*
+			 * else if (e.getActionCommand() == "Enter" &&
+			 * textBox.getText().trim() != "") {
+			 * GameEventHandler.sendChatMessage(GameEventHandler.getConnection()
+			 * .getConnectedPlayerName(), textBox.getText());
+			 * textBox.setText(""); }
+			 */
+
+		else if (e.getActionCommand() == "Send") {
+			String message = chatArea.getTextAndClear().trim();
+			if(!message.isEmpty())
+				GameEventHandler.sendChatMessage(GameEventHandler.getConnection().getConnectedPlayerName(), message);
 		}
+
 	}
 
 	public void instancePlayersMatrix() {
