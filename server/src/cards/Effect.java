@@ -15,6 +15,7 @@ import game.Player;
 import javafx.util.Pair;
 import network.message.Message;
 import network.message.client.PopUpResultMessage;
+import network.message.client.SelectedCardMessage;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayCardMessage.Action;
 import network.message.server.PopUpMessage;
@@ -45,37 +46,76 @@ public class Effect {
 			case "dropObject":
 				dropObject(EquipSlot.parse(parameters.get("slot")));
 				break;
+			case "dropRace":
+				dropRace();
+				break;
+			case "dropClass":
+				dropClass();
+				break;
 			case "bonusEscape":
 				bonusEscape(owner, Integer.parseInt(parameters.get("bonus")));
+				break;
+			case "bonusToRace":
+				bonusToRace((Combat) gamePhase, parameters.get("raceName"), Integer.parseInt(parameters.get("bonus")));
+				break;
+			case "bonusToClass":
+				bonusToClass((Combat) gamePhase, parameters.get("className"), Integer.parseInt(parameters.get("bonus")));
+				break;
+			case "dead":
+				dead();
+				break;
+			case "dropCard":
+				dropCard(Category.valueOf(parameters.get("cardCategory")), Integer.parseInt(parameters.get("number")), Boolean.parseBoolean(parameters.get("onlyHand")));
+				break;
+			case "dropAllHand":
+				dropAllHand();
+				break;
+			case "escapeForRace":
+				escapeForRace((Combat) gamePhase, parameters.get("raceName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
+				break;
+			case "escapeForClass":
+				escapeForClass((Combat) gamePhase, parameters.get("className"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
+				break;
 			}
 		}
 	}
 
-	// ???? non so se serve
-	// runEffect() {
-	// switch(effectString){
-	// call right method with needed parameters
-	// }
-	// }
-
 	/**
 	 * Remove the specified equipment from the current player
-	 * @param slot: equipment to be removed
+	 * 
+	 * @param slot:
+	 *            equipment to be removed
 	 */
 	private static void dropObject(EquipSlot slot) {
 		GameManager.getCurrentPlayer().removeEquipment(slot);
 	}
 
-	// dropRace()
-	// dropClass()
+	/**
+	 * Remove the race from the current player
+	 */
+	private static void dropRace() {
+		GameManager.getCurrentPlayer().setRace(null);
+	}
 
 	/**
-	 * Set bonuses in combat phase 
-	 * @param gamePhase: current combat phase
+	 * Remove the class from the current player
+	 */
+	private static void dropClass() {
+		GameManager.getCurrentPlayer().setClass(null);
+	}
+
+	/**
+	 * Set bonuses in combat phase
+	 * 
+	 * @param gamePhase:
+	 *            current combat phase
 	 * @param owner
-	 * @param playerBonus: bonus in favor of the player (if against, this should be negative). If choosable leave it positive
-	 * @param extra_treasure: set to 0 if no extra treasure are present
-	 * @param choosable: describe if the player can choose between apply the bonus to the monster or to the player 
+	 * @param playerBonus:
+	 *            bonus in favor of the player (if against, this should be negative). If choosable leave it positive
+	 * @param extra_treasure:
+	 *            set to 0 if no extra treasure are present
+	 * @param choosable:
+	 *            describe if the player can choose between apply the bonus to the monster or to the player
 	 */
 	private static void combatBonus(Combat gamePhase, Player owner, int playerBonus, int extra_treasure, boolean choosable) {
 		if (choosable) {
@@ -98,6 +138,7 @@ public class Effect {
 
 	/**
 	 * Decrease current player level by number_level
+	 * 
 	 * @param number_level
 	 */
 	private static void loseLevel(int number_level) {
@@ -106,8 +147,11 @@ public class Effect {
 
 	/**
 	 * Give to current player a door card
-	 * @param number: number of cards to be given
-	 * @param show: if true draw, show in table for 2 seconds and put it on current player's hand
+	 * 
+	 * @param number:
+	 *            number of cards to be given
+	 * @param show:
+	 *            if true draw, show in table for 2 seconds and put it on current player's hand
 	 */
 	private static void drawDoor(int number, boolean show) {
 		for (int i = 0; i < number; i++) {
@@ -123,11 +167,14 @@ public class Effect {
 			}
 		}
 	}
-	
+
 	/**
 	 * Give to current player a treasure card
-	 * @param number: number of cards to be given
-	 * @param show: if true draw, show in table for 2 seconds and put it on current player's hand
+	 * 
+	 * @param number:
+	 *            number of cards to be given
+	 * @param show:
+	 *            if true draw, show in table for 2 seconds and put it on current player's hand
 	 */
 	private static void drawTreasure(int number, boolean show) {
 		for (int i = 0; i < number; i++) {
@@ -146,6 +193,7 @@ public class Effect {
 
 	/**
 	 * Increase owner's escpaeTreshold by bonus
+	 * 
 	 * @param owner
 	 * @param bonus
 	 */
@@ -153,28 +201,129 @@ public class Effect {
 		owner.setEscapeTreshold(owner.getEscapeTreshold() + bonus);
 	}
 
-	// bonus/malusRace
+	/**
+	 * Increase player combat bonus if the current player has the specified race
+	 * 
+	 * @param gamePhase
+	 * @param raceName
+	 * @param bonus
+	 */
+	private static void bonusToRace(Combat gamePhase, String raceName, int bonus) {
+		if (GameManager.getCurrentPlayer().getRace().getTitle() == raceName) {
+			gamePhase.addPlayerCombatBonus(bonus);
+		}
+	}
 
-	// bonus/malusClass
+	/**
+	 * Increase player combat bonus if the current player has the specified class
+	 * 
+	 * @param gamePhase
+	 * @param className
+	 * @param bonus
+	 */
+	private static void bonusToClass(Combat gamePhase, String className, int bonus) {
+		if (GameManager.getCurrentPlayer().getCardClass().getTitle() == className) {
+			gamePhase.addPlayerCombatBonus(bonus);
+		}
+	}
 
-	// dead
+	/**
+	 * Cause current player's death
+	 */
+	private static void dead() {
+		GameManager.getCurrentPlayer().die();
+	}
 
-	// dropCard(tipe card, number,boolean onlyHand)
+	/**
+	 * drop <code>number</code> cards, selected by player, of the specified category
+	 * 
+	 * @param cardCategory
+	 *            category
+	 * @param number
+	 *            number of cards to discard
+	 * @param onlyHand
+	 *            true if the player can only choose from hand cards
+	 */
+	private static void dropCard(Category cardCategory, int number, boolean onlyHand) {
+		Card selectedCard = null;
+		while (number > 0) {
+			if (onlyHand) {
+				do {
+					GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Please choose a card in your hand to discard", "OK", 7000));
+					GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT);
+					SelectedCardMessage selectedCardMsg = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+					selectedCard = GameManager.getCurrentPlayer().getHandCard(selectedCardMsg.getCardName());
+				} while ((cardCategory == Category.Any ? false : selectedCard.getCategory() != cardCategory) && selectedCard != null);
+			} else {
+				do {
+					GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Please choose a card to discard", "OK", 7000));
+					GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT);
+					SelectedCardMessage selectedCardMsg = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+					selectedCard = GameManager.getCurrentPlayer().getCardByName(selectedCardMsg.getCardName());
+				} while ((cardCategory == Category.Any ? false : selectedCard.getCategory() != cardCategory) && selectedCard != null);
+			}
+			GameManager.getCurrentPlayer().removeCardByName(selectedCard.getTitle());
+			Decks.discardCard(selectedCard);
+			number--;
+		}
+	}
 
-	// dropallhand
+	/**
+	 * Discard all the cards from current player's hand
+	 */
+	private static void dropAllHand() {
+		for (Card card : GameManager.getCurrentPlayer().getHand()) {
+			Decks.discardCard(GameManager.getCurrentPlayer().pickCard(card.getTitle()));
+		}
+	}
 
 	// mostroOcchiutoBadThings{cyborg fuggono, altri lose 2 level}
 
 	// upLevelAll() per il grande cthulu
 
-	// uplevel(class)
+	// uplevel(class) me sa che non serve perche c'è bonusToClass e quindi basta settarlo negativo 
 
-	// uplevel(race)
+	// uplevel(race) vedi uplevel(class)
 
 	// grande-cthulhu_brutte cose(){uplevel per ogni giocatore che non combatte} me sa che non serve
 
-	// EscapeAutomatic(race,treasure,levelEarned)
-	// EscapeAutomatic(class,treasure,levelEarned)
+	/**
+	 * Automatically escapes if the player has the specified race
+	 * @param gamePhase
+	 * @param raceName
+	 * @param levels
+	 * @param treasures
+	 */
+	private static void escapeForRace(Combat gamePhase, String raceName, int levels, int treasures) {
+		if(GameManager.getCurrentPlayer().getRace().getTitle() == raceName) {
+			gamePhase.escape(levels, treasures);
+		}
+	}
+	
+	/**
+	 * Automatically escapes if the player has the specified class
+	 * @param gamePhase
+	 * @param className
+	 * @param levels
+	 * @param treasures
+	 */
+	private static void escapeForClass(Combat gamePhase, String className, int levels, int treasures) {
+		if(GameManager.getCurrentPlayer().getCardClass().getTitle() == className) {
+			gamePhase.escape(levels, treasures);
+		}
+	}
+	
+	/**
+	 * Automatically escapes if the player has the specified equipped object
+	 * @param gamePhase
+	 * @param object
+	 * @param levels
+	 * @param treasures
+	 */
+	private static void escapeForObject(Combat gamePhase, EquipSlot object, int levels, int treasures) {
+		//TODO: look for the right object (slot and name) and escape if present
+			gamePhase.escape(levels, treasures);
+	}
 	// EscapeAutomatic(object,treasure,levelEarned)
 	// EscapeAutomatic(object,treasure,levelEarned)
 	// EscapeAutomatic(treasure,levelEarned) // per le carte tesoro

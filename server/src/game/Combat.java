@@ -143,6 +143,13 @@ public class Combat extends StateMachine {
 	public void addPlayerTreasureBonus(int playerTreasureBonus) {
 		this.playerTreasureBonus += playerTreasureBonus;
 	}
+	
+	public void escape(int levels, int treasures) {
+		GameManager.getCurrentPlayer().leveleUp(levels);
+		for (int i = 0; i < treasures; i++)
+			GameManager.getCurrentPlayer().draw(Decks.getTreasureCard());
+		while(stepOver());	// terminate state machine
+	}
 
 	@Override
 	public boolean performStep() {

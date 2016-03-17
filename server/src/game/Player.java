@@ -173,7 +173,7 @@ public class Player {
 		for (Card c : hand) {
 			if (c.getTitle().equals(title)) {
 				hand.remove(c);
-				this.sendMessage(new PlayCardMessage(c, Action.REMOVE));
+				sendMessage(new PlayCardMessage(c, Action.REMOVE));
 				return c;
 			}
 		}
@@ -181,13 +181,72 @@ public class Player {
 	}
 
 	public void draw(Card card) {
-		this.sendMessage(new PlayCardMessage(card, Action.DRAW));
-		this.hand.add(card);
+		sendMessage(new PlayCardMessage(card, Action.DRAW));
+		hand.add(card);
 	}
 
 	public boolean discardCard(Card card) {
-		this.sendMessage(new PlayCardMessage(card, Action.REMOVE));
-		return this.hand.remove(card);
+		sendMessage(new PlayCardMessage(card, Action.REMOVE));
+		return hand.remove(card);
+	}
+	
+	public Card getCardByName(String cardName) {
+		//first try to get that card from hand
+		Card card = getHandCard(cardName);
+		
+		//then look for the card on table
+		if(card == null) {
+			if(cardName == race.getTitle()) {
+				card = race;
+			} else if(cardName == playerClass.getTitle()) {
+				card = playerClass;
+			} else if(cardName == head.getTitle()) {
+				card = head;
+			} else if(cardName == hand1.getTitle()) {
+				card = hand1;
+			} else if(cardName == hand2.getTitle()) {
+				card = hand2;
+			} else if(cardName == body.getTitle()) {
+				card = body;
+			} else if(cardName == feet.getTitle()) {
+				card = feet;
+			}
+			GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
+		}
+		return card;
+	}
+	
+	public Card removeCardByName(String cardName) {
+		//first try to remove that card from hand
+		Card card = pickCard(cardName);
+		
+		//then look for the card on table
+		if(card == null) {
+			if(cardName == race.getTitle()) {
+				card = race;
+				race = null;
+			} else if(cardName == playerClass.getTitle()) {
+				card = playerClass;
+				playerClass = null;
+			} else if(cardName == head.getTitle()) {
+				card = head;
+				head = null;
+			} else if(cardName == hand1.getTitle()) {
+				card = hand1;
+				hand1 = null;
+			} else if(cardName == hand2.getTitle()) {
+				card = hand2;
+				hand2 = null;
+			} else if(cardName == body.getTitle()) {
+				card = body;
+				body = null;
+			} else if(cardName == feet.getTitle()) {
+				card = feet;
+				feet = null;
+			}
+			GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
+		}
+		return card;
 	}
 
 	public boolean equip(cards.EquipSlot slot, cards.Equipment card) {
