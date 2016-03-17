@@ -411,10 +411,6 @@
     	<path>Resources/Images/Cards/ciuffo_per-manente.png</path>
     </image>
     <image>
-    	<name>dado_appesantito</name>
-    	<path>Resources/Images/Cards/dado_appesantito.png</path>
-    </image>
-    <image>
     	<name>discorso_del_veniamo_in_pace</name>
     	<path>Resources/Images/Cards/discorso_del_veniamo_in_pace.png</path>
     </image>
