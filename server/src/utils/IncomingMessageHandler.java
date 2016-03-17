@@ -1,12 +1,8 @@
 package utils;
 
-import java.util.Timer;
-
 import game.GameManager;
 import game.Player;
-import javafx.util.Pair;
 import network.message.Message;
-import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.ConnectionRequestMessage;
 import network.message.server.PlayerEquipmentMessage;
@@ -17,8 +13,7 @@ import network.message.server.ReadyLobbyMessage;
 public class IncomingMessageHandler {
 
 	/**
-	 * Call right method depending on message, if no methods was called return
-	 * false
+	 * Call right method depending on message, if no methods was called return false
 	 * 
 	 * @param pair
 	 * @return true if message was used, false otherwise
@@ -63,14 +58,14 @@ public class IncomingMessageHandler {
 		case Message.PLAYER_STATUS_REQUEST:
 			PlayerStatusRequest playerStatRequest = (PlayerStatusRequest) message;
 			if (playerStatRequest.getStatusRequest().equals(PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT))
-				player.sendMessage(new PlayerEquipmentMessage());
+				player.sendMessage(new PlayerEquipmentMessage(player));
 			else
-				player.sendMessage(
-						new PlayerFullStatsMessage(GameManager.getPlayerByName(playerStatRequest.getPlayer())));
+				player.sendMessage(new PlayerFullStatsMessage(GameManager.getPlayerByName(playerStatRequest.getPlayer())));
 			break;
 
 		default:
 			messageUsed = false;
+			break;
 		}
 
 		return messageUsed;
