@@ -41,16 +41,15 @@ public class LobbyUI extends GamePanel {
 		add(User_ready);
 
 		ScrollList = new ScrollableList();
-		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight*7/10,  wndWidth*2 / 5, wndHeight*27/100);
+		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
 		add(ScrollList);
-
 
 		textBox = new JTextField("Enter your text here");
 		textBox.addActionListener(this);
 		textBox.setActionCommand("Enter");
-		textBox.setBounds(wndWidth * 3 / 5, wndHeight*9/10,  wndWidth*2 / 5, wndHeight /10);
+		textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10);
 		add(textBox);
-		
+
 		GameEventHandler.getReadyPlayerList();
 	}
 
@@ -78,16 +77,14 @@ public class LobbyUI extends GamePanel {
 
 		for (int i = 0; i < 6; i++) {
 			for (int k = 0; k < 2; k++) {
-				Users[i][k].setBounds(wndWidth * (3) / 5 + wndWidth * k / 10, wndHeight * (i + 1) / 10, wndWidth / 10,
-						wndHeight / 10);
+				Users[i][k].setBounds(wndWidth * (3) / 5 + wndWidth * k / 10, wndHeight * (i + 1) / 10, wndWidth / 10, wndHeight / 10);
 			}
 
 		}
-		User_ready.setBounds(wndWidth * 3 / 5 + wndWidth / 5, wndHeight / 10, User_ready.getWidth(),
-				User_ready.getHeight());
-		
-		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight*7/10,  wndWidth*2 / 5, wndHeight*27/100);
-		textBox.setBounds(wndWidth * 3 / 5, wndHeight*99/100,  wndWidth*2 / 5, wndHeight /100);
+		User_ready.setBounds(wndWidth * 3 / 5 + wndWidth / 5, wndHeight / 10, User_ready.getWidth(), User_ready.getHeight());
+
+		ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
+		textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -96,8 +93,7 @@ public class LobbyUI extends GamePanel {
 			GameEventHandler.setReadyStatus();
 
 		} else if (e.getActionCommand() == "Enter" && textBox.getText().trim() != "") {
-			GameEventHandler.sendChatMessage(GameEventHandler.getConnection().getConnectedPlayerName(),
-					textBox.getText());
+			GameEventHandler.sendChatMessage(GameEventHandler.getConnection().getConnectedPlayerName(), textBox.getText());
 			textBox.setText("");
 		}
 	}
@@ -112,8 +108,7 @@ public class LobbyUI extends GamePanel {
 			for (int k = 0; k < 2; k++) {
 				Users[i][k].setVisible(false);
 				Users[i][k].setBorder(BorderFactory.createLineBorder(Color.black));
-				Users[i][k].setBounds(wndWidth * (3) / 5 + wndWidth * k / 10, wndHeight * (i + 1) / 10, wndWidth / 10,
-						wndHeight / 10);
+				Users[i][k].setBounds(wndWidth * (3) / 5 + wndWidth * k / 10, wndHeight * (i + 1) / 10, wndWidth / 10, wndHeight / 10);
 				add(Users[i][k]);
 			}
 
@@ -126,8 +121,6 @@ public class LobbyUI extends GamePanel {
 
 	public void showPlayer() {
 
-		
-		
 		// Clear the list of Jlabels
 		for (int i = 1; i < 6; i++) {
 			Users[i][0].setVisible(false);
@@ -135,27 +128,22 @@ public class LobbyUI extends GamePanel {
 			Users[i][0].setText("");
 			Users[i][1].setText("");
 		}
-		
-		
+
 		players = GameEventHandler.getPlayers();
 		readyStatus = GameEventHandler.getReadyStatus();
-		
+
 		// Update status of connected players
 		for (int i = 0; i < players.length; i++) {
 			Users[i][0].setVisible(true);
 			Users[i][1].setVisible(true);
 			Users[i][0].setText(players[i]);
-			if(readyStatus[i]!=true)
+			if (readyStatus[i] != true)
 				Users[i][1].setText("Non Pronto");
 			else
 				Users[i][1].setText("Pronto");
-			
+
 		}
 
-	
-		
-		
-		
 	}
 
 }

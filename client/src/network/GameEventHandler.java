@@ -39,6 +39,7 @@ public class GameEventHandler {
 
 				do {
 					Message received = GameEventHandler.connection.receive();
+					System.out.println(received.getMessageCode());
 
 					if (received != null) {
 						GameUI gamepanel = (GameUI) MunchkinClient.getPanel("GameUI");
@@ -46,8 +47,7 @@ public class GameEventHandler {
 						switch (received.getMessageCode()) {
 						case Message.CLT_CHAT_MESSAGE:
 							ChatMessage chatMessage = (ChatMessage) received;
-							lobbyPanel.getScrollList()
-									.add_Element(chatMessage.getSender() + ": " + chatMessage.getMessage());
+							lobbyPanel.getScrollList().add_Element(chatMessage.getSender() + ": " + chatMessage.getMessage());
 							break;
 						case Message.DRAW_CARD:
 							PlayCardMessage playCardMessage = (PlayCardMessage) received;
@@ -78,39 +78,30 @@ public class GameEventHandler {
 							PopUpMessage popup = (PopUpMessage) received;
 
 							// Show popup dialog and wait for response
-							PopUpDialog dialog = new PopUpDialog(popup.getText(), popup.getButton1(),
-									popup.getButton2(), popup.getTimeout_ms(), popup.getMin_val(), popup.getMax_val());
+							PopUpDialog dialog = new PopUpDialog(popup.getText(), popup.getButton1(), popup.getButton2(), popup.getTimeout_ms(), popup.getMin_val(), popup.getMax_val());
 							dialog.setVisible(true);
 
 							// Send response message based on user's choice
 							if (dialog.wasTimedOut()) {
 								sendMessage(new PopUpResultMessage(connection.getConnectedPlayerName()));
 							} else {
-								sendMessage(
-										new PopUpResultMessage(dialog.wasButton1Pressed(), dialog.wasButton2Pressed(),
-												dialog.getSpinnerValue(), connection.getConnectedPlayerName()));
+								sendMessage(new PopUpResultMessage(dialog.wasButton1Pressed(), dialog.wasButton2Pressed(), dialog.getSpinnerValue(), connection.getConnectedPlayerName()));
 							}
 							break;
 
 						case Message.PLAYER_FULL_STATS:
 							PlayerFullStatsMessage statistics = (PlayerFullStatsMessage) received;
-							if (statistics.getPlayerName()
-									.equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
-								gamepanel.changeStatistics(statistics.getLevel(), statistics.getPower(),
-										statistics.getPlayerClass().getTitle(), statistics.getPlayerRace().getTitle(),
-										statistics.getPlayerNumCards());
+							if (statistics.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
+								gamepanel.changeStatistics(statistics.getLevel(), statistics.getPower(), statistics.getPlayerClass().getTitle(), statistics.getPlayerRace().getTitle(), statistics.getPlayerNumCards());
 							} else {
 								int i = 0;
 								boolean founded = false;
 								while (!founded) {
-									if (!(gamepanel.getOpponentPlayers()[i].getPlayerName()
-											.equals(statistics.getPlayerName())))
+									if (!(gamepanel.getOpponentPlayers()[i].getPlayerName().equals(statistics.getPlayerName())))
 										i++;
 									else {
 										founded = true;
-										gamepanel.getOpponentPlayers()[i].changeStatistics(statistics.getLevel(),
-												statistics.getPower(), statistics.getPlayerClass().getTitle(),
-												statistics.getPlayerRace().getTitle(), statistics.getPlayerNumCards());
+										gamepanel.getOpponentPlayers()[i].changeStatistics(statistics.getLevel(), statistics.getPower(), statistics.getPlayerClass().getTitle(), statistics.getPlayerRace().getTitle(), statistics.getPlayerNumCards());
 
 									}
 
@@ -120,23 +111,18 @@ public class GameEventHandler {
 							break;
 						case Message.PLAYER_EQUIPMENT:
 							PlayerEquipmentMessage equip = (PlayerEquipmentMessage) received;
-							if (equip.getPlayerName()
-									.equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
-								gamepanel.changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(),
-										equip.getBody(), equip.getFeet());
+							if (equip.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
+								gamepanel.changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
 
 							} else {
 								int i = 0;
 								boolean founded = false;
 								while (!founded) {
-									if (!(gamepanel.getOpponentPlayers()[i].getPlayerName()
-											.equals(equip.getPlayerName())))
+									if (!(gamepanel.getOpponentPlayers()[i].getPlayerName().equals(equip.getPlayerName())))
 										i++;
 									else {
 										founded = true;
-										gamepanel.getOpponentPlayers()[i].getDetailsPanel().changeEquipment(
-												equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(),
-												equip.getFeet());
+										gamepanel.getOpponentPlayers()[i].getDetailsPanel().changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
 									}
 								}
 							}
@@ -147,16 +133,18 @@ public class GameEventHandler {
 								MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow()));
 								MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
 								break;
-								//TODO @GAMBI DEVO AGGIUNGERE DICERESULTMESSAGE? A: SI e quando arriva far vedere il risultato dei dadi
+								// TODO @GAMBI DEVO AGGIUNGERE DICERESULTMESSAGE? A: SI e quando arriva far vedere il risultato dei dadi
 							}
 						}
 					}
-
 				} while (GameEventHandler.connection.isConnected());
 
 			}
 
 		});
+	}
+
+	public static void startListening() {
 		GameEventHandler.thread.start();
 	}
 

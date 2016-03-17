@@ -16,7 +16,7 @@ public class CountdownTask extends TimerTask{
 	protected int count;
 	protected final int target;
 	protected boolean complete;
-	protected final CountdownActions actions;
+	protected CountdownActions actions;
 	
 	public CountdownTask(int target, CountdownActions actions){
 		count = 0;

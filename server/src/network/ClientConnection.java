@@ -10,7 +10,7 @@ import network.message.Message;
 import network.message.client.ConnectionRequestMessage;
 import utils.IncomingMessageHandler;
 
-public class ClientConnection implements Runnable{
+public class ClientConnection implements Runnable {
 	private final Socket sock;
 	private Player owner;
 	private boolean alive;
@@ -21,17 +21,17 @@ public class ClientConnection implements Runnable{
 		this.sock = sock;
 		owner = null;
 		alive = true;
-		
+
 		try {
 			// Set read timeout
 			this.sock.setSoTimeout(timeout);
-			
+
 			output = new ObjectOutputStream(sock.getOutputStream());
 			output.flush();
-			
+
 			input = new ObjectInputStream(sock.getInputStream());
-			//reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-			//writer = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
+			// reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+			// writer = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
 		} catch (IOException e) {
 			e.printStackTrace();
 			alive = false;
@@ -41,14 +41,14 @@ public class ClientConnection implements Runnable{
 	public boolean isAlive() {
 		return alive && sock.isConnected() && !sock.isInputShutdown() && !sock.isOutputShutdown();
 	}
-	
-	public void attachToPlayer(Player player){
+
+	public void attachToPlayer(Player player) {
 		owner = player;
 	}
 
 	@Override
 	public void run() {
-		
+
 		// Terminate thread if the socket does not exist
 		if (sock == null) {
 			close();
@@ -66,13 +66,13 @@ public class ClientConnection implements Runnable{
 		// Signal thread death to own pool
 	}
 
-	public synchronized Message read() {
+	public Message read() {
 		Message line = null;
 		try {
 			try {
 				line = (Message) input.readObject();
 			} catch (ClassNotFoundException e) {
-				
+
 				e.printStackTrace();
 			}
 		} catch (IOException e) {
@@ -84,11 +84,14 @@ public class ClientConnection implements Runnable{
 		return line;
 	}
 
-	public synchronized void write(Message obj) {
+	public void write(Message obj) {
 		try {
-			output.writeObject(obj);
-			output.flush();
-		} catch (IOException e) {
+			synchronized (output) {
+				output.writeObject(obj);
+				output.flush();
+			}
+			// Thread.sleep(100);
+		} catch (IOException/* | InterruptedException */ e) {
 			alive = false;
 		}
 	}
@@ -103,12 +106,10 @@ public class ClientConnection implements Runnable{
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
-	public String toString(){
+	public String toString() {
 		return sock.getRemoteSocketAddress() + ":" + sock.getPort();
 	}
-
-
 
 }

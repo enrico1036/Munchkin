@@ -76,18 +76,6 @@ public class GameManager {
 		}
 	}
 
-	public static ArrayList<Player> readyPlayers() {
-		ArrayList<Player> readyP = new ArrayList<>();
-
-		for (Player player : players) {
-			{
-				if (player.isLobbyReady())
-					readyP.add(player);
-
-			}
-		}
-		return readyP;
-	}
 
 	public static final MessageQueue getInQueue() {
 		return queue;
@@ -104,5 +92,12 @@ public class GameManager {
 			}
 		}
 		return selectedPlayer;
+	}
+
+	/**
+	 * @param players the players to set
+	 */
+	public static void setPlayers(ArrayList<game.Player> players) {
+		GameManager.players = players;
 	}
 }

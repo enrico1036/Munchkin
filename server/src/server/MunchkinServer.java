@@ -42,7 +42,8 @@ public class MunchkinServer implements PlayerEventListener {
 	public MunchkinServer(int port, int maxPlayers, int minPlayers) {
 		// Create player array
 		players = new ArrayList<Player>();
-
+		GameManager.setPlayers(players);
+		
 		// Create ConnectionListener, specifying port, max connections and
 		// PlayerListener
 		try {
@@ -81,26 +82,25 @@ public class MunchkinServer implements PlayerEventListener {
 
 		// Start game logic
 		GameManager.startGame();
-		
+
 		// Exit
 		server.shutdown();
 	}
 
 	/**
-	 * Wait for players to correctly connect to the server and wait for them to
-	 * be ready.
+	 * Wait for players to correctly connect to the server and wait for them to be ready.
 	 */
 	public void populateLobby() {
-		// Add this istance as PlayerEventListener
+		// Add this instance as PlayerEventListener
 		connListener.setPlayerEventListener(this);
 		// Start listening
 		connListener.start();
-		
+
 		// Flag is true if every player is ready
-		boolean allReady = true;
+		boolean allReady = false;
 
 		// Loop until there are at least minPlayers and all ready
-		do {
+		while (!allReady) {
 			// Block thread for a second until a player event unlocks it
 			synchronized (lock) {
 				try {
@@ -109,25 +109,24 @@ public class MunchkinServer implements PlayerEventListener {
 				}
 			}
 			// Check if someone is still not ready
-			allReady = true;
+			allReady = players.size() >= minPlayers;
 			for (Player p : players)
 				allReady &= p.isLobbyReady();
 
 			// Start timer if everyone is ready
 			if (allReady) {
-				// Create a new task with specifying its behaviour
+				// Create a new task with specifying its behavior
 				countTask = new CountdownTask(5, new CountdownTask.CountdownActions() {
 
 					@Override
 					public void onTick(int target, int count) {
-						GameManager.broadcastMessage(
-								new ChatMessage("Server", "Game starting in " + (target - count) + " seconds"));
+						GameManager.broadcastMessage(new ChatMessage("Server", "Game starting in " + (target - count) + " seconds"));
 					}
 
 					@Override
 					public void onComplete(int target, int count) {
 						GameManager.broadcastMessage(new ChatMessage("Server", "Game started"));
-						synchronized(lock){
+						synchronized (lock) {
 							lock.notifyAll();
 						}
 					}
@@ -138,13 +137,13 @@ public class MunchkinServer implements PlayerEventListener {
 					}
 				});
 
-				timer.schedule(countTask, 0, 1000);
+				timer.scheduleAtFixedRate(countTask, 0, 1000);
 			} else {
-				if(countTask != null)
+				if (countTask != null)
 					countTask.cancel();
 			}
 
-		} while (!allReady || players.size() < minPlayers);
+		}
 
 		// wait for timer to complete
 		synchronized (lock) {
@@ -153,14 +152,13 @@ public class MunchkinServer implements PlayerEventListener {
 			} catch (InterruptedException | IllegalMonitorStateException e) {
 			}
 		}
-		
+
 	}
-	
-	public void shutdown(){
+
+	public void shutdown() {
 		connListener.stop();
 		connListener.stopConnections();
 	}
-	
 
 	@Override
 	public void chatMessage(Message message) {
