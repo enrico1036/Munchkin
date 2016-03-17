@@ -110,12 +110,14 @@ public class Combat extends StateMachine {
 			} else {	// player loose
 				// roll die and check if escape
 				int die = (int) Math.random()*5+1;
-				GameManager.getCurrentPlayer().sendMessage(new DiceResultMessage(die));
+//				GameManager.getCurrentPlayer().sendMessage(new DiceResultMessage(die));
+				GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("You made " + Integer.toString(die), 5000));
 				if(die < GameManager.getCurrentPlayer().getEscapeTreshold()) {
 					//run bad things
 				}
 				die = (int) Math.random()*5+1;
-				helperPlayer.sendMessage(new DiceResultMessage(die));
+//				helperPlayer.sendMessage(new DiceResultMessage(die));
+				helperPlayer.sendMessage(new PopUpMessage("You made " + Integer.toString(die), 5000));
 				if(die < helperPlayer.getEscapeTreshold()) {
 					//run bad things
 				}
@@ -129,7 +131,8 @@ public class Combat extends StateMachine {
 			} else {	//player loose
 				// roll die and check if escape
 				int die = (int) Math.random()*5+1;
-				GameManager.getCurrentPlayer().sendMessage(new DiceResultMessage(die));
+//				GameManager.getCurrentPlayer().sendMessage(new DiceResultMessage(die));
+				GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("You made " + Integer.toString(die), 5000));
 				if(die < GameManager.getCurrentPlayer().getEscapeTreshold()) {
 					//run bad things
 				}
