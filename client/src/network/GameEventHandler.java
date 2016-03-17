@@ -181,12 +181,12 @@ public class GameEventHandler {
 		connection.send(new ClientGeneralRequest(ClientGeneralRequest.REQUEST_READY_PLAYER_LIST));
 	}
 
-	public static void getPlayerStatistics(String Player) {
-		connection.send(new PlayerStatusRequest(Player, PlayerStatusRequest.REQUEST_PLAYER_FULL_STATS));
+	public static void getPlayerStatistics(String player) {
+		connection.send(new PlayerStatusRequest(player, PlayerStatusRequest.REQUEST_PLAYER_FULL_STATS));
 	}
 
-	public static void getPlayerEquipment(String Player) {
-		connection.send(new PlayerStatusRequest(Player, PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT));
+	public static void getPlayerEquipment(String player) {
+		connection.send(new PlayerStatusRequest(player, PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT));
 	}
 
 	public static void signalExit() {

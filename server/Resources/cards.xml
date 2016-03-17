@@ -55,7 +55,21 @@
 		
 	</doors>
 	<treasures>
-		<consumable name="nnn" effect="dsad" onlyCombat="true"/>
-		<equipment name="qqq" slot="head" bonus="4" value="500" />
+		<consumable name="amplificatore_mentale" effect="dsad" onlyCombat="true"/>
+		<equipment name="dado_appesantito" slot="head" bonus="4" value="500" />
+		<consumable name="amplificatore_mentale" effect="dsad" onlyCombat="true"/>
+		<equipment name="dado_appesantito" slot="head" bonus="4" value="500" />
+		<consumable name="amplificatore_mentale" effect="dsad" onlyCombat="true"/>
+		<equipment name="dado_appesantito" slot="head" bonus="4" value="500" />
+		<consumable name="amplificatore_mentale" effect="dsad" onlyCombat="true"/>
+		<equipment name="dado_appesantito" slot="head" bonus="4" value="500" />
+		<consumable name="amplificatore_mentale" effect="dsad" onlyCombat="true"/>
+		<equipment name="dado_appesantito" slot="head" bonus="4" value="500" />
+		<consumable name="amplificatore_mentale" effect="dsad" onlyCombat="true"/>
+		<equipment name="dado_appesantito" slot="head" bonus="4" value="500" />
+		<consumable name="amplificatore_mentale" effect="dsad" onlyCombat="true"/>
+		<equipment name="dado_appesantito" slot="head" bonus="4" value="500" />
+		<consumable name="amplificatore_mentale" effect="dsad" onlyCombat="true"/>
+		<equipment name="dado_appesantito" slot="head" bonus="4" value="500" />
 	</treasures>
 </cards>

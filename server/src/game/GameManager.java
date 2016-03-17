@@ -22,7 +22,7 @@ public class GameManager {
 	private static void begin() {
 		broadcastMessage(new StateUpdateMessage("begin"));
 		Debug.print("GameManager: Begin");
-		
+
 		playerWon = false;
 		Decks.shuffleDecks();
 		for (Player player : players) {
@@ -77,7 +77,6 @@ public class GameManager {
 		}
 	}
 
-
 	public static final MessageQueue getInQueue() {
 		return queue;
 	}
@@ -86,17 +85,15 @@ public class GameManager {
 		Player selectedPlayer = null;
 
 		for (Player player : players) {
-			{
-				if (player.getUsername() == playerName)
-					selectedPlayer = player;
-
-			}
+			if (player.getUsername().equals(playerName))
+				selectedPlayer = player;
 		}
 		return selectedPlayer;
 	}
 
 	/**
-	 * @param players the players to set
+	 * @param players
+	 *            the players to set
 	 */
 	public static void setPlayers(ArrayList<game.Player> players) {
 		GameManager.players = players;
