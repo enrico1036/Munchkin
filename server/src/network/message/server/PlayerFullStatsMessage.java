@@ -22,8 +22,11 @@ public class PlayerFullStatsMessage extends Message{
 		combatLevel = player.getCombatLevel();
 		level = player.getLevel();
 		handSize = player.getHand().size();
-		raceCard = player.getRace().getTitle();
-		classCard = player.getCardClass().getTitle();
+		
+		if(player.getRace() != null)
+			raceCard = player.getRace().getTitle();
+		if(player.getCardClass() != null)
+			classCard = player.getCardClass().getTitle();
 	}
 
 	public String getPlayerName() {

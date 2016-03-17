@@ -46,6 +46,7 @@ public class Player {
 		this.lobby_ready = false;
 		this.escapeTreshold = 5;
 		this.eventListener = listener;
+		equipments = new HashMap<>();
 	}
 
 	// Default Player constructor
