@@ -209,7 +209,7 @@ public class Effect {
 	 * @param bonus
 	 */
 	private static void bonusToRace(Combat gamePhase, String raceName, int bonus) {
-		if (GameManager.getCurrentPlayer().getRace().getTitle() == raceName) {
+		if (GameManager.getCurrentPlayer().getRace().getTitle().equals(raceName)) {
 			gamePhase.addPlayerCombatBonus(bonus);
 		}
 	}
@@ -222,7 +222,7 @@ public class Effect {
 	 * @param bonus
 	 */
 	private static void bonusToClass(Combat gamePhase, String className, int bonus) {
-		if (GameManager.getCurrentPlayer().getCardClass().getTitle() == className) {
+		if (GameManager.getCurrentPlayer().getCardClass().getTitle().equals(className)) {
 			gamePhase.addPlayerCombatBonus(bonus);
 		}
 	}
@@ -295,7 +295,7 @@ public class Effect {
 	 * @param treasures
 	 */
 	private static void escapeForRace(Combat gamePhase, String raceName, int levels, int treasures) {
-		if(GameManager.getCurrentPlayer().getRace().getTitle() == raceName) {
+		if(GameManager.getCurrentPlayer().getRace().getTitle().equals(raceName)) {
 			gamePhase.escape(levels, treasures);
 		}
 	}
@@ -308,7 +308,7 @@ public class Effect {
 	 * @param treasures
 	 */
 	private static void escapeForClass(Combat gamePhase, String className, int levels, int treasures) {
-		if(GameManager.getCurrentPlayer().getCardClass().getTitle() == className) {
+		if(GameManager.getCurrentPlayer().getCardClass().getTitle().equals(className)) {
 			gamePhase.escape(levels, treasures);
 		}
 	}
