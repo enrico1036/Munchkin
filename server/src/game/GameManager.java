@@ -41,8 +41,8 @@ public class GameManager {
 
 	private static void end() {
 		Debug.print("GameManager: End");
-		Debug.print(players.get(0).getUsername() + "Won!!!");
-		broadcastMessage(new PopUpMessage(players.get(0).getUsername() + "Won!!!", 30000));
+		Debug.print(getCurrentPlayer().getUsername() + "Won!!!");
+		broadcastMessage(new PopUpMessage(getCurrentPlayer().getUsername() + "Won!!!", 30000));
 	}
 
 	private static void nextPlayer() {
@@ -59,6 +59,8 @@ public class GameManager {
 		while (!playerWon) {
 			nextPlayer();
 			turn();
+			if(getCurrentPlayer().getLevel() >= 10)
+				win();
 		}
 		end();
 	}
