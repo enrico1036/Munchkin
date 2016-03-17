@@ -32,7 +32,7 @@ public class Effect {
 			switch (effectID) {
 			// call right method with gamePhase and needed parameters
 			case "loseLevel":
-				loseLevel(Integer.parseInt((parameters.get("number_level"))));
+				loseLevel(Integer.parseInt((parameters.get("numberLevel"))));
 				break;
 			case "drawDoor":
 				drawDoor(Integer.parseInt(parameters.get("number")), Boolean.getBoolean(parameters.get("show")));
@@ -41,7 +41,7 @@ public class Effect {
 				drawTreasure(Integer.parseInt(parameters.get("number")), Boolean.getBoolean(parameters.get("show")));
 				break;
 			case "combatBonus":
-				combatBonus((Combat) gamePhase, owner, Integer.parseInt(parameters.get("playerBonus")), Integer.parseInt(parameters.get("extra_treasure")), Boolean.getBoolean(parameters.get("choosable")));
+				combatBonus((Combat) gamePhase, owner, Integer.parseInt(parameters.get("playerBonus")), Integer.parseInt(parameters.get("extraTreasure")), Boolean.getBoolean(parameters.get("choosable")));
 				break;
 			case "dropObject":
 				dropObject(EquipSlot.parse(parameters.get("slot")));
@@ -75,6 +75,9 @@ public class Effect {
 				break;
 			case "escapeForClass":
 				escapeForClass((Combat) gamePhase, parameters.get("className"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
+				break;
+			case "escapeForObject":
+				escapeForObject((Combat) gamePhase, EquipSlot.parse(parameters.get("slot")), parameters.get("cardName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
 				break;
 			}
 		}
@@ -316,23 +319,22 @@ public class Effect {
 	/**
 	 * Automatically escapes if the player has the specified equipped object
 	 * @param gamePhase
-	 * @param object
+	 * @param slot
 	 * @param levels
 	 * @param treasures
 	 */
-	private static void escapeForObject(Combat gamePhase, EquipSlot object, int levels, int treasures) {
+	private static void escapeForObject(Combat gamePhase, EquipSlot slot, String cardName, int levels, int treasures) {
 		//TODO: look for the right object (slot and name) and escape if present
+		if(GameManager.getCurrentPlayer().getEquipment(slot).getTitle().equals(cardName))
 			gamePhase.escape(levels, treasures);
 	}
-	// EscapeAutomatic(object,treasure,levelEarned)
-	// EscapeAutomatic(object,treasure,levelEarned)
+	
+
 	// EscapeAutomatic(treasure,levelEarned) // per le carte tesoro
 
 	// FailEscape
 
 	// tettonaBionica(calzatura) pure questo si potrebbe evitare visti gli escape automatic
-
-	// dieWeighted(int resultsRoll)
 
 	// addHand
 }
