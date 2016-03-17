@@ -1,10 +1,13 @@
 package utils;
 
+import cards.Card;
+import cards.Category;
 import game.GameManager;
 import game.Player;
 import network.message.Message;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.ConnectionRequestMessage;
+import network.message.client.SelectedCardMessage;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayerFullStatsMessage;
 import network.message.server.PlayerStatusRequest;
@@ -61,6 +64,14 @@ public class IncomingMessageHandler {
 				player.sendMessage(new PlayerEquipmentMessage(player));
 			else
 				player.sendMessage(new PlayerFullStatsMessage(GameManager.getPlayerByName(playerStatRequest.getPlayer())));
+			break;
+			
+		case Message.CLT_CARD_SELECTED:
+			SelectedCardMessage selectedCard = (SelectedCardMessage) message;
+			Card card = player.getHandCard(selectedCard.getCardName());
+			if(card.getCategory() == Category.Curse){
+				card.effect(null);
+			}
 			break;
 
 		default:
