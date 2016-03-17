@@ -41,16 +41,15 @@ public class GameUI extends GamePanel {
 
 	// -----------Dice JComponents-------------
 	private JLabel diceLabel;
-
 	/*
 	 * ww= Gamewindow (JFrame) width wh= Gamewindow (JFrame) height psw=
 	 * PlayerStats (JPanel) width psh= PlayerStats (JPanel) height dw= Deck
 	 * (JPanel) width dh= Deck (JPanel) height
 	 */
 	private int ww, wh, psw, psh, dw, dh;
-
 	// There are all the JPanels in GameUI
-	private JPanel PlayerStats, Hand, Decks, Table;
+	private JPanel Hand, Decks, Table;
+	private PaintPanel PlayerStats;
 	private DiceManager Dice;
 	private ZoomedPanel zp;
 
@@ -115,7 +114,8 @@ public class GameUI extends GamePanel {
 		 * ZOOMED PANEL AND ITS COMPONENTS
 		 * 
 		 */
-
+		//TODO è stata caricata già la mano?? O la carichiamo sul costruttore
+		// di handmanager???
 		HandCards card1 = new HandCards("door");
 		card1.CreateCard(MunchkinClient.getImage("door_card"), zp);
 		HandCards card2 = new HandCards("treasure");
