@@ -121,13 +121,10 @@ public class GameUI extends GamePanel {
 
 		zp.setVisible(true);
 		zp.setBounds(ww / 3, wh / 20, ww / 3, wh * 5 / 8);
-		this.add(zp);
+		add(zp);
 		zp.setLayout(null);
 
-		this.setComponentZOrder(zp, 0);
-
-		Hand.add(HandCards.getCard("door"));
-		Hand.add(HandCards.getCard("treasure"));
+		setComponentZOrder(zp, 0);
 
 		/*
 		 * 
