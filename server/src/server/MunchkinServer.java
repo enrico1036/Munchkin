@@ -43,7 +43,7 @@ public class MunchkinServer implements PlayerEventListener {
 		// Create player array
 		players = new ArrayList<Player>();
 		GameManager.setPlayers(players);
-		
+
 		// Create ConnectionListener, specifying port, max connections and
 		// PlayerListener
 		try {
@@ -69,6 +69,7 @@ public class MunchkinServer implements PlayerEventListener {
 
 		// Initialize timer
 		timer = new Timer();
+		countTask = new CountdownTask(5, null);
 
 		this.minPlayers = minPlayers;
 	}
@@ -88,7 +89,8 @@ public class MunchkinServer implements PlayerEventListener {
 	}
 
 	/**
-	 * Wait for players to correctly connect to the server and wait for them to be ready.
+	 * Wait for players to correctly connect to the server and wait for them to
+	 * be ready.
 	 */
 	public void populateLobby() {
 		// Add this instance as PlayerEventListener
@@ -100,14 +102,8 @@ public class MunchkinServer implements PlayerEventListener {
 		boolean allReady = false;
 
 		// Loop until there are at least minPlayers and all ready
-		while (!allReady) {
-			// Block thread for a second until a player event unlocks it
-			synchronized (lock) {
-				try {
-					lock.wait();
-				} catch (InterruptedException | IllegalMonitorStateException e) {
-				}
-			}
+		while (!allReady || !countTask.hasCompleted()) {
+
 			// Check if someone is still not ready
 			allReady = players.size() >= minPlayers;
 			for (Player p : players)
@@ -120,39 +116,41 @@ public class MunchkinServer implements PlayerEventListener {
 
 					@Override
 					public void onTick(int target, int count) {
-						GameManager.broadcastMessage(new ChatMessage("Server", "Game starting in " + (target - count) + " seconds"));
+						GameManager.broadcastMessage(
+								new ChatMessage("Server", "Game starting in " + (target - count) + " seconds"));
 					}
 
 					@Override
 					public void onComplete(int target, int count) {
 						GameManager.broadcastMessage(new ChatMessage("Server", "Game started"));
 						synchronized (lock) {
-							lock.notifyAll();
+							lock.notify();
 						}
 					}
 
 					@Override
 					public void onCancel(int target, int count) {
 						GameManager.broadcastMessage(new ChatMessage("Server", "Countdown stopped"));
+
 					}
 				});
 
 				timer.scheduleAtFixedRate(countTask, 0, 1000);
+
 			} else {
 				if (countTask != null)
 					countTask.cancel();
 			}
 
-		}
-
-		// wait for timer to complete
-		synchronized (lock) {
-			try {
-				lock.wait();
-			} catch (InterruptedException | IllegalMonitorStateException e) {
+			// Block thread for a second until a player event unlocks it
+			synchronized (lock) {
+				try {
+					lock.wait();
+				} catch (InterruptedException | IllegalMonitorStateException e) {
+				}
 			}
 		}
-
+		timer.cancel();
 	}
 
 	public void shutdown() {
@@ -174,7 +172,7 @@ public class MunchkinServer implements PlayerEventListener {
 		// Unlock populateLobby()
 		synchronized (lock) {
 			try {
-				lock.notifyAll();
+				lock.notify();
 			} catch (IllegalMonitorStateException e) {
 			}
 		}
@@ -195,7 +193,8 @@ public class MunchkinServer implements PlayerEventListener {
 				} else {
 					// The player is still connected, refuse new connection and
 					// return
-					player.sendMessage(new ActionResultMessage(ActionResultMessage.ACTION_DENIED, "Username lready in use"));
+					player.sendMessage(
+							new ActionResultMessage(ActionResultMessage.ACTION_DENIED, "Username lready in use"));
 					connListener.stopConnection(player.getConnection());
 					return;
 				}
