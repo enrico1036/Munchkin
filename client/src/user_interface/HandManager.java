@@ -28,20 +28,6 @@ public class HandManager {
 		handPanel=Hand;
 		hand = new ArrayList<HandCard>();
 		
-		
-		/**
-		 * Now we must initialize the player hand with the first draw:
-		 * because everytime the game start all player must take 4 cards from decks
-		 * Take 2 cards from the treasure deck
-		 * Take 2 cards from the door deck
-		 * 
-		 */
-		for(int i=0; i<2; i++) {
-			//TODO CARICARE LA MANO DEL GIOCATORE
-			//drawCard(DeckManager.getDoorCard());
-			//drawCard(DeckManager.getTreasureCard());
-		}
-		
 	}
 	/**
 	 * Get the arraylist of the card in the client hand
@@ -81,8 +67,7 @@ public class HandManager {
 	 * @param cardDiscarded: the card that we want to remove
 	 */
 	public void remove(HandCard cardDiscarded){
-		//TODO Q:DEVO SCARTARE LA CARTE E METTERLA DOVE?? - A:da nessuna parte..semplicemente non deve essere piu fatta vedere nella mano
-		//DeckManager.discardCard(hand.remove(hand.indexOf(cardDiscarded)));
+		hand.remove(cardDiscarded);
 	}
 	
 	

@@ -55,9 +55,7 @@ public class MunchkinClient {
 		}
 		panels= new HashMap<String,GamePanel>();
 		
-		//TODO COSA E' STA ROBBA????
-		//Initialize decks
-		//DeckManager.loadDecks();
+	
 		
 		/**
 		 * Initialize game window (JFrame)

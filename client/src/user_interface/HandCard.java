@@ -41,4 +41,8 @@ public class HandCard extends ClientCard {
 			GameEventHandler.selectCard(((ClientCard)e.getSource()).getName());
 		}
 	}
+
+	
+	
+	
 }

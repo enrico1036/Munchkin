@@ -74,7 +74,7 @@ public class ClientCard extends JButton implements MouseListener{
 	 */
 	public boolean imageIsNull(){
 		boolean result=true;
-		if(this.image!=null)
+		if(image!=null)
 			result=false;
 		
 		return result;
@@ -90,7 +90,7 @@ public class ClientCard extends JButton implements MouseListener{
 	 */
 		
 	public boolean equals(ClientCard card){
-		return(this.title.equals(card.getTitle()));
+		return(title.equals(card.getTitle()));
 	}
 	
 	/**
@@ -154,6 +154,8 @@ public class ClientCard extends JButton implements MouseListener{
 		g.drawImage(image,0,0, this.getWidth(), this.getHeight(), null);
 		
 	}
-	
+	public boolean equals(HandCard card) {
+		return title.equals(card.getTitle());
+	}
 	
 }

@@ -15,7 +15,7 @@ import org.w3c.dom.NodeList;
 
 import javafx.util.Pair;
 
-/*
+/**
  * 	LEGAL XML FILE:
  * 	<resources>
  * 		<image>
@@ -32,7 +32,7 @@ import javafx.util.Pair;
  *  Wrap both constructor and load() into a try catch
  *  Retrieve resulting array with getImages() and check 
  *  with getNotLoadedInfo() any errors
- */
+ **/
 
 public class XmlImageLoader {
 	

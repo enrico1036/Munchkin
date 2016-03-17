@@ -61,10 +61,10 @@ public class GameEventHandler {
 								gamepanel.getHandCards().drawCard(carddrawn);
 								break;
 							case DISCARD:
-								// TODO CASE DISCARD
+								gamepanel.getDiscards().setImage(MunchkinClient.getImage(carddrawn.getName()));
 								break;
 							case REMOVE:
-								// TODO CASE REMOVE
+								gamepanel.getHandCards().remove(carddrawn);
 								break;
 							}
 							break;
@@ -134,7 +134,7 @@ public class GameEventHandler {
 								MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow()));
 								MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
 								break;
-								// TODO @GAMBI DEVO AGGIUNGERE DICERESULTMESSAGE? A: SI e quando arriva far vedere il risultato dei dadi
+								
 							}
 						}
 					}
