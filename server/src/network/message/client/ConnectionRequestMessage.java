@@ -3,6 +3,7 @@ package network.message.client;
 import network.message.Message;
 
 public final class ConnectionRequestMessage extends Message{
+	private final String munchkinStringIdentifier = "MUNCKIN";
 	private final String clientName;
 	
 	public ConnectionRequestMessage(String clientName) {

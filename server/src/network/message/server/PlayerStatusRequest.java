@@ -8,20 +8,20 @@ public class PlayerStatusRequest extends Message {
 	public static final String REQUEST_PLAYER_EQUIPMENT = "PLAYER_EQUIPMENT";
 	
 	private String player;
-	private String plr_request;
+	private String statusRequest;
 	
 	public PlayerStatusRequest(String Player,String Request) {
 		super(Message.PLAYER_STATUS_REQUEST);
 		this.player = Player;
-		this.plr_request = Request;
+		this.statusRequest = Request;
 	}
 
 	public String getPlayer() {
 		return player;
 	}
 
-	public String getPlr_request() {
-		return plr_request;
+	public String getStatusRequest() {
+		return statusRequest;
 	}
 
 

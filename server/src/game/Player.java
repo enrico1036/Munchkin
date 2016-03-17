@@ -34,23 +34,32 @@ public class Player {
 	private boolean alive;
 	private int escapeTreshold;	// you can escape from monster only if rolling a die the result is higher or equal
 	private final int handSize = 5;
-
-	public Player(String username) {
-		this.username = username;
+	
+	// Anonymous Player constructor used into ConnectionListener
+	public Player(PlayerEventListener listener){
 		this.level = 0;
 		this.hand = new ArrayList<Card>();
 		this.table = new ArrayList<Card>();
 		this.race = new Race("Human");
-//		this.raceAllowed = 1;
-//		this.classAllowed = 1;
 		this.alive = false;
 		this.connection = null;
 		this.lobby_ready = false;
 		this.escapeTreshold = 5;
+		this.eventListener = listener;
+	}
+	
+	// Default Player constructor
+	public Player(String username, PlayerEventListener listener) {
+		this(listener);
+		this.username = username;
 	}
 
 	public String getUsername() {
 		return username;
+	}
+	
+	public void setUsername(String username){
+		this.username = username;
 	}
 
 	public void die() {
@@ -257,20 +266,25 @@ public class Player {
 		connection.write(message);
 	}
 
-	public boolean isLobby_ready() {
+	public boolean isLobbyReady() {
 		return lobby_ready;
 	}
 
-	public void setLobby_ready(boolean lobby_ready) {
+	public void setLobbyReady(boolean lobby_ready) {
 		this.lobby_ready = lobby_ready;
 	}
 
 	public boolean isConnected() {
 		return connection != null && connection.isAlive();
 	}
+	
+	public ClientConnection getConnection() {
+		return connection;
+	}
 
 	public void setConnection(final ClientConnection connection) {
 		this.connection = connection;
+		this.connection.attachToPlayer(this);
 	}
 
 	/**

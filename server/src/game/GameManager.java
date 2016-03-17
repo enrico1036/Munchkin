@@ -81,7 +81,7 @@ public class GameManager {
 
 		for (Player player : players) {
 			{
-				if (player.isLobby_ready())
+				if (player.isLobbyReady())
 					readyP.add(player);
 
 			}

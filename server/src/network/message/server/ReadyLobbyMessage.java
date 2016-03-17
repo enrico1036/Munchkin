@@ -21,7 +21,7 @@ public class ReadyLobbyMessage extends Message {
 		readyStatus = new boolean[players.size()];
 		for (int i = 0; i < readyList.length; i++) {
 			readyList[i] = players.get(i).getUsername();
-			readyStatus[i] = players.get(i).isLobby_ready();
+			readyStatus[i] = players.get(i).isLobbyReady();
 			
 			
 		}

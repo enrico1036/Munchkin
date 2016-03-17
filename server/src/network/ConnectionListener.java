@@ -24,19 +24,21 @@ import utils.PlayerEventListener;
 public class ConnectionListener implements Runnable {
 
 	private final ServerSocket servSock;
-	private final ExecutorService execService;
+	private final HashMap<ClientConnection, Thread> threadMap;
 	private final Thread listenerThread;
 	private boolean running;
 	private int connTimeout;
-	private final PlayerEventListener eventListener;
+	private PlayerEventListener eventListener;
 
-	public ConnectionListener(int port, int maxConnections, PlayerEventListener eventListener) throws IOException {
+	public ConnectionListener(int port, int maxConnections) throws IOException {
+		// Initialize and bind socket on port
 		servSock = new ServerSocket(port);
-		execService = Executors.newFixedThreadPool(maxConnections);
+		// Create thread map
+		threadMap = new HashMap<>();
+		// Create thread for accept()
 		listenerThread = new Thread(this);
 		running = true;
-		this.eventListener = eventListener;
-		
+
 		// Accept will throw SocketTimeoutException after 5 sec
 		setAcceptTimeout(5000);
 	}
@@ -51,6 +53,10 @@ public class ConnectionListener implements Runnable {
 
 	public void setConnectionTimeout(int millis) {
 		connTimeout = millis;
+	}
+	
+	public void setPlayerEventListener(PlayerEventListener listener){
+		this.eventListener = listener;
 	}
 
 	public boolean isRunning() {
@@ -73,18 +79,24 @@ public class ConnectionListener implements Runnable {
 		}
 	}
 
+	public void stopConnection(ClientConnection conn) {
+		if (threadMap.containsKey(conn)) {
+			try {
+				conn.close();
+				threadMap.get(conn).join(100);
+				threadMap.get(conn).interrupt();
+				threadMap.remove(conn);
+			} catch (SecurityException | InterruptedException e) {
+			}
+		}
+	}
+
 	public void stopConnections() {
 		// Await termination of the threads still running
 		// If not possible, force shutdown
-		try {
-			if (!execService.awaitTermination(10, TimeUnit.SECONDS)) {
-				ArrayList<Runnable> list = (ArrayList<Runnable>) execService.shutdownNow();
-				for (Runnable r : list) {
-					((ClientConnection) r).close();
-				}
-			}
-		} catch (InterruptedException e) {
-			execService.shutdown();
+		// Close all connections first
+		for (ClientConnection conn : threadMap.keySet()) {
+			stopConnection(conn);
 		}
 	}
 
@@ -96,9 +108,15 @@ public class ConnectionListener implements Runnable {
 			try {
 				// Accept new socket and create a new runnable ClientConnection
 				conn = new ClientConnection(servSock.accept(), connTimeout);
-				// Start connection thread
-				execService.execute(conn);
+
+				// Create an anonymous Player
+				Player anonPlayer = new Player(eventListener);
+				anonPlayer.setConnection(conn);
 				
+				// Start connection thread
+				threadMap.put(conn, new Thread(conn));
+				threadMap.get(conn).start();
+
 			} catch (SocketTimeoutException e) {
 				continue;
 			} catch (IOException e) {

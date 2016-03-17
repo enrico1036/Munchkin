@@ -39,7 +39,7 @@ public class ClientConnection implements Runnable{
 	}
 
 	public boolean isAlive() {
-		return alive;
+		return alive && sock.isConnected() && !sock.isInputShutdown() && !sock.isOutputShutdown();
 	}
 	
 	public void attachToPlayer(Player player){
@@ -66,7 +66,7 @@ public class ClientConnection implements Runnable{
 		// Signal thread death to own pool
 	}
 
-	public Message read() {
+	public synchronized Message read() {
 		Message line = null;
 		try {
 			try {
@@ -84,7 +84,7 @@ public class ClientConnection implements Runnable{
 		return line;
 	}
 
-	public void write(Message obj) {
+	public synchronized void write(Message obj) {
 		try {
 			output.writeObject(obj);
 			output.flush();
@@ -93,7 +93,7 @@ public class ClientConnection implements Runnable{
 		}
 	}
 
-	public void close() {
+	public synchronized void close() {
 		alive = false;
 		try {
 			output.close();
