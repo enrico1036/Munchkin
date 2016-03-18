@@ -46,6 +46,12 @@ public class MunchkinClient {
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		
+		// Print the images not loaded
+		for(Pair<String,String> str : loader.getNotLoadedInfo()){
+			System.out.println("Not loaded: " + str.getKey() + " in " + str.getValue());
+		}
+		
 		/**
 		 * Put,from the xmlImageLoader every images in the HashMap images
 		 */

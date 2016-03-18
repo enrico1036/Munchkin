@@ -98,7 +98,7 @@
     </image>
     <image>
     	<name>treasure_back</name>
-    	<path>Resources/Images/treasure_back.png</path>
+    	<path>Resources/Images/treasureback.png</path>
     </image>
     <image>
     	<name>door_back</name>
@@ -140,7 +140,7 @@
     </image>
     <image>
     	<name>dolcetto_alieno</name>
-    	<path>Resources/Images/Cards/dolcetto_aliento.png</path>
+    	<path>Resources/Images/Cards/dolcetto_alieno.png</path>
     </image>
     <image>
     	<name>e_il_suo_clone</name>
@@ -211,10 +211,6 @@
     <image>
     	<name>darth_water</name>
     	<path>Resources/Images/Cards/darth_water.png</path>
-    </image>
-    <image>
-    	<name>door_back</name>
-    	<path>Resources/Images/Cards/door_back.png</path>
     </image>
     <image>
     	<name>felino</name>
