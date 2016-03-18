@@ -354,7 +354,7 @@ public class GameUI extends GamePanel {
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
 
-		if (e.getActionCommand().equals("DrawnDoor")) {
+		if (e.getActionCommand().equals("DrawDoor")) {
 
 			GameEventHandler.selectCard(SelectedCardMessage.DOOR_DECK);
 
