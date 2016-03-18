@@ -22,8 +22,8 @@ import java.awt.event.ActionEvent;
 
 public class GameUI extends GamePanel {
 
-	private BufferedImage background, framePlayerStats, doorCardsImage, DiscardsImage, TreasureCardsImage,
-			head, hand1, body, hand2, feet;
+	private BufferedImage background, framePlayerStats, doorCardsImage, DiscardsImage, TreasureCardsImage, head, hand1,
+			body, hand2, feet;
 	private PlayerPanel OpponentPlayers[];
 
 	private HandManager HandCards;
@@ -115,9 +115,8 @@ public class GameUI extends GamePanel {
 		 * ZOOMED PANEL AND ITS COMPONENTS
 		 * 
 		 */
-	
-		HandCards = new HandManager(Hand);
 
+		HandCards = new HandManager(Hand);
 
 		zp.setVisible(true);
 		zp.setBounds(ww / 3, wh / 20, ww / 3, wh * 5 / 8);
@@ -189,7 +188,7 @@ public class GameUI extends GamePanel {
 		PlayerStats.add(PlayerHead);
 
 		PlayerHand1 = new ClientCard("hand1");
-		PlayerHand1.setBounds(psw *7/12, psh * 5 / 9, psw / 12, psh * 2 / 9);
+		PlayerHand1.setBounds(psw * 7 / 12, psh * 5 / 9, psw / 12, psh * 2 / 9);
 		PlayerHand1.CreateCard(hand1, zp);
 		PlayerStats.add(PlayerHand1);
 
@@ -240,8 +239,6 @@ public class GameUI extends GamePanel {
 
 		TreasureCardsImage = MunchkinClient.getImage("treasure_back");
 
-		
-
 		Decks = new JPanel();
 		Decks.setOpaque(false);
 		Decks.setBounds(ww / 2, wh / 3, ww / 2, wh / 3);
@@ -265,7 +262,6 @@ public class GameUI extends GamePanel {
 		treasureCards.setBounds(dw * 13 / 25, dh / 10, dw / 5, dh * 8 / 10);
 		treasureCards.addActionListener(this);
 		Decks.add(treasureCards);
-
 
 		/*
 		 * 
@@ -337,7 +333,6 @@ public class GameUI extends GamePanel {
 		doorCards.setBounds(dw / 25, dh / 10, dw / 5, dh * 8 / 10);
 		Discards.setBounds(dw * 7 / 25, dh / 10, dw / 5, dh * 8 / 10);
 		treasureCards.setBounds(dw * 13 / 25, dh / 10, dw / 5, dh * 8 / 10);
-		
 
 		HandCards.handPositioning();
 
@@ -355,22 +350,24 @@ public class GameUI extends GamePanel {
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
 
-		if(e.getActionCommand().equals("DrawnDoor")) {
+		if (e.getActionCommand().equals("DrawnDoor")) {
 
-		GameEventHandler.selectCard(SelectedCardMessage.DOOR_DECK);
-
+			GameEventHandler.selectCard(SelectedCardMessage.DOOR_DECK);
 
 		}
 	}
 
 	public void changeEquipment(Equipment head, Equipment hand1, Equipment hand2, Equipment body, Equipment feet) {
-
-		PlayerHead.setImage(MunchkinClient.getImage(head.getTitle()));
-		PlayerHand1.setImage(MunchkinClient.getImage(hand1.getTitle()));
-		PlayerHand2.setImage(MunchkinClient.getImage(hand2.getTitle()));
-		PlayerBody.setImage(MunchkinClient.getImage(body.getTitle()));
-		PlayerFeet.setImage(MunchkinClient.getImage(feet.getTitle()));
-
+		if (head != null)
+			PlayerHead.setImage(MunchkinClient.getImage(head.getTitle()));
+		if (hand1 != null)
+			PlayerHand1.setImage(MunchkinClient.getImage(hand1.getTitle()));
+		if (hand2 != null)
+			PlayerHand2.setImage(MunchkinClient.getImage(hand2.getTitle()));
+		if (body != null)
+			PlayerBody.setImage(MunchkinClient.getImage(body.getTitle()));
+		if (feet != null)
+			PlayerFeet.setImage(MunchkinClient.getImage(feet.getTitle()));
 	}
 
 	private void createRandomFramePanel() {
@@ -447,6 +444,4 @@ public class GameUI extends GamePanel {
 		return Discards;
 	}
 
-
-	
 }
