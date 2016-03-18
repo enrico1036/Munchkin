@@ -233,11 +233,11 @@ public class GameUI extends GamePanel {
 		 * 
 		 */
 
-		doorCardsImage = MunchkinClient.getImage("door_back");
+		doorCardsImage = MunchkinClient.getImage("doorback");
 
-		DiscardsImage = MunchkinClient.getImage("door_card");
+		DiscardsImage = MunchkinClient.getImage("doorcard");
 
-		TreasureCardsImage = MunchkinClient.getImage("treasure_back");
+		TreasureCardsImage = MunchkinClient.getImage("treasureback");
 
 		Decks = new JPanel();
 		Decks.setOpaque(false);
