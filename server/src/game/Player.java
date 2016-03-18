@@ -35,6 +35,7 @@ public class Player {
 	private boolean alive;
 	private int escapeTreshold; // you can escape from monster only if rolling a die the result is higher or equal
 	private final int handSize = 5;
+	
 
 	// Anonymous Player constructor used into ConnectionListener
 	public Player(PlayerEventListener listener) {

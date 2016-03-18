@@ -11,11 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import client.MunchkinClient;
+import javafx.print.PageLayout;
 import network.GameEventHandler;
 import network.message.client.SelectedCardMessage;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -24,7 +26,7 @@ public class GameUI extends GamePanel {
 
 	private BufferedImage background, framePlayerStats, doorCardsImage, DiscardsImage, TreasureCardsImage, head, hand1,
 			body, hand2, feet;
-	private PlayerPanel OpponentPlayers[];
+	private HashMap<String,PlayerPanel> OpponentPlayers;
 
 	private HandManager HandCards;
 
@@ -63,7 +65,7 @@ public class GameUI extends GamePanel {
 		// Create the gameUI ZoomedPanel
 		zp = new ZoomedPanel();
 		GameEventHandler.getReadyPlayerList();
-		OpponentPlayers = new PlayerPanel[GameEventHandler.getPlayers().length - 1];
+		OpponentPlayers = new HashMap<String,PlayerPanel>();
 		this.createRandomFramePanel();
 
 		background = MunchkinClient.getImage("panel_background");
@@ -217,13 +219,15 @@ public class GameUI extends GamePanel {
 		 * 
 		 */
 
+		int k=0;
 		// k=uguale alla richiesta di quanti utenti ci sono
-		for (int k = 0; k < OpponentPlayers.length; k++) {
-			if (OpponentPlayers[k] != null) {
-				OpponentPlayers[k].setOpaque(false);
-				OpponentPlayers[k].setBounds(ww * k / 5, 0, ww / 5, wh / 3);
-				add(OpponentPlayers[k]);
-				OpponentPlayers[k].setLayout(null);
+		for (String player: OpponentPlayers.keySet()) {
+			if (OpponentPlayers.get(player) != null) {
+				OpponentPlayers.get(player).setOpaque(false);
+				OpponentPlayers.get(player).setBounds(ww * k / 5, 0, ww / 5, wh / 3);
+				add(OpponentPlayers.get(player));
+				OpponentPlayers.get(player).setLayout(null);
+				k++;
 			}
 		}
 
@@ -302,9 +306,11 @@ public class GameUI extends GamePanel {
 		Table.setBounds(0, wh / 3, ww * 3 / 4, wh / 3);
 		zp.setBounds(ww / 3, wh / 20, ww / 3, wh * 5 / 8);
 
-		for (int k = 0; k < OpponentPlayers.length; k++) {
-			OpponentPlayers[k].setBounds(ww * k / 5, 0, ww / 5, wh / 3);
-			OpponentPlayers[k].updatePlayerComponents();
+		int k=0;
+		for (String player: OpponentPlayers.keySet()) {
+			OpponentPlayers.get(player).setBounds(ww * k / 5, 0, ww / 5, wh / 3);
+			OpponentPlayers.get(player).updatePlayerComponents();
+			k++;
 		}
 
 		// Get the width and the height of PlayerStats JPanel
@@ -390,18 +396,18 @@ public class GameUI extends GamePanel {
 			k++;
 		}
 
-		int j = 0;
+		int j=0;
 		for (k = 0; k < GameEventHandler.getPlayers().length; k++) {
 			if (!(GameEventHandler.getPlayers()[k].equals(GameEventHandler.getConnection().getConnectedPlayerName()))) {
 
-				OpponentPlayers[j] = new PlayerPanel(MunchkinClient.getImage("frameplayer" + x[j]),
-						GameEventHandler.getPlayers()[k], window, zp);
+				OpponentPlayers.put(GameEventHandler.getPlayers()[k], new PlayerPanel(MunchkinClient.getImage("frameplayer" + x[j]),
+						GameEventHandler.getPlayers()[k], window, zp));
 				j++;
 			}
 		}
 	}
 
-	public PlayerPanel[] getOpponentPlayers() {
+	public HashMap<String,PlayerPanel> getOpponentPlayers() {
 		return OpponentPlayers;
 	}
 
