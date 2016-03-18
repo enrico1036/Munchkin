@@ -25,12 +25,6 @@ public class GameManager {
 
 		playerWon = false;
 		Decks.shuffleDecks();
-		for (Player player : players) {
-			for (int i = 0; i < 2; i++) {
-				player.draw(Decks.getDoorCard());
-				player.draw(Decks.getTreasureCard());
-			}
-		}
 	}
 
 	private static void turn() {

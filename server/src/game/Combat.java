@@ -27,7 +27,7 @@ public class Combat extends StateMachine {
 		helperPlayer = null;
 		playerCombatBonus = 0;
 		playerTreasureBonus = 0;
-		states = new String[2];
+		states = new String[4];
 		states[0] = "Begin";
 		states[1] = "AskForHelp";
 		states[2] = "InterferInCombat";
@@ -109,13 +109,13 @@ public class Combat extends StateMachine {
 					GameManager.getCurrentPlayer().draw(Decks.getTreasureCard());
 			} else {	// player loose
 				// roll die and check if escape
-				int die = (int) Math.random()*5+1;
+				int die = (int) (Math.random()*5.0+1.0);
 //				GameManager.getCurrentPlayer().sendMessage(new DiceResultMessage(die));
 				GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("You made " + Integer.toString(die), 5000));
 				if(die < GameManager.getCurrentPlayer().getEscapeTreshold()) {
 					//run bad things
 				}
-				die = (int) Math.random()*5+1;
+				die = (int) (Math.random()*5.0+1.0);
 //				helperPlayer.sendMessage(new DiceResultMessage(die));
 				helperPlayer.sendMessage(new PopUpMessage("You made " + Integer.toString(die), 5000));
 				if(die < helperPlayer.getEscapeTreshold()) {
@@ -130,7 +130,7 @@ public class Combat extends StateMachine {
 					GameManager.getCurrentPlayer().draw(Decks.getTreasureCard());
 			} else {	//player loose
 				// roll die and check if escape
-				int die = (int) Math.random()*5+1;
+				int die = (int) (Math.random()*5.0+1.0);
 //				GameManager.getCurrentPlayer().sendMessage(new DiceResultMessage(die));
 				GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("You made " + Integer.toString(die), 5000));
 				if(die < GameManager.getCurrentPlayer().getEscapeTreshold()) {

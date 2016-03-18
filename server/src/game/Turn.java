@@ -13,7 +13,7 @@ public class Turn extends StateMachine {
 
 	public Turn() {
 		super();
-		states = new String[5];
+		states = new String[4];
 		states[0] = "Equip";
 		states[1] = "Draw";
 		states[2] = "Trading";
@@ -23,7 +23,7 @@ public class Turn extends StateMachine {
 	private void equip() {
 		// wait for an equip action. If draw action detected skip this phase
 		SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
-		while (message.getCardName() != SelectedCardMessage.DOOR_DECK) {
+		while (!message.getCardName().equals(SelectedCardMessage.DOOR_DECK)) {
 			Card card = GameManager.getCurrentPlayer().getHandCard(message.getCardName());
 			if (card != null && card.getCategory() == Category.Equipment) {
 				if (GameManager.getCurrentPlayer().equip(((Equipment) card).getSlot(), (Equipment) card)) {

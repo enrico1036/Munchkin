@@ -42,7 +42,7 @@ public class GameEventHandler {
 					System.out.println(received.getMessageCode());
 
 					if (received != null) {
-						GameUI gamepanel = (GameUI) MunchkinClient.getPanel("GameUI");
+						GameUI gameUIpanel = (GameUI) MunchkinClient.getPanel("GameUI");
 						LobbyUI lobbyPanel = (LobbyUI) MunchkinClient.getPanel("LobbyUI");
 						switch (received.getMessageCode()) {
 						case Message.CLT_CHAT_MESSAGE:
@@ -55,16 +55,16 @@ public class GameEventHandler {
 							HandCard carddrawn = new HandCard(playCardMessage.getCardName());
 							switch (playCardMessage.getAction()) {
 							case SHOW:
-								gamepanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));
+								gameUIpanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));
 								break;
 							case DRAW:
-								gamepanel.getHandCards().drawCard(carddrawn);
+								gameUIpanel.getHandCards().drawCard(carddrawn);
 								break;
 							case DISCARD:
-								gamepanel.getDiscards().setImage(MunchkinClient.getImage(carddrawn.getName()));
+								gameUIpanel.getDiscards().setImage(MunchkinClient.getImage(carddrawn.getName()));
 								break;
 							case REMOVE:
-								gamepanel.getHandCards().remove(carddrawn);
+								gameUIpanel.getHandCards().remove(carddrawn);
 								break;
 							}
 							break;
@@ -93,39 +93,19 @@ public class GameEventHandler {
 						case Message.PLAYER_FULL_STATS:
 							PlayerFullStatsMessage statistics = (PlayerFullStatsMessage) received;
 							if (statistics.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
-								gamepanel.changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
+								gameUIpanel.changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
 							} else {
-								int i = 0;
-								boolean found = false;
-								while (!found) {
-									if (!(gamepanel.getOpponentPlayers()[i].getPlayerName().equals(statistics.getPlayerName())))
-										i++;
-									else {
-										found = true;
-										gamepanel.getOpponentPlayers()[i].changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
-
-									}
-
-								}
+								gameUIpanel.getOpponentPlayers().get(statistics.getPlayerName()).changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
 							}
 
 							break;
 						case Message.PLAYER_EQUIPMENT:
 							PlayerEquipmentMessage equip = (PlayerEquipmentMessage) received;
 							if (equip.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
-								gamepanel.changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
+								gameUIpanel.changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
 
 							} else {
-								int i = 0;
-								boolean founded = false;
-								while (!founded) {
-									if (!(gamepanel.getOpponentPlayers()[i].getPlayerName().equals(equip.getPlayerName())))
-										i++;
-									else {
-										founded = true;
-										gamepanel.getOpponentPlayers()[i].getDetailsPanel().changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
-									}
-								}
+								gameUIpanel.getOpponentPlayers().get(equip.getPlayerName()).getDetailsPanel().changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
 							}
 							break;
 						case Message.STATE_UPDATE:
@@ -134,7 +114,7 @@ public class GameEventHandler {
 								MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow()));
 								MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
 								break;
-								
+
 							}
 						}
 					}

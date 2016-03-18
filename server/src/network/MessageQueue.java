@@ -27,16 +27,16 @@ public class MessageQueue {
 		return null;
 	}
 
-	public synchronized boolean waitForData() {
-		synchronized (lock) {
-			try {
-				lock.wait();
-			} catch (InterruptedException | IllegalMonitorStateException e) {
-				e.printStackTrace();
-				return false;
+	public synchronized void waitForData() {
+		while (queue.isEmpty()) {
+			synchronized (lock) {
+				try {
+					lock.wait();
+				} catch (InterruptedException | IllegalMonitorStateException e) {
+					e.printStackTrace();
+				}
 			}
-		}	
-		return true;
+		}
 	}
 
 	public Pair<String, Message> waitForMessage(String playerName, Message message) {
@@ -53,10 +53,12 @@ public class MessageQueue {
 			}
 		}
 		// Wait for it to be appended
-		while (waitForData()) {
+		boolean dataFound = false;
+		while (!dataFound) {
+			waitForData();
 			pair = queue.poll();
 			if (pair.getKey().equals(playerName) && pair.getValue().equals(message)) {
-				return pair;
+				dataFound = true;
 			} else {
 				queue.add(pair);
 			}
@@ -78,16 +80,18 @@ public class MessageQueue {
 				}
 			}
 		}
+
 		// Wait for it to be appended
-		while (waitForData()) {
+		boolean dataFound = false;
+		while (!dataFound) {
+			waitForData();
 			pair = queue.poll();
 			if (pair.getKey().equals(playerName) && pair.getValue().getMessageCode().equals(messageCode)) {
-				return pair;
+				dataFound = true;
 			} else {
 				queue.add(pair);
 			}
 		}
-
 		return pair;
 	}
 
@@ -104,16 +108,18 @@ public class MessageQueue {
 				}
 			}
 		}
+
 		// Wait for it to be appended
-		while (waitForData()) {
+		boolean dataFound = false;
+		while (!dataFound) {
+			waitForData();
 			pair = queue.poll();
 			if (pair.getValue().getMessageCode().equals(messageCode)) {
-				return pair;
+				dataFound = true;
 			} else {
 				queue.add(pair);
 			}
 		}
-
 		return pair;
 	}
 

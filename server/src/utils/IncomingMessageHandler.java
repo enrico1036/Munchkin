@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.ArrayList;
+
 import cards.Card;
 import cards.Category;
 import game.GameManager;
@@ -45,7 +47,12 @@ public class IncomingMessageHandler {
 			ClientGeneralRequest req = (ClientGeneralRequest) message;
 			switch (req.getRequestType()) {
 			case ClientGeneralRequest.REQUEST_READY_PLAYER_LIST:
-				player.sendMessage(new ReadyLobbyMessage(GameManager.getPlayers()));
+				ArrayList<Player> sortedPlayerList = new ArrayList<>(GameManager.getPlayers());
+				// Sort player list to maintain same order but with this player at the first position
+				while(!sortedPlayerList.get(0).equals(player)){
+					sortedPlayerList.add(sortedPlayerList.remove(0));
+				}
+				player.sendMessage(new ReadyLobbyMessage(sortedPlayerList));
 				break;
 			}
 			break;

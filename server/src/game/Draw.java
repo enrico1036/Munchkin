@@ -15,7 +15,7 @@ public class Draw extends StateMachine {
 
 	public Draw() {
 		super();
-		states = new String[3];
+		states = new String[4];
 		states[0] = "OpenDoor";
 		states[1] = "LookForTrouble";
 		states[2] = "LootTheRoom";
@@ -23,6 +23,12 @@ public class Draw extends StateMachine {
 	}
 
 	private void openDoor() {
+		if(!GameManager.getCurrentPlayer().isAlive()) {
+			for (int i = 0; i < 2; i++) {
+				GameManager.getCurrentPlayer().draw(Decks.getDoorCard());
+				GameManager.getCurrentPlayer().draw(Decks.getTreasureCard());
+			}
+		}
 		Card card = Decks.getDoorCard();
 		GameManager.broadcastMessage(new PlayCardMessage(card, Action.SHOW));
 		// if curse play it, if monster start a combat and execute it. In all other cases draw it
@@ -32,8 +38,8 @@ public class Draw extends StateMachine {
 			break;
 		case Monster:
 			Combat combat = new Combat((Monster) card);
-			while (combat.performStep())
-				;
+			while (combat.performStep());
+			
 			Decks.discardCard(card);
 			currentState = this.states.length - 1; // skip to the end state
 			break;

@@ -326,5 +326,10 @@ public class Player {
 	public void setEventListener(PlayerEventListener eventListener) {
 		this.eventListener = eventListener;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return username.equals(((Player) obj).getUsername());
+	}
 
 }

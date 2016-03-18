@@ -26,6 +26,7 @@ public class HandManager {
 		 * Create the arraylist of hand card and set the handpanel
 		 */
 		handPanel=Hand;
+		handPanel.setVisible(true);
 		hand = new ArrayList<HandCard>();
 		
 	}
@@ -42,7 +43,7 @@ public class HandManager {
 	 */
 	public void drawCard(HandCard cardDrawn){
 		hand.add(cardDrawn);
-		
+		cardDrawn.setVisible(true);
 		handPositioning();
 		
 		
