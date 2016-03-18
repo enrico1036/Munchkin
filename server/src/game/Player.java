@@ -38,7 +38,7 @@ public class Player {
 
 	// Anonymous Player constructor used into ConnectionListener
 	public Player(PlayerEventListener listener) {
-		this.level = 0;
+		this.level = 1;
 		this.hand = new ArrayList<Card>();
 		this.race = new Race("Human");
 		this.alive = false;
