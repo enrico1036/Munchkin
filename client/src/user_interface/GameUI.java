@@ -242,8 +242,9 @@ public class GameUI extends GamePanel {
 		Decks = new JPanel();
 		Decks.setOpaque(false);
 		Decks.setBounds(ww / 2, wh / 3, ww / 2, wh / 3);
-		add(Decks);
+		Decks.setVisible(true);
 		Decks.setLayout(null);
+		add(Decks);
 
 		dw = Decks.getWidth();
 		dh = Decks.getHeight();
@@ -252,15 +253,18 @@ public class GameUI extends GamePanel {
 		doorCards.setBounds(dw / 25, dh / 10, dw / 5, dh * 8 / 10);
 		doorCards.setActionCommand("DrawDoor");
 		doorCards.addActionListener(this);
+		doorCards.setVisible(true);
 		Decks.add(doorCards);
 
 		Discards = new ImageButton(DiscardsImage);
 		Discards.setBounds(dw * 7 / 25, dh / 10, dw / 5, dh * 8 / 10);
+		Discards.setVisible(true);
 		Decks.add(Discards);
 
 		treasureCards = new ImageButton(TreasureCardsImage);
 		treasureCards.setBounds(dw * 13 / 25, dh / 10, dw / 5, dh * 8 / 10);
 		treasureCards.addActionListener(this);
+		treasureCards.setVisible(true);
 		Decks.add(treasureCards);
 
 		/*
