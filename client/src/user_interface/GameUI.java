@@ -395,6 +395,7 @@ public class GameUI extends GamePanel {
 
 				OpponentPlayers[j] = new PlayerPanel(MunchkinClient.getImage("frameplayer" + x[j]),
 						GameEventHandler.getPlayers()[k], window, zp);
+				j++;
 			}
 		}
 	}
