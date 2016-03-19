@@ -10,6 +10,7 @@ import network.MessageQueue;
 import network.message.Message;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayCardMessage.Action;
+import network.message.server.PlayerFullStatsMessage;
 import network.message.server.PopUpMessage;
 import network.message.server.StateUpdateMessage;
 import utils.Debug;
@@ -21,6 +22,9 @@ public class GameManager {
 
 	private static void begin() {
 		broadcastMessage(new StateUpdateMessage("begin"));
+		for (Player player : GameManager.getPlayers()) {
+			broadcastMessage(new PlayerFullStatsMessage(player));
+		}
 		Debug.print("GameManager: Begin");
 
 		playerWon = false;
