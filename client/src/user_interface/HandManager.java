@@ -3,6 +3,8 @@ package user_interface;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+
+import client.MunchkinClient;
 /**
  * 
  * 
@@ -15,18 +17,20 @@ public class HandManager {
 
 	private ArrayList<HandCard> hand;
 	private JPanel handPanel;
+	private ZoomedPanel zp;
 	
 	/**
 	 * Constructor method that created the hand manager
 	 * @param Hand: it's the GameUI panel where we will draw all cards of the client hand.
 	 */
-	public HandManager(JPanel Hand){
+	public HandManager(JPanel Hand,ZoomedPanel zp){
 		
 		/**
 		 * Create the arraylist of hand card and set the handpanel
 		 */
 		handPanel=Hand;
 		handPanel.setVisible(true);
+		this.zp=zp;
 		hand = new ArrayList<HandCard>();
 		
 	}
@@ -42,8 +46,8 @@ public class HandManager {
 	 * @param cardDrawn: the card that has drawn
 	 */
 	public void drawCard(HandCard cardDrawn){
+		cardDrawn.CreateCard(MunchkinClient.getImage(cardDrawn.getTitle()), zp);
 		hand.add(cardDrawn);
-		cardDrawn.setVisible(true);
 		handPositioning();
 		
 		

@@ -4,6 +4,7 @@ import cards.EquipSlot;
 import cards.Equipment;
 import game.Player;
 import network.message.Message;
+import network.message.client.PlayerStatusRequest;
 
 public class PlayerEquipmentMessage extends Message {
 

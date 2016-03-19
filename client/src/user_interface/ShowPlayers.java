@@ -151,6 +151,7 @@ public class ShowPlayers extends GamePanel{
 		super.actionPerformed(e);
 		if(e.getActionCommand()=="return"){
 			window.SetActivePanel(MunchkinClient.getPanel("GameUI"));
+			
 		}
 	}
 

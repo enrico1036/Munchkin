@@ -1,4 +1,4 @@
-package utils;
+ package utils;
 
 import java.util.ArrayList;
 
@@ -9,10 +9,10 @@ import game.Player;
 import network.message.Message;
 import network.message.client.ClientGeneralRequest;
 import network.message.client.ConnectionRequestMessage;
+import network.message.client.PlayerStatusRequest;
 import network.message.client.SelectedCardMessage;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayerFullStatsMessage;
-import network.message.server.PlayerStatusRequest;
 import network.message.server.ReadyLobbyMessage;
 
 public class IncomingMessageHandler {
