@@ -29,7 +29,7 @@ public class PlayerPanel extends PaintPanel {
 	
 	
 	private BufferedImage showPlayerCards;
-	private ShowPlayers detailsPanel;
+	private PlayerUI detailsPanel;
 	private ZoomedPanel zp;
 	
 	public PlayerPanel(BufferedImage image,String playerName,GameWindow wnd,ZoomedPanel zp) {
@@ -91,7 +91,7 @@ public class PlayerPanel extends PaintPanel {
 		btnPlayerCards.setBorderPainted(false);
 		this.add(btnPlayerCards);
 		
-		detailsPanel=new ShowPlayers(wnd,playerName);
+		detailsPanel=new PlayerUI(wnd,playerName);
 		
 	}
 	
@@ -128,7 +128,7 @@ public class PlayerPanel extends PaintPanel {
 		g.drawImage(background, 0,0,this.getWidth(),this.getHeight(),this);
 	}
 
-	public ShowPlayers getDetailsPanel() {
+	public PlayerUI getDetailsPanel() {
 		return detailsPanel;
 	}
 

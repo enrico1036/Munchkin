@@ -20,7 +20,6 @@ import network.message.server.PlayerFullStatsMessage;
 import user_interface.ClientCard;
 import user_interface.ConnectionDialog;
 import user_interface.GameUI;
-import user_interface.HandCard;
 import user_interface.LobbyUI;
 import user_interface.PopUpDialog;
 
@@ -52,7 +51,7 @@ public class GameEventHandler {
 						case Message.PLAY_CARD:
 							PlayCardMessage playCardMessage = (PlayCardMessage) received;
 							// Create new HandCard from its name
-							HandCard carddrawn = new HandCard(playCardMessage.getCardName());
+							ClientCard carddrawn = new ClientCard(playCardMessage.getCardName());
 							switch (playCardMessage.getAction()) {
 							case SHOW:
 								gameUIpanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));

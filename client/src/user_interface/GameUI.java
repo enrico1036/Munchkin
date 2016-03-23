@@ -453,5 +453,6 @@ public class GameUI extends GamePanel {
 	public ImageButton getDiscards() {
 		return Discards;
 	}
+	
 
 }
