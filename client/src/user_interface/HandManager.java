@@ -15,7 +15,7 @@ import client.MunchkinClient;
  */
 public class HandManager {
 
-	private ArrayList<HandCard> hand;
+	private ArrayList<ClientCard> hand;
 	private JPanel handPanel;
 	private ZoomedPanel zp;
 	
@@ -31,21 +31,21 @@ public class HandManager {
 		handPanel=Hand;
 		handPanel.setVisible(true);
 		this.zp=zp;
-		hand = new ArrayList<HandCard>();
+		hand = new ArrayList<ClientCard>();
 		
 	}
 	/**
 	 * Get the arraylist of the card in the client hand
 	 * @return The arrayList of Hand Cards
 	 */
-	public ArrayList<HandCard> getHand() {
+	public ArrayList<ClientCard> getHand() {
 		return hand;
 	}
 	/**
 	 * It is used when a player draw a card and it add that card in the player hand
 	 * @param cardDrawn: the card that has drawn
 	 */
-	public void drawCard(HandCard cardDrawn){
+	public void drawCard(ClientCard cardDrawn){
 		cardDrawn.CreateCard(MunchkinClient.getImage(cardDrawn.getTitle()), zp);
 		hand.add(cardDrawn);
 		handPositioning();
@@ -58,9 +58,9 @@ public class HandManager {
 	 * @param Title: the title of the card that we want to find
 	 * @return a handcards that has the same title of the param Title
 	 */
-	public HandCard getCard(String Title){	
-		HandCard selected = null;
-		for(HandCard card : hand){
+	public ClientCard getCard(String Title){	
+		ClientCard selected = null;
+		for(ClientCard card : hand){
 			if(card.getTitle().equals(Title)){
 				selected = card;
 			}
@@ -71,7 +71,7 @@ public class HandManager {
 	 * It is used to remove a card from the player hand
 	 * @param cardDiscarded: the card that we want to remove
 	 */
-	public void remove(HandCard cardDiscarded){
+	public void remove(ClientCard cardDiscarded){
 		hand.remove(cardDiscarded);
 	}
 	

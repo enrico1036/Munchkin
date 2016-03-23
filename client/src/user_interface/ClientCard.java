@@ -154,8 +154,6 @@ public class ClientCard extends JButton implements MouseListener{
 		g.drawImage(image,0,0, this.getWidth(), this.getHeight(), null);
 		
 	}
-	public boolean equals(HandCard card) {
-		return title.equals(card.getTitle());
-	}
+	
 	
 }

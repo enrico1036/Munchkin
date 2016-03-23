@@ -13,7 +13,7 @@ import client.MunchkinClient;
 import game.GameManager;
 import network.GameEventHandler;
 
-public class ShowPlayers extends GamePanel{
+public class PlayerUI extends GamePanel{
 	
 	private BufferedImage background,head,hand1,body,hand2,feet;;
 	//---------Player JComponents------------
@@ -23,13 +23,14 @@ public class ShowPlayers extends GamePanel{
 	private ClientCard PlayerHead,PlayerHand1,PlayerBody,PlayerHand2,PlayerFeet,PlayerRace,PlayerClass;
 	private ImageButton returnBack;
 	
+	
 	private String playerName;
 	
 	private int psw,psh;
 	private ZoomedPanel zp;
 
 	
-	public ShowPlayers(GameWindow window, String Player){
+	public PlayerUI(GameWindow window, String Player){
 		super(window);
 		this.background=MunchkinClient.getImage("panel_background");
 		this.playerName=Player;

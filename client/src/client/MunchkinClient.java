@@ -13,7 +13,7 @@ import user_interface.GameUI;
 import user_interface.GameWindow;
 import user_interface.MenuUI;
 import user_interface.LobbyUI;
-import user_interface.ShowPlayers;
+import user_interface.PlayerUI;
 import user_interface.GamePanel;
 /**
  * 
