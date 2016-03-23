@@ -73,6 +73,7 @@ public class Prova {
 		frame.getContentPane().add(glassPane, 0);
 
 		MyButton btnCarta = new MyButton("carta", glassPane);
+		btnCarta.setName("Carta");
 		Lpanel.add(btnCarta);
 	}
 

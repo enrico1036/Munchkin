@@ -61,6 +61,7 @@ public class MyButton extends JButton implements MouseInputListener{
 		this.getRootPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		Prova.drawArrowLine(glassPane.getGraphics(), -1, -1, -1, -1, -1, -1);
 		System.out.println(Prova.destination.getName());		
+		System.out.println(getName()+" si è mossa");
 	}
 
 	@Override
