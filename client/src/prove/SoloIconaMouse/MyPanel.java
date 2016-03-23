@@ -35,7 +35,6 @@ public class MyPanel extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		System.out.println("sono stato lasciato");
 	}
 
 	@Override
