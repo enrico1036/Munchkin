@@ -1,4 +1,4 @@
-package Prova;
+package prove.GestoreGenerale;
 
 import javax.swing.JFrame;
 import javax.swing.border.EmptyBorder;

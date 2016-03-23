@@ -1,4 +1,4 @@
-package Prova;
+package prove.GestoreGenerale;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -126,9 +126,12 @@ public class MyPanel extends JPanel implements MouseListener, MouseMotionListene
 			 * non funzia perche restituisce il jbutton
 			 * allora ho provato con la posizione che invece funziona
 			 * 
-			 * solo che secondo me è un po' una porcata
+			 * solo che secondo me ï¿½ un po' una porcata
 			 * infatti volevo fa in modo che i singoli pannelli implementassero il
-			 * metodo mouseListener e non il pannellone MyPanel come è adesso.
+			 * metodo mouseListener e non il pannellone MyPanel come ï¿½ adesso.
+			 * 
+			 * Hai colto nel segno..cosi funziona ma non Ã¨ bello, ogni pannello si dovrebbe gestire da solo
+			 * quindi dobbiamo trovare una soluzione
 			 */
 			
 			
