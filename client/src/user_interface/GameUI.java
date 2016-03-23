@@ -118,7 +118,7 @@ public class GameUI extends GamePanel {
 		 * 
 		 */
 
-		HandCards = new HandManager(Hand);
+		HandCards = new HandManager(Hand,zp);
 
 		zp.setVisible(true);
 		zp.setBounds(ww / 3, wh / 20, ww / 3, wh * 5 / 8);
