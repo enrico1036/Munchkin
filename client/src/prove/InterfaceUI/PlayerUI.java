@@ -16,7 +16,7 @@ import user_interface.GameUI;
 import game.GameManager;
 import network.GameEventHandler;
 
-public class PlayerUI extends GamePanel{
+public class PlayerUI extends GamePanel implements DataListener{
 	
 	private BufferedImage background;
 	//---------Player JComponents------------
@@ -31,7 +31,7 @@ public class PlayerUI extends GamePanel{
 	
 	private StatisticsPanel statistics;
 	
-	private DataListener listener;
+	
 	
 	private ZoomedPanel zp;
 	
@@ -40,7 +40,7 @@ public class PlayerUI extends GamePanel{
 		background=bg;
 		playerName=Player;
 		
-		SharedData.addDataListener(listener);
+		SharedData.addDataListener(this);
 		
 		zp=((GameUI)(MunchkinClient.getPanel("GameUI"))).zp;
 		
@@ -125,6 +125,14 @@ public class PlayerUI extends GamePanel{
 
 	public StatisticsPanel getStatistics() {
 		return statistics;
+	}
+
+
+
+	@Override
+	public void dataChanged() {
+		// TODO Auto-generated method stub
+		
 	}
 
 
