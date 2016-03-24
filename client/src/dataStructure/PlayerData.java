@@ -1,5 +1,10 @@
 package dataStructure;
 
+import java.util.HashMap;
+
+import cards.EquipSlot;
+import cards.Equipment;
+
 public class PlayerData extends SharedData{
 
 	private String username;
@@ -8,6 +13,7 @@ public class PlayerData extends SharedData{
 	private String raceCard;
 	private String classCard;
 	private int handSize;
+	private HashMap<EquipSlot, String> equipments;
 	
 	public PlayerData() {
 		username = "";
@@ -16,6 +22,7 @@ public class PlayerData extends SharedData{
 		raceCard = "";
 		classCard = "";
 		handSize = 0;
+		equipments = new HashMap<EquipSlot, String>();
 	}
 
 	/**
@@ -105,6 +112,25 @@ public class PlayerData extends SharedData{
 	 */
 	public void setHandSize(int handSize) {
 		this.handSize = handSize;
+		update();
+	}
+	
+	/**
+	 * 
+	 * @param slot
+	 * @return
+	 */
+	public String getEquipment(EquipSlot slot) {
+		return equipments.get(slot);
+	}
+	
+	/**
+	 * 
+	 * @param slot
+	 * @param name
+	 */
+	public void setEquipment(EquipSlot slot, String name) {
+		equipments.put(slot, name);
 		update();
 	}
 	
