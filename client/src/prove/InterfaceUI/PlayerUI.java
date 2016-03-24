@@ -43,9 +43,11 @@ public class PlayerUI extends GamePanel implements DataListener{
 		background=bg;
 		playerName=Player;
 		
-		SharedData.addDataListener(this);
+		
 		
 		player=Data.getPlayer(playerName);
+		
+		player.addDataListener(this);
 		
 		zp=((GameUI)(MunchkinClient.getPanel("GameUI"))).zp;
 		
