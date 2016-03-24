@@ -10,6 +10,11 @@ import javax.swing.JLabel;
 
 import cards.Equipment;
 import client.MunchkinClient;
+import prove.InterfaceUI.ClientCard;
+import prove.InterfaceUI.GameWindow;
+import prove.InterfaceUI.ImageButton;
+import prove.InterfaceUI.PaintPanel;
+import prove.InterfaceUI.ZoomedPanel;
 
 public class PlayerPanel extends PaintPanel {
 

@@ -12,6 +12,11 @@ import cards.Equipment;
 import client.MunchkinClient;
 import game.GameManager;
 import network.GameEventHandler;
+import prove.InterfaceUI.ClientCard;
+import prove.InterfaceUI.GamePanel;
+import prove.InterfaceUI.GameWindow;
+import prove.InterfaceUI.ImageButton;
+import prove.InterfaceUI.ZoomedPanel;
 
 public class PlayerUI extends GamePanel{
 	
