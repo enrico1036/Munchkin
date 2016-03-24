@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.Box;
 
 /**
  * Working application that change cursor icon on drag begin and recognize the panel where the mouse is released
@@ -52,19 +55,14 @@ public class Prova {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 
 		MyPanel Lpanel = new MyPanel();
 		Lpanel.setName("Lpanel");
-		Lpanel.setBounds(6, 6, 178, 266);
 		Lpanel.setBackground(Color.GRAY);
-		frame.getContentPane().add(Lpanel);
 
 		MyPanel Rpanel = new MyPanel();
 		Rpanel.setName("Rpanel");
-		Rpanel.setBounds(196, 6, 248, 266);
 		Rpanel.setBackground(Color.DARK_GRAY);
-		frame.getContentPane().add(Rpanel);
 
 		GlassPane glassPane = new GlassPane();
 		glassPane.setName("glass");
@@ -75,6 +73,26 @@ public class Prova {
 		MyButton btnCarta = new MyButton("carta", glassPane);
 		btnCarta.setName("Carta");
 		Lpanel.add(btnCarta);
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(6, Short.MAX_VALUE)
+					.addComponent(Lpanel, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+					.addGap(12)
+					.addComponent(Rpanel, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
+					.addGap(6))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(6)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(Lpanel, GroupLayout.PREFERRED_SIZE, 266, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Rpanel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 266, GroupLayout.PREFERRED_SIZE))
+					.addGap(6))
+		);
+		frame.getContentPane().setLayout(groupLayout);
 	}
 
 	/**
