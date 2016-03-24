@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import client.MunchkinClient;
+import prove.InterfaceUI.ClientCard;
+import prove.InterfaceUI.ZoomedPanel;
 /**
  * 
  * 

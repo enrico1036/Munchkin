@@ -14,6 +14,14 @@ import client.MunchkinClient;
 import javafx.print.PageLayout;
 import network.GameEventHandler;
 import network.message.client.SelectedCardMessage;
+import prove.InterfaceUI.ClientCard;
+import prove.InterfaceUI.GamePanel;
+import prove.InterfaceUI.GameWindow;
+import prove.InterfaceUI.ImageButton;
+import prove.InterfaceUI.PaintPanel;
+import prove.InterfaceUI.PlayerOpponentUI;
+import prove.InterfaceUI.SelfPlayerUI;
+import prove.InterfaceUI.ZoomedPanel;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -24,26 +32,26 @@ import java.awt.event.ActionEvent;
 
 public class GameUI extends GamePanel {
 
-	private BufferedImage background, framePlayerStats, doorCardsImage, DiscardsImage, TreasureCardsImage, head, hand1,
-			body, hand2, feet;
-	private HashMap<String,PlayerPanel> OpponentPlayers;
+	private BufferedImage background, framePlayerStats, doorCardsImage, DiscardsImage, TreasureCardsImage;
+			
+	private HashMap<String,PlayerOpponentUI> OpponentPlayers;
 
 	private HandManager HandCards;
 
 	// ----------Table JComponents
 	private ImageButton lblDrawnCard;
 
-	// --------Player 1 JComponents---------
-	private JLabel lblPlayerName, lblPlayerLevel, lblPlayernumcard, lblPlayerPower, lblPlayerPowerValue,
-			lblPlayerLevelValue;
-
-	private ClientCard PlayerHead, PlayerHand1, PlayerBody, PlayerHand2, PlayerFeet, PlayerRace, PlayerClass;
-
+	
 	// ----------Deck JComponents---------------
 	private ImageButton doorCards, Discards, treasureCards;
 
 	// -----------Dice JComponents-------------
 	private JLabel diceLabel;
+	
+	//------------Self Player Panel-------------
+	private SelfPlayerUI self;
+	
+	
 	/*
 	 * ww= Gamewindow (JFrame) width wh= Gamewindow (JFrame) height psw=
 	 * PlayerStats (JPanel) width psh= PlayerStats (JPanel) height dw= Deck
@@ -54,7 +62,7 @@ public class GameUI extends GamePanel {
 	private JPanel Hand, Decks, Table;
 	private PaintPanel PlayerStats;
 	private DiceManager Dice;
-	private ZoomedPanel zp;
+	public static final ZoomedPanel zp = new ZoomedPanel();;
 
 	/**
 	 * Create the panel.
@@ -63,9 +71,9 @@ public class GameUI extends GamePanel {
 		super(window);
 
 		// Create the gameUI ZoomedPanel
-		zp = new ZoomedPanel();
+		
 		GameEventHandler.getReadyPlayerList();
-		OpponentPlayers = new HashMap<String,PlayerPanel>();
+		OpponentPlayers = new HashMap<String,PlayerOpponentUI>();
 		this.createRandomFramePanel();
 
 		background = MunchkinClient.getImage("panel_background");
@@ -74,8 +82,16 @@ public class GameUI extends GamePanel {
 		setOpaque(false);
 		setLayout(null);
 
+
 		ww = window.getContentPane().getWidth();
 		wh = window.getContentPane().getHeight();
+		
+		// Self Player Panel
+		//self=new SelfPlayerUI(window, name, framePlayerStats);
+		//TODO PRENDERE IL MIO NOME
+		self.setOpaque(false);
+		self.setBounds(0, wh * 2 / 3, ww * 2 / 5, wh / 3);
+		self.setLayout(null);
 
 		/*
 		 * 
@@ -127,88 +143,7 @@ public class GameUI extends GamePanel {
 
 		setComponentZOrder(zp, 0);
 
-		/*
-		 * 
-		 * 
-		 * 
-		 * PLAYERSTATS PANEL AND ITS COMPONENTS
-		 * 
-		 * 
-		 * 
-		 */
-
-		PlayerStats = new PaintPanel(framePlayerStats);
-		PlayerStats.setOpaque(false);
-		PlayerStats.setBounds(0, wh * 2 / 3, ww * 2 / 5, wh / 3);
-		add(PlayerStats);
-		PlayerStats.setLayout(null);
-
-		psw = PlayerStats.getWidth();
-		psh = PlayerStats.getHeight();
-
-		lblPlayerName = new JLabel(GameEventHandler.getConnection().getConnectedPlayerName());
-		lblPlayerName.setBounds(psw / 16, 0, psw * 7 / 16, psh / 3);
-		PlayerStats.add(lblPlayerName);
-
-		lblPlayerLevel = new JLabel("Level");
-		lblPlayerLevel.setBounds(psw / 2, 0, psw / 4, psh / 6);
-		PlayerStats.add(lblPlayerLevel);
-
-		lblPlayerLevelValue = new JLabel(String.valueOf(1));
-		lblPlayerLevelValue.setBounds(psw * 3 / 4, 0, psw / 4, psh / 6);
-		PlayerStats.add(lblPlayerLevelValue);
-
-		lblPlayerPower = new JLabel("Power");
-		lblPlayerPower.setBounds(psw / 2, psh / 6, psw / 4, psh / 6);
-		PlayerStats.add(lblPlayerPower);
-
-		lblPlayerPowerValue = new JLabel(String.valueOf(0));
-		lblPlayerPowerValue.setBounds(psw * 3 / 4, psh / 6, psw / 4, psh / 6);
-		PlayerStats.add(lblPlayerPowerValue);
-
-		PlayerRace = new ClientCard("Race");
-		PlayerRace.setBounds(psw / 8, psh / 3, psw / 8, psh / 4);
-		PlayerStats.add(PlayerRace);
-
-		PlayerClass = new ClientCard("Class");
-		PlayerClass.setBounds(psw / 4, psh / 3, psw / 8, psh / 4);
-		PlayerStats.add(PlayerClass);
-
-		lblPlayernumcard = new JLabel(String.valueOf(0));
-		lblPlayernumcard.setBounds(psw * 3 / 8, psh / 3, psw / 8, psh / 4);
-		PlayerStats.add(lblPlayernumcard);
-
-		head = MunchkinClient.getImage("player_head");
-		hand1 = MunchkinClient.getImage("player_hand1");
-		body = MunchkinClient.getImage("player_body");
-		hand2 = MunchkinClient.getImage("player_hand2");
-		feet = MunchkinClient.getImage("player_feet");
-
-		PlayerHead = new ClientCard("head");
-		PlayerHead.setBounds(psw * 2 / 3, psh / 3, psw / 6, psh * 2 / 9);
-		PlayerHead.CreateCard(head, zp);
-		PlayerStats.add(PlayerHead);
-
-		PlayerHand1 = new ClientCard("hand1");
-		PlayerHand1.setBounds(psw * 7 / 12, psh * 5 / 9, psw / 12, psh * 2 / 9);
-		PlayerHand1.CreateCard(hand1, zp);
-		PlayerStats.add(PlayerHand1);
-
-		PlayerBody = new ClientCard("body");
-		PlayerBody.setBounds(psw * 2 / 3, psh * 5 / 9, psw / 6, psh * 2 / 9);
-		PlayerBody.CreateCard(body, zp);
-		PlayerStats.add(PlayerBody);
-
-		PlayerHand2 = new ClientCard("hand2");
-		PlayerHand2.setBounds(psw * 5 / 6, psh * 5 / 9, psw / 12, psh * 2 / 9);
-		PlayerHand2.CreateCard(hand2, zp);
-		PlayerStats.add(PlayerHand2);
-
-		PlayerFeet = new ClientCard("feet");
-		PlayerFeet.setBounds(psw * 2 / 3, psh * 7 / 9, psw / 6, psh * 2 / 9);
-		PlayerFeet.CreateCard(feet, zp);
-		PlayerStats.add(PlayerFeet);
-
+		
 		/*
 		 * 
 		 * 
@@ -292,7 +227,7 @@ public class GameUI extends GamePanel {
 		Table.add(lblDrawnCard);
 
 	}
-
+/*
 	private void updateComponents() {
 
 		ww = this.getWidth();
@@ -346,11 +281,11 @@ public class GameUI extends GamePanel {
 
 		HandCards.handPositioning();
 
-	}
+	}*/
 
 	@Override
 	public void paintComponent(Graphics g) {
-		this.updateComponents();
+		//updateComponents();
 		super.paintComponent(g);
 		g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
 
@@ -365,19 +300,6 @@ public class GameUI extends GamePanel {
 			GameEventHandler.selectCard(SelectedCardMessage.DOOR_DECK);
 
 		}
-	}
-
-	public void changeEquipment(Equipment head, Equipment hand1, Equipment hand2, Equipment body, Equipment feet) {
-		if (head != null)
-			PlayerHead.setImage(MunchkinClient.getImage(head.getTitle()));
-		if (hand1 != null)
-			PlayerHand1.setImage(MunchkinClient.getImage(hand1.getTitle()));
-		if (hand2 != null)
-			PlayerHand2.setImage(MunchkinClient.getImage(hand2.getTitle()));
-		if (body != null)
-			PlayerBody.setImage(MunchkinClient.getImage(body.getTitle()));
-		if (feet != null)
-			PlayerFeet.setImage(MunchkinClient.getImage(feet.getTitle()));
 	}
 
 	private void createRandomFramePanel() {
@@ -400,14 +322,15 @@ public class GameUI extends GamePanel {
 		for (k = 0; k < GameEventHandler.getPlayers().length; k++) {
 			if (!(GameEventHandler.getPlayers()[k].equals(GameEventHandler.getConnection().getConnectedPlayerName()))) {
 
-				OpponentPlayers.put(GameEventHandler.getPlayers()[k], new PlayerPanel(MunchkinClient.getImage("frameplayer" + x[j]),
-						GameEventHandler.getPlayers()[k], window, zp));
+				OpponentPlayers.put(GameEventHandler.getPlayers()[k],
+						new PlayerOpponentUI(window,GameEventHandler.getPlayers()[k]
+								,MunchkinClient.getImage("frameplayer" + x[j])));
 				j++;
 			}
 		}
 	}
 
-	public HashMap<String,PlayerPanel> getOpponentPlayers() {
+	public HashMap<String,PlayerOpponentUI> getOpponentPlayers() {
 		return OpponentPlayers;
 	}
 
@@ -421,33 +344,6 @@ public class GameUI extends GamePanel {
 
 	public DiceManager getDiceManager() {
 		return Dice;
-	}
-
-	public void changeStatistics(int levelValue, int powerValue, String newClass, String newRace, int numCard) {
-
-		// update the player level and power value
-		lblPlayerLevelValue.setText(String.valueOf(levelValue));
-		lblPlayerPowerValue.setText(String.valueOf(powerValue));
-
-		// update the player race
-		BufferedImage image = MunchkinClient.getImage(newRace);
-
-		if (PlayerRace.imageIsNull())
-			PlayerRace.CreateCard(image, zp);
-		else
-			PlayerRace.setImage(image);
-
-		// update the player class
-		image = MunchkinClient.getImage(newClass);
-
-		if (PlayerClass.imageIsNull())
-			PlayerClass.CreateCard(image, zp);
-		else
-			PlayerClass.setImage(image);
-
-		// update the number of the player hand
-		lblPlayernumcard.setText(String.valueOf(numCard));
-
 	}
 
 	public ImageButton getDiscards() {

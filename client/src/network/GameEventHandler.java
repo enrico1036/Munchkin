@@ -15,13 +15,13 @@ import network.message.server.ReadyLobbyMessage;
 import network.message.server.ReadyStatusMessage;
 import network.message.server.StateUpdateMessage;
 import network.message.server.PlayCardMessage.Action;
+import prove.InterfaceUI.ClientCard;
+import prove.InterfaceUI.ConnectionDialog;
+import prove.InterfaceUI.LobbyUI;
+import prove.InterfaceUI.PopUpDialog;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayerFullStatsMessage;
-import user_interface.ClientCard;
-import user_interface.ConnectionDialog;
 import user_interface.GameUI;
-import user_interface.LobbyUI;
-import user_interface.PopUpDialog;
 
 public class GameEventHandler {
 	private static PlayerConnection connection;

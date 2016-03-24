@@ -6,6 +6,8 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import prove.InterfaceUI.GameWindow;
+
 public class DiceManager extends JPanel implements MouseListener {
 	
 	 

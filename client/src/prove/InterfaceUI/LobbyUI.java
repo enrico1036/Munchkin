@@ -1,4 +1,4 @@
-package user_interface;
+package prove.InterfaceUI;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -16,6 +16,7 @@ import com.sun.javafx.charts.ChartLayoutAnimator;
 
 import client.MunchkinClient;
 import network.GameEventHandler;
+import user_interface.ScrollableList;
 
 public class LobbyUI extends GamePanel {
 
