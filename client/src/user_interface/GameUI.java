@@ -87,8 +87,10 @@ public class GameUI extends GamePanel {
 		wh = window.getContentPane().getHeight();
 		
 		// Self Player Panel
-		//self=new SelfPlayerUI(window, name, framePlayerStats);
-		//TODO PRENDERE IL MIO NOME
+		self=new SelfPlayerUI(window, 
+				GameEventHandler.getConnection().getConnectedPlayerName(),
+				framePlayerStats);
+		
 		self.setOpaque(false);
 		self.setBounds(0, wh * 2 / 3, ww * 2 / 5, wh / 3);
 		self.setLayout(null);

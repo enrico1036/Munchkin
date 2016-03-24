@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import cards.EquipSlot;
 import cards.Equipment;
 import client.MunchkinClient;
+import dataStructure.DataListener;
+import dataStructure.SharedData;
 import user_interface.GameUI;
 import game.GameManager;
 import network.GameEventHandler;
@@ -29,12 +31,16 @@ public class PlayerUI extends GamePanel{
 	
 	private StatisticsPanel statistics;
 	
+	private DataListener listener;
+	
 	private ZoomedPanel zp;
 	
 	public PlayerUI(GameWindow window, String Player,BufferedImage bg){
 		super(window);
 		background=bg;
 		playerName=Player;
+		
+		SharedData.addDataListener(listener);
 		
 		zp=((GameUI)(MunchkinClient.getPanel("GameUI"))).zp;
 		
