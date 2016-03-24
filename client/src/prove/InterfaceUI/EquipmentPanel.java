@@ -62,7 +62,28 @@ public class EquipmentPanel extends JPanel{
 		
 	
 	}
-	
 
+	public ClientCard getPlayerHead() {
+		return PlayerHead;
+	}
+
+	public ClientCard getPlayerHand1() {
+		return PlayerHand1;
+	}
+
+	public ClientCard getPlayerBody() {
+		return PlayerBody;
+	}
+
+	public ClientCard getPlayerHand2() {
+		return PlayerHand2;
+	}
+
+	public ClientCard getPlayerFeet() {
+		return PlayerFeet;
+	}
+
+
+	
 	
 }

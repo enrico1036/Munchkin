@@ -67,4 +67,31 @@ public class StatisticsPanel extends JPanel {
 		
 		
 	}
+
+	public JLabel getLblPlayerName() {
+		return lblPlayerName;
+	}
+
+
+	public JLabel getLblPlayerNumCards() {
+		return lblPlayerNumCards;
+	}
+
+	public JLabel getLblPlayerPowerValue() {
+		return lblPlayerPowerValue;
+	}
+
+	public JLabel getLblPlayerLevelValue() {
+		return lblPlayerLevelValue;
+	}
+
+	public ClientCard getPlayerRace() {
+		return PlayerRace;
+	}
+
+	public ClientCard getPlayerClass() {
+		return PlayerClass;
+	}
+	
+	
 }
