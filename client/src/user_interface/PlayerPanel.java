@@ -13,10 +13,10 @@ import client.MunchkinClient;
 import prove.InterfaceUI.ClientCard;
 import prove.InterfaceUI.GameWindow;
 import prove.InterfaceUI.ImageButton;
-import prove.InterfaceUI.PaintPanel;
+import prove.InterfaceUI.GamePanel;
 import prove.InterfaceUI.ZoomedPanel;
 
-public class PlayerPanel extends PaintPanel {
+public class PlayerPanel extends GamePanel {
 
 
 	//---------Player JComponents------------

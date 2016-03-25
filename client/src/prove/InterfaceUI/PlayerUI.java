@@ -19,73 +19,54 @@ import game.GameManager;
 import network.GameEventHandler;
 import cards.EquipSlot;
 
-public class PlayerUI extends GamePanel implements DataListener{
-	
-	private BufferedImage background;
-	//---------Player JComponents------------
-	
+public class PlayerUI extends GamePanel implements DataListener {
+
+	// ---------Player JComponents------------
+
 	private PlayerData player;
 
 	private String playerName;
-	
-	private int psw,psh;
+
+	private int psw, psh;
 
 	private EquipmentPanel equipment;
-	
+
 	private StatisticsPanel statistics;
-	
-	
-	
+
 	private ZoomedPanel zp;
-	
-	public PlayerUI(GameWindow window, String Player,BufferedImage bg){
-		super(window);
-		background=bg;
-		playerName=Player;
-		
-		
-		
-		player=Data.getPlayer(playerName);
-		
+
+	public PlayerUI(GameWindow window, String Player, BufferedImage bg) {
+		super(window, bg);
+		playerName = Player;
+
+		player = Data.getPlayer(playerName);
+
 		player.addDataListener(this);
-		
-		zp=((GameUI)(MunchkinClient.getPanel("GameUI"))).zp;
-		
-		psw=getWidth();
-		psh=getHeight();
-		
+
+		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
+
+		psw = getWidth();
+		psh = getHeight();
+
 		/*
 		 * EQUIPMENT PANEL AND ITS COMPONENTS
 		 */
-		equipment = new EquipmentPanel(psw,psh);
+		equipment = new EquipmentPanel(psw, psh);
 		/*
 		 * PLAYERSTATS PANEL AND ITS COMPONENTS
 		 */
-		statistics = new StatisticsPanel(playerName,psw,psh);
-
-	
-	
+		statistics = new StatisticsPanel(playerName, psw, psh);
 
 	}
-
-
-
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.drawImage(background, 0,0, this.getWidth(), this.getHeight(),null);
-		
-	}
-
 
 	public int getPsw() {
 		return psw;
 	}
 
-
 	public int getPsh() {
 		return psh;
 	}
-	
+
 	public EquipmentPanel getEquipment() {
 		return equipment;
 	}
@@ -94,47 +75,38 @@ public class PlayerUI extends GamePanel implements DataListener{
 		return statistics;
 	}
 
-
-
 	@Override
 	public void dataChanged() {
-		
-		
-		
-		//update the player level and power value
+
+		// update the player level and power value
 		statistics.getLblPlayerLevelValue().setText(String.valueOf(player.getLevel()));
 		statistics.getLblPlayerPowerValue().setText(String.valueOf(player.getCombatLevel()));
-		
-		//update the player race
+
+		// update the player race
 		BufferedImage image = MunchkinClient.getImage(player.getRaceCard());
-		
-		if(statistics.getPlayerRace().imageIsNull())
+
+		if (statistics.getPlayerRace().imageIsNull())
 			statistics.getPlayerRace().CreateCard(image, zp);
 		else
 			statistics.getPlayerRace().setImage(image);
-		
-		//update the player class
+
+		// update the player class
 		image = MunchkinClient.getImage(player.getClassCard());
-		
-		if(statistics.getPlayerClass().imageIsNull())
+
+		if (statistics.getPlayerClass().imageIsNull())
 			statistics.getPlayerClass().CreateCard(image, zp);
 		else
 			statistics.getPlayerClass().setImage(image);
-		
-		//update the size of the player hand
-		statistics.getLblPlayerNumCards().setText(String.valueOf(player.getHandSize()));
-	
 
-		
+		// update the size of the player hand
+		statistics.getLblPlayerNumCards().setText(String.valueOf(player.getHandSize()));
+
 		equipment.getPlayerHead().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.head)));
 		equipment.getPlayerHand1().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.hand1)));
 		equipment.getPlayerHand2().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.hand2)));
 		equipment.getPlayerBody().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.body)));
 		equipment.getPlayerFeet().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.feet)));
 
-		
 	}
 
-
-	
 }

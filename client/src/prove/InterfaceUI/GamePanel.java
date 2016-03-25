@@ -1,67 +1,27 @@
 package prove.InterfaceUI;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-public abstract class GamePanel extends JPanel implements KeyListener,MouseListener,ActionListener {
+public class GamePanel extends JPanel {
+
+	protected BufferedImage background;
 	protected GameWindow window;
-	
-	public GamePanel(GameWindow window){
+
+	public GamePanel(GameWindow window, BufferedImage background) {
 		this.window = window;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
+		this.background = background;
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		
+	protected void paintComponent(Graphics g) {
+
+		super.paintComponent(g);
+		g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
 	}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		
-	}
-
-
-
-	
 }

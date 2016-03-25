@@ -3,6 +3,7 @@ package prove.InterfaceUI;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -18,9 +19,9 @@ import client.MunchkinClient;
 import network.GameEventHandler;
 import user_interface.ScrollableList;
 
-public class LobbyUI extends GamePanel {
+public class LobbyUI extends GamePanel implements ActionListener {
 
-	private BufferedImage background, dragon, users;
+	private BufferedImage dragon, users;
 	private int wndWidth, wndHeight;
 	private JButton User_ready;
 	private ScrollableList ScrollList;
@@ -30,10 +31,9 @@ public class LobbyUI extends GamePanel {
 	private boolean[] readyStatus;
 	private ChatArea chatArea;
 
-	public LobbyUI(GameWindow window) {
+	public LobbyUI(GameWindow window, BufferedImage background) {
 
-		super(window);
-		background = MunchkinClient.getImage("panel_background");
+		super(window, background); // MunchkinClient.getImage("panel_background")
 		dragon = MunchkinClient.getImage("dragon_lobby");
 		users = MunchkinClient.getImage("users_lobby");
 
@@ -46,18 +46,13 @@ public class LobbyUI extends GamePanel {
 		add(User_ready);
 
 		/*
-		 * ScrollList = new ScrollableList(); ScrollList.setBounds(wndWidth * 3
-		 * / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
-		 * add(ScrollList);
+		 * ScrollList = new ScrollableList(); ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100); add(ScrollList);
 		 * 
-		 * textBox = new JTextField("Enter your text here");
-		 * textBox.addActionListener(this); textBox.setActionCommand("Enter");
-		 * textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2
-		 * / 5, wndHeight / 10); add(textBox);
+		 * textBox = new JTextField("Enter your text here"); textBox.addActionListener(this); textBox.setActionCommand("Enter"); textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10); add(textBox);
 		 */
 
 		chatArea = new ChatArea(0.5f);
-		//chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
+		// chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
 		chatArea.addActionListener(this);
 		add(chatArea);
 
@@ -67,8 +62,8 @@ public class LobbyUI extends GamePanel {
 	public ScrollableList getScrollList() {
 		return ScrollList;
 	}
-	
-	public final ChatArea getChatArea(){
+
+	public final ChatArea getChatArea() {
 		return chatArea;
 	}
 
@@ -97,26 +92,21 @@ public class LobbyUI extends GamePanel {
 		}
 		User_ready.setBounds(wndWidth * 3 / 5 + wndWidth / 5, wndHeight / 10, User_ready.getWidth(), User_ready.getHeight());
 		chatArea.setLocation(wndWidth * 3 / 5, wndHeight * 7 / 10);
-		//ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
-		//textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10);
+		// ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
+		// textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		super.actionPerformed(e);
 		if (e.getActionCommand() == "tick") {
 			GameEventHandler.setReadyStatus();
 
 		} /*
-			 * else if (e.getActionCommand() == "Enter" &&
-			 * textBox.getText().trim() != "") {
-			 * GameEventHandler.sendChatMessage(GameEventHandler.getConnection()
-			 * .getConnectedPlayerName(), textBox.getText());
-			 * textBox.setText(""); }
+			 * else if (e.getActionCommand() == "Enter" && textBox.getText().trim() != "") { GameEventHandler.sendChatMessage(GameEventHandler.getConnection() .getConnectedPlayerName(), textBox.getText()); textBox.setText(""); }
 			 */
 
 		else if (e.getActionCommand() == "Send") {
 			String message = chatArea.getTextAndClear().trim();
-			if(!message.isEmpty())
+			if (!message.isEmpty())
 				GameEventHandler.sendChatMessage(GameEventHandler.getConnection().getConnectedPlayerName(), message);
 		}
 
