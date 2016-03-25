@@ -134,6 +134,17 @@ public class PlayerData extends SharedData{
 		update();
 	}
 	
+	/**
+	 * 
+	 * 
+	 */
+	public void setStats(int handSize,String classCard,String raceCard,int combatLevel,int level){
+		setHandSize(handSize);
+		setClassCard(classCard);
+		setRaceCard(raceCard);
+		setCombatLevel(combatLevel);
+		setLevel(level);
+	}
 	
 
 }

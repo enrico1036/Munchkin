@@ -2,6 +2,7 @@ package prova.network;
 
 import client.MunchkinClient;
 import dataStructure.Data;
+import javafx.stage.Popup;
 import network.PlayerConnection;
 import network.message.Message;
 import network.message.client.ChatMessage;
@@ -42,6 +43,7 @@ public class GameEventHandler {
 					System.out.println(received.getMessageCode());
 
 					if (received != null) {
+						//GameUI gameUIpanel = (GameUI) MunchkinClient.getPanel("GameUI");
 						LobbyUI lobbyPanel = (LobbyUI) MunchkinClient.getPanel("LobbyUI");
 						switch (received.getMessageCode()) {
 						case Message.CLT_CHAT_MESSAGE:
@@ -54,25 +56,28 @@ public class GameEventHandler {
 							ClientCard carddrawn = new ClientCard(playCardMessage.getCardName());
 							switch (playCardMessage.getAction()) {
 							case SHOW:
-								Data.
+								//gameUIpanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));
+								Data.getTable().addCard(carddrawn.getName());
 								break;
 							case DRAW:
 								//gameUIpanel.getHandCards().drawCard(carddrawn);
-								
+								Data.getHand().addCard(carddrawn.getName());
 								break;
 							case DISCARD:
 								//gameUIpanel.getDiscards().setImage(MunchkinClient.getImage(carddrawn.getName()));
+								Data.getDiscardDeck().getCards().set(0,carddrawn.getName());
 								break;
 							case REMOVE:
 								//gameUIpanel.getHandCards().remove(carddrawn);
+								Data.getHand().getCards().remove(carddrawn);
 								break;
 							}
 							break;
 						case Message.CLT_READY_STATUS:
-							//ReadyLobbyMessage readyPlayerList = (ReadyLobbyMessage) received;
-							//players = readyPlayerList.getPlayers();
-							//readyStatus = readyPlayerList.getStatus();
-							//lobbyPanel.showPlayer();
+							ReadyLobbyMessage readyPlayerList = (ReadyLobbyMessage) received;
+							players = readyPlayerList.getPlayers();
+							readyStatus = readyPlayerList.getStatus();
+							lobbyPanel.showPlayer();
 							break;
 
 						case Message.POPUP:
@@ -92,21 +97,27 @@ public class GameEventHandler {
 
 						case Message.PLAYER_FULL_STATS:
 							PlayerFullStatsMessage statistics = (PlayerFullStatsMessage) received;
-							if (statistics.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
+							Data.getPlayer(statistics.getPlayerName()).setStats(statistics.getHandSize(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getCombatLevel(), statistics.getLevel());
+							//if (statistics.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
 								//gameUIpanel.changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
-							} else {
+							//} else {
 								//gameUIpanel.getOpponentPlayers().get(statistics.getPlayerName()).changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
-							}
+							//}
 
 							break;
 						case Message.PLAYER_EQUIPMENT:
 							PlayerEquipmentMessage equip = (PlayerEquipmentMessage) received;
-							if (equip.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
+							Data.getPlayer(equip.getPlayerName()).setEquipment(equip.getHead().getSlot(), equip.getHead().getTitle());
+							Data.getPlayer(equip.getPlayerName()).setEquipment(equip.getHand1().getSlot(), equip.getHand1().getTitle());
+							Data.getPlayer(equip.getPlayerName()).setEquipment(equip.getHand2().getSlot(), equip.getHand2().getTitle());
+							Data.getPlayer(equip.getPlayerName()).setEquipment(equip.getBody().getSlot(), equip.getBody().getTitle());
+							Data.getPlayer(equip.getPlayerName()).setEquipment(equip.getFeet().getSlot(), equip.getFeet().getTitle());
+							//if (equip.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
 								//gameUIpanel.changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
 
-							} else {
+							//} else {
 								//gameUIpanel.getOpponentPlayers().get(equip.getPlayerName()).getDetailsPanel().changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
-							}
+							//}
 							break;
 						case Message.STATE_UPDATE:
 							StateUpdateMessage update = (StateUpdateMessage) received;

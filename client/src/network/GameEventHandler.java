@@ -92,19 +92,19 @@ public class GameEventHandler {
 						case Message.PLAYER_FULL_STATS:
 							PlayerFullStatsMessage statistics = (PlayerFullStatsMessage) received;
 							if (statistics.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
-								gameUIpanel.changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
+								//gameUIpanel.changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
 							} else {
-								gameUIpanel.getOpponentPlayers().get(statistics.getPlayerName()).changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
+								//gameUIpanel.getOpponentPlayers().get(statistics.getPlayerName()).changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
 							}
 
 							break;
 						case Message.PLAYER_EQUIPMENT:
 							PlayerEquipmentMessage equip = (PlayerEquipmentMessage) received;
 							if (equip.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
-								gameUIpanel.changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
+								//gameUIpanel.changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
 
 							} else {
-								gameUIpanel.getOpponentPlayers().get(equip.getPlayerName()).getDetailsPanel().changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
+								//gameUIpanel.getOpponentPlayers().get(equip.getPlayerName()).getDetailsPanel().changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
 							}
 							break;
 						case Message.STATE_UPDATE:
