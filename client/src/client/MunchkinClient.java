@@ -14,7 +14,7 @@ import prove.InterfaceUI.GameWindow;
 import prove.InterfaceUI.LobbyUI;
 import prove.InterfaceUI.MenuUI;
 import user_interface.GameUI;
-import user_interface.PlayerUI;
+
 /**
  * 
  * The class application of the Client Program
@@ -72,7 +72,7 @@ public class MunchkinClient {
 		/**
 		 *  Create MenuUI panel
 		 */
-		panels.put("MenuUI", new MenuUI(window));
+		panels.put("MenuUI", new MenuUI(window, MunchkinClient.getImage("menu_background")));
 		
 		
 		
