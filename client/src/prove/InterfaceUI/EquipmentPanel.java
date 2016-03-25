@@ -10,7 +10,6 @@ import user_interface.GameUI;
 
 public class EquipmentPanel extends JPanel{
 
-	private BufferedImage head,hand1,body,hand2,feet;
 	
 	private ClientCard PlayerHead,PlayerHand1,PlayerBody,PlayerHand2,PlayerFeet;
 	private int psw,psh;
@@ -25,39 +24,33 @@ public class EquipmentPanel extends JPanel{
 		
 		psw=ww;
 		psh=wh;
-		
-		 head = MunchkinClient.getImage("player_head");
-		 hand1 = MunchkinClient.getImage("player_hand1");
-		 body = MunchkinClient.getImage("player_body");
-		 hand2 = MunchkinClient.getImage("player_hand2");
-		 feet = MunchkinClient.getImage("player_feet");
-		
+
 	
-		 PlayerHead = new ClientCard("Head");
+		 PlayerHead = new ClientCard("player_head");
 		 PlayerHead.setBounds(psw*4/9, psh*3/6, psw/9, psh/6);
-		 PlayerHead.CreateCard(head, zp);	
+		 PlayerHead.setZoomedPanel(zp);	
 		 add(PlayerHead);
 
 		 
-		 PlayerHand1 = new ClientCard("hand1");
+		 PlayerHand1 = new ClientCard("player_hand1");
 		 PlayerHand1.setBounds(psw*3/9, psh*4/6,psw/9, psh/6);
-		 PlayerHand1.CreateCard(hand1, zp);
+		 PlayerHand1.setZoomedPanel(zp);
 		 add(PlayerHand1);
 		
 		 
-		 PlayerBody = new ClientCard("body");
+		 PlayerBody = new ClientCard("player_body");
 		 PlayerBody.setBounds(psw*4/9, psh*4/6,psw/9, psh/6);
-		 PlayerBody.CreateCard(body, zp);
+		 PlayerBody.setZoomedPanel(zp);
 		 add(PlayerBody);
 		
-		PlayerHand2 = new ClientCard("hand2");
+		PlayerHand2 = new ClientCard("player_hand2");
 		PlayerHand2.setBounds(psw*5/9, psh*4/6,psw/9, psh/6);
-		PlayerHand2.CreateCard(hand2, zp);
+		PlayerHand2.setZoomedPanel(zp);
 		add(PlayerHand2);
 		
-		 PlayerFeet = new ClientCard("feet");
+		 PlayerFeet = new ClientCard("player_feet");
 		 PlayerFeet.setBounds(psw*4/9, psh*5/6, psw/9, psh/6);
-		 PlayerFeet.CreateCard(feet, zp);
+		 PlayerFeet.setZoomedPanel(zp);
 		 add(PlayerFeet);
 		
 	

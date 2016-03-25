@@ -5,36 +5,31 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-public class HandPanel extends JPanel{
+import dataStructure.CardDataSet;
+import dataStructure.DataListener;
+import prove.InterfaceUI.ClientCard;
+
+public class CardPanel extends JPanel implements DataListener{
 	
 	// Maximum space between cards
 	private static final int SPACING = 5;
 	// Space between panel borders and cards
 	private static final int PADDING = 5;
 	
-	private final ArrayList<JButton> cards;
+	private ArrayList<ClientCard> cards;
 	private Dimension cardSize;
+	private CardDataSet cardSource;
 	
-	public HandPanel(){
+	public CardPanel(CardDataSet source){
 		cards = new ArrayList<>();
 		cardSize = null;
+		cardSource=source;
+		
+		source.addDataListener(this);
 		
 		setLayout(null);
 		setBackground(Color.RED);
-	}
-	
-	public void addCard(final JButton card){
-		add(card);
-		cards.add(card);
-		
-		
-		
-		if(cardSize == null)
-			cardSize = card.getSize();
-		
-		updadeView();
 	}
 	
 	public void updadeView(){
@@ -64,5 +59,16 @@ public class HandPanel extends JPanel{
 	public void setSize(int width, int height) {
 		super.setSize(width, height);
 		updadeView();
+	}
+
+	@Override
+	public void dataChanged() {
+		ArrayList<ClientCard> newCards = new ArrayList<>();
+		for (int i=0;i<cardSource.getCards().size();i++) {
+			newCards.add(new ClientCard(cardSource.getCards().get(i)));
+		}
+		cards=newCards;
+		updadeView();
+		
 	}
 }

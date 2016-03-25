@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import client.MunchkinClient;
+
 /**
  * 
  * This JButton extension is used to hand the card on the Game Table
@@ -36,6 +38,9 @@ public class ClientCard extends JButton implements MouseListener{
 	
 	public ClientCard(String title) {
 		this.title = title;
+		image = MunchkinClient.getImage(title);
+		setBorderPainted(false);
+		setVisible(true);
 		
 	}
 	/**
@@ -44,10 +49,7 @@ public class ClientCard extends JButton implements MouseListener{
 	 * @param image:  it's the image of the card
 	 * @param zoomedPanel: it's the jpanel where the card can be shonw
 	 */
-	public void CreateCard(BufferedImage image, ZoomedPanel zoomedPanel){
-		this.image = image;
-		setBorderPainted(false);
-		setVisible(true);
+	public void setZoomedPanel(ZoomedPanel zoomedPanel){
 		this.zoomedPanel = zoomedPanel;
 		addMouseListener(this);
 	}
@@ -67,14 +69,14 @@ public class ClientCard extends JButton implements MouseListener{
 		this.image=image;
 	}
 	/**
-	 * It has used to control that the card image is null
+	 * It has used to control that the zoomed Panel is null
 	 * 
-	 * @return true: if the image is null
-	 * @return false: if the image is not null
+	 * @return true: if the zoomedPanel is null
+	 * @return false: if the zoomedPanel is not null
 	 */
-	public boolean imageIsNull(){
+	public boolean zoomedPanelIsNull(){
 		boolean result=true;
-		if(image!=null)
+		if(zoomedPanel!=null)
 			result=false;
 		
 		return result;

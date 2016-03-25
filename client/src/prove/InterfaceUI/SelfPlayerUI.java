@@ -72,29 +72,29 @@ public class SelfPlayerUI extends PlayerUI {
 	hand2 = MunchkinClient.getImage("player_hand2");
 	feet = MunchkinClient.getImage("player_feet");
 
-	PlayerHead = new ClientCard("head");
+	PlayerHead = new ClientCard("player_head");
 	PlayerHead.setBounds(psw * 2 / 3, psh / 3, psw / 6, psh * 2 / 9);
-	PlayerHead.CreateCard(head, zp);
+	PlayerHead.setZoomedPanel(zp);
 	add(PlayerHead);
 
-	PlayerHand1 = new ClientCard("hand1");
+	PlayerHand1 = new ClientCard("player_hand1");
 	PlayerHand1.setBounds(psw * 7 / 12, psh * 5 / 9, psw / 12, psh * 2 / 9);
-	PlayerHand1.CreateCard(hand1, zp);
+	PlayerHand1.setZoomedPanel(zp);
 	add(PlayerHand1);
 
-	PlayerBody = new ClientCard("body");
+	PlayerBody = new ClientCard("player_body");
 	PlayerBody.setBounds(psw * 2 / 3, psh * 5 / 9, psw / 6, psh * 2 / 9);
-	PlayerBody.CreateCard(body, zp);
+	PlayerBody.setZoomedPanel(zp);
 	add(PlayerBody);
 
-	PlayerHand2 = new ClientCard("hand2");
+	PlayerHand2 = new ClientCard("player_hand2");
 	PlayerHand2.setBounds(psw * 5 / 6, psh * 5 / 9, psw / 12, psh * 2 / 9);
-	PlayerHand2.CreateCard(hand2, zp);
+	PlayerHand2.setZoomedPanel(zp);
 	add(PlayerHand2);
 
-	PlayerFeet = new ClientCard("feet");
+	PlayerFeet = new ClientCard("player_feet");
 	PlayerFeet.setBounds(psw * 2 / 3, psh * 7 / 9, psw / 6, psh * 2 / 9);
-	PlayerFeet.CreateCard(feet, zp);
+	PlayerFeet.setZoomedPanel(zp);
 	add(PlayerFeet);
 	}
 }

@@ -85,17 +85,17 @@ public class PlayerUI extends GamePanel implements DataListener {
 		// update the player race
 		BufferedImage image = MunchkinClient.getImage(player.getRaceCard());
 
-		if (statistics.getPlayerRace().imageIsNull())
-			statistics.getPlayerRace().CreateCard(image, zp);
-		else
+		if (statistics.getPlayerClass().zoomedPanelIsNull())
+			statistics.getPlayerClass().setZoomedPanel(zp);
+		
 			statistics.getPlayerRace().setImage(image);
 
 		// update the player class
 		image = MunchkinClient.getImage(player.getClassCard());
 
-		if (statistics.getPlayerClass().imageIsNull())
-			statistics.getPlayerClass().CreateCard(image, zp);
-		else
+		if (statistics.getPlayerClass().zoomedPanelIsNull())
+			statistics.getPlayerClass().setZoomedPanel(zp);
+		
 			statistics.getPlayerClass().setImage(image);
 
 		// update the size of the player hand
