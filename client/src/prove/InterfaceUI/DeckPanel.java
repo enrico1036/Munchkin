@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import client.MunchkinClient;
+import dataStructure.CardDataSet;
 import dataStructure.Data;
 import dataStructure.DataListener;
 import dataStructure.PlayerData;
@@ -15,7 +16,7 @@ import network.message.client.SelectedCardMessage;
 
 public class DeckPanel extends JPanel implements ActionListener,DataListener {
 	
-	private PlayerData player;
+	private CardDataSet deck;
 	
 	private BufferedImage doorCardsImage, discardsImage, treasureCardsImage;
 	
@@ -30,8 +31,8 @@ public class DeckPanel extends JPanel implements ActionListener,DataListener {
 		dw=getWidth();
 		dh=getHeight();
 		
-		player=Data.getPlayer(GameEventHandler.getConnection().getConnectedPlayerName());
-		player.addDataListener(this);
+		deck=Data.getDiscardDeck();
+		deck.addDataListener(this);
 		
 		
 	doorCardsImage = MunchkinClient.getImage("door_back");

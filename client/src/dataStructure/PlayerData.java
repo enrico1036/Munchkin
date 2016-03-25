@@ -129,9 +129,17 @@ public class PlayerData extends SharedData{
 	 * @param slot
 	 * @param name
 	 */
-	public void setEquipment(EquipSlot slot, String name) {
+	public void setSingleEquipment(EquipSlot slot, String name) {
 		equipments.put(slot, name);
 		update();
+	}
+	
+	public void setEquipments(String head,String hand1,String hand2,String body,String feet){
+		this.equipments.put(EquipSlot.head, head);
+		this.equipments.put(EquipSlot.hand1, hand1);
+		this.equipments.put(EquipSlot.hand2, hand2);
+		this.equipments.put(EquipSlot.body, body);
+		this.equipments.put(EquipSlot.feet, feet);
 	}
 	
 	/**
@@ -139,11 +147,12 @@ public class PlayerData extends SharedData{
 	 * 
 	 */
 	public void setStats(int handSize,String classCard,String raceCard,int combatLevel,int level){
-		setHandSize(handSize);
-		setClassCard(classCard);
-		setRaceCard(raceCard);
-		setCombatLevel(combatLevel);
-		setLevel(level);
+		this.handSize = handSize;
+		this.classCard=classCard;
+		this.raceCard=raceCard;
+		this.combatLevel = combatLevel;
+		this.level=level;
+		update();
 	}
 	
 

@@ -1,5 +1,7 @@
 package prova.network;
 
+import java.awt.image.BufferedImage;
+
 import client.MunchkinClient;
 import dataStructure.Data;
 import javafx.stage.Popup;
@@ -30,6 +32,7 @@ public class GameEventHandler {
 	private static Thread thread;
 	private static String[] players;
 	private static boolean[] readyStatus;
+	private static final BufferedImage gameUiBackground = MunchkinClient.getImage("panel_background");
 
 	public static void initialize(PlayerConnection connection) {
 		GameEventHandler.connection = connection;
@@ -56,20 +59,16 @@ public class GameEventHandler {
 							ClientCard carddrawn = new ClientCard(playCardMessage.getCardName());
 							switch (playCardMessage.getAction()) {
 							case SHOW:
-								//gameUIpanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));
-								Data.getTable().addCard(carddrawn.getName());
+								Data.getTable().addCard(carddrawn.getTitle());
 								break;
 							case DRAW:
-								//gameUIpanel.getHandCards().drawCard(carddrawn);
-								Data.getHand().addCard(carddrawn.getName());
+								Data.getHand().addCard(carddrawn.getTitle());
 								break;
 							case DISCARD:
-								//gameUIpanel.getDiscards().setImage(MunchkinClient.getImage(carddrawn.getName()));
 								Data.getDiscardDeck().getCards().set(0,carddrawn.getName());
 								break;
 							case REMOVE:
-								//gameUIpanel.getHandCards().remove(carddrawn);
-								Data.getHand().getCards().remove(carddrawn);
+								Data.getHand().removeCard(carddrawn.getTitle());
 								break;
 							}
 							break;
@@ -97,32 +96,25 @@ public class GameEventHandler {
 
 						case Message.PLAYER_FULL_STATS:
 							PlayerFullStatsMessage statistics = (PlayerFullStatsMessage) received;
-							Data.getPlayer(statistics.getPlayerName()).setStats(statistics.getHandSize(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getCombatLevel(), statistics.getLevel());
-							//if (statistics.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
-								//gameUIpanel.changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
-							//} else {
-								//gameUIpanel.getOpponentPlayers().get(statistics.getPlayerName()).changeStatistics(statistics.getLevel(), statistics.getCombatLevel(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getHandSize());
-							//}
+							Data.getPlayer(statistics.getPlayerName()).setStats(statistics.getHandSize(),
+																				statistics.getClassCard(),
+																				statistics.getRaceCard(),
+																				statistics.getCombatLevel(),
+																				statistics.getLevel());
 
 							break;
 						case Message.PLAYER_EQUIPMENT:
 							PlayerEquipmentMessage equip = (PlayerEquipmentMessage) received;
-							Data.getPlayer(equip.getPlayerName()).setEquipment(equip.getHead().getSlot(), equip.getHead().getTitle());
-							Data.getPlayer(equip.getPlayerName()).setEquipment(equip.getHand1().getSlot(), equip.getHand1().getTitle());
-							Data.getPlayer(equip.getPlayerName()).setEquipment(equip.getHand2().getSlot(), equip.getHand2().getTitle());
-							Data.getPlayer(equip.getPlayerName()).setEquipment(equip.getBody().getSlot(), equip.getBody().getTitle());
-							Data.getPlayer(equip.getPlayerName()).setEquipment(equip.getFeet().getSlot(), equip.getFeet().getTitle());
-							//if (equip.getPlayerName().equals(GameEventHandler.getConnection().getConnectedPlayerName())) {
-								//gameUIpanel.changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
-
-							//} else {
-								//gameUIpanel.getOpponentPlayers().get(equip.getPlayerName()).getDetailsPanel().changeEquipment(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
-							//}
+							Data.getPlayer(equip.getPlayerName()).setEquipments(equip.getHead().getTitle(),
+																				equip.getHand1().getTitle(),
+																				equip.getHand2().getTitle(), 
+																				equip.getBody().getTitle(),
+																				equip.getFeet().getTitle());
 							break;
 						case Message.STATE_UPDATE:
 							StateUpdateMessage update = (StateUpdateMessage) received;
 							if (update.getState().equals("begin")) {
-								MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow()));
+								MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow(),gameUiBackground));
 								MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
 								break;
 

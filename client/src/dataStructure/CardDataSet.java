@@ -21,5 +21,7 @@ public class CardDataSet extends SharedData {
 	public void addCard(String card) {
 		cards.add(card);
 	}
-
+	public void removeCard(String card){
+		cards.remove(card);
+	}
 }
