@@ -2,7 +2,6 @@ package prova.network;
 
 import client.MunchkinClient;
 import dataStructure.Data;
-import javafx.stage.Popup;
 import network.PlayerConnection;
 import network.message.Message;
 import network.message.client.ChatMessage;
@@ -43,7 +42,6 @@ public class GameEventHandler {
 					System.out.println(received.getMessageCode());
 
 					if (received != null) {
-						//GameUI gameUIpanel = (GameUI) MunchkinClient.getPanel("GameUI");
 						LobbyUI lobbyPanel = (LobbyUI) MunchkinClient.getPanel("LobbyUI");
 						switch (received.getMessageCode()) {
 						case Message.CLT_CHAT_MESSAGE:
@@ -56,8 +54,7 @@ public class GameEventHandler {
 							ClientCard carddrawn = new ClientCard(playCardMessage.getCardName());
 							switch (playCardMessage.getAction()) {
 							case SHOW:
-								//gameUIpanel.getDrawnCard().setImage(MunchkinClient.getImage(carddrawn.getName()));
-								
+								Data.
 								break;
 							case DRAW:
 								//gameUIpanel.getHandCards().drawCard(carddrawn);
