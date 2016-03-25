@@ -9,11 +9,11 @@ import javax.swing.JPanel;
 import image.XmlImageLoader;
 import javafx.util.Pair;
 import network.PlayerConnection;
-import prove.InterfaceUI.GamePanel;
-import prove.InterfaceUI.GameWindow;
-import prove.InterfaceUI.LobbyUI;
-import prove.InterfaceUI.MenuUI;
+import user_interface.GamePanel;
 import user_interface.GameUI;
+import user_interface.GameWindow;
+import user_interface.LobbyUI;
+import user_interface.MenuUI;
 
 /**
  * 

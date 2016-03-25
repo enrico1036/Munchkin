@@ -1,277 +1,77 @@
 package user_interface;
 
 import javax.swing.JPanel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
-import cards.ClassCard;
-import cards.EquipSlot;
-import cards.Equipment;
-import cards.Race;
-
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import client.MunchkinClient;
-import javafx.print.PageLayout;
-import network.GameEventHandler;
-import network.message.client.SelectedCardMessage;
-import prove.InterfaceUI.ClientCard;
-import prove.InterfaceUI.DeckPanel;
-import prove.InterfaceUI.GamePanel;
-import prove.InterfaceUI.GameWindow;
-import prove.InterfaceUI.ImageButton;
-import prove.InterfaceUI.GamePanel;
-import prove.InterfaceUI.PlayerOpponentUI;
-import prove.InterfaceUI.SelfPlayerUI;
-import prove.InterfaceUI.TablePanel;
-import prove.InterfaceUI.ZoomedPanel;
+import dataStructure.Data;
+import game.GameManager;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class GameUI extends GamePanel implements ActionListener {
+public class GameUI extends GamePanel{
 
-	private BufferedImage framePlayerStats;
-
-	private HashMap<String, PlayerOpponentUI> OpponentPlayers;
-
-	private HandManager HandCards;
-
-	// -----------Dice JComponents-------------
-	private JLabel diceLabel;
-
-	// ------------Self Player Panel-------------
-	private SelfPlayerUI self;
-
-	/*
-	 * ww= Gamewindow (JFrame) width wh= Gamewindow (JFrame) height psw= PlayerStats (JPanel) width psh= PlayerStats (JPanel) height dw= Deck (JPanel) width dh= Deck (JPanel) height
-	 */
-	private int ww, wh;
-	// There are all the JPanels in GameUI
-	private JPanel Hand, Decks;
-
-	TablePanel Table;
-	
-	private DiceManager Dice;
-	public static final ZoomedPanel zp = new ZoomedPanel();;
+	private OpponentsPanel opponentsPanel;
+	private CardPanel tablePanel;
+	private SelfPlayerUI selfPanel;
+	private DeckPanel decksPanel;
+	private CardPanel handPanel;
+	public static final ZoomedPanel zp = new ZoomedPanel();
 
 	/**
 	 * Create the panel.
 	 */
 	public GameUI(GameWindow window, BufferedImage background) {
-		super(window, background); // MunchkinClient.getImage("panel_background")
+		super(window, background);
+		setMinimumSize(new Dimension(800, 450));
+		setPreferredSize(new Dimension(800, 450));
 
-		// Create the gameUI ZoomedPanel
+		opponentsPanel = new OpponentsPanel(window);
+		opponentsPanel.setBackground(Color.BLUE);
 
-		GameEventHandler.getReadyPlayerList();
-		OpponentPlayers = new HashMap<String, PlayerOpponentUI>();
-		createRandomFramePanel();
+		tablePanel = new CardPanel(Data.getTable());
+		tablePanel.setBackground(Color.BLUE);
 
-		framePlayerStats = MunchkinClient.getImage("playerstats_frame");
+		selfPanel = new SelfPlayerUI(window, GameManager.getCurrentPlayer().getUsername(), MunchkinClient.getImage("playerstats_frame"));
+		selfPanel.setBackground(Color.BLUE);
 
-		setOpaque(false);
-		setLayout(null);
+		decksPanel = new DeckPanel();
+		decksPanel.setBackground(Color.BLUE);
 
-		ww = window.getContentPane().getWidth();
-		wh = window.getContentPane().getHeight();
-
-		// Self Player Panel
-		self = new SelfPlayerUI(window, GameEventHandler.getConnection().getConnectedPlayerName(), framePlayerStats);
-
-		self.setOpaque(false);
-		self.setBounds(0, wh * 2 / 3, ww * 2 / 5, wh / 3);
-		self.setLayout(null);
-
-		/*
-		 * 
-		 * 
-		 * 
-		 * DICE PANEL AND ITS COMPONENTS
-		 * 
-		 * 
-		 * 
-		 * 
-		 */
-
-		Dice = new DiceManager(window);
-		Dice.setOpaque(false);
-		Dice.setBounds(ww * 2 / 5, wh * 2 / 3, ww * 3 / 5, wh / 3);
-		Dice.setVisible(false);
-		add(Dice);
-		Dice.setLayout(null);
-
-		/*
-		 * 
-		 * 
-		 * 
-		 * HAND PANEL AND ITS COMPONENTS
-		 * 
-		 * 
-		 * 
-		 * 
-		 */
-
-		Hand = new JPanel();
-		Hand.setOpaque(false);
-		Hand.setBounds(ww * 2 / 5, wh * 2 / 3, ww * 3 / 5, wh / 3);
-		add(Hand);
-		Hand.setLayout(null);
-
-		/*
-		 * 
-		 * ZOOMED PANEL AND ITS COMPONENTS
-		 * 
-		 */
-
-		HandCards = new HandManager(Hand, zp);
-
-		zp.setVisible(true);
-		zp.setBounds(ww / 3, wh / 20, ww / 3, wh * 5 / 8);
-		add(zp);
-		zp.setLayout(null);
-
-		setComponentZOrder(zp, 0);
-
-		/*
-		 * 
-		 * 
-		 * 
-		 * OPPONENT PLAYER JPANEL
-		 * 
-		 * 
-		 * 
-		 */
-
-		int k = 0;
-		// k=uguale alla richiesta di quanti utenti ci sono
-		for (String player : OpponentPlayers.keySet()) {
-			if (OpponentPlayers.get(player) != null) {
-				OpponentPlayers.get(player).setOpaque(false);
-				OpponentPlayers.get(player).setBounds(ww * k / 5, 0, ww / 5, wh / 3);
-				add(OpponentPlayers.get(player));
-				OpponentPlayers.get(player).setLayout(null);
-				k++;
-			}
-		}
-
-		/*
-		 * 
-		 * DECKS PANEL AND ITS COMPONENTS
-		 * 
-		 */
-
+		handPanel = new CardPanel(Data.getHand());
+		handPanel.setBackground(Color.BLUE);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+				groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+						.addGap(6)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(opponentsPanel, GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+										.addContainerGap())
+								.addGroup(Alignment.TRAILING, 
+										groupLayout.createSequentialGroup()
+										.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(decksPanel, GroupLayout.PREFERRED_SIZE, 284, GroupLayout.PREFERRED_SIZE)
+										.addContainerGap())
+								.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE)
+										.addGap(6)
+										.addComponent(handPanel, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+										.addGap(6)))));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(opponentsPanel, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE).addComponent(decksPanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)).addGap(6).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE).addComponent(handPanel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)).addGap(6)));
+		setLayout(groupLayout);
 		
-		Decks = new DeckPanel();
-		Decks.setOpaque(false);
-		Decks.setBounds(ww / 2, wh / 3, ww / 2, wh / 3);
-		Decks.setVisible(true);
-		Decks.setLayout(null);
-		add(Decks);
-
-
-		/*
-		 * 
-		 * TABLE PANEL AND ITS COMPONENTS
-		 * 
-		 */
-
-		Table = new TablePanel();
-		Table.setOpaque(false);
-		Table.setBounds(0, wh / 3, ww * 3 / 4, wh / 3);
-		add(Table);
-		Table.setLayout(null);
-
+		zp.setVisible(true);
+		zp.setLayout(null);
+        zp.setBounds(getWidth() / 3, getHeight() / 20, getWidth() / 3, getHeight() * 5 / 8);
+        add(zp);
+        setComponentZOrder(zp, 0);
 
 	}
-	/*
-	 * private void updateComponents() {
-	 * 
-	 * ww = this.getWidth(); wh = this.getHeight();
-	 * 
-	 * // Resize automatically all JPanels on GameUI instance
-	 * 
-	 * PlayerStats.setBounds(0, wh * 2 / 3, ww * 2 / 5, wh / 3); Hand.setBounds(ww * 2 / 5, wh * 2 / 3, ww * 3 / 5, wh / 3); Decks.setBounds(ww / 2, wh / 3, ww / 2, wh / 3); Table.setBounds(0, wh / 3, ww * 3 / 4, wh / 3); zp.setBounds(ww / 3, wh / 20, ww / 3, wh * 5 / 8);
-	 * 
-	 * int k=0; for (String player: OpponentPlayers.keySet()) { OpponentPlayers.get(player).setBounds(ww * k / 5, 0, ww / 5, wh / 3); OpponentPlayers.get(player).updatePlayerComponents(); k++; }
-	 * 
-	 * // Get the width and the height of PlayerStats JPanel
-	 * 
-	 * psw = PlayerStats.getWidth(); psh = PlayerStats.getHeight();
-	 * 
-	 * // -------Resize all JComponent of PlayerStats Panel-----------
-	 * 
-	 * lblPlayerName.setBounds(psw / 16, 0, psw * 7 / 16, psh / 3); lblPlayerLevel.setBounds(psw / 2, 0, psw / 4, psh / 6); lblPlayerLevelValue.setBounds(psw * 3 / 4, 0, psw / 4, psh / 6); lblPlayerPower.setBounds(psw / 2, psh / 6, psw / 4, psh / 6); lblPlayerPowerValue.setBounds(psw * 3 / 4, psh / 6, psw / 4, psh / 6); PlayerRace.setBounds(psw / 8, psh / 3, psw / 8, psh / 4); PlayerClass.setBounds(psw / 4, psh / 3, psw / 8, psh / 4); lblPlayernumcard.setBounds(psw * 3 / 8, psh / 3, psw / 8, psh / 4); PlayerHead.setBounds(psw * 2 / 3, psh / 3, psw / 6, psh * 2 / 9); PlayerHand1.setBounds(psw / 2, psh * 5 / 9, psw / 6, psh * 2 / 9); PlayerBody.setBounds(psw * 2 / 3, psh * 5 / 9, psw / 6, psh * 2 / 9); PlayerHand2.setBounds(psw * 5 / 6, psh * 5 / 9, psw / 6, psh * 2 / 9); PlayerFeet.setBounds(psw * 2 / 3, psh * 7 / 9, psw / 6, psh * 2 / 9);
-	 * 
-	 * dw = Decks.getWidth(); dh = Decks.getHeight();
-	 * 
-	 * // Get the width and the height of Player* JPanel (* stands for // 2,3,4,5,6).
-	 * 
-	 * doorCards.setBounds(dw / 25, dh / 10, dw / 5, dh * 8 / 10); Discards.setBounds(dw * 7 / 25, dh / 10, dw / 5, dh * 8 / 10); treasureCards.setBounds(dw * 13 / 25, dh / 10, dw / 5, dh * 8 / 10);
-	 * 
-	 * HandCards.handPositioning();
-	 * 
-	 * }
-	 */
-
-	@Override
-	public void paintComponent(Graphics g) {
-		// updateComponents();
-		super.paintComponent(g);
-		// g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("DrawDoor")) {
-
-			GameEventHandler.selectCard(SelectedCardMessage.DOOR_DECK);
-
-		}
-	}
-
-	private void createRandomFramePanel() {
-		int size = 10, k = 0;
-		int[] x = new int[GameEventHandler.getPlayers().length - 1];
-
-		ArrayList<Integer> list = new ArrayList<Integer>(size);
-		for (int i = 1; i <= size; i++) {
-			list.add(i);
-		}
-
-		Random rand = new Random();
-		while (list.size() > 0 && k < GameEventHandler.getPlayers().length - 1) {
-			int index = rand.nextInt(list.size());
-			x[k] = list.remove(index);
-			k++;
-		}
-
-		int j = 0;
-		for (k = 0; k < GameEventHandler.getPlayers().length; k++) {
-			if (!(GameEventHandler.getPlayers()[k].equals(GameEventHandler.getConnection().getConnectedPlayerName()))) {
-
-				OpponentPlayers.put(GameEventHandler.getPlayers()[k], new PlayerOpponentUI(window, GameEventHandler.getPlayers()[k], MunchkinClient.getImage("frameplayer" + x[j])));
-				j++;
-			}
-		}
-	}
-
-	public HashMap<String, PlayerOpponentUI> getOpponentPlayers() {
-		return OpponentPlayers;
-	}
-
-	public HandManager getHandCards() {
-		return HandCards;
-	}
-
-
-	public DiceManager getDiceManager() {
-		return Dice;
-	}
-
-
 }

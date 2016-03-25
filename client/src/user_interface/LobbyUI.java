@@ -1,4 +1,4 @@
-package prove.InterfaceUI;
+package user_interface;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,14 +17,12 @@ import com.sun.javafx.charts.ChartLayoutAnimator;
 
 import client.MunchkinClient;
 import network.GameEventHandler;
-import user_interface.ScrollableList;
 
 public class LobbyUI extends GamePanel implements ActionListener {
 
 	private BufferedImage dragon, users;
 	private int wndWidth, wndHeight;
 	private JButton User_ready;
-	private ScrollableList ScrollList;
 	private JLabel[][] Users;
 	private JTextField textBox;
 	private String[] players;
@@ -59,16 +57,8 @@ public class LobbyUI extends GamePanel implements ActionListener {
 		GameEventHandler.getReadyPlayerList();
 	}
 
-	public ScrollableList getScrollList() {
-		return ScrollList;
-	}
-
 	public final ChatArea getChatArea() {
 		return chatArea;
-	}
-
-	public void setScrollList(ScrollableList scrollList) {
-		ScrollList = scrollList;
 	}
 
 	@Override

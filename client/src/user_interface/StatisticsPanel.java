@@ -1,4 +1,4 @@
-package prove.InterfaceUI;
+package user_interface;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

@@ -1,4 +1,4 @@
-package prove.InterfaceUI;
+package user_interface;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;

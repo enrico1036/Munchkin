@@ -1,4 +1,4 @@
-package prove.InterfaceUI;
+package user_interface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
