@@ -5,9 +5,9 @@ import java.util.HashMap;
 public class Data {
 
 	private static HashMap<String, PlayerData> players = new HashMap<String, PlayerData>();
-	private static CardDataSet hand;
-	private static CardDataSet table;
-	private static CardDataSet discardDeck;
+	private static CardDataSet hand = new CardDataSet();
+	private static CardDataSet table = new CardDataSet();
+	private static CardDataSet discardDeck = new CardDataSet();
 	
 	/**
 	 * @return the hand

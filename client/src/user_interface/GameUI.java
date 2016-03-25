@@ -8,6 +8,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import client.MunchkinClient;
 import dataStructure.Data;
 import game.GameManager;
+import network.GameEventHandler;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,7 +37,7 @@ public class GameUI extends GamePanel{
 		tablePanel = new CardPanel(Data.getTable());
 		tablePanel.setBackground(Color.BLUE);
 
-		selfPanel = new SelfPlayerUI(window, GameManager.getCurrentPlayer().getUsername(), MunchkinClient.getImage("playerstats_frame"));
+		selfPanel = new SelfPlayerUI(window, GameEventHandler.getConnection().getConnectedPlayerName(), MunchkinClient.getImage("playerstats_frame"));
 		selfPanel.setBackground(Color.BLUE);
 
 		decksPanel = new DeckPanel();

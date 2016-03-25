@@ -113,6 +113,9 @@ public class GameEventHandler {
 						case Message.STATE_UPDATE:
 							StateUpdateMessage update = (StateUpdateMessage) received;
 							if (update.getState().equals("begin")) {
+								for (String player : players) {
+									Data.addPlayer(player);
+								}
 								MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow(),MunchkinClient.getImage("panel_background")));
 								MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
 								break;
