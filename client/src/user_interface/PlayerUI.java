@@ -1,5 +1,6 @@
 package user_interface;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -44,7 +45,7 @@ public class PlayerUI extends GamePanel implements DataListener {
 		player.addDataListener(this);
 
 		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
-
+		
 		psw = getWidth();
 		psh = getHeight();
 
@@ -56,6 +57,7 @@ public class PlayerUI extends GamePanel implements DataListener {
 		 * PLAYERSTATS PANEL AND ITS COMPONENTS
 		 */
 		statistics = new StatisticsPanel(playerName, psw, psh);
+		add(statistics);
 
 	}
 
