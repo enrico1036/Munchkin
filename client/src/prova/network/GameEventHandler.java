@@ -32,7 +32,7 @@ public class GameEventHandler {
 	private static Thread thread;
 	private static String[] players;
 	private static boolean[] readyStatus;
-	private static final BufferedImage gameUiBackground = MunchkinClient.getImage("panel_background");
+	 
 
 	public static void initialize(PlayerConnection connection) {
 		GameEventHandler.connection = connection;
@@ -114,7 +114,7 @@ public class GameEventHandler {
 						case Message.STATE_UPDATE:
 							StateUpdateMessage update = (StateUpdateMessage) received;
 							if (update.getState().equals("begin")) {
-								MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow(),gameUiBackground));
+								MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow(),MunchkinClient.getImage("panel_background")));
 								MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
 								break;
 
