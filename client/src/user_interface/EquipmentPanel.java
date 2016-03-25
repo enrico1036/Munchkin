@@ -21,6 +21,7 @@ public class EquipmentPanel extends JPanel{
 		zp=((GameUI)(MunchkinClient.getPanel("GameUI"))).zp;
 		
 		setOpaque(false);
+		setLayout(null);
 		
 		psw=ww;
 		psh=wh;

@@ -19,6 +19,8 @@ import user_interface.GameUI;
 import game.GameManager;
 import network.GameEventHandler;
 import cards.EquipSlot;
+import java.awt.FlowLayout;
+import javax.swing.JSplitPane;
 
 public class PlayerUI extends GamePanel implements DataListener {
 
@@ -53,11 +55,8 @@ public class PlayerUI extends GamePanel implements DataListener {
 		 * EQUIPMENT PANEL AND ITS COMPONENTS
 		 */
 		equipment = new EquipmentPanel(psw, psh);
-		/*
-		 * PLAYERSTATS PANEL AND ITS COMPONENTS
-		 */
+		
 		statistics = new StatisticsPanel(playerName, psw, psh);
-		add(statistics);
 
 	}
 

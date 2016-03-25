@@ -21,7 +21,11 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 		psh = getPsh();
 
 		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
-
+		
+		setLayout(null);
+		getStatistics().setBounds(0, 0, 438, 288);
+		add(getStatistics());
+		
 		stateswitcher = new ImageButton(MunchkinClient.getImage("return_back"));
 		stateswitcher.setBounds(psw * 7 / 8, psh * 7 / 8, psw / 8, psh / 8);
 		stateswitcher.setActionCommand("detailed");
