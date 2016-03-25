@@ -16,5 +16,9 @@ public class CardDataSet extends SharedData {
 		this.cards = cards;
 		update();
 	}
+	
+	public void addCard(String card) {
+		cards.add(card);
+	}
 
 }
