@@ -15,12 +15,14 @@ import javafx.print.PageLayout;
 import network.GameEventHandler;
 import network.message.client.SelectedCardMessage;
 import prove.InterfaceUI.ClientCard;
+import prove.InterfaceUI.DeckPanel;
 import prove.InterfaceUI.GamePanel;
 import prove.InterfaceUI.GameWindow;
 import prove.InterfaceUI.ImageButton;
 import prove.InterfaceUI.GamePanel;
 import prove.InterfaceUI.PlayerOpponentUI;
 import prove.InterfaceUI.SelfPlayerUI;
+import prove.InterfaceUI.TablePanel;
 import prove.InterfaceUI.ZoomedPanel;
 
 import java.awt.image.BufferedImage;
@@ -33,17 +35,11 @@ import java.awt.event.ActionListener;
 
 public class GameUI extends GamePanel implements ActionListener {
 
-	private BufferedImage framePlayerStats, doorCardsImage, DiscardsImage, TreasureCardsImage;
+	private BufferedImage framePlayerStats;
 
 	private HashMap<String, PlayerOpponentUI> OpponentPlayers;
 
 	private HandManager HandCards;
-
-	// ----------Table JComponents
-	private ImageButton lblDrawnCard;
-
-	// ----------Deck JComponents---------------
-	private ImageButton doorCards, Discards, treasureCards;
 
 	// -----------Dice JComponents-------------
 	private JLabel diceLabel;
@@ -54,10 +50,12 @@ public class GameUI extends GamePanel implements ActionListener {
 	/*
 	 * ww= Gamewindow (JFrame) width wh= Gamewindow (JFrame) height psw= PlayerStats (JPanel) width psh= PlayerStats (JPanel) height dw= Deck (JPanel) width dh= Deck (JPanel) height
 	 */
-	private int ww, wh, psw, psh, dw, dh;
+	private int ww, wh;
 	// There are all the JPanels in GameUI
-	private JPanel Hand, Decks, Table;
-	private GamePanel PlayerStats;
+	private JPanel Hand, Decks;
+
+	TablePanel Table;
+	
 	private DiceManager Dice;
 	public static final ZoomedPanel zp = new ZoomedPanel();;
 
@@ -71,7 +69,7 @@ public class GameUI extends GamePanel implements ActionListener {
 
 		GameEventHandler.getReadyPlayerList();
 		OpponentPlayers = new HashMap<String, PlayerOpponentUI>();
-		this.createRandomFramePanel();
+		createRandomFramePanel();
 
 		framePlayerStats = MunchkinClient.getImage("playerstats_frame");
 
@@ -166,39 +164,14 @@ public class GameUI extends GamePanel implements ActionListener {
 		 * 
 		 */
 
-		doorCardsImage = MunchkinClient.getImage("door_back");
-
-		DiscardsImage = MunchkinClient.getImage("door_card");
-
-		TreasureCardsImage = MunchkinClient.getImage("treasure_back");
-
-		Decks = new JPanel();
+		
+		Decks = new DeckPanel();
 		Decks.setOpaque(false);
 		Decks.setBounds(ww / 2, wh / 3, ww / 2, wh / 3);
 		Decks.setVisible(true);
 		Decks.setLayout(null);
 		add(Decks);
 
-		dw = Decks.getWidth();
-		dh = Decks.getHeight();
-
-		doorCards = new ImageButton(doorCardsImage);
-		doorCards.setBounds(dw / 25, dh / 10, dw / 5, dh * 8 / 10);
-		doorCards.setActionCommand("DrawDoor");
-		doorCards.addActionListener(this);
-		doorCards.setVisible(true);
-		Decks.add(doorCards);
-
-		Discards = new ImageButton(DiscardsImage);
-		Discards.setBounds(dw * 7 / 25, dh / 10, dw / 5, dh * 8 / 10);
-		Discards.setVisible(true);
-		Decks.add(Discards);
-
-		treasureCards = new ImageButton(TreasureCardsImage);
-		treasureCards.setBounds(dw * 13 / 25, dh / 10, dw / 5, dh * 8 / 10);
-		treasureCards.addActionListener(this);
-		treasureCards.setVisible(true);
-		Decks.add(treasureCards);
 
 		/*
 		 * 
@@ -206,19 +179,12 @@ public class GameUI extends GamePanel implements ActionListener {
 		 * 
 		 */
 
-		Table = new JPanel();
+		Table = new TablePanel();
 		Table.setOpaque(false);
 		Table.setBounds(0, wh / 3, ww * 3 / 4, wh / 3);
 		add(Table);
 		Table.setLayout(null);
 
-		JLabel lblMonster = new JLabel("Monster");
-		lblMonster.setBounds(10, 26, 82, 85);
-		Table.add(lblMonster);
-
-		lblDrawnCard = new ImageButton(null);
-		lblDrawnCard.setBounds(136, 25, 155, 86);
-		Table.add(lblDrawnCard);
 
 	}
 	/*
@@ -302,16 +268,10 @@ public class GameUI extends GamePanel implements ActionListener {
 		return HandCards;
 	}
 
-	public ImageButton getDrawnCard() {
-		return lblDrawnCard;
-	}
 
 	public DiceManager getDiceManager() {
 		return Dice;
 	}
 
-	public ImageButton getDiscards() {
-		return Discards;
-	}
 
 }
