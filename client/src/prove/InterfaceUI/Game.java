@@ -5,17 +5,21 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import client.MunchkinClient;
+import dataStructure.Data;
+import game.GameManager;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 
 public class Game extends GamePanel{
 
-	private JPanel opponentsPanel;
-	private JPanel tablePanel;
-	private JPanel selfPanel;
-	private JPanel decksPanel;
-	private JPanel handPanel;
+	private OpponentsPanel opponentsPanel;
+	private CardPanel tablePanel;
+	private SelfPlayerUI selfPanel;
+	private DeckPanel decksPanel;
+	private CardPanel handPanel;
 
 	/**
 	 * Create the panel.
@@ -28,16 +32,16 @@ public class Game extends GamePanel{
 		opponentsPanel = new OpponentsPanel(window);
 		opponentsPanel.setBackground(Color.BLUE);
 
-		tablePanel = new JPanel();
+		tablePanel = new CardPanel(Data.getTable());
 		tablePanel.setBackground(Color.BLUE);
 
-		selfPanel = new JPanel();
+		selfPanel = new SelfPlayerUI(window, GameManager.getCurrentPlayer().getUsername(), MunchkinClient.getImage("playerstats_frame"));
 		selfPanel.setBackground(Color.BLUE);
 
-		decksPanel = new JPanel();
+		decksPanel = new DeckPanel();
 		decksPanel.setBackground(Color.BLUE);
 
-		handPanel = new JPanel();
+		handPanel = new CardPanel(Data.getHand());
 		handPanel.setBackground(Color.BLUE);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addGap(6).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addComponent(opponentsPanel, GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE).addContainerGap()).addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup().addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(decksPanel, GroupLayout.PREFERRED_SIZE, 284, GroupLayout.PREFERRED_SIZE).addContainerGap()).addGroup(groupLayout.createSequentialGroup().addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE).addGap(6).addComponent(handPanel, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE).addGap(6)))));

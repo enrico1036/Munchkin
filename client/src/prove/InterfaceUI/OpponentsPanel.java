@@ -23,6 +23,9 @@ public class OpponentsPanel extends JPanel {
 		opponentPlayers = new HashMap<String, PlayerOpponentUI>();
 		createRandomFramePanel();
 		setOpaque(false);
+		for(PlayerOpponentUI opponent : opponentPlayers.values()) {
+			add(opponent);
+		}
 	}
 
 	private void createRandomFramePanel() {

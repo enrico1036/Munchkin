@@ -1,4 +1,4 @@
-package prova.hand;
+package prove.InterfaceUI;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 
 import dataStructure.CardDataSet;
 import dataStructure.DataListener;
-import prove.InterfaceUI.ClientCard;
 
 public class CardPanel extends JPanel implements DataListener{
 	
