@@ -23,7 +23,7 @@ public class OpponentsPanel extends JPanel {
 
 	public OpponentsPanel(GameWindow window) {
 		this.window = window;
-		setLayout(new GridLayout(1, 5, 0, 0));
+		setLayout(new FlowLayout(FlowLayout.CENTER));
 		GameEventHandler.getReadyPlayerList();
 		opponentPlayers = new HashMap<String, PlayerOpponentUI>();
 		createRandomFramePanel();
@@ -64,8 +64,8 @@ public class OpponentsPanel extends JPanel {
 	
 	public void setAllSize() {
 		for(PlayerOpponentUI opponent : opponentPlayers.values()) {
-			System.out.println(getWidth()+" "+getHeight());
-			opponent.setSize(getWidth(), getHeight());
+			System.out.println(getWidth()/5+" "+getHeight());
+			opponent.setSize(getWidth()/5, getHeight());
 		}	
 	}
 

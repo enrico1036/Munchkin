@@ -7,6 +7,7 @@ public class CardDataSet extends SharedData {
 	private ArrayList<String> cards;
 
 	public CardDataSet() {
+		cards = new ArrayList<String>();
 	}
 
 	public ArrayList<String> getCards() {

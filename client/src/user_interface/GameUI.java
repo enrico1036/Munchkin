@@ -75,6 +75,6 @@ public class GameUI extends GamePanel{
         setComponentZOrder(zp, 0);
         
         
-        //opponentsPanel.setAllSize();
+        opponentsPanel.setAllSize();
        }
 }
