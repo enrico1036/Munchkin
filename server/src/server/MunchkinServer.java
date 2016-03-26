@@ -1,8 +1,13 @@
 package server;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import com.sun.javafx.tk.Toolkit.Task;
 
@@ -95,6 +100,25 @@ public class MunchkinServer implements PlayerEventListener {
 
 		// Exit
 		server.shutdown();
+		
+		//Little UI of the server
+		JFrame serverFrame = new JFrame("Munchkin Server");
+		serverFrame.setBounds(100, 100, 200, 200);
+		serverFrame.setVisible(true);
+		serverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel serverPane = new JPanel();
+		serverPane.setBounds(0, 0, serverFrame.getWidth(), serverFrame.getHeight());
+		serverPane.setBackground(Color.WHITE);
+		serverFrame.add(serverPane);
+		
+		JLabel serverLabel = new JLabel();
+		serverLabel.setText("The server is now running");
+		serverLabel.setBounds(0, 0, serverPane.getWidth(), serverPane.getHeight());
+		serverPane.add(serverLabel);
+		serverFrame.setContentPane(serverPane);
+		
+		
 	}
 
 	/**

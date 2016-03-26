@@ -12,6 +12,9 @@ import client.MunchkinClient;
 import network.GameEventHandler;
 import javax.swing.JButton;
 import java.awt.Dimension;
+import javax.swing.BoxLayout;
+import javax.swing.SpringLayout;
+import java.awt.GridLayout;
 
 public class OpponentsPanel extends JPanel {
 	
@@ -20,13 +23,13 @@ public class OpponentsPanel extends JPanel {
 
 	public OpponentsPanel(GameWindow window) {
 		this.window = window;
+		setLayout(new GridLayout(1, 5, 0, 0));
 		GameEventHandler.getReadyPlayerList();
 		opponentPlayers = new HashMap<String, PlayerOpponentUI>();
 		createRandomFramePanel();
-		setOpaque(false);
-		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		for(PlayerOpponentUI opponent : opponentPlayers.values()) {
-			opponent.setSize(getWidth(), getHeight());
+			//opponent.setSize(getWidth(), getHeight());
+			
 			add(opponent);
 		}
 	}
@@ -55,6 +58,15 @@ public class OpponentsPanel extends JPanel {
 				j++;
 			}
 		}
+	}
+	
+
+	
+	public void setAllSize() {
+		for(PlayerOpponentUI opponent : opponentPlayers.values()) {
+			System.out.println(getWidth()+" "+getHeight());
+			opponent.setSize(getWidth(), getHeight());
+		}	
 	}
 
 }

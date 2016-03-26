@@ -53,6 +53,7 @@ public class DeckPanel extends JPanel implements ActionListener,DataListener {
 	discards = new ImageButton(discardsImage);
 	discards.setBounds(dw * 7 / 25, dh / 10, dw / 5, dh * 8 / 10);
 	discards.setVisible(true);
+	discards.setEnabled(false);
 	add(discards);
 
 	treasureCards = new ImageButton(treasureCardsImage);

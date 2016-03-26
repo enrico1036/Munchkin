@@ -16,41 +16,32 @@ public class EquipmentPanel extends JPanel{
 
 	private ZoomedPanel zp;
 	
-	public EquipmentPanel(int ww,int wh){
+	public EquipmentPanel(){
 		
 		zp=((GameUI)(MunchkinClient.getPanel("GameUI"))).zp;
 		
 		setOpaque(false);
 		setLayout(null);
-		
-		psw=ww;
-		psh=wh;
 
-	
 		 PlayerHead = new ClientCard("player_head");
-		 PlayerHead.setBounds(psw*4/9, psh*3/6, psw/9, psh/6);
 		 PlayerHead.setZoomedPanel(zp);	
 		 add(PlayerHead);
 
 		 
 		 PlayerHand1 = new ClientCard("player_hand1");
-		 PlayerHand1.setBounds(psw*3/9, psh*4/6,psw/9, psh/6);
 		 PlayerHand1.setZoomedPanel(zp);
 		 add(PlayerHand1);
 		
 		 
 		 PlayerBody = new ClientCard("player_body");
-		 PlayerBody.setBounds(psw*4/9, psh*4/6,psw/9, psh/6);
 		 PlayerBody.setZoomedPanel(zp);
 		 add(PlayerBody);
 		
 		PlayerHand2 = new ClientCard("player_hand2");
-		PlayerHand2.setBounds(psw*5/9, psh*4/6,psw/9, psh/6);
 		PlayerHand2.setZoomedPanel(zp);
 		add(PlayerHand2);
 		
 		 PlayerFeet = new ClientCard("player_feet");
-		 PlayerFeet.setBounds(psw*4/9, psh*5/6, psw/9, psh/6);
 		 PlayerFeet.setZoomedPanel(zp);
 		 add(PlayerFeet);
 		
@@ -77,7 +68,20 @@ public class EquipmentPanel extends JPanel{
 		return PlayerFeet;
 	}
 
+	@Override
+	public void setSize(int width, int height) {
+		super.setSize(width, height);
+		psw=width;
+		psh=height;
+		 PlayerHead.setBounds(psw*4/9, psh*3/6, psw/9, psh/6);
+		 PlayerHand1.setBounds(psw*3/9, psh*4/6,psw/9, psh/6);
+		 PlayerBody.setBounds(psw*4/9, psh*4/6,psw/9, psh/6);
+			PlayerHand2.setBounds(psw*5/9, psh*4/6,psw/9, psh/6);
+			 PlayerFeet.setBounds(psw*4/9, psh*5/6, psw/9, psh/6);
+		
+	}
 
+	
 	
 	
 }

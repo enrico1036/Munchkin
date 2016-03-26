@@ -19,47 +19,36 @@ public class StatisticsPanel extends JPanel {
 
 	private ZoomedPanel zp;
 	
-	public StatisticsPanel(String pn,int ww,int wh){
+	public StatisticsPanel(String pn){
 		
 		zp=((GameUI)(MunchkinClient.getPanel("GameUI"))).zp;
-		
-		psw=ww;
-		psh=wh;
-		
+	
 		setOpaque(false);
 		
 		playerName=pn;
 		
 		lblPlayerName = new JLabel(playerName);
-		lblPlayerName.setBounds(0, psh/10, psw/3, psh*2/10);
 		add(lblPlayerName);
 
 		lblPlayerLevel = new JLabel("Level");
-		lblPlayerLevel.setBounds(0,psh*4/10,psw/3, psh*2/10);
 		add(lblPlayerLevel);
 
 		 lblPlayerLevelValue = new JLabel(String.valueOf(1));
-		lblPlayerLevelValue.setBounds(psw/3,psh*4/10,psw/3, psh*2/10);
 		add(lblPlayerLevelValue);
 		
 		lblPlayerPower = new JLabel("Power");
-		lblPlayerPower.setBounds(0, psh*7/10, psw/3, psh*2/10);
 		add(lblPlayerPower);
 
 		 lblPlayerPowerValue = new JLabel(String.valueOf(0));
-		 lblPlayerPowerValue.setBounds(psw/3, psh*7/10, psw/3, psh*2/10);
 		 add(lblPlayerPowerValue);
 	
 		 PlayerRace = new ClientCard("Race");
-		PlayerRace.setBounds(0,psh/2, psw/3, psh/6);
 		add(PlayerRace);
 		
 		 PlayerClass = new ClientCard("Class");
-		PlayerClass.setBounds(0, psh*4/6,  psw/3, psh/6);
 		add(PlayerClass);
 		
 		 lblPlayerNumCards = new JLabel("N Cards");
-		 lblPlayerNumCards.setBounds(0, psh*5/6,  psw/3, psh/6);;
 		 add(lblPlayerNumCards);
 	
 	
@@ -91,6 +80,21 @@ public class StatisticsPanel extends JPanel {
 
 	public ClientCard getPlayerClass() {
 		return PlayerClass;
+	}
+
+	@Override
+	public void setSize(int width, int height) {
+		super.setSize(width, height);
+		psw=width;
+		psh=height;
+		lblPlayerName.setBounds(0, psh/10, psw/3, psh*2/10);
+		lblPlayerLevel.setBounds(0,psh*4/10,psw/3, psh*2/10);
+		lblPlayerLevelValue.setBounds(psw/3,psh*4/10,psw/3, psh*2/10);
+		lblPlayerPower.setBounds(0, psh*7/10, psw/3, psh*2/10);
+		 lblPlayerPowerValue.setBounds(psw/3, psh*7/10, psw/3, psh*2/10);
+			PlayerRace.setBounds(0,psh/2, psw/3, psh/6);
+			PlayerClass.setBounds(0, psh*4/6,  psw/3, psh/6);
+			 lblPlayerNumCards.setBounds(0, psh*5/6,  psw/3, psh/6);
 	}
 	
 	

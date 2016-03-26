@@ -30,7 +30,6 @@ public class PlayerUI extends GamePanel implements DataListener {
 
 	private String playerName;
 
-	private int psw, psh;
 
 	private EquipmentPanel equipment;
 
@@ -48,25 +47,17 @@ public class PlayerUI extends GamePanel implements DataListener {
 
 		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
 		
-		psw = getWidth();
-		psh = getHeight();
-
+	
 		/*
 		 * EQUIPMENT PANEL AND ITS COMPONENTS
 		 */
-		equipment = new EquipmentPanel(psw, psh);
+		equipment = new EquipmentPanel();
 		
-		statistics = new StatisticsPanel(playerName, psw, psh);
+		statistics = new StatisticsPanel(playerName);
 
 	}
 
-	public int getPsw() {
-		return psw;
-	}
 
-	public int getPsh() {
-		return psh;
-	}
 
 	public EquipmentPanel getEquipment() {
 		return equipment;

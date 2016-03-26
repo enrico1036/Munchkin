@@ -17,8 +17,6 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 	public PlayerOpponentUI(GameWindow window, String playerName, BufferedImage background) {
 		super(window, playerName, background);
 
-		psw = getPsw();
-		psh = getPsh();
 
 		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
 		
@@ -27,7 +25,7 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 		add(getStatistics());
 		
 		stateswitcher = new ImageButton(MunchkinClient.getImage("return_back"));
-		stateswitcher.setBounds(psw * 7 / 8, psh * 7 / 8, psw / 8, psh / 8);
+		
 		stateswitcher.setActionCommand("detailed");
 		stateswitcher.setVisible(true);
 		add(stateswitcher);
@@ -51,4 +49,17 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 
 		}
 	}
+
+	@Override
+	public void setSize(int width, int height) {
+		super.setSize(width, height);
+
+		psw = width;
+		psh = height;
+		getStatistics().setSize(psw, psh);
+		getEquipment().setSize(psw, psh);
+		stateswitcher.setBounds(psw * 7 / 8, psh * 7 / 8, psw / 8, psh / 8);
+		
+	}
+	
 }
