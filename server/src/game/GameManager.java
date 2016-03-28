@@ -16,11 +16,13 @@ import network.message.server.StateUpdateMessage;
 import utils.Debug;
 
 public class GameManager {
+	private static boolean gameStarted = false;
 	private static boolean playerWon;
 	private static MessageQueue queue;
 	private static ArrayList<game.Player> players;
 
 	private static void begin() {
+		gameStarted = true;
 		broadcastMessage(new StateUpdateMessage("begin"));
 		for (Player player : GameManager.getPlayers()) {
 			broadcastMessage(new PlayerFullStatsMessage(player));
@@ -61,6 +63,13 @@ public class GameManager {
 				win();
 		}
 		end();
+	}
+
+	/**
+	 * @return the gameStarted
+	 */
+	public static boolean isGameStarted() {
+		return gameStarted;
 	}
 
 	public static Player getCurrentPlayer() {

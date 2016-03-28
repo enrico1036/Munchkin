@@ -20,6 +20,7 @@ import network.message.ActionResultMessage;
 import network.message.Message;
 import network.message.client.ChatMessage;
 import network.message.server.ReadyLobbyMessage;
+import network.message.server.StateUpdateMessage;
 import utils.CountdownTask;
 import utils.PlayerEventListener;
 
@@ -52,7 +53,7 @@ public class MunchkinServer implements PlayerEventListener {
 		players = new ArrayList<Player>();
 		// Create queue
 		queue = new MessageQueue();
-		
+
 		GameManager.setPlayers(players);
 		GameManager.setInQueue(queue);
 
@@ -100,30 +101,28 @@ public class MunchkinServer implements PlayerEventListener {
 
 		// Exit
 		server.shutdown();
-		
-		//Little UI of the server
+
+		// Little UI of the server
 		JFrame serverFrame = new JFrame("Munchkin Server");
 		serverFrame.setBounds(100, 100, 200, 200);
 		serverFrame.setVisible(true);
 		serverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		JPanel serverPane = new JPanel();
 		serverPane.setBounds(0, 0, serverFrame.getWidth(), serverFrame.getHeight());
 		serverPane.setBackground(Color.WHITE);
 		serverFrame.add(serverPane);
-		
+
 		JLabel serverLabel = new JLabel();
 		serverLabel.setText("The server is now running");
 		serverLabel.setBounds(0, 0, serverPane.getWidth(), serverPane.getHeight());
 		serverPane.add(serverLabel);
 		serverFrame.setContentPane(serverPane);
-		
-		
+
 	}
 
 	/**
-	 * Wait for players to correctly connect to the server and wait for them to
-	 * be ready.
+	 * Wait for players to correctly connect to the server and wait for them to be ready.
 	 */
 	public void populateLobby() {
 		// Add this instance as PlayerEventListener
@@ -149,8 +148,7 @@ public class MunchkinServer implements PlayerEventListener {
 
 					@Override
 					public void onTick(int target, int count) {
-						GameManager.broadcastMessage(
-								new ChatMessage("Server", "Game starting in " + (target - count) + " seconds"));
+						GameManager.broadcastMessage(new ChatMessage("Server", "Game starting in " + (target - count) + " seconds"));
 					}
 
 					@Override
@@ -223,10 +221,12 @@ public class MunchkinServer implements PlayerEventListener {
 					// Swap old player's connection for the new one
 					connListener.stopConnection(p.getConnection());
 					p.setConnection(player.getConnection());
+					if (GameManager.isGameStarted())
+						player.sendMessage(new ChatMessage(p.getUsername(), "iniziooo"));
 				} else {
 					// The player is still connected, refuse new connection and
 					// return
-					player.sendMessage(	new ActionResultMessage(ActionResultMessage.ACTION_DENIED, "Username lready in use"));
+					player.sendMessage(new ActionResultMessage(ActionResultMessage.ACTION_DENIED, "Username lready in use"));
 					connListener.stopConnection(player.getConnection());
 					return;
 				}
@@ -253,14 +253,16 @@ public class MunchkinServer implements PlayerEventListener {
 	@Override
 	public void playerDisconnected(Player player) {
 		connListener.stopConnection(player.getConnection());
-		players.remove(player);
-		GameManager.broadcastMessage(new ReadyLobbyMessage(players));
+		if (!GameManager.isGameStarted()) {
+			players.remove(player);
+			GameManager.broadcastMessage(new ReadyLobbyMessage(players));
 
-		// Unlock populateLobby()
-		synchronized (lock) {
-			try {
-				lock.notifyAll();
-			} catch (IllegalMonitorStateException e) {
+			// Unlock populateLobby()
+			synchronized (lock) {
+				try {
+					lock.notifyAll();
+				} catch (IllegalMonitorStateException e) {
+				}
 			}
 		}
 	}
