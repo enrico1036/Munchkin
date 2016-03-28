@@ -1,19 +1,34 @@
 package user_interface;
 
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 import javax.swing.JPanel;
+import javax.swing.LayoutStyle;
 
 import client.MunchkinClient;
 import network.GameEventHandler;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout.ParallelGroup;
+import javax.swing.GroupLayout.SequentialGroup;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpringLayout;
+
+import com.sun.xml.internal.bind.v2.runtime.reflect.Lister.Pack;
+
 import java.awt.GridLayout;
 
 public class OpponentsPanel extends JPanel {
@@ -23,15 +38,23 @@ public class OpponentsPanel extends JPanel {
 
 	public OpponentsPanel(GameWindow window) {
 		this.window = window;
-		setLayout(new FlowLayout(FlowLayout.CENTER));
+		
 		GameEventHandler.getReadyPlayerList();
 		opponentPlayers = new HashMap<String, PlayerOpponentUI>();
 		createRandomFramePanel();
+		
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setAutoCreateGaps(true);
+		groupLayout.setAutoCreateContainerGaps(true);
+		SequentialGroup horizontalGroup = groupLayout.createSequentialGroup();
+		ParallelGroup verticalGroup = groupLayout.createParallelGroup(Alignment.CENTER);
 		for(PlayerOpponentUI opponent : opponentPlayers.values()) {
-			//opponent.setSize(getWidth(), getHeight());
-			
-			add(opponent);
+			horizontalGroup.addComponent(opponent, 0, GroupLayout.PREFERRED_SIZE, 788/3);
+			verticalGroup.addComponent(opponent);
 		}
+		groupLayout.setHorizontalGroup(horizontalGroup);
+		groupLayout.setVerticalGroup(verticalGroup);
+		setLayout(groupLayout);
 	}
 
 	private void createRandomFramePanel() {

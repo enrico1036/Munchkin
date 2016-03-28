@@ -73,8 +73,6 @@ public class GameUI extends GamePanel{
         zp.setBounds(getWidth() / 3, getHeight() / 20, getWidth() / 3, getHeight() * 5 / 8);
         add(zp);
         setComponentZOrder(zp, 0);
-        
-        
-        opponentsPanel.setAllSize();
+        //opponentsPanel.setAllSize();
        }
 }

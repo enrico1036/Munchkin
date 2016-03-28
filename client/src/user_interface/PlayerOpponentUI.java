@@ -19,7 +19,8 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 
 
 		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
-		
+		setAlignmentX(CENTER_ALIGNMENT);
+		setAlignmentY(CENTER_ALIGNMENT);
 		setLayout(null);
 		getStatistics().setBounds(0, 0, 438, 288);
 		add(getStatistics());
