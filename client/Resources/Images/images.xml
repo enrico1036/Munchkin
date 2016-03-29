@@ -349,7 +349,7 @@
     </image>
     <image>
     	<name>autofuga_1000</name>
-    	<path>Resources/Images/Cards/autofuga_1000</path>
+    	<path>Resources/Images/Cards/autofuga_1000.png</path>
     </image>
     <image>
     	<name>bobaser</name>
@@ -395,8 +395,8 @@
     	<path>Resources/Images/Cards/campo_di_stasi.png</path>
     </image>
     <image>
-    	<name>campo_di_stupidità</name>
-    	<path>Resources/Images/Cards/campo_di_stupidità.png</path>
+    	<name>campo_di_stupidita</name>
+    	<path>Resources/Images/Cards/campo_di_stupidita.png</path>
     </image>
     <image>
     	<name>ciuffo_per-manente</name>
