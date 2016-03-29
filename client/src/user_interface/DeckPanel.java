@@ -14,48 +14,101 @@ import dataStructure.PlayerData;
 import dataStructure.TurnData;
 import network.GameEventHandler;
 import network.message.client.SelectedCardMessage;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class DeckPanel extends JPanel implements ActionListener, DataListener {
 
-	private BufferedImage doorCardsImage, discardsImage, treasureCardsImage;
+//	private BufferedImage doorCardsImage, discardsImage, treasureCardsImage;
 
 	// ----------Deck JComponents---------------
 	private ImageButton doorCards, discards, treasureCards;
+	private JLabel phaseLabel;
 
-	private int dw, dh;
+//	private int dw, dh;
 
 	public DeckPanel() {
 
-		dw = getWidth();
-		dh = getHeight();
+//		dw = getWidth();
+//		dh = getHeight();
 
 		Data.getDiscardDeck().addDataListener(this);
 		Data.getTurn().addDataListener(this);
-
-		doorCardsImage = MunchkinClient.getImage("door_back");
-
-		discardsImage = MunchkinClient.getImage("door_card");
-
-		treasureCardsImage = MunchkinClient.getImage("treasure_back");
-
-		doorCards = new ImageButton(doorCardsImage);
-		doorCards.setBounds(dw / 25, dh / 10, dw / 5, dh * 8 / 10);
+		
+		doorCards = new ImageButton(MunchkinClient.getImage("door_back"));
 		doorCards.setActionCommand("DrawDoor");
 		doorCards.addActionListener(this);
 		doorCards.setVisible(true);
-		add(doorCards);
-
-		discards = new ImageButton(discardsImage);
-		discards.setBounds(dw * 7 / 25, dh / 10, dw / 5, dh * 8 / 10);
+		
+		discards = new ImageButton(MunchkinClient.getImage("door_card"));
 		discards.setVisible(true);
 		discards.setEnabled(false);
-		add(discards);
-
-		treasureCards = new ImageButton(treasureCardsImage);
-		treasureCards.setBounds(dw * 13 / 25, dh / 10, dw / 5, dh * 8 / 10);
+		
+		treasureCards = new ImageButton(MunchkinClient.getImage("treasure_back"));
 		treasureCards.setEnabled(false);
 		treasureCards.setVisible(true);
-		add(treasureCards);
+		
+		phaseLabel = new JLabel("Phase");
+		
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(doorCards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(discards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(treasureCards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							/*.addGap(408)*/)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(0, 0, Short.MAX_VALUE)
+							.addComponent(phaseLabel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+							.addGap(0))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(doorCards, 100, 150, GroupLayout.PREFERRED_SIZE)
+						.addComponent(treasureCards, 100, 150, GroupLayout.PREFERRED_SIZE)
+						.addComponent(discards, 100, 150, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
+					.addComponent(phaseLabel)
+					.addContainerGap())
+		);
+		groupLayout.setAutoCreateGaps(true);
+		groupLayout.setAutoCreateContainerGaps(true);
+		setLayout(groupLayout);
+
+		
+//		doorCardsImage = MunchkinClient.getImage("door_back");
+//
+//		discardsImage = MunchkinClient.getImage("door_card");
+//
+//		treasureCardsImage = MunchkinClient.getImage("treasure_back");
+
+//		doorCards = new ImageButton(doorCardsImage);
+//		doorCards.setBounds(dw / 25, dh / 10, dw / 5, dh * 8 / 10);
+//		doorCards.setActionCommand("DrawDoor");
+//		doorCards.addActionListener(this);
+//		doorCards.setVisible(true);
+//		add(doorCards);
+//
+//		discards = new ImageButton(discardsImage);
+//		discards.setBounds(dw * 7 / 25, dh / 10, dw / 5, dh * 8 / 10);
+//		discards.setVisible(true);
+//		discards.setEnabled(false);
+//		add(discards);
+//
+//		treasureCards = new ImageButton(treasureCardsImage);
+//		treasureCards.setBounds(dw * 13 / 25, dh / 10, dw / 5, dh * 8 / 10);
+//		treasureCards.setEnabled(false);
+//		treasureCards.setVisible(true);
+//		add(treasureCards);
+		
 	}
 
 	@Override
@@ -69,6 +122,11 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 	public void dataChanged() {
 		if (Data.getDiscardDeck().getCards().size() > 0) {
 			discards.setImage(MunchkinClient.getImage(Data.getDiscardDeck().getCards().get(0)));
+		}
+		try {
+		phaseLabel.setText(Data.getTurn().getPhase().toString());
+		} catch (NullPointerException e) {
+			
 		}
 		if (Data.getTurn().getCurrentPlayer().equals(GameEventHandler.getConnection().getConnectedPlayerName()) && (Data.getTurn().getPhase() == TurnData.GamePhase.Equip || Data.getTurn().getPhase() == TurnData.GamePhase.LookForTrouble)) {
 			doorCards.setEnabled(true);

@@ -65,7 +65,20 @@ public class GameUI extends GamePanel{
 										.addGap(6)
 										.addComponent(handPanel, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
 										.addGap(6)))));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(opponentsPanel, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE).addComponent(decksPanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)).addGap(6).addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE).addComponent(handPanel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)).addGap(6)));
+		groupLayout.setVerticalGroup(
+				groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(opponentsPanel, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+								.addComponent(decksPanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+						.addGap(6)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+								.addComponent(handPanel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
+						.addGap(6)));
 		setLayout(groupLayout);
 		
 		zp.setVisible(true);
