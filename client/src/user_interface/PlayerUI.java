@@ -1,5 +1,6 @@
 package user_interface;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -99,6 +100,13 @@ public class PlayerUI extends GamePanel implements DataListener {
 		equipment.getPlayerBody().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.body)));
 		equipment.getPlayerFeet().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.feet)));
 
+		
+		if(player.equals(Data.getTurn().getCurrentPlayer())){
+			statistics.getLblPlayerName().setForeground(Color.RED);
+		}else
+		{
+			statistics.getLblPlayerName().setForeground(Color.BLACK);
+		}
 	}
 
 }
