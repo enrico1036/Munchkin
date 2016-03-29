@@ -11,12 +11,15 @@ import dataStructure.CardDataSet;
 import dataStructure.Data;
 import dataStructure.DataListener;
 import dataStructure.PlayerData;
+import dataStructure.TurnData;
 import network.GameEventHandler;
 import network.message.client.SelectedCardMessage;
 
 public class DeckPanel extends JPanel implements ActionListener,DataListener {
 	
 	private CardDataSet deck;
+	
+	private TurnData turn;
 	
 	private BufferedImage doorCardsImage, discardsImage, treasureCardsImage;
 	
@@ -34,6 +37,8 @@ public class DeckPanel extends JPanel implements ActionListener,DataListener {
 		deck=Data.getDiscardDeck();
 		deck.addDataListener(this);
 		
+		turn=Data.getTurn();
+		turn.addDataListener(this);
 		
 	doorCardsImage = MunchkinClient.getImage("door_back");
 
@@ -58,7 +63,6 @@ public class DeckPanel extends JPanel implements ActionListener,DataListener {
 
 	treasureCards = new ImageButton(treasureCardsImage);
 	treasureCards.setBounds(dw * 13 / 25, dh / 10, dw / 5, dh * 8 / 10);
-	treasureCards.addActionListener(this);
 	treasureCards.setEnabled(false);
 	treasureCards.setVisible(true);
 	add(treasureCards);
@@ -77,6 +81,11 @@ public class DeckPanel extends JPanel implements ActionListener,DataListener {
 	@Override
 	public void dataChanged() {
 		discards.setImage(MunchkinClient.getImage(Data.getDiscardDeck().getCards().get(0)));
-		
+		if(turn.getCurrentPlayer().equals(GameEventHandler.getConnection().getConnectedPlayerName())){
+			if(turn.getPhase()==TurnData.GamePhase.Equip || turn.getPhase()==TurnData.GamePhase.LookForTrouble)
+			doorCards.setEnabled(true);
+			else
+			doorCards.setEnabled(false);
+		}
 	}
 }
