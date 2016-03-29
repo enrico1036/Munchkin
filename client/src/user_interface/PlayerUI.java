@@ -16,6 +16,7 @@ import dataStructure.Data;
 import dataStructure.DataListener;
 import dataStructure.PlayerData;
 import dataStructure.SharedData;
+import dataStructure.TurnData;
 import user_interface.GameUI;
 import game.GameManager;
 import network.GameEventHandler;
@@ -28,6 +29,8 @@ public class PlayerUI extends GamePanel implements DataListener {
 	// ---------Player JComponents------------
 
 	private PlayerData player;
+	
+	private TurnData turn;
 
 	private String playerName;
 
@@ -45,6 +48,12 @@ public class PlayerUI extends GamePanel implements DataListener {
 		player = Data.getPlayer(playerName);
 
 		player.addDataListener(this);
+		
+		turn = Data.getTurn();
+		
+		turn.addDataListener(this);
+		
+		
 
 		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
 		
@@ -108,10 +117,10 @@ public class PlayerUI extends GamePanel implements DataListener {
 		
 		
 		if(player.equals(Data.getTurn().getCurrentPlayer())){
-			statistics.getLblPlayerName().setBackground(Color.RED);
+			statistics.getLblPlayerName().setForeground(Color.RED);
 		}else
 		{
-			statistics.getLblPlayerName().setBackground(Color.WHITE);
+			statistics.getLblPlayerName().setForeground(Color.BLACK);
 		}
 	}
 
