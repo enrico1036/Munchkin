@@ -19,6 +19,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Component;
+import javax.swing.SwingConstants;
 
 public class DeckPanel extends JPanel implements ActionListener, DataListener {
 
@@ -53,6 +55,8 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 		treasureCards.setVisible(true);
 		
 		phaseLabel = new JLabel("Phase");
+		phaseLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		phaseLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -63,11 +67,10 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 							.addComponent(discards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(treasureCards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							/*.addGap(408)*/)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(0, 0, Short.MAX_VALUE)
-							.addComponent(phaseLabel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-							.addGap(0))
+							.addComponent(phaseLabel, 24, 214, GroupLayout.PREFERRED_SIZE))
+							.addGap(6))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
