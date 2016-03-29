@@ -33,18 +33,24 @@ public class GameUI extends GamePanel{
 
 		opponentsPanel = new OpponentsPanel(window);
 		opponentsPanel.setBackground(Color.BLUE);
+		opponentsPanel.setOpaque(false);
 
 		tablePanel = new CardPanel(Data.getTable());
 		tablePanel.setBackground(Color.BLUE);
+		tablePanel.setOpaque(false);
 
 		selfPanel = new SelfPlayerUI(window, GameEventHandler.getConnection().getConnectedPlayerName(), MunchkinClient.getImage("playerstats_frame"));
 		selfPanel.setBackground(Color.BLUE);
+		selfPanel.setOpaque(false);
 
 		decksPanel = new DeckPanel();
 		decksPanel.setBackground(Color.BLUE);
+		decksPanel.setOpaque(false);
 
 		handPanel = new CardPanel(Data.getHand());
 		handPanel.setBackground(Color.BLUE);
+		handPanel.setOpaque(false);
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
