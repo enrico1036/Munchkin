@@ -8,6 +8,7 @@ public class Data {
 	private static CardDataSet hand = new CardDataSet();
 	private static CardDataSet table = new CardDataSet();
 	private static CardDataSet discardDeck = new CardDataSet();
+	private static TurnData turn = new TurnData();
 	
 	/**
 	 * @return the hand
@@ -40,5 +41,11 @@ public class Data {
 		players.put(username, player);
 	}
 
+	/**
+	 * @return the turn
+	 */
+	public static TurnData getTurn() {
+		return turn;
+	}
 	
 }
