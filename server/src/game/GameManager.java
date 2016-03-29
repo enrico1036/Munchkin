@@ -23,7 +23,7 @@ public class GameManager {
 
 	private static void begin() {
 		gameStarted = true;
-		broadcastMessage(new StateUpdateMessage("begin"));
+		broadcastMessage(new StateUpdateMessage("","begin"));
 		for (Player player : GameManager.getPlayers()) {
 			broadcastMessage(new PlayerFullStatsMessage(player));
 		}

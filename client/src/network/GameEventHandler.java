@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import client.MunchkinClient;
 import dataStructure.Data;
+import dataStructure.TurnData.GamePhase;
 import javafx.stage.Popup;
 import network.message.Message;
 import network.message.client.ChatMessage;
@@ -120,6 +121,13 @@ public class GameEventHandler {
 								MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
 								break;
 
+							} else {
+								Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
+								try {
+								Data.getTurn().setPhase(GamePhase.valueOf(update.getState()));
+								}catch(IllegalArgumentException e) {
+									//e.printStackTrace();
+								}
 							}
 						}
 					}

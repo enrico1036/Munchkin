@@ -25,7 +25,7 @@ public abstract class StateMachine {
 	}
 	
 	public boolean performStep(){
-		GameManager.broadcastMessage(new StateUpdateMessage(states[currentState]));
+		GameManager.broadcastMessage(new StateUpdateMessage(GameManager.getCurrentPlayer().getUsername(), states[currentState]));
 		return this.stepOver();
 	}
 }
