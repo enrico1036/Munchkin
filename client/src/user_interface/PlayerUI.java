@@ -99,13 +99,19 @@ public class PlayerUI extends GamePanel implements DataListener {
 		equipment.getPlayerHand2().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.hand2)));
 		equipment.getPlayerBody().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.body)));
 		equipment.getPlayerFeet().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.feet)));
+/**
+ * if-else statement that set as red, otherwise black,
+ *  the color of the PlayerName Label,if that player is the current.
+ * 
+ */
 
 		
+		
 		if(player.equals(Data.getTurn().getCurrentPlayer())){
-			statistics.getLblPlayerName().setForeground(Color.RED);
+			statistics.getLblPlayerName().setBackground(Color.RED);
 		}else
 		{
-			statistics.getLblPlayerName().setForeground(Color.BLACK);
+			statistics.getLblPlayerName().setBackground(Color.WHITE);
 		}
 	}
 
