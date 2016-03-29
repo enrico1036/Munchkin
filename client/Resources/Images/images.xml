@@ -340,10 +340,6 @@
     	<name>psico_sceriffo</name>
     	<path>Resources/Images/Cards/psico_sceriffo.png</path>
     </image>
-    <image>
-    	<name>potrona</name>
-    	<path>Resources/Images/Cards/potrona.png</path>
-    </image>
 
     <!-- Treasure Cards -->
     
