@@ -41,6 +41,7 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 		doorCards = new ImageButton(MunchkinClient.getImage("door_back"));
 		doorCards.setActionCommand("DrawDoor");
 		doorCards.addActionListener(this);
+		doorCards.setEnabled(false);
 		doorCards.setVisible(true);
 		
 		discards = new ImageButton(MunchkinClient.getImage("door_card"));
