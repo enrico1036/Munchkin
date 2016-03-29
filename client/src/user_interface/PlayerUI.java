@@ -41,9 +41,8 @@ public class PlayerUI extends GamePanel implements DataListener {
 
 	private ZoomedPanel zp;
 
-	public PlayerUI(GameWindow window, String Player, BufferedImage bg) {
+	public PlayerUI(GameWindow window, String playerName, BufferedImage bg) {
 		super(window, bg);
-		playerName = Player;
 
 		player = Data.getPlayer(playerName);
 
@@ -116,7 +115,7 @@ public class PlayerUI extends GamePanel implements DataListener {
 
 		
 		
-		if(player.equals(Data.getTurn().getCurrentPlayer())){
+		if(player.getUsername().equals(Data.getTurn().getCurrentPlayer())){
 			statistics.getLblPlayerName().setForeground(Color.RED);
 		}else
 		{

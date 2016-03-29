@@ -23,6 +23,7 @@ public class TurnData extends SharedData {
 	 */
 	public void setCurrentPlayer(String currentPlayer) {
 		this.currentPlayer = currentPlayer;
+		update();
 	}
 
 	/**
@@ -37,6 +38,7 @@ public class TurnData extends SharedData {
 	 */
 	public void setPhase(GamePhase phase) {
 		this.phase = phase;
+		update();
 	}
 	
 

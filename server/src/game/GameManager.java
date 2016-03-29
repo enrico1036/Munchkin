@@ -48,6 +48,7 @@ public class GameManager {
 	private static void nextPlayer() {
 		players.add(players.get(0));
 		players.remove(0);
+		GameManager.broadcastMessage(new StateUpdateMessage(GameManager.getCurrentPlayer().getUsername(), "Equip"));
 	}
 
 	public static void win() {
