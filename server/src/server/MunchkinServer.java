@@ -93,15 +93,6 @@ public class MunchkinServer implements PlayerEventListener {
 		// Create and initialize server
 		MunchkinServer server = new MunchkinServer(35267, 6, 1);
 
-		// Block until lobby is ready
-		server.populateLobby();
-
-		// Start game logic
-		GameManager.startGame();
-
-		// Exit
-		server.shutdown();
-
 		// Little UI of the server
 		JFrame serverFrame = new JFrame("Munchkin Server");
 		serverFrame.setBounds(100, 100, 200, 200);
@@ -119,6 +110,14 @@ public class MunchkinServer implements PlayerEventListener {
 		serverPane.add(serverLabel);
 		serverFrame.setContentPane(serverPane);
 
+		// Block until lobby is ready
+				server.populateLobby();
+
+				// Start game logic
+				GameManager.startGame();
+
+				// Exit
+				server.shutdown();
 	}
 
 	/**
