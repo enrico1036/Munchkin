@@ -9,44 +9,69 @@ import network.message.client.PlayerStatusRequest;
 public class PlayerEquipmentMessage extends Message {
 
 	private String playerName;
-	private Equipment head;
-	private Equipment hand1;
-	private Equipment hand2;
-	private Equipment body;
-	private Equipment feet;
+	private String head;
+	private String hand1;
+	private String hand2;
+	private String body;
+	private String feet;
 
 	public PlayerEquipmentMessage(Player player) {
 		super(PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT);
 
 		playerName = player.getUsername();
-		head = player.getEquipment(EquipSlot.head);
-		hand1 = player.getEquipment(EquipSlot.hand1);
-		hand2 = player.getEquipment(EquipSlot.hand2);
-		body = player.getEquipment(EquipSlot.body);
-		feet = player.getEquipment(EquipSlot.feet);
+		
+		try {
+			head = player.getEquipment(EquipSlot.head).getTitle();
+		} catch (NullPointerException e) {
+			head = "";
+		}
+		
+		try {
+			hand1 = player.getEquipment(EquipSlot.hand1).getTitle();
+		} catch (NullPointerException e) {
+			hand1 = "";
+		}
+		
+		try {
+			hand2 = player.getEquipment(EquipSlot.hand2).getTitle();
+		} catch (NullPointerException e) {
+			hand2 = "";
+		}
+		
+		try {
+			body = player.getEquipment(EquipSlot.body).getTitle();
+		} catch (NullPointerException e) {
+			body = "";
+		}
+		
+		try {
+			feet = player.getEquipment(EquipSlot.feet).getTitle();
+		} catch (NullPointerException e) {
+			feet = "";
+		}
 	}
 
 	public String getPlayerName() {
 		return playerName;
 	}
 
-	public Equipment getHead() {
+	public String getHead() {
 		return head;
 	}
 
-	public Equipment getHand1() {
+	public String getHand1() {
 		return hand1;
 	}
 
-	public Equipment getHand2() {
+	public String getHand2() {
 		return hand2;
 	}
 
-	public Equipment getBody() {
+	public String getBody() {
 		return body;
 	}
 
-	public Equipment getFeet() {
+	public String getFeet() {
 		return feet;
 	}
 

@@ -231,7 +231,7 @@ public class MunchkinServer implements PlayerEventListener {
 							player.sendMessage(new PlayerFullStatsMessage(pl));
 							player.sendMessage(new PlayerEquipmentMessage(pl));
 						}
-						player.sendMessage(new StateUpdateMessage("", "begin"));
+						player.sendMessage(new StateUpdateMessage(GameManager.getCurrentPlayer().getUsername(), "begin"));
 					}
 				} else {
 					// The player is still connected, refuse new connection and

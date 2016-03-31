@@ -108,11 +108,11 @@ public class GameEventHandler {
 							break;
 						case Message.PLAYER_EQUIPMENT:
 							PlayerEquipmentMessage equip = (PlayerEquipmentMessage) received;
-							Data.getPlayer(equip.getPlayerName()).setEquipments(equip.getHead().getTitle(),
-																				equip.getHand1().getTitle(),
-																				equip.getHand2().getTitle(), 
-																				equip.getBody().getTitle(),
-																				equip.getFeet().getTitle());
+							Data.getPlayer(equip.getPlayerName()).setEquipments(equip.getHead(),
+																				equip.getHand1(),
+																				equip.getHand2(), 
+																				equip.getBody(),
+																				equip.getFeet());
 							break;
 						case Message.STATE_UPDATE:
 							StateUpdateMessage update = (StateUpdateMessage) received;
