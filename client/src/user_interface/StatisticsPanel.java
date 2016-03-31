@@ -5,13 +5,16 @@ import javax.swing.JPanel;
 
 import client.MunchkinClient;
 import user_interface.GameUI;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class StatisticsPanel extends JPanel {
 
 	private int psw,psh;
 	
 	private JLabel lblPlayerName,lblPlayerLevel,
-	lblPlayerNumCards,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue;
+	lblPlayerNumCards,lblPlayerPower,lblPlayerPowerValue,lblPlayerLevelValue,lblNumCard;
 	
 	private String playerName;
 	
@@ -28,28 +31,74 @@ public class StatisticsPanel extends JPanel {
 		playerName=pn;
 		
 		lblPlayerName = new JLabel(playerName);
-		add(lblPlayerName);
 
 		lblPlayerLevel = new JLabel("Level");
-		add(lblPlayerLevel);
 
 		 lblPlayerLevelValue = new JLabel(String.valueOf(1));
-		add(lblPlayerLevelValue);
 		
 		lblPlayerPower = new JLabel("Power");
-		add(lblPlayerPower);
 
 		 lblPlayerPowerValue = new JLabel(String.valueOf(0));
-		 add(lblPlayerPowerValue);
 	
 		 PlayerRace = new ClientCard("Race");
-		add(PlayerRace);
 		
 		 PlayerClass = new ClientCard("Class");
-		add(PlayerClass);
 		
 		 lblPlayerNumCards = new JLabel("N Cards");
-		 add(lblPlayerNumCards);
+		 
+		 lblNumCard = new JLabel("0");
+		 
+		 
+		 GroupLayout groupLayout = new GroupLayout(this);
+		 groupLayout.setHorizontalGroup(
+		 	groupLayout.createParallelGroup(Alignment.LEADING)
+		 		.addGroup(groupLayout.createSequentialGroup()
+		 			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		 				.addGroup(groupLayout.createSequentialGroup()
+		 					.addGap(23)
+		 					.addComponent(PlayerRace, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+		 					.addPreferredGap(ComponentPlacement.RELATED)
+		 					.addComponent(PlayerClass, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+		 				.addGroup(groupLayout.createSequentialGroup()
+		 					.addGap(98)
+		 					.addComponent(lblPlayerName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		 					.addGap(84)))
+		 			.addGap(20))
+		 		.addGroup(groupLayout.createSequentialGroup()
+		 			.addGap(50)
+		 			.addComponent(lblPlayerLevel, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+		 			.addPreferredGap(ComponentPlacement.RELATED)
+		 			.addComponent(lblPlayerLevelValue, GroupLayout.DEFAULT_SIZE, 6, Short.MAX_VALUE)
+		 			.addPreferredGap(ComponentPlacement.RELATED)
+		 			.addComponent(lblPlayerPower, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+		 			.addPreferredGap(ComponentPlacement.RELATED)
+		 			.addComponent(lblPlayerPowerValue, GroupLayout.DEFAULT_SIZE, 6, Short.MAX_VALUE)
+		 			.addPreferredGap(ComponentPlacement.RELATED)
+		 			.addComponent(lblPlayerNumCards, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+		 			.addGap(12)
+		 			.addComponent(lblNumCard, GroupLayout.DEFAULT_SIZE, 6, Short.MAX_VALUE)
+		 			.addGap(60))
+		 );
+		 groupLayout.setVerticalGroup(
+		 	groupLayout.createParallelGroup(Alignment.LEADING)
+		 		.addGroup(groupLayout.createSequentialGroup()
+		 			.addContainerGap()
+		 			.addComponent(lblPlayerName, GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
+		 			.addPreferredGap(ComponentPlacement.RELATED)
+		 			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+		 				.addComponent(lblPlayerLevel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		 				.addComponent(lblPlayerLevelValue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		 				.addComponent(lblPlayerPower, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		 				.addComponent(lblPlayerPowerValue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		 				.addComponent(lblPlayerNumCards, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		 				.addComponent(lblNumCard, GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE))
+		 			.addGap(26)
+		 			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		 				.addComponent(PlayerClass, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 18, Short.MAX_VALUE)
+		 				.addComponent(PlayerRace, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 18, Short.MAX_VALUE))
+		 			.addGap(50))
+		 );
+		 setLayout(groupLayout);
 	
 	
 		
@@ -62,8 +111,8 @@ public class StatisticsPanel extends JPanel {
 	}
 
 
-	public JLabel getLblPlayerNumCards() {
-		return lblPlayerNumCards;
+	public JLabel getLblNumCards() {
+		return lblNumCard;
 	}
 
 	public JLabel getLblPlayerPowerValue() {
@@ -81,7 +130,7 @@ public class StatisticsPanel extends JPanel {
 	public ClientCard getPlayerClass() {
 		return PlayerClass;
 	}
-
+/*
 	@Override
 	public void setSize(int width, int height) {
 		super.setSize(width, height);
@@ -95,7 +144,5 @@ public class StatisticsPanel extends JPanel {
 			PlayerRace.setBounds(0,psh/2, psw/3, psh/6);
 			PlayerClass.setBounds(0, psh*4/6,  psw/3, psh/6);
 			 lblPlayerNumCards.setBounds(0, psh*5/6,  psw/3, psh/6);
-	}
-	
-	
+	}*/
 }

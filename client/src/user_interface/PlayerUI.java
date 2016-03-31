@@ -100,7 +100,7 @@ public class PlayerUI extends GamePanel implements DataListener {
 			statistics.getPlayerClass().setImage(image);
 
 		// update the size of the player hand
-		statistics.getLblPlayerNumCards().setText(String.valueOf(player.getHandSize()));
+		statistics.getLblNumCards().setText(String.valueOf(player.getHandSize()));
 
 		equipment.getPlayerHead().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.head)));
 		equipment.getPlayerHand1().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.hand1)));
