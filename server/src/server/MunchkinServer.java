@@ -19,7 +19,10 @@ import network.MessageQueue;
 import network.message.ActionResultMessage;
 import network.message.Message;
 import network.message.client.ChatMessage;
+import network.message.server.PlayerEquipmentMessage;
+import network.message.server.PlayerFullStatsMessage;
 import network.message.server.ReadyLobbyMessage;
+import network.message.server.ReadyStatusMessage;
 import network.message.server.StateUpdateMessage;
 import utils.CountdownTask;
 import utils.PlayerEventListener;
@@ -220,8 +223,16 @@ public class MunchkinServer implements PlayerEventListener {
 					// Swap old player's connection for the new one
 					connListener.stopConnection(p.getConnection());
 					p.setConnection(player.getConnection());
-					if (GameManager.isGameStarted())
-						player.sendMessage(new ChatMessage(p.getUsername(), "iniziooo"));
+					p.sendMessage(new ActionResultMessage(ActionResultMessage.ACTION_ALLOWED, ""));
+					// If game has started, send to the client all game info
+					if (GameManager.isGameStarted()){
+						player.sendMessage(new ReadyLobbyMessage(players));
+						for(Player pl : players){
+							player.sendMessage(new PlayerFullStatsMessage(pl));
+							player.sendMessage(new PlayerEquipmentMessage(pl));
+						}
+						player.sendMessage(new StateUpdateMessage("", "begin"));
+					}
 				} else {
 					// The player is still connected, refuse new connection and
 					// return
@@ -233,12 +244,12 @@ public class MunchkinServer implements PlayerEventListener {
 		}
 
 		// If there is no player with that name, add new player to array
-		if (!playerAlreadyExists) {
+		if (!playerAlreadyExists && !GameManager.isGameStarted()) {
 			players.add(player);
 			player.sendMessage(new ActionResultMessage(ActionResultMessage.ACTION_ALLOWED, ""));
+			GameManager.broadcastMessage(new ReadyLobbyMessage(players));
 		}
 
-		GameManager.broadcastMessage(new ReadyLobbyMessage(players));
 
 		// Unlock populateLobby()
 		synchronized (lock) {
