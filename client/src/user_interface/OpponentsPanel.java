@@ -49,12 +49,12 @@ public class OpponentsPanel extends JPanel {
 		SequentialGroup horizontalGroup = groupLayout.createSequentialGroup();
 		ParallelGroup verticalGroup = groupLayout.createParallelGroup(Alignment.CENTER);
 		//TODO: try to center panels. Uncommenting PreferredGaps they will be centered but too small
-		//horizontalGroup.addPreferredGap(ComponentPlacement.RELATED, 788/2, Short.MAX_VALUE);
+		horizontalGroup.addPreferredGap(ComponentPlacement.RELATED, 788/2, Short.MAX_VALUE);
 		for(PlayerOpponentUI opponent : opponentPlayers.values()) {
-			horizontalGroup.addComponent(opponent, 0, GroupLayout.PREFERRED_SIZE, 788/3);
+			horizontalGroup.addComponent(opponent, 0, 788/3, 788/3);
 			verticalGroup.addComponent(opponent);
 		}
-		//horizontalGroup.addPreferredGap(ComponentPlacement.RELATED, 788/2, Short.MAX_VALUE);
+		horizontalGroup.addPreferredGap(ComponentPlacement.RELATED, 788/2, Short.MAX_VALUE);
 		groupLayout.setHorizontalGroup(horizontalGroup);
 		groupLayout.setVerticalGroup(verticalGroup);
 		setLayout(groupLayout);
