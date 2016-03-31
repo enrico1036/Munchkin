@@ -30,11 +30,11 @@ public class SelfPlayerUI extends PlayerUI {
 		psw = getWidth();
 		psh = getHeight();
 
-		setLayout(null);
-		getStatistics().setBounds(0, 0, 219, 144);
+		
+		//getStatistics().setBounds(0, 0, 219, 144);
 		add(getStatistics());
 
-		getEquipment().setBounds(219, 0, 219, 144);
+		//getEquipment().setBounds(219, 0, 219, 144);
 		add(getEquipment());
 
 		/*

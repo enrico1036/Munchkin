@@ -23,6 +23,9 @@ import network.GameEventHandler;
 import cards.EquipSlot;
 import java.awt.FlowLayout;
 import javax.swing.JSplitPane;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.GridLayout;
 
 public class PlayerUI extends GamePanel implements DataListener {
 
@@ -52,9 +55,12 @@ public class PlayerUI extends GamePanel implements DataListener {
 		
 		turn.addDataListener(this);
 		
-		
+		setOpaque(false);
 
 		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
+		setLayout(new GridLayout(0, 2, 0, 0));
+		
+		statistics = new StatisticsPanel(playerName);
 		
 	
 		/*
@@ -62,8 +68,8 @@ public class PlayerUI extends GamePanel implements DataListener {
 		 */
 		equipment = new EquipmentPanel();
 		
-		statistics = new StatisticsPanel(playerName);
-
+	
+		dataChanged();
 	}
 
 
@@ -122,5 +128,4 @@ public class PlayerUI extends GamePanel implements DataListener {
 			statistics.getLblPlayerName().setForeground(Color.BLACK);
 		}
 	}
-
 }

@@ -21,8 +21,8 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
 		setAlignmentX(CENTER_ALIGNMENT);
 		setAlignmentY(CENTER_ALIGNMENT);
-		setLayout(null);
-		getStatistics().setBounds(0, 0, 438, 288);
+	
+		//getStatistics().setBounds(0, 0, 438, 288);
 		add(getStatistics());
 		
 		stateswitcher = new ImageButton(MunchkinClient.getImage("return_back"));
@@ -39,18 +39,18 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 			if (detail) {
 				// Open the detail panel
 				add(super.getEquipment());
-				super.getStatistics().setBounds(0, 0, psw / 2, psh);
-				super.getEquipment().setBounds(psw / 2, 0, psw / 2, psh);
+			//	super.getStatistics().setBounds(0, 0, psw / 2, psh);
+			//	super.getEquipment().setBounds(psw / 2, 0, psw / 2, psh);
 				// TODO prendi il glass glass.disegna(this)
 			} else {
 				remove(super.getEquipment());
-				super.getStatistics().setBounds(0, 0, psw, psh);
+			//	super.getStatistics().setBounds(0, 0, psw, psh);
 				// TODO prendi il glass e fai glass.disegna(this)
 			}
 
 		}
 	}
-
+/*
 	@Override
 	public void setSize(int width, int height) {
 		super.setSize(width, height);
@@ -62,5 +62,5 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 		stateswitcher.setBounds(psw * 7 / 8, psh * 7 / 8, psw / 8, psh / 8);
 		
 	}
-	
+	*/
 }
