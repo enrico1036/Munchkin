@@ -29,8 +29,8 @@ public class IncomingMessageHandler {
 
 		if (message == null)
 			return true;
-
-		System.out.println("From: " + player.getUsername() + " code: " + message.getMessageCode());
+		
+		Debug.log("From: " + player.getUsername() + " code: " + message.getMessageCode());
 
 		switch (message.getMessageCode()) {
 		case Message.CLT_CHAT_MESSAGE:
