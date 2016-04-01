@@ -94,24 +94,27 @@ public class MunchkinServer implements PlayerEventListener {
 
 	public static void main(String[] args) throws Exception {
 		// Create and initialize server
-		MunchkinServer server = new MunchkinServer(35267, 6, 1);
+		MunchkinServer server = new MunchkinServer(35266, 6, 1);
 
 		// Little UI of the server
-		JFrame serverFrame = new JFrame("Munchkin Server");
-		serverFrame.setBounds(100, 100, 200, 200);
-		serverFrame.setVisible(true);
+//		JFrame serverFrame = new JFrame("Munchkin Server");
+//		serverFrame.setBounds(100, 100, 200, 200);
+//		serverFrame.setVisible(true);
+//		serverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//		JPanel serverPane = new JPanel();
+//		serverPane.setBounds(0, 0, serverFrame.getWidth(), serverFrame.getHeight());
+//		serverPane.setBackground(Color.WHITE);
+//		serverFrame.add(serverPane);
+//
+//		JLabel serverLabel = new JLabel();
+//		serverLabel.setText("The server is now running");
+//		serverLabel.setBounds(0, 0, serverPane.getWidth(), serverPane.getHeight());
+//		serverPane.add(serverLabel);
+//		serverFrame.setContentPane(serverPane);
+		
+		ServerWindow serverFrame = new ServerWindow("35267");
 		serverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JPanel serverPane = new JPanel();
-		serverPane.setBounds(0, 0, serverFrame.getWidth(), serverFrame.getHeight());
-		serverPane.setBackground(Color.WHITE);
-		serverFrame.add(serverPane);
-
-		JLabel serverLabel = new JLabel();
-		serverLabel.setText("The server is now running");
-		serverLabel.setBounds(0, 0, serverPane.getWidth(), serverPane.getHeight());
-		serverPane.add(serverLabel);
-		serverFrame.setContentPane(serverPane);
 
 		// Block until lobby is ready
 				server.populateLobby();
