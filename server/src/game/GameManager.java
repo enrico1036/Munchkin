@@ -27,7 +27,7 @@ public class GameManager {
 		for (Player player : GameManager.getPlayers()) {
 			broadcastMessage(new PlayerFullStatsMessage(player));
 		}
-		Debug.print("GameManager: Begin");
+		Debug.log("GameManager: Begin");
 
 		playerWon = false;
 		Decks.shuffleDecks();
@@ -40,8 +40,8 @@ public class GameManager {
 	}
 
 	private static void end() {
-		Debug.print("GameManager: End");
-		Debug.print(getCurrentPlayer().getUsername() + "Won!!!");
+		Debug.log("GameManager: End");
+		Debug.log(getCurrentPlayer().getUsername() + "Won!!!");
 		broadcastMessage(new PopUpMessage(getCurrentPlayer().getUsername() + "Won!!!", 30000));
 	}
 

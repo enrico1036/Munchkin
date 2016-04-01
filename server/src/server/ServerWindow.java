@@ -23,11 +23,15 @@ import game.GameManager;
 import utils.Debug;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.text.DefaultCaret;
+
 import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class ServerWindow extends JFrame implements ActionListener {
-	private static final int WIDTH = 300;
-	private static final int HEIGHT = 350;
+	private static final int WIDTH = 400;
+	private static final int HEIGHT = 400;
 	private static final String NOT_RUNNING_MESSAGE = "Server not running";
 	private static final String RUNNNING_MESSAGE = "Server running";
 
@@ -39,6 +43,7 @@ public class ServerWindow extends JFrame implements ActionListener {
 	MunchkinServer server;
 	Thread runThread;
 	JLabel lblPortNumber;
+	private JTextArea logTextArea;
 
 	public static void main(String[] args) {
 		ServerWindow wnd = new ServerWindow();
@@ -60,7 +65,7 @@ public class ServerWindow extends JFrame implements ActionListener {
 		setContentPane(serverPane);
 
 		buttonShutdown = new JButton("Shutdown");
-		buttonShutdown.setBounds(184, 67, 100, 30);
+		buttonShutdown.setBounds(284, 34, 100, 30);
 		buttonShutdown.setActionCommand("Shutdown");
 		buttonShutdown.addActionListener(this);
 		serverPane.add(buttonShutdown);
@@ -69,25 +74,39 @@ public class ServerWindow extends JFrame implements ActionListener {
 		serverLabel = new JLabel();
 		serverLabel.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		serverLabel.setText(NOT_RUNNING_MESSAGE);
-		serverLabel.setBounds(5, 5, 290, 20);
+		serverLabel.setBounds(5, 5, WIDTH - 10, 20);
 		serverLabel.setHorizontalAlignment(JLabel.CENTER);
 		serverPane.add(serverLabel);
 
 		buttonStart = new JButton("Start");
 		buttonStart.setActionCommand("Start");
-		buttonStart.setBounds(10, 67, 100, 30);
+		buttonStart.setBounds(174, 34, 100, 30);
 		buttonStart.addActionListener(this);
 		serverPane.add(buttonStart);
 
 		portSpinner = new JSpinner();
 		portSpinner.setModel(new SpinnerNumberModel(35267, 1024, 65535, 1));
-		portSpinner.setBounds(118, 36, 166, 20);
+		portSpinner.setBounds(103, 39, 61, 20);
 		portSpinner.setVisible(true);
 		serverPane.add(portSpinner);
 
 		lblPortNumber = new JLabel("Port number:");
-		lblPortNumber.setBounds(10, 39, 74, 14);
+		lblPortNumber.setBounds(10, 42, 83, 14);
 		serverPane.add(lblPortNumber);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 75, 374, 285);
+		serverPane.add(scrollPane);
+		
+		logTextArea = new JTextArea();
+		logTextArea.setText("");
+		logTextArea.setLineWrap(true);
+		logTextArea.setEditable(false);
+		DefaultCaret caret = (DefaultCaret)logTextArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		
+		Debug.setOutputDestination(logTextArea);
+		scrollPane.setViewportView(logTextArea);
 	}
 
 	@Override
@@ -103,6 +122,7 @@ public class ServerWindow extends JFrame implements ActionListener {
 				public void run() {
 					// Disable start button and enable shutdown button
 					serverLabel.setText(ServerWindow.RUNNNING_MESSAGE);
+					logTextArea.setText("");
 					buttonShutdown.setEnabled(true);
 					buttonStart.setEnabled(false);
 					portSpinner.setEnabled(false);
@@ -114,12 +134,11 @@ public class ServerWindow extends JFrame implements ActionListener {
 						GameManager.startGame();
 						server.shutdown();
 					} catch (Exception e) {
-						e.printStackTrace();
 					}
 
 					// Disable start button and enable shutdown button
-					buttonShutdown.setEnabled(true);
-					buttonStart.setEnabled(false);
+					buttonShutdown.setEnabled(false);
+					buttonStart.setEnabled(true);
 					portSpinner.setEnabled(true);
 					serverLabel.setText(ServerWindow.NOT_RUNNING_MESSAGE);
 				}

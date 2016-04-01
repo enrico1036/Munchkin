@@ -25,6 +25,7 @@ import network.message.server.ReadyLobbyMessage;
 import network.message.server.ReadyStatusMessage;
 import network.message.server.StateUpdateMessage;
 import utils.CountdownTask;
+import utils.Debug;
 import utils.PlayerEventListener;
 
 public class MunchkinServer implements PlayerEventListener {
@@ -70,16 +71,16 @@ public class MunchkinServer implements PlayerEventListener {
 			connListener.setCommonMessageQueue(queue);
 		} catch (IOException e) {
 			// Error during socket binding, exit the program
-			System.out.println("ERROR: could not create ServerSocket on port " + port);
+			Debug.err("could not create ServerSocket on port " + port);
 			throw e;
 		}
 
 		// Load cards from xml file
 		try {
 			Decks.loadDecks("Resources/cards.xml");
-			System.out.println("Loaded cards from xml file");
+			Debug.log("Loaded cards from xml file");
 		} catch (Exception e) {
-			System.err.println("ERROR: couldn't load cards from xml file");
+			Debug.err("couldn't load cards from xml file");
 			e.printStackTrace(System.err);
 			System.exit(0);
 		}
@@ -103,7 +104,7 @@ public class MunchkinServer implements PlayerEventListener {
 		connListener.setPlayerEventListener(this);
 		// Start listening
 		connListener.start();
-		System.out.println("Started listening on " + connListener.toString());
+		Debug.log("Started listening on " + connListener.toString());
 
 		// Flag is true if every player is ready
 		boolean allReady = false;
