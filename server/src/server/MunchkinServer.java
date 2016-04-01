@@ -51,7 +51,7 @@ public class MunchkinServer implements PlayerEventListener {
 	 * @param maxPlayers
 	 *            Max number of players
 	 */
-	public MunchkinServer(int port, int maxPlayers, int minPlayers) {
+	public MunchkinServer(int port, int maxPlayers, int minPlayers) throws Exception{
 		// Create player array
 		players = new ArrayList<Player>();
 		// Create queue
@@ -70,9 +70,8 @@ public class MunchkinServer implements PlayerEventListener {
 			connListener.setCommonMessageQueue(queue);
 		} catch (IOException e) {
 			// Error during socket binding, exit the program
-			System.err.println("ERROR: could not create ServerSocket on port " + port);
-			e.printStackTrace();
-			System.exit(-1);
+			System.out.println("ERROR: could not create ServerSocket on port " + port);
+			throw e;
 		}
 
 		// Load cards from xml file
@@ -91,21 +90,10 @@ public class MunchkinServer implements PlayerEventListener {
 
 		this.minPlayers = minPlayers;
 	}
-
-	public static void main(String[] args) throws Exception {
-		// Create and initialize server
-		
-		MunchkinServer server=null;
-		
-		ServerWindow Window = new ServerWindow(server);
-
-		// Block until lobby is ready
-				server.populateLobby();
-
-				// Start game logic
-				GameManager.startGame();
-	}
 	
+	public boolean isRunning(){
+		return connListener.isRunning();
+	}
 
 	/**
 	 * Wait for players to correctly connect to the server and wait for them to be ready.
@@ -115,6 +103,7 @@ public class MunchkinServer implements PlayerEventListener {
 		connListener.setPlayerEventListener(this);
 		// Start listening
 		connListener.start();
+		System.out.println("Started listening on " + connListener.toString());
 
 		// Flag is true if every player is ready
 		boolean allReady = false;

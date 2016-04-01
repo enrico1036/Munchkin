@@ -127,7 +127,7 @@ public class ConnectionListener implements Runnable {
 			} catch (SocketTimeoutException e) {
 				continue;
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.print("Listener socket closed");
 				running = false;
 			}
 		}
