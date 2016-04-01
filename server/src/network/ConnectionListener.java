@@ -19,6 +19,7 @@ import game.Player;
 import network.message.ActionResultMessage;
 import network.message.Message;
 import network.message.client.ConnectionRequestMessage;
+import utils.Debug;
 import utils.PlayerEventListener;
 
 public class ConnectionListener implements Runnable {
@@ -127,7 +128,7 @@ public class ConnectionListener implements Runnable {
 			} catch (SocketTimeoutException e) {
 				continue;
 			} catch (IOException e) {
-				System.out.print("Listener socket closed");
+				Debug.log("Listener socket closed");
 				running = false;
 			}
 		}
