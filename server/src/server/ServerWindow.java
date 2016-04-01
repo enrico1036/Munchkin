@@ -19,6 +19,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import game.GameManager;
+import utils.Debug;
 
 public class ServerWindow extends JFrame implements ActionListener{
 	
@@ -61,7 +62,7 @@ public class ServerWindow extends JFrame implements ActionListener{
 		
 		textPort=new JTextField("port");
 		textPort.setHorizontalAlignment(JLabel.CENTER);
-		textPort.setEditable(false);
+		
 		
 		portLabel = new JLabel();
 		portLabel.setText("The port selected is:");
@@ -112,12 +113,8 @@ public class ServerWindow extends JFrame implements ActionListener{
 					
 				// Create and initialize server
 				server = new MunchkinServer(port, 6, 1);
+				Debug.print("Server started on port "+port);
 				
-				// Block until lobby is ready
-				server.populateLobby();
-
-				// Start game logic
-				GameManager.startGame();
 				}
 			
 		}else if(e.getActionCommand().equals("Shutdown")){

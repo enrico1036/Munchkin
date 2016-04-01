@@ -98,12 +98,14 @@ public class MunchkinServer implements PlayerEventListener {
 		MunchkinServer server=null;
 		
 		ServerWindow Window = new ServerWindow(server);
-		
 
-		
+		// Block until lobby is ready
+				server.populateLobby();
 
-				
+				// Start game logic
+				GameManager.startGame();
 	}
+	
 
 	/**
 	 * Wait for players to correctly connect to the server and wait for them to be ready.
