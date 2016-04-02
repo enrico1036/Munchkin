@@ -163,13 +163,10 @@ public class ServerWindow extends JFrame implements ActionListener {
 						GameManager.startGame();
 						server.shutdown();
 					} catch (Exception e) {
-//						ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//						PrintStream myOutputStream = new PrintStream(baos);
-//						String capturedOutput = new String(baos.toByteArray());
-//						e.printStackTrace(myOutputStream);
-//						myOutputStream.flush();
-//						e.printStackTrace();
-						Debug.err(e.getLocalizedMessage());
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						PrintStream myOutputStream = new PrintStream(baos, true);
+						e.printStackTrace(myOutputStream);
+						Debug.err(new String(baos.toByteArray()));
 					}
 
 					// Disable start button and enable shutdown button
