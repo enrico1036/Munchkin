@@ -9,6 +9,9 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.io.StringBufferInputStream;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -28,6 +31,7 @@ import javax.swing.text.DefaultCaret;
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ServerWindow extends JFrame implements ActionListener {
 	private static final int WIDTH = 400;
@@ -51,62 +55,87 @@ public class ServerWindow extends JFrame implements ActionListener {
 	}
 
 	public ServerWindow() {
+		setMinimumSize(new Dimension(WIDTH, HEIGHT));
+		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setTitle("Server Munchkin");
 
-		setSize(WIDTH, HEIGHT);
-
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		serverPane = new JPanel();
 		serverPane.setBounds(0, 0, getWidth(), getHeight());
-		serverPane.setLayout(null);
 		setContentPane(serverPane);
 
 		buttonShutdown = new JButton("Shutdown");
-		buttonShutdown.setBounds(284, 34, 100, 30);
 		buttonShutdown.setActionCommand("Shutdown");
 		buttonShutdown.addActionListener(this);
-		serverPane.add(buttonShutdown);
 		
-
 		serverLabel = new JLabel();
 		serverLabel.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		serverLabel.setText(NOT_RUNNING_MESSAGE);
-		serverLabel.setBounds(5, 5, WIDTH - 10, 20);
 		serverLabel.setHorizontalAlignment(JLabel.CENTER);
-		serverPane.add(serverLabel);
 
 		buttonStart = new JButton("Start");
 		buttonStart.setActionCommand("Start");
-		buttonStart.setBounds(174, 34, 100, 30);
 		buttonStart.addActionListener(this);
-		serverPane.add(buttonStart);
 
 		portSpinner = new JSpinner();
 		portSpinner.setModel(new SpinnerNumberModel(35267, 1024, 65535, 1));
-		portSpinner.setBounds(103, 39, 61, 20);
 		portSpinner.setVisible(true);
-		serverPane.add(portSpinner);
 
 		lblPortNumber = new JLabel("Port number:");
-		lblPortNumber.setBounds(10, 42, 83, 14);
-		serverPane.add(lblPortNumber);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 75, 374, 285);
-		serverPane.add(scrollPane);
-		
 		logTextArea = new JTextArea();
+		logTextArea.setTabSize(4);
+		logTextArea.setWrapStyleWord(true);
 		logTextArea.setText("");
 		logTextArea.setLineWrap(true);
 		logTextArea.setEditable(false);
 		DefaultCaret caret = (DefaultCaret)logTextArea.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-		
-		Debug.setOutputDestination(logTextArea);
 		scrollPane.setViewportView(logTextArea);
+		
+		GroupLayout gl_serverPane = new GroupLayout(serverPane);
+		gl_serverPane.setHorizontalGroup(
+			gl_serverPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_serverPane.createSequentialGroup()
+					.addGap(5)
+					.addComponent(serverLabel, GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+					.addGap(5))
+				.addGroup(gl_serverPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblPortNumber, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(portSpinner, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(buttonStart, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(buttonShutdown, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(gl_serverPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_serverPane.setVerticalGroup(
+			gl_serverPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_serverPane.createSequentialGroup()
+					.addGap(5)
+					.addComponent(serverLabel, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(gl_serverPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblPortNumber, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+						.addComponent(portSpinner, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+						.addComponent(buttonShutdown, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(buttonStart, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		serverPane.setLayout(gl_serverPane);
+
+		Debug.setOutputDestination(logTextArea);
 	}
 
 	@Override
@@ -134,6 +163,13 @@ public class ServerWindow extends JFrame implements ActionListener {
 						GameManager.startGame();
 						server.shutdown();
 					} catch (Exception e) {
+//						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//						PrintStream myOutputStream = new PrintStream(baos);
+//						String capturedOutput = new String(baos.toByteArray());
+//						e.printStackTrace(myOutputStream);
+//						myOutputStream.flush();
+//						e.printStackTrace();
+						Debug.err(e.getLocalizedMessage());
 					}
 
 					// Disable start button and enable shutdown button
