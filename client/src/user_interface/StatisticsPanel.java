@@ -64,17 +64,17 @@ public class StatisticsPanel extends JPanel {
 		 	groupLayout.createParallelGroup(Alignment.LEADING)
 		 		.addGroup(groupLayout.createSequentialGroup()
 		 			.addContainerGap()
-		 			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-		 				.addComponent(lblPlayerName, GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+		 			.addGroup(groupLayout.createParallelGroup(Alignment.CENTER)
+		 				.addComponent(lblPlayerName, 0, 388, Short.MAX_VALUE)
 		 				.addGroup(groupLayout.createSequentialGroup()
 		 					.addComponent(lblPlayerLevel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 		 					.addPreferredGap(ComponentPlacement.RELATED)
 		 					.addComponent(lblPlayerLevelValue, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-		 					.addGap(92)
-		 					.addComponent(lblPlayerPower, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-		 					.addPreferredGap(ComponentPlacement.RELATED)
-		 					.addComponent(lblPlayerPowerValue, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-		 					.addGap(78)
+		 					.addGap(0, 81, Short.MAX_VALUE)
+		 					.addComponent(lblPlayerPower, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+		 					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		 					.addComponent(lblPlayerPowerValue, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+		 					.addGap(0, 81, Short.MAX_VALUE)
 		 					.addComponent(lblPlayerNumCards)
 		 					.addPreferredGap(ComponentPlacement.RELATED)
 		 					.addComponent(lblNumCard, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
@@ -85,10 +85,9 @@ public class StatisticsPanel extends JPanel {
 		 			.addContainerGap())
 		 );
 		 groupLayout.setVerticalGroup(
-		 	groupLayout.createParallelGroup(Alignment.LEADING)
-		 		.addGroup(groupLayout.createSequentialGroup()
+		 	groupLayout.createSequentialGroup()
 		 			.addContainerGap()
-		 			.addComponent(lblPlayerName, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+		 			.addComponent(lblPlayerName, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 		 			.addPreferredGap(ComponentPlacement.RELATED)
 		 			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE, false)
 		 				.addComponent(lblNumCard)
@@ -101,8 +100,10 @@ public class StatisticsPanel extends JPanel {
 		 			.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 		 				.addComponent(playerClass, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
 		 				.addComponent(playerRace, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
-		 			.addContainerGap())
+		 			.addContainerGap()
 		 );
+		 groupLayout.setAutoCreateGaps(true);
+		 groupLayout.setAutoCreateContainerGaps(true);
 		 setLayout(groupLayout);
 	
 	
