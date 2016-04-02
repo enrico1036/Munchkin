@@ -56,8 +56,7 @@ public class MunchkinServer implements PlayerEventListener {
 		// Create player array
 		players = new ArrayList<Player>();
 		// Create queue
-		//queue = new MessageQueue();
-		queue.append("gngj", new StateUpdateMessage("gngj", "jgj"));
+		queue = new MessageQueue();
 
 		GameManager.setPlayers(players);
 		GameManager.setInQueue(queue);

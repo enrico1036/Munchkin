@@ -55,20 +55,19 @@ public class GameEventHandler {
 							break;
 						case Message.PLAY_CARD:
 							PlayCardMessage playCardMessage = (PlayCardMessage) received;
-							// Create new HandCard from its name
-							ClientCard carddrawn = new ClientCard(playCardMessage.getCardName());
+							// Performs action written in message to the specified card 
 							switch (playCardMessage.getAction()) {
 							case SHOW:
-								Data.getTable().addCard(carddrawn.getTitle());
+								Data.getTable().addCard(playCardMessage.getCardName());
 								break;
 							case DRAW:
-								Data.getHand().addCard(carddrawn.getTitle());
+								Data.getHand().addCard(playCardMessage.getCardName());
 								break;
 							case DISCARD:
-								Data.getDiscardDeck().getCards().set(0,carddrawn.getName());
+								Data.getDiscardDeck().getCards().add(0, playCardMessage.getCardName());
 								break;
 							case REMOVE:
-								Data.getHand().removeCard(carddrawn.getTitle());
+								Data.getHand().removeCard(playCardMessage.getCardName());
 								break;
 							}
 							break;

@@ -18,12 +18,14 @@ public class Debug {
 	public static void log(String str){
 		DateFormat format = new SimpleDateFormat("[HH:mm:ss]");
 		Date date = new Date();
+		output.setForeground(Color.BLACK);
 		output.append(format.format(date) + " " + str + "\r\n");
 	}
 	
 	public static void err(String str){
 		DateFormat format = new SimpleDateFormat("[HH:mm:ss]");
 		Date date = new Date();
+		output.setForeground(Color.RED);
 		output.append(format.format(date) + " ERROR: " + str + "\r\n");
 	}
 	

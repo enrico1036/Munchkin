@@ -32,11 +32,10 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextPane;
 
 public class ServerWindow extends JFrame implements ActionListener {
-	private static final int WIDTH = 450;
-	private static final int HEIGHT = 300;
+	private static final int WIDTH = 400;
+	private static final int HEIGHT = 400;
 	private static final String NOT_RUNNING_MESSAGE = "Server not running";
 	private static final String RUNNNING_MESSAGE = "Server running";
 
@@ -68,7 +67,6 @@ public class ServerWindow extends JFrame implements ActionListener {
 		setContentPane(serverPane);
 
 		buttonShutdown = new JButton("Shutdown");
-		buttonShutdown.setEnabled(false);
 		buttonShutdown.setActionCommand("Shutdown");
 		buttonShutdown.addActionListener(this);
 		
@@ -165,10 +163,13 @@ public class ServerWindow extends JFrame implements ActionListener {
 						GameManager.startGame();
 						server.shutdown();
 					} catch (Exception e) {
-						ByteArrayOutputStream baos = new ByteArrayOutputStream();
-						PrintStream myOutputStream = new PrintStream(baos);
-						e.printStackTrace(myOutputStream);
-						Debug.err(new String(baos.toByteArray()));
+//						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//						PrintStream myOutputStream = new PrintStream(baos);
+//						String capturedOutput = new String(baos.toByteArray());
+//						e.printStackTrace(myOutputStream);
+//						myOutputStream.flush();
+//						e.printStackTrace();
+						Debug.err(e.getLocalizedMessage());
 					}
 
 					// Disable start button and enable shutdown button
