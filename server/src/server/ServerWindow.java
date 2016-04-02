@@ -141,7 +141,7 @@ public class ServerWindow extends JFrame implements ActionListener {
 		serverPane.setLayout(gl_serverPane);
 
 		Debug.setOutputDestination(logTextArea);
-		System.setErr(new PrintStream(new ErrorLogStream(), true));
+//		System.setErr(new PrintStream(new ErrorLogStream(), true));
 	}
 
 	@Override

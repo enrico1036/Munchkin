@@ -25,6 +25,8 @@ import java.awt.FlowLayout;
 import javax.swing.JSplitPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout.SequentialGroup;
+
 import java.awt.GridLayout;
 
 public class PlayerUI extends GamePanel implements DataListener {
@@ -32,42 +34,38 @@ public class PlayerUI extends GamePanel implements DataListener {
 	// ---------Player JComponents------------
 
 	private PlayerData player;
-	
 	private TurnData turn;
-
 	private String playerName;
-
-
 	private EquipmentPanel equipment;
-
 	private StatisticsPanel statistics;
-
 	private ZoomedPanel zp;
+	protected GroupLayout groupLayout;
 
 	public PlayerUI(GameWindow window, String playerName, BufferedImage bg) {
 		super(window, bg);
 
 		player = Data.getPlayer(playerName);
-
 		player.addDataListener(this);
 		
 		turn = Data.getTurn();
-		
 		turn.addDataListener(this);
 		
 		setOpaque(false);
 
 		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
-		setLayout(new GridLayout(1, 2));
 		
 		statistics = new StatisticsPanel(playerName);
-		
-	
-		/*
-		 * EQUIPMENT PANEL AND ITS COMPONENTS
-		 */
 		equipment = new EquipmentPanel();
 		
+		groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
+				.addComponent(statistics)
+				);
+		groupLayout.setVerticalGroup(
+				groupLayout.createParallelGroup(Alignment.CENTER)
+				.addComponent(statistics)
+				);
+		setLayout(groupLayout);
 	
 		dataChanged();
 	}

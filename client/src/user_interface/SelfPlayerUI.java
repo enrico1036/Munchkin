@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.GroupLayout.Alignment;
+
 import user_interface.GameUI;
 
 import client.MunchkinClient;
@@ -32,10 +34,19 @@ public class SelfPlayerUI extends PlayerUI {
 
 		
 		//getStatistics().setBounds(0, 0, 219, 144);
-		add(getStatistics());
+//		add(getStatistics());
 
 		//getEquipment().setBounds(219, 0, 219, 144);
-		add(getEquipment());
+//		add(getEquipment());
+		groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
+				.addComponent(getStatistics())
+				.addComponent(getEquipment())
+				);
+		groupLayout.setVerticalGroup(
+				groupLayout.createParallelGroup(Alignment.CENTER)
+				.addComponent(getStatistics())
+				.addComponent(getEquipment())
+				);
 
 		/*
 		 * lblPlayerName = new JLabel(GameEventHandler.getConnection().getConnectedPlayerName()); lblPlayerName.setBounds(psw / 16, 0, psw * 7 / 16, psh / 3); add(lblPlayerName);

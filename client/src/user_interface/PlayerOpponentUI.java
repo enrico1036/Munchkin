@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.GroupLayout.Alignment;
+
 import client.MunchkinClient;
 import user_interface.GameUI;
 
@@ -23,7 +25,7 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 		setAlignmentY(CENTER_ALIGNMENT);
 	
 		//getStatistics().setBounds(0, 0, 438, 288);
-		add(getStatistics());
+//		add(getStatistics());
 		
 		stateswitcher = new ImageButton(MunchkinClient.getImage("return_back"));
 		
@@ -38,12 +40,28 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 			detail = !detail;
 			if (detail) {
 				// Open the detail panel
-				add(super.getEquipment());
+//				add(super.getEquipment());
+				groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
+						.addComponent(getStatistics())
+						.addComponent(getEquipment())
+						);
+				groupLayout.setVerticalGroup(
+						groupLayout.createParallelGroup(Alignment.CENTER)
+						.addComponent(getStatistics())
+						.addComponent(getEquipment())
+						);
 			//	super.getStatistics().setBounds(0, 0, psw / 2, psh);
 			//	super.getEquipment().setBounds(psw / 2, 0, psw / 2, psh);
 				// TODO prendi il glass glass.disegna(this)
 			} else {
-				remove(super.getEquipment());
+//				remove(super.getEquipment());
+				groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
+						.addComponent(getStatistics())
+						);
+				groupLayout.setVerticalGroup(
+						groupLayout.createParallelGroup(Alignment.CENTER)
+						.addComponent(getStatistics())
+						);
 			//	super.getStatistics().setBounds(0, 0, psw, psh);
 				// TODO prendi il glass e fai glass.disegna(this)
 			}
