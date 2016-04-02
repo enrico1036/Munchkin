@@ -56,31 +56,33 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 		
 		phaseLabel = new JLabel("Phase");
 		phaseLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		phaseLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		phaseLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(doorCards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(discards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(treasureCards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(0, 0, Short.MAX_VALUE)
-							.addComponent(phaseLabel, 24, 214, GroupLayout.PREFERRED_SIZE))
-							.addGap(6))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(doorCards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(discards, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(treasureCards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					//.addGap(450))
+					)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(0, Short.MAX_VALUE)
+					.addComponent(phaseLabel, 0, 438, Short.MAX_VALUE)
+					.addContainerGap(6, 6))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addPreferredGap(ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+					.addContainerGap(0, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(doorCards, 100, 150, GroupLayout.PREFERRED_SIZE)
 						.addComponent(treasureCards, 100, 150, GroupLayout.PREFERRED_SIZE)
 						.addComponent(discards, 100, 150, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+					.addGap(0, 139, Short.MAX_VALUE)
 					.addComponent(phaseLabel)
 					.addContainerGap())
 		);
