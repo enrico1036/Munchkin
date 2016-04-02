@@ -14,12 +14,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import Debug.Debug;
 import game.GameManager;
 import game.Player;
 import network.message.ActionResultMessage;
 import network.message.Message;
 import network.message.client.ConnectionRequestMessage;
-import utils.Debug;
 import utils.PlayerEventListener;
 
 public class ConnectionListener implements Runnable {

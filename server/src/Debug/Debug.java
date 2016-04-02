@@ -1,14 +1,17 @@
-package utils;
+package Debug;
 
 
 import java.awt.Color;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JTextArea;
 
-public class Debug {
+public class Debug{
 	private static JTextArea output;
 	
 	public static void setOutputDestination(JTextArea component){
@@ -28,5 +31,4 @@ public class Debug {
 		output.setForeground(Color.RED);
 		output.append(format.format(date) + " ERROR: " + str + "\r\n");
 	}
-	
 }

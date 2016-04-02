@@ -4,6 +4,7 @@ import java.awt.PopupMenu;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import Debug.Debug;
 import cards.Card;
 import javafx.stage.Popup;
 import network.MessageQueue;
@@ -13,7 +14,6 @@ import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerFullStatsMessage;
 import network.message.server.PopUpMessage;
 import network.message.server.StateUpdateMessage;
-import utils.Debug;
 
 public class GameManager {
 	private static boolean gameStarted = false;

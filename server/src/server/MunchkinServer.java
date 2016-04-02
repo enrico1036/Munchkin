@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import com.sun.javafx.tk.Toolkit.Task;
 
+import Debug.Debug;
 import game.Decks;
 import game.GameManager;
 import game.Player;
@@ -25,7 +26,6 @@ import network.message.server.ReadyLobbyMessage;
 import network.message.server.ReadyStatusMessage;
 import network.message.server.StateUpdateMessage;
 import utils.CountdownTask;
-import utils.Debug;
 import utils.PlayerEventListener;
 
 public class MunchkinServer implements PlayerEventListener {
@@ -81,7 +81,7 @@ public class MunchkinServer implements PlayerEventListener {
 			Debug.log("Loaded cards from xml file");
 		} catch (Exception e) {
 			Debug.err("couldn't load cards from xml file");
-			e.printStackTrace(System.err);
+//			e.printStackTrace();
 			System.exit(0);
 		}
 

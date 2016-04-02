@@ -29,7 +29,7 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 		
 		stateswitcher.setActionCommand("detailed");
 		stateswitcher.setVisible(true);
-		add(stateswitcher);
+//		add(stateswitcher);
 	}
 
 	@Override

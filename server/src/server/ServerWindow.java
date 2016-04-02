@@ -23,10 +23,13 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import game.GameManager;
-import utils.Debug;
+
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.text.DefaultCaret;
+
+import Debug.Debug;
+import Debug.ErrorLogStream;
 
 import java.awt.Font;
 import javax.swing.JScrollPane;
@@ -138,6 +141,7 @@ public class ServerWindow extends JFrame implements ActionListener {
 		serverPane.setLayout(gl_serverPane);
 
 		Debug.setOutputDestination(logTextArea);
+		System.setErr(new PrintStream(new ErrorLogStream(), true));
 	}
 
 	@Override
@@ -165,10 +169,11 @@ public class ServerWindow extends JFrame implements ActionListener {
 						GameManager.startGame();
 						server.shutdown();
 					} catch (Exception e) {
-						ByteArrayOutputStream baos = new ByteArrayOutputStream();
-						PrintStream myOutputStream = new PrintStream(baos);
-						e.printStackTrace(myOutputStream);
-						Debug.err(new String(baos.toByteArray()));
+//						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//						PrintStream myOutputStream = new PrintStream(baos);
+//						e.printStackTrace(myOutputStream);
+//						Debug.err(new String(baos.toByteArray()));
+						e.printStackTrace();
 					}
 
 					// Disable start button and enable shutdown button

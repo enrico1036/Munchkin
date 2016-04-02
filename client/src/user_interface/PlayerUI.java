@@ -58,7 +58,7 @@ public class PlayerUI extends GamePanel implements DataListener {
 		setOpaque(false);
 
 		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
-		setLayout(new GridLayout(0, 2, 0, 0));
+		setLayout(new GridLayout(1, 2));
 		
 		statistics = new StatisticsPanel(playerName);
 		
