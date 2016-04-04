@@ -53,41 +53,40 @@ public class GameUI extends GamePanel{
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(6)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(opponentsPanel, GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-										.addContainerGap())
-								.addGroup(Alignment.TRAILING, 
-										groupLayout.createSequentialGroup()
-										.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(decksPanel, GroupLayout.PREFERRED_SIZE, 284, GroupLayout.PREFERRED_SIZE)
-										.addContainerGap())
-								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE)
-										.addGap(6)
-										.addComponent(handPanel, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
-										.addGap(6)))));
+					.addGap(6)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(opponentsPanel, GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(decksPanel, GroupLayout.PREFERRED_SIZE, 284, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 362, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(handPanel, GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)))
+					.addContainerGap())
+		);
 		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(opponentsPanel, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-								.addComponent(decksPanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
-						.addGap(6)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-								.addComponent(handPanel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
-						.addGap(6)));
+					.addContainerGap()
+					.addComponent(opponentsPanel, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+						.addComponent(decksPanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+					.addGap(6)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(handPanel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+						.addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
 		setLayout(groupLayout);
 		
 		zp.setVisible(true);
+		zp.setOpaque(true);
 		zp.setLayout(null);
         zp.setBounds(getWidth() / 3, getHeight() / 20, getWidth() / 3, getHeight() * 5 / 8);
         add(zp);
