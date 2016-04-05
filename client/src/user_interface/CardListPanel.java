@@ -16,7 +16,11 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class CardListPanel<E extends JComponent> extends JPanel implements MouseListener, ComponentListener{
+import dataStructure.CardDataSet;
+import dataStructure.DataListener;
+import dataStructure.SharedData;
+
+public class CardListPanel<E extends JComponent> extends JPanel implements MouseListener, ComponentListener, DataListener{
 	
 	private class BoundRect{
 		public int x;
@@ -36,12 +40,13 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 	private final int spacing;
 	// Space between panel borders and cards
 	private final int margin;
-
 	private final ArrayList<E> items;
 	private final Dimension itemSize;
 	private int selectedItemIndex;
+	
+	private final CardDataSet data;
 
-	public CardListPanel(final Dimension itemSize, int margin, int spacing) {
+	public CardListPanel(final Dimension itemSize, int margin, int spacing, final CardDataSet data) {
 		items = new ArrayList<>();
 		
 		this.itemSize = itemSize;
@@ -51,14 +56,17 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 		selectedItemIndex = -1;
 		
 		setLayout(null);
-		setBackground(Color.RED);
+		setOpaque(false);
 		addComponentListener(this);
+		
+		this.data = data;
+		data.addDataListener(this);
 	}
 
 	public void addItem(final E item) {
 		item.addMouseListener(this);
 		item.setSize(itemSize);
-
+		item.setVisible(true);
 		add(item);
 		items.add(item);
 
@@ -102,7 +110,6 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 					getWidth() - itemPos.x - margin*2, 
 					getHeight() - margin*2);
 			arrangeItems(selectedItemIndex + 1, items.size() - selectedItemIndex - 1, viewport);
-			
 		}
 
 		repaint();
@@ -174,6 +181,22 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 	public void componentShown(ComponentEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void dataChanged() {
+		items.clear();
+		
+		for(String str : data.getCards()){
+			ClientCard item = new ClientCard(str);
+			item.addMouseListener(this);
+			item.setSize(itemSize);
+			item.setVisible(true);
+			add(item);
+			items.add((E) item);
+		}
+		
+		updateView();
 	}
 
 }

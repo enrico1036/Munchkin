@@ -20,7 +20,7 @@ public class GameUI extends GamePanel{
 	private CardPanel tablePanel;
 	private SelfPlayerUI selfPanel;
 	private DeckPanel decksPanel;
-	private CardPanel handPanel;
+	private CardListPanel<ClientCard> handPanel;
 	public static final ZoomedPanel zp = new ZoomedPanel();
 
 	/**
@@ -47,9 +47,10 @@ public class GameUI extends GamePanel{
 		decksPanel.setBackground(Color.BLUE);
 		decksPanel.setOpaque(false);
 
-		handPanel = new CardPanel(Data.getHand());
-		handPanel.setBackground(Color.BLUE);
-		handPanel.setOpaque(false);
+		handPanel = new CardListPanel<>(new Dimension(70, 150), 10, 10, Data.getHand());
+		for(int i=0; i<30; i++)
+			handPanel.addItem(new ClientCard("playerstats_frame"));
+		handPanel.setVisible(true);
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

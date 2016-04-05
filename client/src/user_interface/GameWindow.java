@@ -18,6 +18,7 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
 
 	boolean maximized = false;
 	Dimension dimmin= new Dimension(800,450);
+	
     public GameWindow() {
     	setTitle("Munchkin");
     	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -62,8 +63,8 @@ public class GameWindow extends JFrame implements WindowStateListener,ComponentL
 	@Override
 	public void componentResized(ComponentEvent e) {
 		
-		if(!maximized)
-			setSize(this.getSize().width, (int) (this.getSize().width * 9.0f/16.0f));
+		//if(!maximized)
+			//setSize(this.getSize().width, (int) (this.getSize().width * 9.0f/16.0f));
 		
 	}
 
