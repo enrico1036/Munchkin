@@ -28,8 +28,8 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.text.DefaultCaret;
 
-import Debug.Debug;
-import Debug.ErrorLogStream;
+import debug.Debug;
+import debug.ErrorLogStream;
 
 import java.awt.Font;
 import javax.swing.JScrollPane;

@@ -4,8 +4,8 @@ import java.awt.PopupMenu;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import Debug.Debug;
 import cards.Card;
+import debug.Debug;
 import javafx.stage.Popup;
 import network.MessageQueue;
 import network.message.Message;

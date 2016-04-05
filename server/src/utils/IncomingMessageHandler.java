@@ -2,9 +2,9 @@
 
 import java.util.ArrayList;
 
-import Debug.Debug;
 import cards.Card;
 import cards.Category;
+import debug.Debug;
 import game.GameManager;
 import game.Player;
 import network.message.Message;

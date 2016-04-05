@@ -5,15 +5,13 @@ import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import Debug.Debug;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import user_interface.GameUI;
 
 import client.MunchkinClient;
+import debug.Debug;
 import network.GameEventHandler;
 
 public class SelfPlayerUI extends PlayerUI {

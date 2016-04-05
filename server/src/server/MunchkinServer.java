@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import com.sun.javafx.tk.Toolkit.Task;
 
-import Debug.Debug;
+import debug.Debug;
 import game.Decks;
 import game.GameManager;
 import game.Player;
