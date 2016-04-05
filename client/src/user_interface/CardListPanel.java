@@ -186,6 +186,7 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 	@Override
 	public void dataChanged() {
 		items.clear();
+		removeAll();
 		
 		for(String str : data.getCards()){
 			ClientCard item = new ClientCard(str);
