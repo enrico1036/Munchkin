@@ -33,7 +33,7 @@ public class PlayerUI extends GamePanel implements DataListener {
 
 	// ---------Player JComponents------------
 
-	private PlayerData player;
+
 	private TurnData turn;
 	private String playerName;
 	private EquipmentPanel equipment;
@@ -44,8 +44,8 @@ public class PlayerUI extends GamePanel implements DataListener {
 	public PlayerUI(GameWindow window, String playerName, BufferedImage bg) {
 		super(window, bg);
 
-		player = Data.getPlayer(playerName);
-		player.addDataListener(this);
+		this.playerName = playerName;
+		Data.getPlayer(playerName).addDataListener(this);
 		
 		turn = Data.getTurn();
 		turn.addDataListener(this);
@@ -86,11 +86,11 @@ public class PlayerUI extends GamePanel implements DataListener {
 	public void dataChanged() {
 
 		// update the player level and power value
-		statistics.getLblPlayerLevelValue().setText(String.valueOf(player.getLevel()));
-		statistics.getLblPlayerPowerValue().setText(String.valueOf(player.getCombatLevel()));
+		statistics.getLblPlayerLevelValue().setText(String.valueOf(Data.getPlayer(playerName).getLevel()));
+		statistics.getLblPlayerPowerValue().setText(String.valueOf(Data.getPlayer(playerName).getCombatLevel()));
 
 		// update the player race
-		BufferedImage image = MunchkinClient.getImage(player.getRaceCard());
+		BufferedImage image = MunchkinClient.getImage(Data.getPlayer(playerName).getRaceCard());
 
 		if (statistics.getPlayerClass().zoomedPanelIsNull())
 			statistics.getPlayerClass().setZoomedPanel(zp);
@@ -98,7 +98,7 @@ public class PlayerUI extends GamePanel implements DataListener {
 			statistics.getPlayerRace().setImage(image);
 
 		// update the player class
-		image = MunchkinClient.getImage(player.getClassCard());
+		image = MunchkinClient.getImage(Data.getPlayer(playerName).getClassCard());
 
 		if (statistics.getPlayerClass().zoomedPanelIsNull())
 			statistics.getPlayerClass().setZoomedPanel(zp);
@@ -106,13 +106,13 @@ public class PlayerUI extends GamePanel implements DataListener {
 			statistics.getPlayerClass().setImage(image);
 
 		// update the size of the player hand
-		statistics.getLblNumCards().setText(String.valueOf(player.getHandSize()));
+		statistics.getLblNumCards().setText(String.valueOf(Data.getPlayer(playerName).getHandSize()));
 
-		equipment.getPlayerHead().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.head)));
-		equipment.getPlayerHand1().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.hand1)));
-		equipment.getPlayerHand2().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.hand2)));
-		equipment.getPlayerBody().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.body)));
-		equipment.getPlayerFeet().setImage(MunchkinClient.getImage(player.getEquipment(EquipSlot.feet)));
+		equipment.getPlayerHead().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.head)));
+		equipment.getPlayerHand1().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.hand1)));
+		equipment.getPlayerHand2().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.hand2)));
+		equipment.getPlayerBody().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.body)));
+		equipment.getPlayerFeet().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.feet)));
 /**
  * if-else statement that set as red, otherwise black,
  *  the color of the PlayerName Label,if that player is the current.
@@ -121,7 +121,7 @@ public class PlayerUI extends GamePanel implements DataListener {
 
 		
 		
-		if(player.getUsername().equals(Data.getTurn().getCurrentPlayer())){
+		if(Data.getPlayer(playerName).getUsername().equals(Data.getTurn().getCurrentPlayer())){
 			statistics.getLblPlayerName().setForeground(Color.RED);
 		}else
 		{

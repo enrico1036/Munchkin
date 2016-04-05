@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import client.MunchkinClient;
+import dataStructure.Actions;
 
 /**
  * 
@@ -41,7 +42,7 @@ public class ClientCard extends JButton implements MouseListener{
 		image = MunchkinClient.getImage(title);
 		setBorderPainted(false);
 		setVisible(true);
-		
+		addMouseListener(this);
 	}
 	/**
 	 * This method is used to sets the image and the correlated zoomed Panel of the card
@@ -101,7 +102,7 @@ public class ClientCard extends JButton implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		Actions.mouseClicked(title);
 	}
 
 	/**
@@ -130,7 +131,8 @@ public class ClientCard extends JButton implements MouseListener{
 	
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		zoomedPanel.showCard(image);
+		//TODO: controllare perchè lo zoomedPanel è null
+		//zoomedPanel.showCard(image);
 	}
 
 	/**
@@ -141,7 +143,8 @@ public class ClientCard extends JButton implements MouseListener{
 	
 	@Override
 	public void mouseExited(MouseEvent e) {
-		zoomedPanel.hideCard();
+		//TODO: controllare perchè lo zoomedPanel è null
+		//zoomedPanel.hideCard();
 		
 	}
 

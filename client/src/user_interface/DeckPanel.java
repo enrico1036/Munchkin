@@ -135,7 +135,7 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 		} catch (NullPointerException e) {
 			
 		}
-		if (Data.getTurn().getCurrentPlayer().equals(GameEventHandler.getConnection().getConnectedPlayerName()) && (Data.getTurn().getPhase() == TurnData.GamePhase.Equip || Data.getTurn().getPhase() == TurnData.GamePhase.LookForTrouble)) {
+		if (Data.getTurn().getCurrentPlayer().equals(GameEventHandler.getConnection().getConnectedPlayerName()) /*&& (Data.getTurn().getPhase() == TurnData.GamePhase.Equip || Data.getTurn().getPhase() == TurnData.GamePhase.LookForTrouble)*/) {
 			doorCards.setEnabled(true);
 		} else {
 			doorCards.setEnabled(false);

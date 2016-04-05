@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import com.sun.javafx.tk.Toolkit.Task;
 
+import cards.Card;
 import debug.Debug;
 import game.Decks;
 import game.GameManager;
@@ -20,6 +21,8 @@ import network.MessageQueue;
 import network.message.ActionResultMessage;
 import network.message.Message;
 import network.message.client.ChatMessage;
+import network.message.server.PlayCardMessage;
+import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayerFullStatsMessage;
 import network.message.server.ReadyLobbyMessage;
@@ -201,10 +204,14 @@ public class MunchkinServer implements PlayerEventListener {
 					if (GameManager.isGameStarted()){
 						player.sendMessage(new ReadyLobbyMessage(players));
 						for(Player pl : players){
-							player.sendMessage(new PlayerFullStatsMessage(pl));
-							player.sendMessage(new PlayerEquipmentMessage(pl));
+							p.sendMessage(new PlayerFullStatsMessage(pl));
+							p.sendMessage(new PlayerEquipmentMessage(pl));
 						}
-						player.sendMessage(new StateUpdateMessage(GameManager.getCurrentPlayer().getUsername(), "begin"));
+						p.sendMessage(new StateUpdateMessage(GameManager.getCurrentPlayer().getUsername(), "begin"));
+						p.sendMessage(new StateUpdateMessage(GameManager.getCurrentPlayer().getUsername(), ""));
+						for (Card card : p.getHand()) {
+							p.sendMessage(new PlayCardMessage(card, Action.DRAW));
+						}
 					}
 				} else {
 					// The player is still connected, refuse new connection and

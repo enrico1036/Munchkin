@@ -51,7 +51,8 @@ public class MessageQueue {
 				if (pair.getKey().equals(playerName) && pair.getValue().equals(message)) {
 					return pair;
 				} else {
-					queue.add(pair);
+					//TODO: in questo modo butta via i messaggi che non erano attesi
+					//queue.add(pair);
 				}
 			}
 		}
@@ -64,7 +65,8 @@ public class MessageQueue {
 				if (pair.getKey().equals(playerName) && pair.getValue().equals(message)) {
 					dataFound = true;
 				} else {
-					queue.add(pair);
+					//TODO: in questo modo butta via i messaggi che non erano attesi
+					//queue.add(pair);
 				}
 			}
 		}
@@ -81,7 +83,8 @@ public class MessageQueue {
 				if (pair.getKey().equals(playerName) && pair.getValue().getMessageCode().equals(messageCode)) {
 					return pair;
 				} else {
-					queue.add(pair);
+					//TODO: in questo modo butta via i messaggi che non erano attesi
+					//queue.add(pair);
 				}
 			}
 		}
@@ -95,7 +98,8 @@ public class MessageQueue {
 				if (pair.getKey().equals(playerName) && pair.getValue().getMessageCode().equals(messageCode)) {
 					dataFound = true;
 				} else {
-					queue.add(pair);
+					//TODO: in questo modo butta via i messaggi che non erano attesi
+					//queue.add(pair);
 				}
 			}
 		}
@@ -111,7 +115,8 @@ public class MessageQueue {
 				if (pair.getValue().getMessageCode().equals(messageCode)) {
 					return pair;
 				} else {
-					queue.add(pair);
+					//TODO: in questo modo butta via i messaggi che non erano attesi
+					//queue.add(pair);
 				}
 			}
 		}
@@ -125,7 +130,8 @@ public class MessageQueue {
 				if (pair.getValue().getMessageCode().equals(messageCode)) {
 					dataFound = true;
 				} else {
-					queue.add(pair);
+					//TODO: in questo modo butta via i messaggi che non erano attesi
+					//queue.add(pair);
 				}
 			}
 		}

@@ -27,15 +27,14 @@ public class Player {
 	// private int classAllowed;
 	private ArrayList<Card> hand;
 	private HashMap<EquipSlot, Equipment> equipments;
-//	private Equipment head;
-//	private Equipment hand1;
-//	private Equipment hand2;
-//	private Equipment body;
-//	private Equipment feet;
+	// private Equipment head;
+	// private Equipment hand1;
+	// private Equipment hand2;
+	// private Equipment body;
+	// private Equipment feet;
 	private boolean alive;
 	private int escapeTreshold; // you can escape from monster only if rolling a die the result is higher or equal
 	private final int handSize = 5;
-	
 
 	// Anonymous Player constructor used into ConnectionListener
 	public Player(PlayerEventListener listener) {
@@ -165,9 +164,12 @@ public class Player {
 	}
 
 	public boolean discardCard(Card card) {
-		sendMessage(new PlayCardMessage(card, Action.REMOVE));
-		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
-		return hand.remove(card);
+		boolean isCardRemoved = hand.remove(card);
+		if (isCardRemoved) {
+			sendMessage(new PlayCardMessage(card, Action.REMOVE));
+			GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
+		}
+		return isCardRemoved;
 	}
 
 	public Card getCardByName(String cardName) {
@@ -245,46 +247,46 @@ public class Player {
 	}
 
 	public Equipment getEquipment(EquipSlot slot) {
-//		Equipment card = null;
-//		switch (slot) {
-//		case head:
-//			card = this.head;
-//			break;
-//		case body:
-//			card = this.body;
-//			break;
-//		case hand1:
-//			card = this.hand1;
-//			break;
-//		case hand2:
-//			card = this.hand2;
-//			break;
-//		case feet:
-//			card = this.feet;
-//			break;
-//		}
+		// Equipment card = null;
+		// switch (slot) {
+		// case head:
+		// card = this.head;
+		// break;
+		// case body:
+		// card = this.body;
+		// break;
+		// case hand1:
+		// card = this.hand1;
+		// break;
+		// case hand2:
+		// card = this.hand2;
+		// break;
+		// case feet:
+		// card = this.feet;
+		// break;
+		// }
 		return equipments.get(slot);
 	}
 
 	public Equipment removeEquipment(EquipSlot slot) {
 		Equipment card = null;
-//		switch (slot) {
-//		case head:
-//			card = this.head;
-//			break;
-//		case body:
-//			card = this.body;
-//			break;
-//		case hand1:
-//			card = this.hand1;
-//			break;
-//		case hand2:
-//			card = this.hand2;
-//			break;
-//		case feet:
-//			card = this.feet;
-//			break;
-//		}
+		// switch (slot) {
+		// case head:
+		// card = this.head;
+		// break;
+		// case body:
+		// card = this.body;
+		// break;
+		// case hand1:
+		// card = this.hand1;
+		// break;
+		// case hand2:
+		// card = this.hand2;
+		// break;
+		// case feet:
+		// card = this.feet;
+		// break;
+		// }
 		card = equipments.remove(slot);
 		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
 		return card;
@@ -329,7 +331,7 @@ public class Player {
 	public void setEventListener(PlayerEventListener eventListener) {
 		this.eventListener = eventListener;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		return username.equals(((Player) obj).getUsername());

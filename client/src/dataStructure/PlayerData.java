@@ -140,6 +140,7 @@ public class PlayerData extends SharedData{
 		this.equipments.put(EquipSlot.hand2, hand2);
 		this.equipments.put(EquipSlot.body, body);
 		this.equipments.put(EquipSlot.feet, feet);
+		update();
 	}
 	
 	/**

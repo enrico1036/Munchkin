@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cards>
 	<doors>
-		<monster name="Chtulu" level="18"  earningLevels="01" earningTreasures="02" effect="eee" />
-		<monster name="nnn" level="01"  earningLevels="01" earningTreasures="03" effect="fff" />
-		
 		<monster name="ogre" level="18"  earningLevels="02" earningTreasures="05" effect="fff" />
 		<monster name="pianta_carnivora" level="02"  earningLevels="01" earningTreasures="01" effect="eee" />
 		<monster name="poltrona" level="01"  earningLevels="01" earningTreasures="01" effect="fff" />
@@ -39,7 +36,7 @@
 		<curse name="obsolescenza_programmata" immediate="true" effect="mario" />
 		<curse name="vasca_chimica" immediate="true" effect="mario" />
 		<curse name="decadimento_orbitale" immediate="true" effect="mario" />
-		<curse name="gelatizzatore" immediate="true" effect="mario" />
+		<curse name="gelatinizzatore" immediate="true" effect="mario" />
 		
 		<consumable name="nnn" effect="dsad" onlyCombat="true"/>
 		<consumable name="nnn" effect="dsad" onlyCombat="true"/>

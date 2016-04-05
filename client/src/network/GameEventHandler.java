@@ -115,13 +115,14 @@ public class GameEventHandler {
 							break;
 						case Message.STATE_UPDATE:
 							StateUpdateMessage update = (StateUpdateMessage) received;
+							Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
 							if (update.getState().equals("begin")) {
 								MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow(),MunchkinClient.getImage("panel_background")));
 								MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
 								break;
 
 							} else {
-								Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
+//								Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
 								try {
 								Data.getTurn().setPhase(GamePhase.valueOf(update.getState()));
 								}catch(IllegalArgumentException e) {

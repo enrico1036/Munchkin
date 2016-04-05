@@ -1,5 +1,7 @@
 package dataStructure;
 
+import network.GameEventHandler;
+
 public class Actions {
 	private static String dragFrom;
 	
@@ -18,6 +20,17 @@ public class Actions {
 	 */
 	public static void mouseUp(String caller) {
 		//TODO: send message to server with dragFrom and caller
+		if(dragFrom.equals(caller))
+			//card was clicked so send SelectedCardMessage
+			GameEventHandler.selectCard(caller);
 	}
+	/**
+	 * When this method is called it means that a click was performed over and item
+	 * @param caller
+	 */
+	public static void mouseClicked(String caller) {
+		GameEventHandler.selectCard(caller);
+	}
+	
 
 }
