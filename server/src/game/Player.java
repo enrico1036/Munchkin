@@ -150,6 +150,7 @@ public class Player {
 			if (c.getTitle().equals(title)) {
 				hand.remove(c);
 				sendMessage(new PlayCardMessage(c, Action.REMOVE));
+				GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
 				return c;
 			}
 		}
@@ -158,12 +159,14 @@ public class Player {
 
 	public void draw(Card card) {
 		setAlive();
-		sendMessage(new PlayCardMessage(card, Action.DRAW));
 		hand.add(card);
+		sendMessage(new PlayCardMessage(card, Action.DRAW));
+		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
 	}
 
 	public boolean discardCard(Card card) {
 		sendMessage(new PlayCardMessage(card, Action.REMOVE));
+		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
 		return hand.remove(card);
 	}
 

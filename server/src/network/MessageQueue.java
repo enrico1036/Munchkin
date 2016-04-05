@@ -1,7 +1,6 @@
 package network;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
-
 import javafx.util.Pair;
 import network.message.Message;
 
@@ -15,15 +14,19 @@ public class MessageQueue {
 	}
 
 	public void append(String clientId, Message message) {
+		synchronized (queue) {
+			queue.add(new Pair<String, Message>(clientId, message));
+		}
 		synchronized (lock) {
 			lock.notify();
 		}
-		queue.add(new Pair<String, Message>(clientId, message));
 	}
 
 	public Pair<String, Message> remove() {
-		if (!queue.isEmpty())
-			return queue.poll();
+		synchronized (queue) {
+			if (!queue.isEmpty())
+				return queue.poll();
+		}
 		return null;
 	}
 
@@ -56,11 +59,13 @@ public class MessageQueue {
 		boolean dataFound = false;
 		while (!dataFound) {
 			waitForData();
-			pair = queue.poll();
-			if (pair.getKey().equals(playerName) && pair.getValue().equals(message)) {
-				dataFound = true;
-			} else {
-				queue.add(pair);
+			synchronized (queue) {
+				pair = queue.poll();
+				if (pair.getKey().equals(playerName) && pair.getValue().equals(message)) {
+					dataFound = true;
+				} else {
+					queue.add(pair);
+				}
 			}
 		}
 
@@ -85,11 +90,13 @@ public class MessageQueue {
 		boolean dataFound = false;
 		while (!dataFound) {
 			waitForData();
-			pair = queue.poll();
-			if (pair.getKey().equals(playerName) && pair.getValue().getMessageCode().equals(messageCode)) {
-				dataFound = true;
-			} else {
-				queue.add(pair);
+			synchronized (queue) {
+				pair = queue.poll();
+				if (pair.getKey().equals(playerName) && pair.getValue().getMessageCode().equals(messageCode)) {
+					dataFound = true;
+				} else {
+					queue.add(pair);
+				}
 			}
 		}
 		return pair;
@@ -113,11 +120,13 @@ public class MessageQueue {
 		boolean dataFound = false;
 		while (!dataFound) {
 			waitForData();
-			pair = queue.poll();
-			if (pair.getValue().getMessageCode().equals(messageCode)) {
-				dataFound = true;
-			} else {
-				queue.add(pair);
+			synchronized (queue) {
+				pair = queue.poll();
+				if (pair.getValue().getMessageCode().equals(messageCode)) {
+					dataFound = true;
+				} else {
+					queue.add(pair);
+				}
 			}
 		}
 		return pair;
