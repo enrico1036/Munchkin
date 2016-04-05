@@ -98,9 +98,6 @@ public class ConnectionListener implements Runnable {
 	}
 
 	public void stopConnections() {
-		// Await termination of the threads still running
-		// If not possible, force shutdown
-		// Close all connections first
 		for (ClientConnection conn : threadMap.keySet()) {
 			stopConnection(conn);
 		}

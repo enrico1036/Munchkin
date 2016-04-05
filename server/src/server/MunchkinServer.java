@@ -58,8 +58,7 @@ public class MunchkinServer implements PlayerEventListener {
 		// Create queue
 		queue = new MessageQueue();
 
-		GameManager.setPlayers(players);
-		GameManager.setInQueue(queue);
+		GameManager.init(players, queue);
 
 		// Create ConnectionListener, specifying port, max connections and
 		// PlayerListener
@@ -69,7 +68,7 @@ public class MunchkinServer implements PlayerEventListener {
 			connListener.setConnectionTimeout(0);
 			// Set this queue to be attached to each connection
 			connListener.setCommonMessageQueue(queue);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// Error during socket binding, exit the program
 			Debug.err("could not create ServerSocket on port " + port);
 			throw e;

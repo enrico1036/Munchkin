@@ -19,7 +19,14 @@ public class GameManager {
 	private static boolean gameStarted = false;
 	private static boolean playerWon;
 	private static MessageQueue queue;
-	private static ArrayList<game.Player> players;
+	private static ArrayList<Player> players;
+	
+	public static void init(final ArrayList<Player> players, final MessageQueue queue){
+		GameManager.players = players;
+		GameManager.queue = queue;
+		playerWon = false;
+		gameStarted = false;
+	}
 
 	private static void begin() {
 		gameStarted = true;
@@ -90,10 +97,7 @@ public class GameManager {
 	public static final MessageQueue getInQueue() {
 		return GameManager.queue;
 	}
-	public static void setInQueue(final MessageQueue queue) {
-		GameManager.queue = queue;
-	}
-
+	
 	public static Player getPlayerByName(String playerName) {
 		Player selectedPlayer = null;
 
@@ -102,13 +106,5 @@ public class GameManager {
 				selectedPlayer = player;
 		}
 		return selectedPlayer;
-	}
-
-	/**
-	 * @param players
-	 *            the players to set
-	 */
-	public static void setPlayers(ArrayList<game.Player> players) {
-		GameManager.players = players;
 	}
 }

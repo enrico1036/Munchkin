@@ -12,9 +12,4 @@ public class ReadyStatusMessage extends Message{
 		super(Message.CLT_SET_LOBBY_STATUS);
 		
 		}
-
-
-	
-	
-
 }
