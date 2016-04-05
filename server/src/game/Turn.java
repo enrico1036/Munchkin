@@ -65,7 +65,7 @@ public class Turn extends StateMachine {
 					i--;
 				}
 			}
-			GameManager.getCurrentPlayer().leveleUp(value % 1000);
+			GameManager.getCurrentPlayer().leveleUp(value / 1000);
 		}
 	}
 
