@@ -38,6 +38,7 @@
 		<curse name="decadimento_orbitale" immediate="true" effect="mario" />
 		<curse name="gelatinizzatore" immediate="true" effect="mario" />
 		
+	<!--<consumable name="nnn" effect="dsad" onlyCombat="true"/>
 		<consumable name="nnn" effect="dsad" onlyCombat="true"/>
 		<consumable name="nnn" effect="dsad" onlyCombat="true"/>
 		<consumable name="nnn" effect="dsad" onlyCombat="true"/>
@@ -47,8 +48,7 @@
 		<consumable name="nnn" effect="dsad" onlyCombat="true"/>
 		<consumable name="nnn" effect="dsad" onlyCombat="true"/>
 		<consumable name="nnn" effect="dsad" onlyCombat="true"/>
-		<consumable name="nnn" effect="dsad" onlyCombat="true"/>
-		<consumable name="nnn" effect="dsad" onlyCombat="true"/>
+		<consumable name="nnn" effect="dsad" onlyCombat="true"/>-->
 		
 	</doors>
 	<treasures>
