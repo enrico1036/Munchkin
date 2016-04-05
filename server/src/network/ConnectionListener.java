@@ -25,7 +25,7 @@ import utils.PlayerEventListener;
 public class ConnectionListener implements Runnable {
 
 	private final ServerSocket servSock;
-	private final HashMap<ClientConnection, Thread> threadMap;
+	private final ConcurrentHashMap<ClientConnection, Thread> threadMap;
 	private final Thread listenerThread;
 	private boolean running;
 	private int connTimeout;
@@ -36,7 +36,7 @@ public class ConnectionListener implements Runnable {
 		// Initialize and bind socket on port
 		servSock = new ServerSocket(port);
 		// Create thread map
-		threadMap = new HashMap<>();
+		threadMap = new ConcurrentHashMap<>();
 		// Create thread for accept()
 		listenerThread = new Thread(this);
 		running = true;
