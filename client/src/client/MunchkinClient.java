@@ -31,6 +31,7 @@ public class MunchkinClient {
 	private static HashMap<String, BufferedImage> images;
 	private static  GameWindow window;
 	public static PlayerConnection connection;
+	private static XmlImageLoader loader;
 
 	
 	public static void startGame() {
@@ -38,7 +39,7 @@ public class MunchkinClient {
 		 * Load images from resource folder
 		 * Throw an exception for every exception that this loading can generate
 		 */
-		XmlImageLoader loader = null;
+		 loader = null;
 		try{
 			loader = new XmlImageLoader(new File("Resources/Images/images.xml"));
 			loader.load();
@@ -109,6 +110,17 @@ public class MunchkinClient {
 	 * @return an image that has the same title of the param Name
 	 */
 	public static BufferedImage getImage(String Name) {
+		BufferedImage image=null;
+		try{
+		image=images.get(Name);
+		}catch(NullPointerException e){
+			
+			try {
+				loader.loadSingleImage(Name);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
 		return images.get(Name);
 	}
 	/**
