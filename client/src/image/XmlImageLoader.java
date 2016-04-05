@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
@@ -41,11 +42,11 @@ public class XmlImageLoader {
 	private static final String nameTag = "name";
 	private static final String pathTag = "path";
 	
-	private ArrayList<Pair<String, BufferedImage>> loadedImages = null;
-	private ArrayList<Pair<String, String>> notLoaded = null;
-	private Element root;
+	private static HashMap<String, BufferedImage> loadedImages = null;
+	private static HashMap<String, String> notLoaded = null;
+	private static Element root;
 	
-	public XmlImageLoader(File file) throws Exception{
+	public static void loadsource(File file) throws Exception{
 		// Use a document builder in order to get a document
 		// from the xml input file
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -62,12 +63,12 @@ public class XmlImageLoader {
 		if(!root.getTagName().equals(rootTag))
 			throw new Exception("Not a legal resource xml file");	
 		
-		loadedImages = new ArrayList<Pair<String, BufferedImage>>();
-		notLoaded = new ArrayList<Pair<String, String>>();
+		loadedImages = new HashMap<String, BufferedImage>();
+		notLoaded = new HashMap<String, String>();
 		
 	}
 	
-	public void load() throws Exception{
+	public static void load() throws Exception{
 		// Retrieve children images
 		NodeList imageList = root.getElementsByTagName(imageTag);
 		
@@ -92,14 +93,14 @@ public class XmlImageLoader {
 			BufferedImage image = null;
 			try{
 				image = ImageIO.read(new File(path));
-				loadedImages.add(new Pair<String, BufferedImage>(name, image));
+				loadedImages.put(name, image);
 			} catch (IOException e){
-				notLoaded.add(new Pair<String, String>(name, path));
+				notLoaded.put(name, path);
 			}
 		}
 	}
 	
-	public void loadSingleImage(String imageName)throws Exception{
+	public static void loadSingleImage(String imageName)throws Exception{
 	
 		
 			// Retrieve children images
@@ -108,7 +109,7 @@ public class XmlImageLoader {
 				boolean founded=false;
 				
 				// Iterate over each image tag and retrieve image info
-				for (int i=0; i<imageList.getLength()&&!founded; i++){
+				for (int i=0; (i<imageList.getLength())&&(!founded); i++){
 					Element imageElem = (Element) imageList.item(i);
 					
 					// Retrieve name and path elements
@@ -133,20 +134,20 @@ public class XmlImageLoader {
 						BufferedImage image = null;
 						try{
 							image = ImageIO.read(new File(path));
-							loadedImages.add(new Pair<String, BufferedImage>(name, image));
+							loadedImages.put(name, image);
 						} catch (IOException e){
-							notLoaded.add(new Pair<String, String>(name, path));
+							notLoaded.put(name, path);
 						}
 					}
 				}
 	}
 	
 	
-	public ArrayList<Pair<String,BufferedImage>> getImages(){
+	public static HashMap<String,BufferedImage> getImages(){
 		return loadedImages;
 	}
 	
-	public ArrayList<Pair<String,String>> getNotLoadedInfo(){
+	public static  HashMap<String,String> getNotLoadedInfo(){
 		return notLoaded;
 	}
 	

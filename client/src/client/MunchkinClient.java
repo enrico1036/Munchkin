@@ -28,38 +28,39 @@ public class MunchkinClient {
  * @param connection: is the PlyaerConnection of this client player
  */
 	private static HashMap<String,GamePanel> panels;
-	private static HashMap<String, BufferedImage> images;
 	private static  GameWindow window;
 	public static PlayerConnection connection;
-	private static XmlImageLoader loader;
-
+	
 	
 	public static void startGame() {
 		/** 
 		 * Load images from resource folder
 		 * Throw an exception for every exception that this loading can generate
 		 */
-		 loader = null;
+		 ;
 		try{
-			loader = new XmlImageLoader(new File("Resources/Images/images.xml"));
-			loader.load();
+			XmlImageLoader.loadsource(new File("Resources/Images/images.xml"));
+			//loader.load();
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		
+		/*
 		// Print the images not loaded
 		for(Pair<String,String> str : loader.getNotLoadedInfo()){
 			System.out.println("Not loaded: " + str.getKey() + " in " + str.getValue());
 		}
-		
+		*/
 		/**
 		 * Put,from the xmlImageLoader every images in the HashMap images
 		 */
+		/*
 		images = new HashMap<String,BufferedImage>();
 		for(Pair<String, BufferedImage> pair : loader.getImages()){
 			images.put(pair.getKey(), pair.getValue());
-		}
+		}*/
+		
+		
 		panels= new HashMap<String,GamePanel>();
 		
 	
@@ -109,19 +110,21 @@ public class MunchkinClient {
 	 * @param Name: it's the name of the image that we want to use
 	 * @return an image that has the same title of the param Name
 	 */
-	public static BufferedImage getImage(String Name) {
+	public static BufferedImage getImage(String name) {
 		BufferedImage image=null;
-		try{
-		image=images.get(Name);
-		}catch(NullPointerException e){
+		
+		image=XmlImageLoader.getImages().get(name);
+		if(image==null){
 			
 			try {
-				loader.loadSingleImage(Name);
+				XmlImageLoader.loadSingleImage(name);
+				
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
-		return images.get(Name);
+		
+		return XmlImageLoader.getImages().get(name);
 	}
 	/**
 	 * It's used to get the active gameWindow
