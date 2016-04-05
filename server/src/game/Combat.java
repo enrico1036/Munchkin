@@ -45,6 +45,7 @@ public class Combat extends StateMachine {
 		PopUpResultMessage ret = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT).getValue();
 		// if yes, set promisedTreasure and:
 		if (ret.isButton2Pressed()) {
+			promisedTreasure = ret.getValue();
 			for (Player player : GameManager.getPlayers()) { // ask to all except for the current player
 				if (!player.getUsername().equals(GameManager.getCurrentPlayer().getUsername()))
 					player.sendMessage(new PopUpMessage("Do you want to help " + GameManager.getCurrentPlayer().getUsername() + " for " + Integer.toString(promisedTreasure) + "? (N)", "No", "Yes", 10000));
@@ -69,7 +70,7 @@ public class Combat extends StateMachine {
 			for (Player player : GameManager.getPlayers()) { // ask to all players
 				player.sendMessage(new PopUpMessage("Do you want to interfer in combat? (N)", "No", "Yes", 7000));
 				// wait for popup answer
-				PopUpResultMessage popUpRet = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT).getValue();
+				PopUpResultMessage popUpRet = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(player.getUsername(), Message.CLT_POPUP_RESULT).getValue();
 				// if yes
 				if (popUpRet.isButton2Pressed()) {
 					allNo = false;
