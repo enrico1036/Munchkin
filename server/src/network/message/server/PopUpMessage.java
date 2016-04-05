@@ -51,6 +51,10 @@ public class PopUpMessage extends Message {
 		this.min_val = min;
 		this.max_val = max;
 	}
+	
+	public boolean expectResult(){
+		return (button1.isEmpty() && button2.isEmpty());
+	}
 
 	/**
 	 * @return the text

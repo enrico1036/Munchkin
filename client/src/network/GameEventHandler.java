@@ -42,11 +42,11 @@ public class GameEventHandler {
 
 				do {
 					Message received = GameEventHandler.connection.receive();
-					
+
 					// A null message implies that the connection is closed
-					if(received == null)
+					if (received == null)
 						break;
-					
+
 					System.out.println(received.getMessageCode());
 
 					LobbyUI lobbyPanel = (LobbyUI) MunchkinClient.getPanel("LobbyUI");
@@ -91,10 +91,12 @@ public class GameEventHandler {
 						dialog.setVisible(true);
 
 						// Send response message based on user's choice
-						if (dialog.wasTimedOut()) {
-							sendMessage(new PopUpResultMessage(connection.getConnectedPlayerName()));
-						} else {
-							sendMessage(new PopUpResultMessage(dialog.wasButton1Pressed(), dialog.wasButton2Pressed(), dialog.getSpinnerValue(), connection.getConnectedPlayerName()));
+						if (popup.expectResult()) {
+							if (dialog.wasTimedOut()) {
+								sendMessage(new PopUpResultMessage(connection.getConnectedPlayerName()));
+							} else {
+								sendMessage(new PopUpResultMessage(dialog.wasButton1Pressed(), dialog.wasButton2Pressed(), dialog.getSpinnerValue(), connection.getConnectedPlayerName()));
+							}
 						}
 						break;
 
