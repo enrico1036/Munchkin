@@ -130,9 +130,9 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		final JComponent selected = (JComponent) e.getSource();
-		selectedItemIndex = items.indexOf(selected);
-		updateView();
+//		final JComponent selected = (JComponent) e.getSource();
+//		selectedItemIndex = items.indexOf(selected);
+//		updateView();
 	}
 
 	@Override
@@ -196,7 +196,7 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 			add(item);
 			items.add((E) item);
 		}
-		
+		selectedItemIndex = -1;
 		updateView();
 	}
 

@@ -13,6 +13,7 @@ import network.message.Message;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayerFullStatsMessage;
 import network.message.server.PlayCardMessage.Action;
+import network.message.server.PlayerEquipmentMessage;
 import utils.PlayerEventListener;
 
 public class Player {
@@ -242,7 +243,7 @@ public class Player {
 
 		Decks.discardCard(equipments.put(slot, card));
 
-		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
+		GameManager.broadcastMessage(new PlayerEquipmentMessage(this));
 		return true;
 	}
 
@@ -288,7 +289,7 @@ public class Player {
 		// break;
 		// }
 		card = equipments.remove(slot);
-		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
+		GameManager.broadcastMessage(new PlayerEquipmentMessage(this));
 		return card;
 	}
 

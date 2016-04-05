@@ -216,7 +216,7 @@ public class MunchkinServer implements PlayerEventListener {
 				} else {
 					// The player is still connected, refuse new connection and
 					// return
-					player.sendMessage(new ActionResultMessage(ActionResultMessage.ACTION_DENIED, "Username lready in use"));
+					player.sendMessage(new ActionResultMessage(ActionResultMessage.ACTION_DENIED, "Username already in use"));
 					connListener.stopConnection(player.getConnection());
 					return;
 				}

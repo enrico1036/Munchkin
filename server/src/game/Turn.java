@@ -92,7 +92,7 @@ public class Turn extends StateMachine {
 			// In case the player with the lowest level is current player or there are more than one
 			// put the card into the appropriate garbage stack
 			Card card = GameManager.getCurrentPlayer().pickCard(received.getCardName());
-			if (lowestPlayer.equals(GameManager.getCurrentPlayer()) || lowestPlayerNum > 1) {
+			if (lowestPlayer.getUsername().equals(GameManager.getCurrentPlayer().getUsername()) || lowestPlayerNum > 1) {
 				Decks.discardCard(card);
 			} else {
 				// Otherwise add it to the lowest level player's hand
