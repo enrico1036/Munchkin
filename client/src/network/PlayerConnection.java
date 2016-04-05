@@ -26,7 +26,6 @@ public class PlayerConnection {
 		try{
 			connection.connect(hostname, port);
 		} catch (IOException e){
-			e.printStackTrace();
 			return false;
 		}
 		// Send Munchkin server a ConnectionRequestMessage with the given username
