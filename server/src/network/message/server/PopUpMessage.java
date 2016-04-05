@@ -53,7 +53,7 @@ public class PopUpMessage extends Message {
 	}
 	
 	public boolean expectResult(){
-		return (button1.isEmpty() && button2.isEmpty());
+		return !(button1.isEmpty() && button2.isEmpty());
 	}
 
 	/**
