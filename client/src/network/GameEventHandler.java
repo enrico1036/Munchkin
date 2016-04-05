@@ -32,7 +32,6 @@ public class GameEventHandler {
 	private static Thread thread;
 	private static String[] players;
 	private static boolean[] readyStatus;
-	 
 
 	public static void initialize(PlayerConnection connection) {
 		GameEventHandler.connection = connection;
@@ -43,96 +42,93 @@ public class GameEventHandler {
 
 				do {
 					Message received = GameEventHandler.connection.receive();
+					
+					// A null message implies that the connection is closed
+					if(received == null)
+						break;
+					
 					System.out.println(received.getMessageCode());
 
-					if (received != null) {
-						//GameUI gameUIpanel = (GameUI) MunchkinClient.getPanel("GameUI");
-						LobbyUI lobbyPanel = (LobbyUI) MunchkinClient.getPanel("LobbyUI");
-						switch (received.getMessageCode()) {
-						case Message.CLT_CHAT_MESSAGE:
-							ChatMessage chatMessage = (ChatMessage) received;
-							lobbyPanel.getChatArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
+					LobbyUI lobbyPanel = (LobbyUI) MunchkinClient.getPanel("LobbyUI");
+					switch (received.getMessageCode()) {
+					case Message.CLT_CHAT_MESSAGE:
+						ChatMessage chatMessage = (ChatMessage) received;
+						lobbyPanel.getChatArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
+						break;
+					case Message.PLAY_CARD:
+						PlayCardMessage playCardMessage = (PlayCardMessage) received;
+						// Performs action written in message to the specified card 
+						switch (playCardMessage.getAction()) {
+						case SHOW:
+							Data.getTable().addCard(playCardMessage.getCardName());
 							break;
-						case Message.PLAY_CARD:
-							PlayCardMessage playCardMessage = (PlayCardMessage) received;
-							// Performs action written in message to the specified card 
-							switch (playCardMessage.getAction()) {
-							case SHOW:
-								Data.getTable().addCard(playCardMessage.getCardName());
-								break;
-							case DRAW:
-								Data.getHand().addCard(playCardMessage.getCardName());
-								break;
-							case DISCARD:
-								Data.getDiscardDeck().getCards().add(0, playCardMessage.getCardName());
-								break;
-							case REMOVE:
-								Data.getHand().removeCard(playCardMessage.getCardName());
-								break;
-							}
+						case DRAW:
+							Data.getHand().addCard(playCardMessage.getCardName());
 							break;
-						case Message.CLT_READY_STATUS:
-							ReadyLobbyMessage readyPlayerList = (ReadyLobbyMessage) received;
-							players = readyPlayerList.getPlayers();
-							for (String player : players) {
-								Data.addPlayer(player);
-							}
-							readyStatus = readyPlayerList.getStatus();
-							lobbyPanel.showPlayer();
+						case DISCARD:
+							Data.getDiscardDeck().getCards().add(0, playCardMessage.getCardName());
+							break;
+						case REMOVE:
+							Data.getHand().removeCard(playCardMessage.getCardName());
+							break;
+						}
+						break;
+					case Message.CLT_READY_STATUS:
+						ReadyLobbyMessage readyPlayerList = (ReadyLobbyMessage) received;
+						players = readyPlayerList.getPlayers();
+						for (String player : players) {
+							Data.addPlayer(player);
+						}
+						readyStatus = readyPlayerList.getStatus();
+						lobbyPanel.showPlayer();
+						break;
+
+					case Message.POPUP:
+						PopUpMessage popup = (PopUpMessage) received;
+
+						// Show popup dialog and wait for response
+						PopUpDialog dialog = new PopUpDialog(popup.getText(), popup.getButton1(), popup.getButton2(), popup.getTimeout_ms(), popup.getMin_val(), popup.getMax_val());
+						dialog.setVisible(true);
+
+						// Send response message based on user's choice
+						if (dialog.wasTimedOut()) {
+							sendMessage(new PopUpResultMessage(connection.getConnectedPlayerName()));
+						} else {
+							sendMessage(new PopUpResultMessage(dialog.wasButton1Pressed(), dialog.wasButton2Pressed(), dialog.getSpinnerValue(), connection.getConnectedPlayerName()));
+						}
+						break;
+
+					case Message.PLAYER_FULL_STATS:
+						PlayerFullStatsMessage statistics = (PlayerFullStatsMessage) received;
+						Data.getPlayer(statistics.getPlayerName()).setStats(statistics.getHandSize(), statistics.getClassCard(), statistics.getRaceCard(), statistics.getCombatLevel(), statistics.getLevel());
+
+						break;
+					case Message.PLAYER_EQUIPMENT:
+						PlayerEquipmentMessage equip = (PlayerEquipmentMessage) received;
+						Data.getPlayer(equip.getPlayerName()).setEquipments(equip.getHead(), equip.getHand1(), equip.getHand2(), equip.getBody(), equip.getFeet());
+						break;
+					case Message.STATE_UPDATE:
+						StateUpdateMessage update = (StateUpdateMessage) received;
+						Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
+						if (update.getState().equals("begin")) {
+							MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow(), MunchkinClient.getImage("panel_background")));
+							MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
 							break;
 
-						case Message.POPUP:
-							PopUpMessage popup = (PopUpMessage) received;
-
-							// Show popup dialog and wait for response
-							PopUpDialog dialog = new PopUpDialog(popup.getText(), popup.getButton1(), popup.getButton2(), popup.getTimeout_ms(), popup.getMin_val(), popup.getMax_val());
-							dialog.setVisible(true);
-
-							// Send response message based on user's choice
-							if (dialog.wasTimedOut()) {
-								sendMessage(new PopUpResultMessage(connection.getConnectedPlayerName()));
-							} else {
-								sendMessage(new PopUpResultMessage(dialog.wasButton1Pressed(), dialog.wasButton2Pressed(), dialog.getSpinnerValue(), connection.getConnectedPlayerName()));
-							}
-							break;
-
-						case Message.PLAYER_FULL_STATS:
-							PlayerFullStatsMessage statistics = (PlayerFullStatsMessage) received;
-							Data.getPlayer(statistics.getPlayerName()).setStats(statistics.getHandSize(),
-																				statistics.getClassCard(),
-																				statistics.getRaceCard(),
-																				statistics.getCombatLevel(),
-																				statistics.getLevel());
-
-							break;
-						case Message.PLAYER_EQUIPMENT:
-							PlayerEquipmentMessage equip = (PlayerEquipmentMessage) received;
-							Data.getPlayer(equip.getPlayerName()).setEquipments(equip.getHead(),
-																				equip.getHand1(),
-																				equip.getHand2(), 
-																				equip.getBody(),
-																				equip.getFeet());
-							break;
-						case Message.STATE_UPDATE:
-							StateUpdateMessage update = (StateUpdateMessage) received;
-							Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
-							if (update.getState().equals("begin")) {
-								MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow(),MunchkinClient.getImage("panel_background")));
-								MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
-								break;
-
-							} else {
-//								Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
-								try {
+						} else {
+							//								Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
+							try {
 								Data.getTurn().setPhase(GamePhase.valueOf(update.getState()));
-								}catch(IllegalArgumentException e) {
-									//e.printStackTrace();
-								}
+							} catch (IllegalArgumentException e) {
+								//e.printStackTrace();
 							}
 						}
 					}
+
 				} while (GameEventHandler.connection.isConnected());
 
+				System.out.println("Server connection lost");
+				System.exit(0);
 			}
 
 		});

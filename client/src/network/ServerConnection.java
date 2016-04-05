@@ -54,14 +54,11 @@ public class ServerConnection {
 		Message obj = null;
 		try {
 			try {
-				
 				obj = (Message) input.readObject();
 			} catch (ClassNotFoundException e) {
-				
-				e.printStackTrace();
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			disconnect();
 		}
 		return obj;
 	}
@@ -71,7 +68,7 @@ public class ServerConnection {
 			output.writeObject(obj);
 			output.flush();
 		} catch (IOException e) {
-			e.printStackTrace();
+			disconnect();
 		}
 	}
 
