@@ -99,6 +99,49 @@ public class XmlImageLoader {
 		}
 	}
 	
+	public void loadSingleImage(String imageName)throws Exception{
+	
+		
+			// Retrieve children images
+				NodeList imageList = root.getElementsByTagName(imageTag);
+			
+				boolean founded=false;
+				
+				// Iterate over each image tag and retrieve image info
+				for (int i=0; i<imageList.getLength()&&!founded; i++){
+					Element imageElem = (Element) imageList.item(i);
+					
+					// Retrieve name and path elements
+					Element imageNameElem = (Element) imageElem.getElementsByTagName(nameTag).item(0);
+					Element imagePathElem = (Element) imageElem.getElementsByTagName(pathTag).item(0);
+					
+					// Continue if null
+					if(imageNameElem == null || imagePathElem == null)
+						continue;
+					
+					// Store name
+					String name = imageNameElem.getTextContent().trim();
+					String path = imagePathElem.getTextContent().trim();
+					
+										
+					if(name.equals(imageName)){
+						
+						founded=true;
+						
+						// Try to load and store image; if it's not possible,
+						// add its info to the "not loaded" array
+						BufferedImage image = null;
+						try{
+							image = ImageIO.read(new File(path));
+							loadedImages.add(new Pair<String, BufferedImage>(name, image));
+						} catch (IOException e){
+							notLoaded.add(new Pair<String, String>(name, path));
+						}
+					}
+				}
+	}
+	
+	
 	public ArrayList<Pair<String,BufferedImage>> getImages(){
 		return loadedImages;
 	}

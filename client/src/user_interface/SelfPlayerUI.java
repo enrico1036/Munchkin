@@ -4,6 +4,11 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import Debug.Debug;
+
+import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import user_interface.GameUI;
@@ -14,39 +19,40 @@ import network.GameEventHandler;
 public class SelfPlayerUI extends PlayerUI {
 
 	// --------Player 1 JComponents---------
-	private JLabel lblPlayerName, lblPlayerLevel, lblPlayernumcard, lblPlayerPower, lblPlayerPowerValue, lblPlayerLevelValue;
-
-	private ClientCard PlayerHead, PlayerHand1, PlayerBody, PlayerHand2, PlayerFeet, PlayerRace, PlayerClass;
-
-	private int psw, psh;
-
+//	private JLabel lblPlayerName, lblPlayerLevel, lblPlayernumcard, lblPlayerPower, lblPlayerPowerValue, lblPlayerLevelValue;
+//
+//	private ClientCard PlayerHead, PlayerHand1, PlayerBody, PlayerHand2, PlayerFeet, PlayerRace, PlayerClass;
+//
+//	private int psw, psh;
+//
 	private ZoomedPanel zp;
 
-	private BufferedImage background, framePlayerStats, doorCardsImage, DiscardsImage, TreasureCardsImage, head, hand1, body, hand2, feet;
+//	private BufferedImage background, framePlayerStats, doorCardsImage, DiscardsImage, TreasureCardsImage, head, hand1, body, hand2, feet;
 
 	public SelfPlayerUI(GameWindow window, String playerName, BufferedImage background) {
 		super(window, playerName, background);
 
 		zp = ((GameUI) (MunchkinClient.getPanel("GameUI"))).zp;
-
-		psw = getWidth();
-		psh = getHeight();
-
-		
+	
 		//getStatistics().setBounds(0, 0, 219, 144);
 //		add(getStatistics());
 
 		//getEquipment().setBounds(219, 0, 219, 144);
 //		add(getEquipment());
 		groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
-				.addComponent(getStatistics())
-				.addComponent(getEquipment())
+				.addContainerGap(0, 6)
+				.addComponent(getStatistics(), 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addComponent(getEquipment(), 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addContainerGap(0, 6)
 				);
 		groupLayout.setVerticalGroup(
 				groupLayout.createParallelGroup(Alignment.CENTER)
-				.addComponent(getStatistics())
-				.addComponent(getEquipment())
+				.addGap(6)
+				.addComponent(getStatistics(), 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addComponent(getEquipment(), 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addGap(6)
 				);
+		//groupLayout.linkSize(SwingConstants.HORIZONTAL, getStatistics(), getEquipment());
 
 		/*
 		 * lblPlayerName = new JLabel(GameEventHandler.getConnection().getConnectedPlayerName()); lblPlayerName.setBounds(psw / 16, 0, psw * 7 / 16, psh / 3); add(lblPlayerName);

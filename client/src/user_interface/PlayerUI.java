@@ -58,6 +58,8 @@ public class PlayerUI extends GamePanel implements DataListener {
 		equipment = new EquipmentPanel();
 		
 		groupLayout = new GroupLayout(this);
+		groupLayout.setAutoCreateContainerGaps(true);
+		groupLayout.setAutoCreateGaps(true);		
 		groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
 				.addComponent(statistics)
 				);
