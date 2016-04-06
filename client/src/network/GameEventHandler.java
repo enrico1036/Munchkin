@@ -121,18 +121,17 @@ public class GameEventHandler {
 							break;
 
 						}else if(update.getState().equals("end")){
-							
 							if(update.getPlayer().equals(
 									GameEventHandler.connection.getConnectedPlayerName())){
-								MunchkinClient.getPanels().get("GameUI").add(new EndUI(MunchkinClient.getImage("victory"),
+								MunchkinClient.getWindow().SetActivePanel(new EndUI(MunchkinClient.getImage("victory"),
 										GameEventHandler.connection.getConnectedPlayerName()));	
 							}else{
-								MunchkinClient.getPanels().get("GameUI").add(new EndUI(MunchkinClient.getImage("defeat"),
+								MunchkinClient.getWindow().SetActivePanel(new EndUI(MunchkinClient.getImage("defeat"),
 										update.getPlayer()));
 							}
 							
 						} else {
-							//								Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
+//								Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
 							try {
 								Data.getTurn().setPhase(GamePhase.valueOf(update.getState()));
 							} catch (IllegalArgumentException e) {

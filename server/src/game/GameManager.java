@@ -48,8 +48,13 @@ public class GameManager {
 
 	private static void end() {
 		Debug.log("GameManager: End");
-		Debug.log(getCurrentPlayer().getUsername() + "Won!!!");
+		Debug.log(getCurrentPlayer().getUsername() + " Won!!!");
 		broadcastMessage(new StateUpdateMessage(getCurrentPlayer().getUsername(), "end"));
+		try {
+			Thread.sleep(30000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void nextPlayer() {

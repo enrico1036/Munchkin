@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import cards.Card;
 import cards.ClassCard;
@@ -96,8 +97,12 @@ public class Player {
 		// combatLevel += hand1.getBonus();
 		// combatLevel += hand2.getBonus();
 		// combatLevel += feet.getBonus();
-		for (Equipment equip : equipments.values()) {
-			combatLevel += equip.getBonus();
+//		for (Equipment equip : equipments.values()) {
+//			combatLevel += equip.getBonus();
+//		}
+		for (Map.Entry<EquipSlot, Equipment> entry : equipments.entrySet())
+		{
+		    combatLevel += entry.getValue().getBonus();
 		}
 		return combatLevel;
 	}
