@@ -119,5 +119,6 @@ public class PlayerUI extends GamePanel implements DataListener {
 		{
 			statistics.getLblPlayerName().setForeground(Color.BLACK);
 		}
+		repaint();
 	}
 }

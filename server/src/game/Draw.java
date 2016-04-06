@@ -23,6 +23,7 @@ public class Draw extends StateMachine {
 	}
 
 	private void openDoor() {
+		// if you are dead draw the first four cards
 		if(!GameManager.getCurrentPlayer().isAlive()) {
 			for (int i = 0; i < 2; i++) {
 				GameManager.getCurrentPlayer().draw(Decks.getDoorCard());
@@ -35,6 +36,12 @@ public class Draw extends StateMachine {
 		switch (card.getCategory()) {
 		case Curse:
 			// TODO: card effect
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			GameManager.broadcastMessage(new PlayCardMessage(card, Action.DISCARD));
 			break;
 		case Monster:
 			Combat combat = new Combat((Monster) card);
@@ -51,6 +58,7 @@ public class Draw extends StateMachine {
 	}
 
 	private void lookForTrouble() {
+		//TODO: look for trouble making this phase unperformed
 		boolean monsters = false; // true if hand contains a monster, false otherwise
 		for (Card card : GameManager.getCurrentPlayer().getHand()) {
 			if (card.getCategory() == Category.Monster) {

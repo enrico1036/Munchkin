@@ -64,6 +64,7 @@ public class GameEventHandler {
 							break;
 						case DRAW:
 							Data.getHand().addCard(playCardMessage.getCardName());
+							Data.getTable().removeCard(playCardMessage.getCardName());
 							break;
 						case DISCARD:
 							Data.getDiscardDeck().getCards().add(0, playCardMessage.getCardName());
