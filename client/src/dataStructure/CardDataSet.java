@@ -24,8 +24,9 @@ public class CardDataSet extends SharedData {
 		update();
 	}
 	
-	public void removeCard(String card){
-		cards.remove(card);
+	public boolean removeCard(String card){
+		boolean cardRemoved = cards.remove(card);
 		update();
+		return cardRemoved;
 	}
 }
