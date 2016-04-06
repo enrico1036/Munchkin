@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
 public class GameUI extends GamePanel{
 
 	private OpponentsPanel opponentsPanel;
-	private CardPanel tablePanel;
+	private CardListPanel<ClientCard> tablePanel;
 	private SelfPlayerUI selfPanel;
 	private DeckPanel decksPanel;
 	private CardListPanel<ClientCard> handPanel;
@@ -35,7 +35,7 @@ public class GameUI extends GamePanel{
 		opponentsPanel.setBackground(Color.BLUE);
 		opponentsPanel.setOpaque(false);
 
-		tablePanel = new CardPanel(Data.getTable());
+		tablePanel = new CardListPanel<>(new Dimension(100, 150), 10, 10, Data.getTable());
 		tablePanel.setBackground(Color.BLUE);
 		tablePanel.setOpaque(false);
 
@@ -47,7 +47,7 @@ public class GameUI extends GamePanel{
 		decksPanel.setBackground(Color.BLUE);
 		decksPanel.setOpaque(false);
 
-		handPanel = new CardListPanel<>(new Dimension(70, 150), 10, 10, Data.getHand());
+		handPanel = new CardListPanel<>(new Dimension(100, 150), 10, 10, Data.getHand());
 		handPanel.setVisible(true);
 		
 		GroupLayout groupLayout = new GroupLayout(this);
