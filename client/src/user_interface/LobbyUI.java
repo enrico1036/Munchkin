@@ -20,10 +20,10 @@ import network.GameEventHandler;
 
 public class LobbyUI extends GamePanel implements ActionListener {
 
-	private BufferedImage dragon, users;
+	private BufferedImage dragon, userImage;
 	private int wndWidth, wndHeight;
-	private JButton User_ready;
-	private JLabel[][] Users;
+	private JButton user_ready;
+	private JLabel[][] users;
 	private JTextField textBox;
 	private String[] players;
 	private boolean[] readyStatus;
@@ -33,15 +33,15 @@ public class LobbyUI extends GamePanel implements ActionListener {
 
 		super(window, background); // MunchkinClient.getImage("panel_background")
 		dragon = MunchkinClient.getImage("dragon_lobby");
-		users = MunchkinClient.getImage("users_lobby");
+		userImage = MunchkinClient.getImage("users_lobby");
 
-		Users = new JLabel[6][2];
+		users = new JLabel[6][2];
 		instancePlayersMatrix();
 
-		User_ready = new JButton("READY");
-		User_ready.setActionCommand("tick");
-		User_ready.addActionListener(this);
-		add(User_ready);
+		user_ready = new JButton("READY");
+		user_ready.setActionCommand("tick");
+		user_ready.addActionListener(this);
+		add(user_ready);
 
 		/*
 		 * ScrollList = new ScrollableList(); ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100); add(ScrollList);
@@ -62,12 +62,12 @@ public class LobbyUI extends GamePanel implements ActionListener {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
+	public void paintComponents(Graphics g) {
 		this.updateComponents();
 		super.paintComponent(g);
 		g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
 		g.drawImage(dragon, 0, 0, this.getWidth() * 2 / 5, this.getHeight(), null);
-		g.drawImage(users, this.getWidth() * 3 / 5, 0, users.getWidth(), users.getHeight(), null);
+		g.drawImage(userImage, this.getWidth() * 3 / 5, 0, userImage.getWidth(), userImage.getHeight(), null);
 	}
 
 	private void updateComponents() {
@@ -76,12 +76,12 @@ public class LobbyUI extends GamePanel implements ActionListener {
 
 		for (int i = 0; i < 6; i++) {
 			for (int k = 0; k < 2; k++) {
-				Users[i][k].setBounds(wndWidth * (3) / 5 + wndWidth * k / 10, wndHeight * (i + 1) / 10, wndWidth / 10, wndHeight / 10);
+				users[i][k].setBounds(wndWidth * (3) / 5 + wndWidth * k / 10, wndHeight * (i + 1) / 10, wndWidth / 10, wndHeight / 10);
 			}
 
 		}
-		User_ready.setBounds(wndWidth * 3 / 5 + wndWidth / 5, wndHeight / 10, User_ready.getWidth(), User_ready.getHeight());
-		chatArea.setLocation(wndWidth * 3 / 5, wndHeight * 7 / 10);
+		user_ready.setBounds(wndWidth * 3 / 5 + wndWidth / 5, wndHeight / 10, user_ready.getWidth(), user_ready.getHeight());
+		chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
 		// ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
 		// textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10);
 	}
@@ -105,32 +105,32 @@ public class LobbyUI extends GamePanel implements ActionListener {
 	public void instancePlayersMatrix() {
 
 		for (int i = 0; i < 6; i++) {
-			Users[i] = new JLabel[2];
-			Users[i][0] = new JLabel();
-			Users[i][1] = new JLabel();
-			Users[i][1].setText("Non Pronto");
+			users[i] = new JLabel[2];
+			users[i][0] = new JLabel();
+			users[i][1] = new JLabel();
+			users[i][1].setText("Non Pronto");
 			for (int k = 0; k < 2; k++) {
-				Users[i][k].setVisible(false);
-				Users[i][k].setBorder(BorderFactory.createLineBorder(Color.black));
-				Users[i][k].setBounds(wndWidth * (3) / 5 + wndWidth * k / 10, wndHeight * (i + 1) / 10, wndWidth / 10, wndHeight / 10);
-				add(Users[i][k]);
+				users[i][k].setVisible(false);
+				users[i][k].setBorder(BorderFactory.createLineBorder(Color.black));
+				users[i][k].setBounds(wndWidth * (3) / 5 + wndWidth * k / 10, wndHeight * (i + 1) / 10, wndWidth / 10, wndHeight / 10);
+				add(users[i][k]);
 			}
 
 		}
 
-		Users[0][0].setText(GameEventHandler.getConnection().getConnectedPlayerName());
-		Users[0][0].setVisible(true);
-		Users[0][1].setVisible(true);
+		users[0][0].setText(GameEventHandler.getConnection().getConnectedPlayerName());
+		users[0][0].setVisible(true);
+		users[0][1].setVisible(true);
 	}
 
 	public void showPlayer() {
 
 		// Clear the list of Jlabels
 		for (int i = 1; i < 6; i++) {
-			Users[i][0].setVisible(false);
-			Users[i][1].setVisible(false);
-			Users[i][0].setText("");
-			Users[i][1].setText("");
+			users[i][0].setVisible(false);
+			users[i][1].setVisible(false);
+			users[i][0].setText("");
+			users[i][1].setText("");
 		}
 
 		players = GameEventHandler.getPlayers();
@@ -138,13 +138,13 @@ public class LobbyUI extends GamePanel implements ActionListener {
 
 		// Update status of connected players
 		for (int i = 0; i < players.length; i++) {
-			Users[i][0].setVisible(true);
-			Users[i][1].setVisible(true);
-			Users[i][0].setText(players[i]);
+			users[i][0].setVisible(true);
+			users[i][1].setVisible(true);
+			users[i][0].setText(players[i]);
 			if (readyStatus[i] != true)
-				Users[i][1].setText("Non Pronto");
+				users[i][1].setText("Non Pronto");
 			else
-				Users[i][1].setText("Pronto");
+				users[i][1].setText("Pronto");
 
 		}
 
