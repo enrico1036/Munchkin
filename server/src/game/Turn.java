@@ -56,7 +56,7 @@ public class Turn extends StateMachine {
 			for (int i = 0; i < answer.getValue(); i++) {
 				SelectedCardMessage selCard = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
 				card = GameManager.getCurrentPlayer().getHandCard(selCard.getCardName());
-				if (card.getCategory() == Category.Equipment) {
+				if (card != null && card.getCategory() == Category.Equipment) {
 					GameManager.getCurrentPlayer().discardCard(card);
 					Decks.discardCard(card);
 
