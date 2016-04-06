@@ -150,26 +150,18 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void componentHidden(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void componentMoved(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -178,9 +170,7 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 	}
 
 	@Override
-	public void componentShown(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void componentShown(ComponentEvent e) {	
 	}
 
 	@Override
