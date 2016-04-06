@@ -27,7 +27,7 @@ public class MenuUI extends GamePanel implements ActionListener {
 		super(window, background); // MunchkinClient.getImage("menu_background")
 		Dimension buttdimmin = new Dimension(300, 50);
 
-		this.setLayout(null);
+		setLayout(null);
 
 		// Create an ImageIcone where we load the connect_button image
 

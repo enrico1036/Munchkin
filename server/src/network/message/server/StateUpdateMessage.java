@@ -3,17 +3,17 @@ package network.message.server;
 import network.message.Message;
 
 public class StateUpdateMessage extends Message{
-	private final String currentPlayer;
+	private final String Player;
 	private final String state;
 	
-	public StateUpdateMessage(String currentPlayer, String state) {
+	public StateUpdateMessage(String Player, String state) {
 		super(Message.STATE_UPDATE);
-		this.currentPlayer = currentPlayer;
+		this.Player = Player;
 		this.state = state;
 	}
 	
-	public String getCurrentPlayer() {
-		return currentPlayer;
+	public String getPlayer() {
+		return Player;
 	}
 	
 	public String getState(){

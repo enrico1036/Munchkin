@@ -98,7 +98,7 @@
     </image>
     <image>
     	<name>treasure_back</name>
-    	<path>Resources/Images/treasureback.png</path>
+    	<path>Resources/Images/treasure_back.png</path>
     </image>
     <image>
     	<name>door_back</name>
@@ -111,6 +111,14 @@
     <image>
     	<name>return_back</name>
     	<path>Resources/Images/returnback.png</path>
+    </image>
+    <image>
+    	<name>defeat</name>
+    	<path>Resources/Images/defeat.png</path>
+    </image>
+    <image>
+    	<name>victory</name>
+    	<path>Resources/Images/victory.png</path>
     </image>
     
     <!-- Door Cards -->

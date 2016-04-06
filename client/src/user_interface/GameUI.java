@@ -21,7 +21,7 @@ public class GameUI extends GamePanel{
 	private SelfPlayerUI selfPanel;
 	private DeckPanel decksPanel;
 	private CardListPanel<ClientCard> handPanel;
-	public static final ZoomedPanel zp = new ZoomedPanel();
+	public static ZoomedPanel zp;
 
 	/**
 	 * Create the panel.
@@ -31,6 +31,8 @@ public class GameUI extends GamePanel{
 		setMinimumSize(new Dimension(800, 450));
 		setPreferredSize(new Dimension(800, 450));
 
+		zp = new ZoomedPanel();
+		
 		opponentsPanel = new OpponentsPanel(window);
 		opponentsPanel.setBackground(Color.BLUE);
 		opponentsPanel.setOpaque(false);

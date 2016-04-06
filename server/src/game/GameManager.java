@@ -49,7 +49,7 @@ public class GameManager {
 	private static void end() {
 		Debug.log("GameManager: End");
 		Debug.log(getCurrentPlayer().getUsername() + "Won!!!");
-		broadcastMessage(new PopUpMessage(getCurrentPlayer().getUsername() + "Won!!!", 30000));
+		broadcastMessage(new StateUpdateMessage(getCurrentPlayer().getUsername(), "end"));
 	}
 
 	private static void nextPlayer() {

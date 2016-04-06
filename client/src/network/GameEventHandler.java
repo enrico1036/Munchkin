@@ -23,6 +23,7 @@ import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayerFullStatsMessage;
 import user_interface.ClientCard;
 import user_interface.ConnectionDialog;
+import user_interface.EndUI;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
 import user_interface.PopUpDialog;
@@ -113,12 +114,23 @@ public class GameEventHandler {
 						break;
 					case Message.STATE_UPDATE:
 						StateUpdateMessage update = (StateUpdateMessage) received;
-						Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
+						Data.getTurn().setCurrentPlayer(update.getPlayer());
 						if (update.getState().equals("begin")) {
 							MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow(), MunchkinClient.getImage("panel_background")));
 							MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
 							break;
 
+						}else if(update.getState().equals("end")){
+							
+							if(update.getPlayer().equals(
+									GameEventHandler.connection.getConnectedPlayerName())){
+								MunchkinClient.getPanels().get("GameUI").add(new EndUI(MunchkinClient.getImage("victory"),
+										GameEventHandler.connection.getConnectedPlayerName()));	
+							}else{
+								MunchkinClient.getPanels().get("GameUI").add(new EndUI(MunchkinClient.getImage("defeat"),
+										update.getPlayer()));
+							}
+							
 						} else {
 							//								Data.getTurn().setCurrentPlayer(update.getCurrentPlayer());
 							try {
