@@ -33,8 +33,6 @@ public class PlayerUI extends GamePanel implements DataListener {
 
 	// ---------Player JComponents------------
 
-
-	private TurnData turn;
 	private String playerName;
 	private EquipmentPanel equipment;
 	private StatisticsPanel statistics;
@@ -46,9 +44,7 @@ public class PlayerUI extends GamePanel implements DataListener {
 
 		this.playerName = playerName;
 		Data.getPlayer(playerName).addDataListener(this);
-		
-		turn = Data.getTurn();
-		turn.addDataListener(this);
+		Data.getTurn().addDataListener(this);
 		
 		setOpaque(false);
 
@@ -94,7 +90,6 @@ public class PlayerUI extends GamePanel implements DataListener {
 
 		if (statistics.getPlayerClass().zoomedPanelIsNull())
 			statistics.getPlayerClass().setZoomedPanel(zp);
-		
 			statistics.getPlayerRace().setImage(image);
 
 		// update the player class
@@ -102,7 +97,6 @@ public class PlayerUI extends GamePanel implements DataListener {
 
 		if (statistics.getPlayerClass().zoomedPanelIsNull())
 			statistics.getPlayerClass().setZoomedPanel(zp);
-		
 			statistics.getPlayerClass().setImage(image);
 
 		// update the size of the player hand
@@ -113,14 +107,12 @@ public class PlayerUI extends GamePanel implements DataListener {
 		equipment.getPlayerHand2().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.hand2)));
 		equipment.getPlayerBody().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.body)));
 		equipment.getPlayerFeet().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.feet)));
-/**
- * if-else statement that set as red, otherwise black,
- *  the color of the PlayerName Label,if that player is the current.
- * 
- */
-
 		
-		
+		/**
+		 * if-else statement that set as red, otherwise black,
+		 *  the color of the PlayerName Label,if that player is the current.
+		 * 
+		 */
 		if(Data.getPlayer(playerName).getUsername().equals(Data.getTurn().getCurrentPlayer())){
 			statistics.getLblPlayerName().setForeground(Color.RED);
 		}else
