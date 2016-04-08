@@ -53,11 +53,11 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 		treasureCards = new ImageButton(MunchkinClient.getImage("treasure_back"));
 		treasureCards.setEnabled(false);
 		treasureCards.setVisible(true);
-		
+		/*
 		phaseLabel = new JLabel("Phase");
 		phaseLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		phaseLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
+		*/
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -69,10 +69,10 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 					.addComponent(treasureCards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					//.addGap(450))
 					)
-				.addGroup(groupLayout.createSequentialGroup()
+				/*.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(0, Short.MAX_VALUE)
 					.addComponent(phaseLabel, 0, 438, Short.MAX_VALUE)
-					.addContainerGap(6, 6))
+					.addContainerGap(6, 6))*/
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -83,7 +83,7 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 						.addComponent(treasureCards, 100, 150, GroupLayout.PREFERRED_SIZE)
 						.addComponent(discards, 100, 150, GroupLayout.PREFERRED_SIZE))
 					.addGap(0, 139, Short.MAX_VALUE)
-					.addComponent(phaseLabel)
+					//.addComponent(phaseLabel)
 					.addContainerGap())
 		);
 		groupLayout.setAutoCreateGaps(true);
@@ -129,12 +129,12 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 	public void dataChanged() {
 		if (Data.getDiscardDeck().getCards().size() > 0) {
 			discards.setImage(MunchkinClient.getImage(Data.getDiscardDeck().getCards().get(0)));
-		}
+		}/*
 		try {
 		phaseLabel.setText(Data.getTurn().getPhase().toString());
 		} catch (NullPointerException e) {
 			
-		}
+		}*/
 		if (Data.getTurn().getCurrentPlayer().equals(GameEventHandler.getConnection().getConnectedPlayerName()) /*&& (Data.getTurn().getPhase() == TurnData.GamePhase.Equip || Data.getTurn().getPhase() == TurnData.GamePhase.LookForTrouble)*/) {
 			doorCards.setEnabled(true);
 		} else {

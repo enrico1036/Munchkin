@@ -120,6 +120,22 @@
     	<name>victory</name>
     	<path>Resources/Images/victory.png</path>
     </image>
+    <image>
+    	<name>equip</name>
+    	<path>Resources/Images/equip.png</path>
+    </image>
+    <image>
+    	<name>draw</name>
+    	<path>Resources/Images/draw.png</path>
+    </image>
+    <image>
+    	<name>combat</name>
+    	<path>Resources/Images/combat.png</path>
+    </image>
+    <image>
+    	<name>trading</name>
+    	<path>Resources/Images/trading.png</path>
+    </image>
     
     <!-- Door Cards -->
     <image>

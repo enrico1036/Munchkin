@@ -22,7 +22,7 @@ public class GameUI extends GamePanel{
 	private DeckPanel decksPanel;
 	private CardListPanel<ClientCard> handPanel;
 	public static ZoomedPanel zp;
-
+	private PhasePanel phasePanel;
 	/**
 	 * Create the panel.
 	 */
@@ -52,21 +52,25 @@ public class GameUI extends GamePanel{
 		handPanel = new CardListPanel<>(new Dimension(100, 150), 10, 10, Data.getHand());
 		handPanel.setVisible(true);
 		
+		phasePanel = new PhasePanel();
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(6)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(opponentsPanel, GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(opponentsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(phasePanel, GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+								.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(decksPanel, GroupLayout.PREFERRED_SIZE, 284, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 362, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(handPanel, GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)))
+							.addComponent(handPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -76,8 +80,11 @@ public class GameUI extends GamePanel{
 					.addComponent(opponentsPanel, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-						.addComponent(decksPanel, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(tablePanel, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(phasePanel, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+						.addComponent(decksPanel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
 					.addGap(6)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(handPanel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
