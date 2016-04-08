@@ -23,18 +23,22 @@ public class PhasePanel extends JPanel implements DataListener {
 				switch(Data.getTurn().getPhase().toString()){
 					case "Equip":
 						background=MunchkinClient.getImage("equip");
+						revalidate();
 						break;
 						
 					case "Draw":
 						background=MunchkinClient.getImage("draw");
+						revalidate();
 						break;
 						
 					case "Trading":
 						background=MunchkinClient.getImage("trading");
+						revalidate();
 						break;
 						
 					case "AskForHelp":
 						background=MunchkinClient.getImage("combat");
+						revalidate();
 						break;
 				}
 		} catch (NullPointerException e) {
