@@ -38,6 +38,19 @@
 		<curse name="decadimento_orbitale" immediate="true" effect="mario" />
 		<curse name="gelatinizzatore" immediate="true" effect="mario" />
 		
+		<consumable name="e_il_suo_clone" effect="dsad" />
+		<consumable name="folle" effect="dsad" />
+		<consumable name="incompreso" effect="dsad" />
+		<consumable name="telepatico" effect="dsad" />
+		<consumable name="computerizzato" effect="dsad" />
+		<consumable name="mutaforma" effect="dsad" />
+		<consumable name="io_sono_tuo_padre" effect="dsad" />
+		<consumable name="radioattivo" effect="dsad" />
+		<consumable name="miniaturizzato" effect="dsad" />
+		<consumable name="ultimo_della_sua_razza" effect="dsad" />
+		<consumable name="da_un_altra_dimensione" effect="dsad" />
+		
+		
 	</doors>
 	<treasures>
 	
