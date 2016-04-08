@@ -23,7 +23,6 @@ public class PhasePanel extends JPanel implements DataListener {
 				switch(Data.getTurn().getPhase().toString()){
 					case "Equip":
 						background=MunchkinClient.getImage("equip");
-						
 						break;
 						
 					case "Draw":
@@ -48,9 +47,9 @@ public class PhasePanel extends JPanel implements DataListener {
 	}
 
 	@Override
-	public void paintComponents(Graphics g) {
-		super.paintComponents(g);
-		g.drawImage(background, getWidth(), getHeight(), null);
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
 	}
 	
 	

@@ -8,7 +8,8 @@ public class TurnData extends SharedData {
 	public enum GamePhase {Equip, Draw, Trading, Charity, OpenDoor, LookForTrouble, LootTheRoom, AskForHelp, InterferInCombat}
 
 	public TurnData() {
-		
+		//currentPlayer = "";
+		phase = GamePhase.Equip;
 	}
 
 	/**
