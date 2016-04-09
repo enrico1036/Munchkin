@@ -51,7 +51,7 @@ public class OpponentsPanel extends JPanel {
 		//TODO: try to center panels. Uncommenting PreferredGaps they will be centered but too small
 		horizontalGroup.addPreferredGap(ComponentPlacement.RELATED, 788/2, Short.MAX_VALUE);
 		for(PlayerOpponentUI opponent : opponentPlayers.values()) {
-			horizontalGroup.addComponent(opponent, 0, 788/3, 788/3);
+			horizontalGroup.addComponent(opponent, GroupLayout.PREFERRED_SIZE, 788/3, GroupLayout.PREFERRED_SIZE);
 			verticalGroup.addComponent(opponent);
 		}
 		horizontalGroup.addPreferredGap(ComponentPlacement.RELATED, 788/2, Short.MAX_VALUE);

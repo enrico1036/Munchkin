@@ -77,12 +77,12 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(0, Short.MAX_VALUE)
+					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(doorCards, 100, 150, GroupLayout.PREFERRED_SIZE)
-						.addComponent(treasureCards, 100, 150, GroupLayout.PREFERRED_SIZE)
-						.addComponent(discards, 100, 150, GroupLayout.PREFERRED_SIZE))
-					.addGap(0, 139, Short.MAX_VALUE)
+						.addComponent(doorCards, 0, 150, GroupLayout.PREFERRED_SIZE)
+						.addComponent(treasureCards, 0, 150, GroupLayout.PREFERRED_SIZE)
+						.addComponent(discards, 0, 150, GroupLayout.PREFERRED_SIZE))
+//					.addGap(0, 139, Short.MAX_VALUE)
 					//.addComponent(phaseLabel)
 					.addContainerGap())
 		);

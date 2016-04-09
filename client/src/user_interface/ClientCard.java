@@ -157,7 +157,7 @@ public class ClientCard extends JButton implements MouseListener{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if(image != null)
-			g.drawImage(image.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
+			g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		
 	}
 	
