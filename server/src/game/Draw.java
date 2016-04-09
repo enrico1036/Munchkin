@@ -36,11 +36,7 @@ public class Draw extends StateMachine {
 		switch (card.getCategory()) {
 		case Curse:
 			// TODO: card effect
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			
 			GameManager.broadcastMessage(new PlayCardMessage(card, Action.DISCARD));
 			break;
 		case Monster:

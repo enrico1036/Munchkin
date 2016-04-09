@@ -32,6 +32,11 @@ public class GameUI extends GamePanel{
 		setPreferredSize(new Dimension(800, 450));
 
 		zp = new ZoomedPanel();
+		zp.setVisible(true);
+		zp.setLayout(null);
+        //zp.setBounds(getWidth() / 3, getHeight() / 20, getWidth() / 3, getHeight() * 5 / 8);
+        add(zp);
+        setComponentZOrder(zp, 0);
 		
 		opponentsPanel = new OpponentsPanel(window);
 		opponentsPanel.setBackground(Color.BLUE);
@@ -58,7 +63,7 @@ public class GameUI extends GamePanel{
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.CENTER)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -75,8 +80,9 @@ public class GameUI extends GamePanel{
 							.addContainerGap()
 							.addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(handPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+							.addComponent(handPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))	
 					.addContainerGap())
+				.addComponent(zp, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -96,15 +102,11 @@ public class GameUI extends GamePanel{
 						.addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
 						.addComponent(handPanel, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
 					.addGap(6))
+				.addComponent(zp, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
 		);
 		setLayout(groupLayout);
 		
-		zp.setVisible(true);
-		zp.setOpaque(true);
-		zp.setLayout(null);
-        zp.setBounds(getWidth() / 3, getHeight() / 20, getWidth() / 3, getHeight() * 5 / 8);
-        add(zp);
-        setComponentZOrder(zp, 0);
+		
         //opponentsPanel.setAllSize();
        }
 }

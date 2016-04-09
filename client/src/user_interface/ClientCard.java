@@ -68,6 +68,7 @@ public class ClientCard extends JButton implements MouseListener {
 	 */
 	public void setImage(BufferedImage image) {
 		this.image = image;
+		invalidate();
 		repaint();
 	}
 
@@ -105,7 +106,9 @@ public class ClientCard extends JButton implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Actions.mouseClicked(title);
+		if(e.getButton() == MouseEvent.BUTTON1) {
+			Actions.mouseClicked(title);
+		}
 	}
 
 	/**
@@ -113,7 +116,9 @@ public class ClientCard extends JButton implements MouseListener {
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
-
+		if(e.getButton() == MouseEvent.BUTTON3) {
+			GameUI.zp.showPanel(image);
+		}
 	}
 
 	/**
@@ -121,7 +126,9 @@ public class ClientCard extends JButton implements MouseListener {
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
+		if(e.getButton() == MouseEvent.BUTTON3) {
+			GameUI.zp.hidePanel();
+		}
 	}
 
 	/**
