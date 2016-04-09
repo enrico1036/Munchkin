@@ -39,8 +39,8 @@ public class SelfPlayerUI extends PlayerUI {
 //		add(getEquipment());
 		groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
 				.addContainerGap(0, 6)
-				.addComponent(getStatistics(), 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addComponent(getEquipment(), 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addComponent(getStatistics(), 0, 150, Short.MAX_VALUE)
+				.addComponent(getEquipment(), 0, 50, Short.MAX_VALUE)
 				.addContainerGap(0, 6)
 				);
 		groupLayout.setVerticalGroup(

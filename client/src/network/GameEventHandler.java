@@ -64,12 +64,12 @@ public class GameEventHandler {
 							Data.getTable().addCard(playCardMessage.getCardName());
 							break;
 						case DRAW:
-							Data.getHand().addCard(playCardMessage.getCardName());
 							Data.getTable().removeCard(playCardMessage.getCardName());
+							Data.getHand().addCard(playCardMessage.getCardName());
 							break;
 						case DISCARD:
-							Data.getDiscardDeck().getCards().add(0, playCardMessage.getCardName());
 							Data.getTable().removeCard(playCardMessage.getCardName());
+							Data.getDiscardDeck().getCards().add(0, playCardMessage.getCardName());
 							break;
 						case REMOVE:
 							Data.getHand().removeCard(playCardMessage.getCardName());

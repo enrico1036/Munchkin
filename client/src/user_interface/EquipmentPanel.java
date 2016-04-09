@@ -20,7 +20,7 @@ public class EquipmentPanel extends JPanel{
 
 	private ZoomedPanel zp;
 	
-	private ClientCard PlayerHead,PlayerHand1,PlayerHand2,PlayerBody,PlayerFeet;
+	private ClientCard playerHead, playerHand1, playerHand2, playerBody, playerFeet;
 	
 	public EquipmentPanel(){
 		zp=((GameUI)(MunchkinClient.getPanel("GameUI"))).zp;
@@ -28,59 +28,64 @@ public class EquipmentPanel extends JPanel{
 		setOpaque(true);
 		setBackground(Color.BLUE);
 
-		PlayerHead = new ClientCard("player_head");
-		PlayerHand1 = new ClientCard("player_hand1");
-		PlayerBody = new ClientCard("player_body");
-		PlayerHand2 = new ClientCard("player_hand2");
-		PlayerFeet = new ClientCard("player_feet");
+		playerHead = new ClientCard("player_head");
+		playerHead.setEnabled(false);
+		playerHand1 = new ClientCard("player_hand1");
+		playerHand1.setEnabled(false);
+		playerBody = new ClientCard("player_body");
+		playerBody.setEnabled(false);
+		playerHand2 = new ClientCard("player_hand2");
+		playerHand2.setEnabled(false);
+		playerFeet = new ClientCard("player_feet");
+		playerFeet.setEnabled(false);
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 				groupLayout.createSequentialGroup()
 				.addContainerGap()
-				.addComponent(PlayerHand1, 0, 64, GroupLayout.PREFERRED_SIZE)
+				.addComponent(playerHand1, 0, 64, GroupLayout.PREFERRED_SIZE)
 				.addPreferredGap(ComponentPlacement.RELATED)
 				.addGroup(groupLayout.createParallelGroup(Alignment.CENTER)
-						.addComponent(PlayerHead, 0, 64, GroupLayout.PREFERRED_SIZE)
-						.addComponent(PlayerBody, 0, 64, GroupLayout.PREFERRED_SIZE)
-						.addComponent(PlayerFeet, 0, 64, GroupLayout.PREFERRED_SIZE))
+						.addComponent(playerHead, 0, 64, GroupLayout.PREFERRED_SIZE)
+						.addComponent(playerBody, 0, 64, GroupLayout.PREFERRED_SIZE)
+						.addComponent(playerFeet, 0, 64, GroupLayout.PREFERRED_SIZE))
 				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(PlayerHand2, 0, 64, GroupLayout.PREFERRED_SIZE)
+				.addComponent(playerHand2, 0, 64, GroupLayout.PREFERRED_SIZE)
 				.addContainerGap()
 				);
 		groupLayout.setVerticalGroup(
 				groupLayout.createSequentialGroup()
 				.addContainerGap()
-				.addComponent(PlayerHead, 0, 110, GroupLayout.PREFERRED_SIZE)
+				.addComponent(playerHead, 0, 110, GroupLayout.PREFERRED_SIZE)
 				.addPreferredGap(ComponentPlacement.RELATED)
 				.addGroup(groupLayout.createParallelGroup(Alignment.CENTER)
-						.addComponent(PlayerHand1, 0, 110, GroupLayout.PREFERRED_SIZE)
-						.addComponent(PlayerBody, 0, 110, GroupLayout.PREFERRED_SIZE)
-						.addComponent(PlayerHand2, 0, 110, GroupLayout.PREFERRED_SIZE))
+						.addComponent(playerHand1, 0, 110, GroupLayout.PREFERRED_SIZE)
+						.addComponent(playerBody, 0, 110, GroupLayout.PREFERRED_SIZE)
+						.addComponent(playerHand2, 0, 110, GroupLayout.PREFERRED_SIZE))
 				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(PlayerFeet, 0, 110, GroupLayout.PREFERRED_SIZE)
+				.addComponent(playerFeet, 0, 110, GroupLayout.PREFERRED_SIZE)
 				.addContainerGap()
 				);
 		setLayout(groupLayout);
 	}
 
 	public ClientCard getPlayerHead() {
-		return PlayerHead;
+		return playerHead;
 	}
 
 	public ClientCard getPlayerHand1() {
-		return PlayerHand1;
+		return playerHand1;
 	}
 
 	public ClientCard getPlayerBody() {
-		return PlayerBody;
+		return playerBody;
 	}
 
 	public ClientCard getPlayerHand2() {
-		return PlayerHand2;
+		return playerHand2;
 	}
 
 	public ClientCard getPlayerFeet() {
-		return PlayerFeet;
+		return playerFeet;
 	}
 }

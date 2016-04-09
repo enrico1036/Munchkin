@@ -53,7 +53,7 @@ public class StatisticsPanel extends JPanel {
 		
 		playerClass = new ClientCard("Class");
 		
-		lblPlayerNumCards = new JLabel("N Cards");
+		lblPlayerNumCards = new JLabel("Cards");
 		lblPlayerNumCards.setHorizontalAlignment(SwingConstants.TRAILING);
 		 
 		lblNumCard = new JLabel("0");
@@ -68,22 +68,22 @@ public class StatisticsPanel extends JPanel {
 		 				.addComponent(lblPlayerName, 0, 388, Short.MAX_VALUE)
 		 				.addGroup(groupLayout.createSequentialGroup()
 		 					.addContainerGap(6, 6)
-		 					.addComponent(lblPlayerLevel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+		 					.addComponent(lblPlayerLevel, 0, 35, GroupLayout.PREFERRED_SIZE)
 		 					.addPreferredGap(ComponentPlacement.RELATED)
-		 					.addComponent(lblPlayerLevelValue, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-		 					.addGap(0, 81, Short.MAX_VALUE)
-		 					.addComponent(lblPlayerPower, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-		 					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		 					.addComponent(lblPlayerPowerValue, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-		 					.addGap(0, 81, Short.MAX_VALUE)
-		 					.addComponent(lblPlayerNumCards)
+		 					.addComponent(lblPlayerLevelValue, 0, 31, GroupLayout.PREFERRED_SIZE)
+		 					.addGap(0, 0, Short.MAX_VALUE)
+		 					.addComponent(lblPlayerPower, 0, 40, GroupLayout.PREFERRED_SIZE)
 		 					.addPreferredGap(ComponentPlacement.RELATED)
-		 					.addComponent(lblNumCard, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+		 					.addComponent(lblPlayerPowerValue, 0, 29, GroupLayout.PREFERRED_SIZE)
+		 					.addGap(0, 0, Short.MAX_VALUE)
+		 					.addComponent(lblPlayerNumCards, 0, 40, GroupLayout.PREFERRED_SIZE)
+		 					.addPreferredGap(ComponentPlacement.RELATED)
+		 					.addComponent(lblNumCard, 0, 23, GroupLayout.PREFERRED_SIZE)
 		 					.addContainerGap(6, 6))
 		 				.addGroup(groupLayout.createSequentialGroup()
-		 					.addComponent(playerRace, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+		 					.addComponent(playerRace, 0, 191, Short.MAX_VALUE)
 		 					.addPreferredGap(ComponentPlacement.RELATED)
-		 					.addComponent(playerClass, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)))
+		 					.addComponent(playerClass, 0, 191, Short.MAX_VALUE)))
 		 			.addContainerGap())
 		 );
 		 groupLayout.setVerticalGroup(

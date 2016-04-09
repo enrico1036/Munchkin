@@ -180,11 +180,12 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 		
 		for(String str : data.getCards()){
 			ClientCard item = new ClientCard(str);
+			items.add((E) item);
 			item.addMouseListener(this);
 			item.setSize(itemSize);
 			item.setVisible(true);
 			add(item);
-			items.add((E) item);
+			item.repaint();
 		}
 		selectedItemIndex = -1;
 		updateView();
