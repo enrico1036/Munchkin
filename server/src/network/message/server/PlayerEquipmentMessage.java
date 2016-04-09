@@ -16,7 +16,7 @@ public class PlayerEquipmentMessage extends Message {
 	private String feet;
 
 	public PlayerEquipmentMessage(Player player) {
-		super(PlayerStatusRequest.REQUEST_PLAYER_EQUIPMENT);
+		super(Message.PLAYER_EQUIPMENT);
 
 		playerName = player.getUsername();
 		

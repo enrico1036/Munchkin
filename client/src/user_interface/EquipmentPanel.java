@@ -10,6 +10,7 @@ import user_interface.GameUI;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -25,7 +26,7 @@ public class EquipmentPanel extends JPanel{
 	public EquipmentPanel(){
 		zp=((GameUI)(MunchkinClient.getPanel("GameUI"))).zp;
 
-		setOpaque(true);
+		setOpaque(false);
 		setBackground(Color.BLUE);
 
 		playerHead = new ClientCard("player_head");
@@ -88,4 +89,5 @@ public class EquipmentPanel extends JPanel{
 	public ClientCard getPlayerFeet() {
 		return playerFeet;
 	}
+	
 }

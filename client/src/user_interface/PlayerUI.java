@@ -119,8 +119,8 @@ public class PlayerUI extends GamePanel implements DataListener {
 		{
 			statistics.getLblPlayerName().setForeground(Color.BLACK);
 		}
-		statistics.repaint();
-		equipment.repaint();
-		repaint();
+		statistics.invalidate();
+		equipment.invalidate();
+		invalidate();
 	}
 }

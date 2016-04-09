@@ -249,6 +249,7 @@ public class Player {
 		Decks.discardCard(equipments.put(slot, card));
 
 		GameManager.broadcastMessage(new PlayerEquipmentMessage(this));
+		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
 		return true;
 	}
 
