@@ -19,8 +19,8 @@ public class EndUI extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		super.paintComponents(g);
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		setSize(getParent().getSize());
 		g.drawImage(background.getScaledInstance(getParent().getWidth(), getParent().getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
 	}

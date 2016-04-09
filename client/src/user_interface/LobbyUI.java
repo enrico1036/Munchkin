@@ -37,7 +37,7 @@ public class LobbyUI extends GamePanel implements ActionListener {
 
 		users = new JLabel[6][2];
 		instancePlayersMatrix();
-
+		//setLayout(null);
 		user_ready = new JButton("READY");
 		user_ready.setActionCommand("tick");
 		user_ready.addActionListener(this);
@@ -50,11 +50,12 @@ public class LobbyUI extends GamePanel implements ActionListener {
 		 */
 
 		chatArea = new ChatArea(0.5f);
-		// chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
+		chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
 		chatArea.addActionListener(this);
 		add(chatArea);
 
 		GameEventHandler.getReadyPlayerList();
+		
 	}
 
 	public final ChatArea getChatArea() {
@@ -62,12 +63,12 @@ public class LobbyUI extends GamePanel implements ActionListener {
 	}
 
 	@Override
-	public void paintComponents(Graphics g) {
+	public void paintComponent(Graphics g) {
 		this.updateComponents();
 		super.paintComponent(g);
-		g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.drawImage(dragon, 0, 0, this.getWidth() * 2 / 5, this.getHeight(), null);
-		g.drawImage(userImage, this.getWidth() * 3 / 5, 0, userImage.getWidth(), userImage.getHeight(), null);
+		
+		g.drawImage(dragon, 0, 0, getWidth() * 2 / 5, getHeight(), null);
+		g.drawImage(userImage, getWidth() * 3 / 5, 0, userImage.getWidth(), userImage.getHeight(), null);
 	}
 
 	private void updateComponents() {
