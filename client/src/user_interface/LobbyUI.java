@@ -82,7 +82,7 @@ public class LobbyUI extends GamePanel implements ActionListener {
 
 		}
 		user_ready.setBounds(wndWidth * 3 / 5 + wndWidth / 5, wndHeight / 10, user_ready.getWidth(), user_ready.getHeight());
-		chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
+		chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth  / 5, wndHeight * 27 / 100);
 		// ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
 		// textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10);
 	}

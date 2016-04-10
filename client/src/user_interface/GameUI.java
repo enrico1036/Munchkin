@@ -12,9 +12,11 @@ import network.GameEventHandler;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-public class GameUI extends GamePanel{
+public class GameUI extends GamePanel implements ActionListener{
 
 	private OpponentsPanel opponentsPanel;
 	private CardListPanel<ClientCard> tablePanel;
@@ -120,6 +122,16 @@ public class GameUI extends GamePanel{
 	
 	public final ChatArea getCharArea(){
 		return chatArea;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand() == "Send") {
+			String message = chatArea.getTextAndClear().trim();
+			if (!message.isEmpty())
+				GameEventHandler.sendChatMessage(GameEventHandler.getConnection().getConnectedPlayerName(), message);
+		}
+		
 	}
 	
 	
