@@ -1,11 +1,8 @@
 package network;
 
-import java.awt.image.BufferedImage;
-
 import client.MunchkinClient;
 import dataStructure.Data;
 import dataStructure.TurnData.GamePhase;
-import javafx.stage.Popup;
 import network.message.Message;
 import network.message.client.ChatMessage;
 import network.message.client.ClientGeneralRequest;
@@ -18,11 +15,8 @@ import network.message.server.PopUpMessage;
 import network.message.server.ReadyLobbyMessage;
 import network.message.server.ReadyStatusMessage;
 import network.message.server.StateUpdateMessage;
-import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayerFullStatsMessage;
-import user_interface.ClientCard;
-import user_interface.ConnectionDialog;
 import user_interface.EndUI;
 import user_interface.GameUI;
 import user_interface.LobbyUI;
@@ -41,7 +35,6 @@ public class GameEventHandler {
 
 			@Override
 			public void run() {
-				boolean gameStarted=false;
 				
 				do {
 					Message received = GameEventHandler.connection.receive();
@@ -55,12 +48,7 @@ public class GameEventHandler {
 					switch (received.getMessageCode()) {
 					case Message.CLT_CHAT_MESSAGE:
 						ChatMessage chatMessage = (ChatMessage) received;
-						if(!gameStarted){
-							lobbyPanel.getChatArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
-						}else{
-							((GameUI)MunchkinClient.getPanel("GameUI")).getCharArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
-						}
-						
+						Data.getChat().writeChatLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
 						break;
 					case Message.PLAY_CARD:
 						PlayCardMessage playCardMessage = (PlayCardMessage) received;
@@ -125,7 +113,6 @@ public class GameEventHandler {
 						if (update.getState().equals("begin")) {
 							MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow(), MunchkinClient.getImage("panel_background")));
 							MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
-							gameStarted=true;
 							break;
 
 						}else if(update.getState().equals("end")){

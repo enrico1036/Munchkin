@@ -25,6 +25,9 @@ import javax.swing.text.DefaultCaret;
 
 import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory.Default;
 
+import dataStructure.Data;
+import dataStructure.DataListener;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -32,7 +35,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.CardLayout;
 import java.awt.GridBagConstraints;
 
-public class ChatArea extends JPanel {
+public class ChatArea extends JPanel implements DataListener{
 	private JTextField textField;
 	private JButton btnSend;
 	private JTextArea textArea;
@@ -41,6 +44,8 @@ public class ChatArea extends JPanel {
 		// Settings of chat area
 		setBorder(new EmptyBorder(2, 2, 2, 2));
 		setOpaque(false);
+		
+		Data.getChat().addDataListener(this);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
@@ -98,5 +103,10 @@ public class ChatArea extends JPanel {
 		String text = textField.getText();
 		textField.setText("");
 		return text;
+	}
+
+	@Override
+	public void dataChanged() {
+		appendLine(Data.getChat().getLastLine());
 	}
 }
