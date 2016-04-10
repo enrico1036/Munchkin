@@ -42,7 +42,7 @@ public class ChatArea extends JPanel implements DataListener{
 	
 	public ChatArea() {
 		// Settings of chat area
-		setBorder(new EmptyBorder(2, 2, 2, 2));
+//		setBorder(new EmptyBorder(2, 2, 2, 2));
 		setOpaque(false);
 		
 		Data.getChat().addDataListener(this);

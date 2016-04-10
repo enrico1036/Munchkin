@@ -17,6 +17,7 @@ import com.sun.javafx.charts.ChartLayoutAnimator;
 
 import client.MunchkinClient;
 import network.GameEventHandler;
+import java.awt.Dimension;
 
 public class LobbyUI extends GamePanel implements ActionListener {
 
@@ -39,8 +40,10 @@ public class LobbyUI extends GamePanel implements ActionListener {
 		instancePlayersMatrix();
 		//setLayout(null);
 		user_ready = new JButton("READY");
+		user_ready.setBounds(182, 5, 86, 29);
 		user_ready.setActionCommand("tick");
 		user_ready.addActionListener(this);
+		setLayout(null);
 		add(user_ready);
 
 		/*
@@ -50,7 +53,7 @@ public class LobbyUI extends GamePanel implements ActionListener {
 		 */
 
 		chatArea = new ChatArea();
-		chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
+		chatArea.setBounds(2, 39, 446, 303);
 		chatArea.addActionListener(this);
 		add(chatArea);
 
@@ -82,7 +85,7 @@ public class LobbyUI extends GamePanel implements ActionListener {
 
 		}
 		user_ready.setBounds(wndWidth * 3 / 5 + wndWidth / 5, wndHeight / 10, user_ready.getWidth(), user_ready.getHeight());
-		chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth  / 5, wndHeight * 27 / 100);
+		chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth  / 4, wndHeight * 27 / 100);
 		// ScrollList.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
 		// textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10);
 	}
