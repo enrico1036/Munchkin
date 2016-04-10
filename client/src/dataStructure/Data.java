@@ -9,6 +9,7 @@ public class Data {
 	private static CardDataSet table = new CardDataSet();
 	private static CardDataSet discardDeck = new CardDataSet();
 	private static TurnData turn = new TurnData();
+	private static ChatData chat = new ChatData();
 	
 	/**
 	 * @return the hand
@@ -47,5 +48,11 @@ public class Data {
 	public static TurnData getTurn() {
 		return turn;
 	}
-	
+
+	/**
+	 * @return the chat
+	 */
+	public static ChatData getChat() {
+		return chat;
+	}
 }
