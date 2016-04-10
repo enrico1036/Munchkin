@@ -97,7 +97,7 @@ public class GameUI extends GamePanel implements ActionListener{
 					.addContainerGap()
 					.addComponent(opponentsPanel, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.CENTER)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(chatArea, GroupLayout.DEFAULT_SIZE, 100, 200)
 							.addPreferredGap(ComponentPlacement.UNRELATED))
