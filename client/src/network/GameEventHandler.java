@@ -36,6 +36,7 @@ public class GameEventHandler {
 
 	public static void initialize(PlayerConnection connection) {
 		GameEventHandler.connection = connection;
+		
 		GameEventHandler.thread = new Thread(new Runnable() {
 
 			@Override
@@ -43,7 +44,7 @@ public class GameEventHandler {
 
 				do {
 					Message received = GameEventHandler.connection.receive();
-
+					boolean gameStarted=false;
 					// A null message implies that the connection is closed
 					if (received == null)
 						break;
@@ -54,7 +55,12 @@ public class GameEventHandler {
 					switch (received.getMessageCode()) {
 					case Message.CLT_CHAT_MESSAGE:
 						ChatMessage chatMessage = (ChatMessage) received;
+						if(!gameStarted){
 						lobbyPanel.getChatArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
+						}else{
+						((GameUI)MunchkinClient.getPanel("GameUI")).getCharArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
+						}
+						
 						break;
 					case Message.PLAY_CARD:
 						PlayCardMessage playCardMessage = (PlayCardMessage) received;
@@ -119,6 +125,7 @@ public class GameEventHandler {
 						if (update.getState().equals("begin")) {
 							MunchkinClient.getPanels().put("GameUI", new GameUI(MunchkinClient.getWindow(), MunchkinClient.getImage("panel_background")));
 							MunchkinClient.getWindow().SetActivePanel(MunchkinClient.getPanel("GameUI"));
+							gameStarted=true;
 							break;
 
 						}else if(update.getState().equals("end")){
