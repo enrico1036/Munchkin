@@ -49,7 +49,7 @@ public class LobbyUI extends GamePanel implements ActionListener {
 		 * textBox = new JTextField("Enter your text here"); textBox.addActionListener(this); textBox.setActionCommand("Enter"); textBox.setBounds(wndWidth * 3 / 5, wndHeight * 9 / 10, wndWidth * 2 / 5, wndHeight / 10); add(textBox);
 		 */
 
-		chatArea = new ChatArea(0.5f);
+		chatArea = new ChatArea();
 		chatArea.setBounds(wndWidth * 3 / 5, wndHeight * 7 / 10, wndWidth * 2 / 5, wndHeight * 27 / 100);
 		chatArea.addActionListener(this);
 		add(chatArea);

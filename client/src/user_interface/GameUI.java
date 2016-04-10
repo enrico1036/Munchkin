@@ -22,6 +22,7 @@ public class GameUI extends GamePanel{
 	private DeckPanel decksPanel;
 	private CardListPanel<ClientCard> handPanel;
 	public static ZoomedPanel zp;
+	private ChatArea chatArea;
 	private PhasePanel phasePanel;
 	/**
 	 * Create the panel.
@@ -37,6 +38,9 @@ public class GameUI extends GamePanel{
         //zp.setBounds(getWidth() / 3, getHeight() / 20, getWidth() / 3, getHeight() * 5 / 8);
         add(zp);
         setComponentZOrder(zp, 0);
+        
+        
+        chatArea = new ChatArea();
 		
 		opponentsPanel = new OpponentsPanel(window);
 		opponentsPanel.setBackground(Color.BLUE);
@@ -71,8 +75,8 @@ public class GameUI extends GamePanel{
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(opponentsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(chatArea, GroupLayout.DEFAULT_SIZE, 102, 300)
+									.addComponent(tablePanel, GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(decksPanel, GroupLayout.PREFERRED_SIZE, 284, GroupLayout.PREFERRED_SIZE)
 										.addComponent(phasePanel, GroupLayout.PREFERRED_SIZE, 284, GroupLayout.PREFERRED_SIZE)))))
@@ -80,7 +84,7 @@ public class GameUI extends GamePanel{
 							.addContainerGap()
 							.addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(handPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))	
+							.addComponent(handPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 					.addContainerGap())
 				.addComponent(zp, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
 		);
@@ -91,13 +95,17 @@ public class GameUI extends GamePanel{
 					.addComponent(opponentsPanel, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(chatArea, GroupLayout.DEFAULT_SIZE, 100, 200)
+							.addPreferredGap(ComponentPlacement.UNRELATED))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(tablePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.UNRELATED))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(decksPanel, 60, 60, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(phasePanel, 20, 80, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED, 15, 15)))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGap(11)))
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(selfPanel, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
 						.addComponent(handPanel, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
@@ -108,5 +116,11 @@ public class GameUI extends GamePanel{
 		
 		
         //opponentsPanel.setAllSize();
-       }
+   }
+	
+	public final ChatArea getCharArea(){
+		return chatArea;
+	}
+	
+	
 }

@@ -91,6 +91,7 @@ public class GameEventHandler {
 
 						// Show popup dialog and wait for response
 						PopUpDialog dialog = new PopUpDialog(popup.getText(), popup.getButton1(), popup.getButton2(), popup.getTimeout_ms(), popup.getMin_val(), popup.getMax_val());
+						dialog.setLocationRelativeTo(MunchkinClient.getWindow());
 						dialog.setVisible(true);
 
 						// Send response message based on user's choice
