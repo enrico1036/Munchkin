@@ -41,10 +41,10 @@ public class GameEventHandler {
 
 			@Override
 			public void run() {
-
+				boolean gameStarted=false;
+				
 				do {
 					Message received = GameEventHandler.connection.receive();
-					boolean gameStarted=false;
 					// A null message implies that the connection is closed
 					if (received == null)
 						break;
@@ -56,9 +56,9 @@ public class GameEventHandler {
 					case Message.CLT_CHAT_MESSAGE:
 						ChatMessage chatMessage = (ChatMessage) received;
 						if(!gameStarted){
-						lobbyPanel.getChatArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
+							lobbyPanel.getChatArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
 						}else{
-						((GameUI)MunchkinClient.getPanel("GameUI")).getCharArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
+							((GameUI)MunchkinClient.getPanel("GameUI")).getCharArea().appendLine(chatMessage.getSender() + ": " + chatMessage.getMessage());
 						}
 						
 						break;

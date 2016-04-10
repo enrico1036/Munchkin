@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DefaultCaret;
 
 import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory.Default;
 
@@ -75,6 +76,9 @@ public class ChatArea extends JPanel {
 		textArea.setText("");
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		DefaultCaret caret = (DefaultCaret) textArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		
 		setLayout(groupLayout);
 	}

@@ -43,6 +43,7 @@ public class GameUI extends GamePanel implements ActionListener{
         
         
         chatArea = new ChatArea();
+        chatArea.addActionListener(this);
 		
 		opponentsPanel = new OpponentsPanel(window);
 		opponentsPanel.setBackground(Color.BLUE);
