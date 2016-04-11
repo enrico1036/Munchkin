@@ -21,7 +21,7 @@ public class DatabaseConnection {
 	        System.out.print(res.getString("ID")+" ");
 	        System.out.println(res.getString("Nome"));
 	      }
-	     // res.close(); // chiudere le risorse DB è obbligatorio
+	      res.close(); // chiudere le risorse DB è obbligatorio
 	      cmd.close();
 	      con.close();
 	    }
