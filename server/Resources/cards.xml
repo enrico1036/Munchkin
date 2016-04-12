@@ -3,35 +3,138 @@
 	<doors>
 		
 		<monster name="creatura_della_laguna_rosa" level="08"  earningLevels="01" earningTreasures="02"  >
-			<effect name="loseLevel">
+			<badThings name="loseLevel">
 				<numberLevel>3</numberLevel>
+			</badThings>
+			<effect name="escapeForRace">
+				<raceName>felino</raceName>
+			</effect>
+			<effect name="drawDoor">
+				<number>1</number>
+				<show>false</show>
 			</effect>
 		</monster>
-		<monster name="ogre" level="18"  earningLevels="02" earningTreasures="05"   > <effect> </effect> </monster>
-		<monster name="pianta_carnivora" level="02"  earningLevels="01" earningTreasures="01"   > <effect> </effect> </monster>
-		<monster name="poltrona" level="01"  earningLevels="01" earningTreasures="01"   > <effect> </effect> </monster>
-		<monster name="palladipelo_zannuta" level="06"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
-		<monster name="darth_water" level="16"  earningLevels="02" earningTreasures="04"   > <effect> </effect> </monster>
-		<monster name="psico_sceriffo" level="12"  earningLevels="01" earningTreasures="03"   > <effect> </effect> </monster>
-		<monster name="secchioni_tacchinari" level="07"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
-		<monster name="pinguini_assassini" level="05"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
-		<monster name="minuscole_ma_avanzate_creature" level="01"  earningLevels="01" earningTreasures="01"   > <effect> </effect> </monster>
-		<monster name="formiche_gigante" level="06"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
-		<monster name="tettona_bionica" level="014"  earningLevels="01" earningTreasures="04"   > <effect> </effect> </monster>
-		<monster name="xqwzzmp" level="05"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
-		<monster name="stella_canina" level="09"  earningLevels="01" earningTreasures="03"   > <effect> </effect> </monster>
-		<monster name="noison" level="07"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
-		<monster name="pesce_stellare" level="08"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
-		<monster name="clowntrooper" level="17"  earningLevels="02" earningTreasures="04"   > <effect> </effect> </monster>
-		<monster name="grande_cthulhu" level="20"  earningLevels="02" earningTreasures="05"   > <effect> </effect> </monster>
-		<monster name="sciame_pesante" level="11"  earningLevels="01" earningTreasures="03"   > <effect> </effect> </monster>
-		<monster name="mostro_occhiuto" level="06"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
-		<monster name="ultra_violetta" level="15"  earningLevels="02" earningTreasures="04"   > <effect> </effect> </monster>
-		<monster name="orribile_cosa_verde" level="08"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
-		<monster name="succhiafaccia" level="02"  earningLevels="01" earningTreasures="01"   > <effect> </effect> </monster>
-		<monster name="palladipelo" level="01"  earningLevels="01" earningTreasures="01"   > <effect> </effect> </monster>
-		<monster name="la_chela" level="17"  earningLevels="02" earningTreasures="04"   > <effect> </effect> </monster>
-		<monster name="gian_giar" level="4"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
+		
+		<monster name="ogre" level="18"  earningLevels="02" earningTreasures="05" > 
+			<effect name="bonusToRace">
+				<raceName>cyborg</raceName>
+				<bonus>-4</bonus>
+			</effect>
+			<badThings name="dead"></badThings>
+		</monster>
+		
+		<monster name="pianta_carnivora" level="02"  earningLevels="01" earningTreasures="01"   >
+			<effect name="bonusToRace">
+				<raceName>cyborg</raceName>
+				<bonus>-3</bonus>
+			</effect>
+			<badThings name="loseLevel">
+				<numberLevel>1</numberLevel>
+			</badThings>
+		</monster>
+		
+		<monster name="poltrona" level="01"  earningLevels="01" earningTreasures="01"   > 
+			<effect name="drawTreasure">
+				<number>1</number>
+				<show>false</show>
+			</effect> 
+		</monster>
+		
+		<monster name="palladipelo_zannuta" level="06"  earningLevels="01" earningTreasures="02"   >
+			<effect name="bonusToRace">
+				<raceName>felino</raceName>
+				<bonus>-2</bonus>
+			</effect>
+		</monster>
+		<monster name="darth_water" level="16"  earningLevels="02" earningTreasures="04"   > 
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="psico_sceriffo" level="12"  earningLevels="01" earningTreasures="03"   >
+			<effect> 
+			</effect> 
+		</monster>
+
+		<monster name="pinguini_assassini" level="05"  earningLevels="01" earningTreasures="02"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="minuscole_ma_avanzate_creature" level="01"  earningLevels="01" earningTreasures="01"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="formiche_gigante" level="06"  earningLevels="01" earningTreasures="02"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="tettona_bionica" level="014"  earningLevels="01" earningTreasures="04"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="xqwzzmp" level="05"  earningLevels="01" earningTreasures="02"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="stella_canina" level="09"  earningLevels="01" earningTreasures="03"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="noison" level="07"  earningLevels="01" earningTreasures="02"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="pesce_stellare" level="08"  earningLevels="01" earningTreasures="02"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="clowntrooper" level="17"  earningLevels="02" earningTreasures="04"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="grande_cthulhu" level="20"  earningLevels="02" earningTreasures="05"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="sciame_pesante" level="11"  earningLevels="01" earningTreasures="03"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="mostro_occhiuto" level="06"  earningLevels="01" earningTreasures="02"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="ultra_violetta" level="15"  earningLevels="02" earningTreasures="04"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="orribile_cosa_verde" level="08"  earningLevels="01" earningTreasures="02"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="succhiafaccia" level="02"  earningLevels="01" earningTreasures="01"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="palladipelo" level="01"  earningLevels="01" earningTreasures="01"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="la_chela" level="17"  earningLevels="02" earningTreasures="04"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="gian_giar" level="4"  earningLevels="01" earningTreasures="02"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="sciame_pesante" level="11"  earningLevels="01" earningTreasures="03"   >
+			<effect> 
+			</effect> 
+		</monster>
+		<monster name="grigi" level="10"  earningLevels="01" earningTreasures="03"   >
+			<effect> 
+			</effect> 
+		</monster>
 		
 		
 		<curse name="dolcetto_alieno" immediate="true"  > <effect> </effect> </curse>
