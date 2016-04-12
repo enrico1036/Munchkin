@@ -1,54 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cards>
 	<doors>
-		<monster name="ogre" level="18"  earningLevels="02" earningTreasures="05" effect="fff" />
-		<monster name="pianta_carnivora" level="02"  earningLevels="01" earningTreasures="01" effect="eee" />
-		<monster name="poltrona" level="01"  earningLevels="01" earningTreasures="01" effect="fff" />
-		<monster name="palladipelo_zannuta" level="06"  earningLevels="01" earningTreasures="02" effect="eee" />
-		<monster name="darth_water" level="16"  earningLevels="02" earningTreasures="04" effect="fff" />
-		<monster name="psico_sceriffo" level="12"  earningLevels="01" earningTreasures="03" effect="eee" />
-		<monster name="secchioni_tacchinari" level="07"  earningLevels="01" earningTreasures="02" effect="fff" />
-		<monster name="pinguini_assassini" level="05"  earningLevels="01" earningTreasures="02" effect="eee" />
-		<monster name="minuscole_ma_avanzate_creature" level="01"  earningLevels="01" earningTreasures="01" effect="fff" />
-		<monster name="formiche_gigante" level="06"  earningLevels="01" earningTreasures="02" effect="fff" />
-		<monster name="tettona_bionica" level="014"  earningLevels="01" earningTreasures="04" effect="eee" />
-		<monster name="xqwzzmp" level="05"  earningLevels="01" earningTreasures="02" effect="fff" />
-		<monster name="stella_canina" level="09"  earningLevels="01" earningTreasures="03" effect="eee" />
-		<monster name="noison" level="07"  earningLevels="01" earningTreasures="02" effect="fff" />
-		<monster name="creatura_della_laguna_rosa" level="08"  earningLevels="01" earningTreasures="02" effect="eee" />
-		<monster name="pesce_stellare" level="08"  earningLevels="01" earningTreasures="02" effect="fff" />
-		<monster name="clowntrooper" level="17"  earningLevels="02" earningTreasures="04" effect="fff" />
-		<monster name="grande_cthulhu" level="20"  earningLevels="02" earningTreasures="05" effect="eee" />
-		<monster name="sciame_pesante" level="11"  earningLevels="01" earningTreasures="03" effect="eee" />
-		<monster name="mostro_occhiuto" level="06"  earningLevels="01" earningTreasures="02" effect="fff" />
-		<monster name="ultra_violetta" level="15"  earningLevels="02" earningTreasures="04" effect="fff" />
-		<monster name="orribile_cosa_verde" level="08"  earningLevels="01" earningTreasures="02" effect="eee" />
-		<monster name="succhiafaccia" level="02"  earningLevels="01" earningTreasures="01" effect="eee" />
-		<monster name="palladipelo" level="01"  earningLevels="01" earningTreasures="01" effect="fff" />
-		<monster name="la_chela" level="17"  earningLevels="02" earningTreasures="04" effect="fff" />
-		<monster name="gian_giar" level="4"  earningLevels="01" earningTreasures="02" effect="eee" />
 		
-		<curse name="dolcetto_alieno" immediate="true" effect="mario" />
-		<curse name="cavo_monocellulare" immediate="true" effect="mario" />
-		<curse name="aggressione_genetica" immediate="true" effect="mario" />
-		<curse name="apriscatole" immediate="true" effect="mario" />
-		<curse name="buco_nero" immediate="true" effect="mario" />
-		<curse name="obsolescenza_programmata" immediate="true" effect="mario" />
-		<curse name="vasca_chimica" immediate="true" effect="mario" />
-		<curse name="decadimento_orbitale" immediate="true" effect="mario" />
-		<curse name="gelatinizzatore" immediate="true" effect="mario" />
+		<monster name="creatura_della_laguna_rosa" level="08"  earningLevels="01" earningTreasures="02"  >
+			<effect name="loseLevel">
+				<numberLevel>3</numberLevel>
+			</effect>
+		</monster>
+		<monster name="ogre" level="18"  earningLevels="02" earningTreasures="05"   > <effect> </effect> </monster>
+		<monster name="pianta_carnivora" level="02"  earningLevels="01" earningTreasures="01"   > <effect> </effect> </monster>
+		<monster name="poltrona" level="01"  earningLevels="01" earningTreasures="01"   > <effect> </effect> </monster>
+		<monster name="palladipelo_zannuta" level="06"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
+		<monster name="darth_water" level="16"  earningLevels="02" earningTreasures="04"   > <effect> </effect> </monster>
+		<monster name="psico_sceriffo" level="12"  earningLevels="01" earningTreasures="03"   > <effect> </effect> </monster>
+		<monster name="secchioni_tacchinari" level="07"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
+		<monster name="pinguini_assassini" level="05"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
+		<monster name="minuscole_ma_avanzate_creature" level="01"  earningLevels="01" earningTreasures="01"   > <effect> </effect> </monster>
+		<monster name="formiche_gigante" level="06"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
+		<monster name="tettona_bionica" level="014"  earningLevels="01" earningTreasures="04"   > <effect> </effect> </monster>
+		<monster name="xqwzzmp" level="05"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
+		<monster name="stella_canina" level="09"  earningLevels="01" earningTreasures="03"   > <effect> </effect> </monster>
+		<monster name="noison" level="07"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
+		<monster name="pesce_stellare" level="08"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
+		<monster name="clowntrooper" level="17"  earningLevels="02" earningTreasures="04"   > <effect> </effect> </monster>
+		<monster name="grande_cthulhu" level="20"  earningLevels="02" earningTreasures="05"   > <effect> </effect> </monster>
+		<monster name="sciame_pesante" level="11"  earningLevels="01" earningTreasures="03"   > <effect> </effect> </monster>
+		<monster name="mostro_occhiuto" level="06"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
+		<monster name="ultra_violetta" level="15"  earningLevels="02" earningTreasures="04"   > <effect> </effect> </monster>
+		<monster name="orribile_cosa_verde" level="08"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
+		<monster name="succhiafaccia" level="02"  earningLevels="01" earningTreasures="01"   > <effect> </effect> </monster>
+		<monster name="palladipelo" level="01"  earningLevels="01" earningTreasures="01"   > <effect> </effect> </monster>
+		<monster name="la_chela" level="17"  earningLevels="02" earningTreasures="04"   > <effect> </effect> </monster>
+		<monster name="gian_giar" level="4"  earningLevels="01" earningTreasures="02"   > <effect> </effect> </monster>
 		
-		<consumable name="e_il_suo_clone" effect="dsad" />
-		<consumable name="folle" effect="dsad" />
-		<consumable name="incompreso" effect="dsad" />
-		<consumable name="telepatico" effect="dsad" />
-		<consumable name="computerizzato" effect="dsad" />
-		<consumable name="mutaforma" effect="dsad" />
-		<consumable name="io_sono_tuo_padre" effect="dsad" />
-		<consumable name="radioattivo" effect="dsad" />
-		<consumable name="miniaturizzato" effect="dsad" />
-		<consumable name="ultimo_della_sua_razza" effect="dsad" />
-		<consumable name="da_un_altra_dimensione" effect="dsad" />
+		
+		<curse name="dolcetto_alieno" immediate="true"  > <effect> </effect> </curse>
+		<curse name="cavo_monocellulare" immediate="true"  > <effect> </effect> </curse>
+		<curse name="aggressione_genetica" immediate="true"  > <effect> </effect> </curse>
+		<curse name="apriscatole" immediate="true"  > <effect> </effect> </curse>
+		<curse name="buco_nero" immediate="true"  > <effect> </effect> </curse>
+		<curse name="obsolescenza_programmata" immediate="true"  > <effect> </effect> </curse>
+		<curse name="vasca_chimica" immediate="true"  > <effect> </effect> </curse>
+		<curse name="decadimento_orbitale" immediate="true"  > <effect> </effect> </curse>
+		<curse name="gelatinizzatore" immediate="true"  > <effect> </effect> </curse>
+		
+		<consumable name="e_il_suo_clone"  > <effect> </effect> </consumable>
+		<consumable name="folle"  > <effect> </effect> </consumable>
+		<consumable name="incompreso"  > <effect> </effect> </consumable>
+		<consumable name="telepatico"  > <effect> </effect> </consumable>
+		<consumable name="computerizzato"  > <effect> </effect> </consumable>
+		<consumable name="mutaforma"  > <effect> </effect> </consumable>
+		<consumable name="io_sono_tuo_padre"  > <effect> </effect> </consumable>
+		<consumable name="radioattivo"  > <effect> </effect> </consumable>
+		<consumable name="miniaturizzato"  > <effect> </effect> </consumable>
+		<consumable name="ultimo_della_sua_razza"  > <effect> </effect> </consumable>
+		<consumable name="da_un_altra_dimensione"  > <effect> </effect> </consumable>
 		
 		
 	</doors>

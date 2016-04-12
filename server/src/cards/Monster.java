@@ -11,7 +11,7 @@ public class Monster extends Card {
 	private int earningLevels;
 	private int earningTreasures;
 	private int totalBonus;
-	protected ArrayList<Pair<String, HashMap<String, String>>> badThings; // List containing effectsID and a list of parameter for each effect to be called on player loose
+	private HashMap<String, HashMap<String, String>> badThings; // List containing effectsID and a list of parameter for each effect to be called on player loose
 	
 	
 	public Monster(String title, int level, int earningLevels, int earningTreasures) {
@@ -22,8 +22,8 @@ public class Monster extends Card {
 	}
 	
 	
-	public void badThings(){
-		
+	public  HashMap<String, HashMap<String, String>> badThings(){
+		return badThings;
 	}
 	
 	public int getTotalBonus(){
