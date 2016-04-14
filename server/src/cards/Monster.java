@@ -12,7 +12,7 @@ public class Monster extends Card {
 	private int earningTreasures;
 	private int totalBonus;
 	private HashMap<String, HashMap<String, String>> badThings; // List containing effectsID and a list of parameter for each effect to be called on player loose
-	
+	private HashMap<String, HashMap<String,String>> buff;
 	
 	public Monster(String title, int level, int earningLevels, int earningTreasures) {
 		super(title, CardType.Door, Category.Monster);
@@ -24,6 +24,10 @@ public class Monster extends Card {
 	
 	public  HashMap<String, HashMap<String, String>> badThings(){
 		return badThings;
+	}
+	
+	public  HashMap<String, HashMap<String, String>> buff(){
+		return buff;
 	}
 	
 	public int getTotalBonus(){

@@ -1,8 +1,8 @@
 package cards;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,10 +11,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import com.sun.org.apache.xml.internal.resolver.readers.CatalogReader;
-
-import javafx.util.Pair;
 
 /*
  * 	LEGAL XML FILE:
@@ -53,6 +49,7 @@ public class XmlCardLoader {
 	private static final String nameAttr = "name";
 	private static final String levelAttr = "level";
 	private static final String effectAttr = "effect";
+	private static final String badThingsAttr = "badThings";
 	private static final String curseImmAttr = "immediate";
 	private static final String consCombatAttr="onlyCombat";
 	private static final String slotAttr = "slot";
@@ -119,7 +116,46 @@ public class XmlCardLoader {
 					int level = Integer.parseInt(elem.getAttribute(levelAttr));
 					int earningLevel = Integer.parseInt(elem.getAttribute(earningLevelAttr));
 					int earningTreasures = Integer.parseInt(elem.getAttribute(earningTreasuresAttr));
-					doorCard = new Monster(name, level, earningLevel, earningTreasures);
+					Monster card= new Monster(name, level, earningLevel, earningTreasures);
+					
+					NodeList monsterNode = root.getElementsByTagName(monsterTag).item(0).getChildNodes();
+					
+					for(int j=0;j<monsterNode.getLength();j++){
+						Element cardElem = null;
+						if (monsterNode.item(j).getNodeType() != Node.TEXT_NODE) {
+							cardElem= (Element) monsterNode.item(j);
+							if(monsterNode.item(j).getNodeValue().equals(badThingsAttr)){
+								String effectName= cardElem.getAttribute(nameAttr);
+								HashMap<String,String> badThings= new HashMap<>();
+							
+								NodeList badThingsNode = root.getElementsByTagName(badThingsAttr).item(j).getChildNodes();
+							
+									for(int k=0;k<badThingsNode.getLength();k++){
+										Element effectElem = (Element) badThingsNode.item(k);
+										String nodeName=effectElem.getTagName();
+										String nodeValue=effectElem.getNodeValue();
+										badThings.put(nodeName, nodeValue);
+									}
+									card.badThings().put(effectName, badThings);
+									
+							}else if(monsterNode.item(j).getNodeValue().equals(effectAttr)){
+								HashMap<String,String> buff = new HashMap<>();
+								String buffName= cardElem.getAttribute(nameAttr);
+								
+								NodeList buffNode = root.getElementsByTagName(effectAttr).item(j).getChildNodes();
+								
+								for(int k=0;k<buffNode.getLength();k++){
+									Element buffElem = (Element) buffNode.item(k);
+									String nodeName=buffElem.getTagName();
+									String nodeValue=buffElem.getNodeValue();
+									buff.put(nodeName, nodeValue);
+								}
+								card.badThings().put(buffName, buff);
+								
+							}
+						}
+					}
+					doorCard = card;
 				} catch (NumberFormatException e) {
 					// Level was not a number
 				}
@@ -139,7 +175,7 @@ public class XmlCardLoader {
 				break;
 
 			case consumableTag:
-				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute("onlyCombat"));
+				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute(consCombatAttr));
 				doorCard = new Consumable(name, CardType.Door,onlyCombat);
 				break;
 
