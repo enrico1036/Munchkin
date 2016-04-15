@@ -116,7 +116,7 @@ public class XmlCardLoader {
 					int level = Integer.parseInt(elem.getAttribute(levelAttr));
 					int earningLevel = Integer.parseInt(elem.getAttribute(earningLevelAttr));
 					int earningTreasures = Integer.parseInt(elem.getAttribute(earningTreasuresAttr));
-					Monster card= new Monster(name, level, earningLevel, earningTreasures);
+					Monster monsterCard= new Monster(name, level, earningLevel, earningTreasures);
 					
 					NodeList monsterNode = root.getElementsByTagName(monsterTag).item(monsterCounter).getChildNodes();
 					monsterCounter++;
@@ -140,7 +140,7 @@ public class XmlCardLoader {
 									
 										}
 									}	
-									card.badThings().put(effectName, badThings);
+									monsterCard.badThings().put(effectName, badThings);
 									
 							}else if(cardElem.getTagName().equals(effectAttr)){
 								HashMap<String,String> buff = new HashMap<>();
@@ -157,12 +157,12 @@ public class XmlCardLoader {
 								
 									}
 								}	
-								card.getEffects().put(buffName, buff);
+								monsterCard.getEffects().put(buffName, buff);
 								
 							}
 						}
 					}
-					doorCard = card;
+					doorCard = monsterCard;
 				} catch (NumberFormatException e) {
 					// Level was not a number
 				}
@@ -170,12 +170,39 @@ public class XmlCardLoader {
 
 			case curseTag:
 				boolean immediate = Boolean.parseBoolean(elem.getAttribute(curseImmAttr));
-				doorCard = new Curse(name, immediate);
+				Curse curseCard = new Curse(name, immediate);
 				
 				NodeList curseNode = root.getElementsByTagName(curseTag).item(curseCounter).getChildNodes();
 				curseCounter++;
 				
+				for(int j=0;j<curseNode.getLength();j++){
+					Element cardElem = null;
+					if (curseNode.item(j).getNodeType() != Node.TEXT_NODE) {
+						cardElem= (Element) curseNode.item(j);
+						
+						if(cardElem.getTagName().equals(effectAttr)){
+							HashMap<String,String> buff = new HashMap<>();
+							String buffName= cardElem.getAttribute(nameAttr);
+							
+							NodeList buffNode = root.getElementsByTagName(effectAttr).item(buffCounter).getChildNodes();
+							buffCounter++;
+							for(int k=0;k<buffNode.getLength();k++){
+								if (buffNode.item(k).getNodeType() != Node.TEXT_NODE) {
+									Element buffElem = (Element) buffNode.item(k);
+									String nodeName=buffElem.getTagName();
+									String nodeValue=buffElem.getTextContent();
+									buff.put(nodeName, nodeValue);
+							
+								}
+							}	
+							curseCard.getEffects().put(buffName, buff);
+							
+						}
+					}
+				}
 				
+				
+				doorCard = curseCard;
 				break;
 
 			case classTag:
@@ -188,9 +215,43 @@ public class XmlCardLoader {
 
 			case consumableTag:
 				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute(consCombatAttr));
-				doorCard = new Consumable(name, CardType.Door,onlyCombat);
+				Consumable consumableCard = new Consumable(name, CardType.Door,onlyCombat);
+				
+				NodeList consumableNode = root.getElementsByTagName(consumableTag).item(curseCounter).getChildNodes();
+				consumableCounter++;
+				
+				for(int j=0;j<consumableNode.getLength();j++){
+					Element cardElem = null;
+					
+					if (consumableNode.item(j).getNodeType() != Node.TEXT_NODE) {
+						cardElem= (Element) consumableNode.item(j);
+						
+						if(cardElem.getTagName().equals(effectAttr)){
+							HashMap<String,String> buff = new HashMap<>();
+							String buffName= cardElem.getAttribute(nameAttr);
+							
+							NodeList buffNode = root.getElementsByTagName(effectAttr).item(buffCounter).getChildNodes();
+							buffCounter++;
+							for(int k=0;k<buffNode.getLength();k++){
+								if (buffNode.item(k).getNodeType() != Node.TEXT_NODE) {
+									Element buffElem = (Element) buffNode.item(k);
+									String nodeName=buffElem.getTagName();
+									String nodeValue=buffElem.getTextContent();
+									buff.put(nodeName, nodeValue);
+							
+								}
+							}	
+							consumableCard.getEffects().put(buffName, buff);
+							
+						}
+					}
+				}
+				
+				doorCard=consumableCard;
 				break;
 
+				
+				
 			default:
 				break;
 			}
@@ -217,7 +278,7 @@ public class XmlCardLoader {
 
 			// Retrieve common attributes
 			String name = elem.getAttribute(nameAttr);
-			String effect = elem.getAttribute(effectAttr);
+			
 
 			// Do not add cards without a valid name
 			if (name.isEmpty())
@@ -230,7 +291,39 @@ public class XmlCardLoader {
 
 			case consumableTag:
 				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute("onlyCombat"));
-				treasureCard = new Consumable(name, CardType.Treasure, onlyCombat);
+				Consumable consumableCard = new Consumable(name, CardType.Treasure, onlyCombat);
+				
+				NodeList consumableNode = root.getElementsByTagName(consumableTag).item(curseCounter).getChildNodes();
+				consumableCounter++;
+				
+				for(int j=0;j<consumableNode.getLength();j++){
+					Element cardElem = null;
+					
+					if (consumableNode.item(j).getNodeType() != Node.TEXT_NODE) {
+						cardElem= (Element) consumableNode.item(j);
+						
+						if(cardElem.getTagName().equals(effectAttr)){
+							HashMap<String,String> buff = new HashMap<>();
+							String buffName= cardElem.getAttribute(nameAttr);
+							
+							NodeList buffNode = root.getElementsByTagName(effectAttr).item(buffCounter).getChildNodes();
+							buffCounter++;
+							for(int k=0;k<buffNode.getLength();k++){
+								if (buffNode.item(k).getNodeType() != Node.TEXT_NODE) {
+									Element buffElem = (Element) buffNode.item(k);
+									String nodeName=buffElem.getTagName();
+									String nodeValue=buffElem.getTextContent();
+									buff.put(nodeName, nodeValue);
+							
+								}
+							}	
+							consumableCard.getEffects().put(buffName, buff);
+							
+						}
+					}
+				}
+				
+				treasureCard = consumableCard;
 				break;
 
 			case equipmentTag:
