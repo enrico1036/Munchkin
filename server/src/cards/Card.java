@@ -17,7 +17,7 @@ public abstract class Card {
 		
 		protected HashMap<String, HashMap<String, String>> effects;	// List containing effectsID and a list of parameter for each effect 
 		
-		protected ArrayList<Pair<String, HashMap<String, String>>> endEffects; // List containing effectsID and a list of parameter for each effect to be called on card discard
+		protected HashMap<String, HashMap<String, String>> endEffects; // List containing effectsID and a list of parameter for each effect to be called on card discard
 		
 		protected Player owner;	// Card owner
 		
@@ -34,13 +34,11 @@ public abstract class Card {
 		
 	
 		
-		public ArrayList<Pair<String, HashMap<String, String>>> getEndEffects(){
+		public HashMap<String, HashMap<String, String>> getEndEffects(){
 			return endEffects;
 		}
 		
-		public void addEndEffect(Pair<String, HashMap<String, String>> endEffect) {
-			endEffects.add(endEffect);
-		}
+	
 		
 		public void setOwner(Player owner) {
 			this.owner = owner;

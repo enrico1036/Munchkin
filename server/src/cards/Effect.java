@@ -23,10 +23,15 @@ import utils.StateMachine;
 
 public class Effect {
 
-	public static void runEffect(StateMachine gamePhase, Player owner, ArrayList<Pair<String, HashMap<String, String>>> effects) {
+	public static void runEffect(StateMachine gamePhase, Player owner, HashMap<String, HashMap<String, String>> effects) {
 		String effectID;
 		HashMap<String, String> parameters;
-		for (Pair<String, HashMap<String, String>> effect : effects) {
+		
+			for(String s : effects.keySet()){
+				HashMap<String, String> map = effects.get(s);
+				for(String z: effects.get(s).keySet()){
+					
+			
 			effectID = effect.getKey();
 			parameters = effect.getValue();
 			switch (effectID) {
@@ -61,25 +66,26 @@ public class Effect {
 			case "bonusToClass":
 				bonusToClass((Combat) gamePhase, parameters.get("className"), Integer.parseInt(parameters.get("bonus")));
 				break;
-			case "dead":
-				dead();
+				case "dead":
+					dead();
+					break;
+				case "dropCard":
+					dropCard(Category.valueOf(parameters.get("cardCategory")), Integer.parseInt(parameters.get("number")), Boolean.parseBoolean(parameters.get("onlyHand")));
+					break;
+				case "dropAllHand":
+					dropAllHand();
 				break;
-			case "dropCard":
-				dropCard(Category.valueOf(parameters.get("cardCategory")), Integer.parseInt(parameters.get("number")), Boolean.parseBoolean(parameters.get("onlyHand")));
-				break;
-			case "dropAllHand":
-				dropAllHand();
-				break;
-			case "escapeForRace":
-				escapeForRace((Combat) gamePhase, parameters.get("raceName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
-				break;
-			case "escapeForClass":
-				escapeForClass((Combat) gamePhase, parameters.get("className"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
-				break;
-			case "escapeForObject":
-				escapeForObject((Combat) gamePhase, EquipSlot.parse(parameters.get("slot")), parameters.get("cardName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
-				break;
-			}
+				case "escapeForRace":
+					escapeForRace((Combat) gamePhase, parameters.get("raceName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
+					break;
+				case "escapeForClass":
+					escapeForClass((Combat) gamePhase, parameters.get("className"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
+					break;
+				case "escapeForObject":
+					escapeForObject((Combat) gamePhase, EquipSlot.parse(parameters.get("slot")), parameters.get("cardName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
+					break;
+				}
+				}
 		}
 	}
 
