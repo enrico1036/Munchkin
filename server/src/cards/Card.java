@@ -15,7 +15,7 @@ public abstract class Card {
 		
 		protected Category category;	// Monster, Curse, Equipment ecc
 		
-		protected ArrayList<Pair<String, HashMap<String, String>>> effects;	// List containing effectsID and a list of parameter for each effect 
+		protected HashMap<String, HashMap<String, String>> effects;	// List containing effectsID and a list of parameter for each effect 
 		
 		protected ArrayList<Pair<String, HashMap<String, String>>> endEffects; // List containing effectsID and a list of parameter for each effect to be called on card discard
 		
@@ -25,15 +25,14 @@ public abstract class Card {
 			this.title = title;
 			this.type = type;
 			this.category = category;
+			effects = new HashMap<String, HashMap<String, String>>();
 		}
 		
-		public ArrayList<Pair<String, HashMap<String, String>>> getEffects(){
+		public HashMap<String, HashMap<String, String>> getEffects(){
 			return effects;
 		}
 		
-		public void addEffect(Pair<String, HashMap<String, String>> effect) {
-			effects.add(effect);
-		}
+	
 		
 		public ArrayList<Pair<String, HashMap<String, String>>> getEndEffects(){
 			return endEffects;
@@ -49,6 +48,7 @@ public abstract class Card {
 		
 		public void effect(StateMachine gamePhase) {
 			Effect.runEffect(gamePhase, this.owner, this.effects);
+			//TODO DA SISTEMARE
 		}
 		
 		public void endEffect(StateMachine gamePhase) {

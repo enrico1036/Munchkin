@@ -83,8 +83,8 @@ public class MunchkinServer implements PlayerEventListener {
 			Debug.log("Loaded cards from xml file");
 		} catch (Exception e) {
 			Debug.err("couldn't load cards from xml file");
-//			e.printStackTrace();
-			System.exit(0);
+			e.printStackTrace();
+			//System.exit(0);
 		}
 
 		// Initialize timer

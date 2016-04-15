@@ -88,8 +88,7 @@ public class XmlCardLoader {
 		 * LOAD DOORS
 		 */
 		NodeList cardList = root.getElementsByTagName(doorTag).item(0).getChildNodes();
-		
-
+		int monsterCounter=0,badThingsCounter=0,buffCounter=0,curseCounter=0,consumableCounter=0;
 		// Loop every child
 		for (int i = 0; i < cardList.getLength(); i++) {
 			// Retrieve element
@@ -113,44 +112,52 @@ public class XmlCardLoader {
 			switch (elem.getTagName()) {
 			case monsterTag:
 				try {
+					
 					int level = Integer.parseInt(elem.getAttribute(levelAttr));
 					int earningLevel = Integer.parseInt(elem.getAttribute(earningLevelAttr));
 					int earningTreasures = Integer.parseInt(elem.getAttribute(earningTreasuresAttr));
 					Monster card= new Monster(name, level, earningLevel, earningTreasures);
 					
-					NodeList monsterNode = root.getElementsByTagName(monsterTag).item(0).getChildNodes();
+					NodeList monsterNode = root.getElementsByTagName(monsterTag).item(monsterCounter).getChildNodes();
+					monsterCounter++;
 					
 					for(int j=0;j<monsterNode.getLength();j++){
 						Element cardElem = null;
 						if (monsterNode.item(j).getNodeType() != Node.TEXT_NODE) {
 							cardElem= (Element) monsterNode.item(j);
-							if(monsterNode.item(j).getNodeValue().equals(badThingsAttr)){
+							if(cardElem.getTagName().equals(badThingsAttr)){
 								String effectName= cardElem.getAttribute(nameAttr);
 								HashMap<String,String> badThings= new HashMap<>();
 							
-								NodeList badThingsNode = root.getElementsByTagName(badThingsAttr).item(j).getChildNodes();
-							
+								NodeList badThingsNode = root.getElementsByTagName(badThingsAttr).item(badThingsCounter).getChildNodes();
+								badThingsCounter++;
 									for(int k=0;k<badThingsNode.getLength();k++){
-										Element effectElem = (Element) badThingsNode.item(k);
-										String nodeName=effectElem.getTagName();
-										String nodeValue=effectElem.getNodeValue();
-										badThings.put(nodeName, nodeValue);
-									}
+										if (badThingsNode.item(k).getNodeType() != Node.TEXT_NODE) {
+											Element effectElem = (Element) badThingsNode.item(k);
+											String nodeName=effectElem.getTagName();
+											String nodeValue=effectElem.getTextContent();
+											badThings.put(nodeName, nodeValue);
+									
+										}
+									}	
 									card.badThings().put(effectName, badThings);
 									
-							}else if(monsterNode.item(j).getNodeValue().equals(effectAttr)){
+							}else if(cardElem.getTagName().equals(effectAttr)){
 								HashMap<String,String> buff = new HashMap<>();
 								String buffName= cardElem.getAttribute(nameAttr);
 								
-								NodeList buffNode = root.getElementsByTagName(effectAttr).item(j).getChildNodes();
-								
+								NodeList buffNode = root.getElementsByTagName(effectAttr).item(buffCounter).getChildNodes();
+								buffCounter++;
 								for(int k=0;k<buffNode.getLength();k++){
-									Element buffElem = (Element) buffNode.item(k);
-									String nodeName=buffElem.getTagName();
-									String nodeValue=buffElem.getNodeValue();
-									buff.put(nodeName, nodeValue);
-								}
-								card.badThings().put(buffName, buff);
+									if (buffNode.item(k).getNodeType() != Node.TEXT_NODE) {
+										Element buffElem = (Element) buffNode.item(k);
+										String nodeName=buffElem.getTagName();
+										String nodeValue=buffElem.getTextContent();
+										buff.put(nodeName, nodeValue);
+								
+									}
+								}	
+								card.getEffects().put(buffName, buff);
 								
 							}
 						}
@@ -164,6 +171,11 @@ public class XmlCardLoader {
 			case curseTag:
 				boolean immediate = Boolean.parseBoolean(elem.getAttribute(curseImmAttr));
 				doorCard = new Curse(name, immediate);
+				
+				NodeList curseNode = root.getElementsByTagName(curseTag).item(curseCounter).getChildNodes();
+				curseCounter++;
+				
+				
 				break;
 
 			case classTag:
