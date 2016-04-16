@@ -24,48 +24,44 @@ import utils.StateMachine;
 public class Effect {
 
 	public static void runEffect(StateMachine gamePhase, Player owner, HashMap<String, HashMap<String, String>> effects) {
-		String effectID;
-		HashMap<String, String> parameters;
 		
-			for(String s : effects.keySet()){
-				HashMap<String, String> map = effects.get(s);
-				for(String z: effects.get(s).keySet()){
-					
+		//HashMap<String, String> parameters;
+		
+			for(String effectID : effects.keySet()){
+				HashMap<String, String> parameters = effects.get(effectID);
 			
-			effectID = effect.getKey();
-			parameters = effect.getValue();
-			switch (effectID) {
-			// call right method with gamePhase and needed parameters
-			case "loseLevel":
-				loseLevel(Integer.parseInt((parameters.get("numberLevel"))));
-				break;
-			case "drawDoor":
-				drawDoor(Integer.parseInt(parameters.get("number")), Boolean.getBoolean(parameters.get("show")));
-				break;
-			case "drawTreasure":
-				drawTreasure(Integer.parseInt(parameters.get("number")), Boolean.getBoolean(parameters.get("show")));
-				break;
-			case "combatBonus":
-				combatBonus((Combat) gamePhase, owner, Integer.parseInt(parameters.get("playerBonus")), Integer.parseInt(parameters.get("extraTreasure")), Boolean.getBoolean(parameters.get("choosable")));
-				break;
-			case "dropObject":
-				dropObject(EquipSlot.parse(parameters.get("slot")));
-				break;
-			case "dropRace":
-				dropRace();
-				break;
-			case "dropClass":
-				dropClass();
-				break;
-			case "bonusEscape":
-				bonusEscape(owner, Integer.parseInt(parameters.get("bonus")));
-				break;
-			case "bonusToRace":
-				bonusToRace((Combat) gamePhase, parameters.get("raceName"), Integer.parseInt(parameters.get("bonus")));
-				break;
-			case "bonusToClass":
-				bonusToClass((Combat) gamePhase, parameters.get("className"), Integer.parseInt(parameters.get("bonus")));
-				break;
+				switch (effectID) {
+				// call right method with gamePhase and needed parameters
+				case "loseLevel":
+					loseLevel(Integer.parseInt((parameters.get("numberLevel"))));
+					break;
+				case "drawDoor":
+					drawDoor(Integer.parseInt(parameters.get("number")), Boolean.getBoolean(parameters.get("show")));
+					break;
+				case "drawTreasure":
+					drawTreasure(Integer.parseInt(parameters.get("number")), Boolean.getBoolean(parameters.get("show")));
+					break;
+				case "combatBonus":
+					combatBonus((Combat) gamePhase, owner, Integer.parseInt(parameters.get("playerBonus")), Integer.parseInt(parameters.get("extraTreasure")), Boolean.getBoolean(parameters.get("choosable")));
+					break;
+				case "dropObject":
+					dropObject(EquipSlot.parse(parameters.get("slot")));
+					break;
+				case "dropRace":
+					dropRace();
+					break;
+				case "dropClass":
+					dropClass();
+					break;
+				case "bonusEscape":
+					bonusEscape(owner, Integer.parseInt(parameters.get("bonus")));
+					break;
+				case "bonusToRace":
+					bonusToRace((Combat) gamePhase, parameters.get("raceName"), Integer.parseInt(parameters.get("bonus")));
+					break;
+				case "bonusToClass":
+					bonusToClass((Combat) gamePhase, parameters.get("className"), Integer.parseInt(parameters.get("bonus")));
+					break;
 				case "dead":
 					dead();
 					break;
@@ -84,7 +80,7 @@ public class Effect {
 				case "escapeForObject":
 					escapeForObject((Combat) gamePhase, EquipSlot.parse(parameters.get("slot")), parameters.get("cardName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
 					break;
-				}
+				
 				}
 		}
 	}
