@@ -147,7 +147,10 @@
 		<curse name="decadimento_orbitale" immediate="true"  > <effect> </effect> </curse>
 		<curse name="gelatinizzatore" immediate="true"  > <effect> </effect> </curse>
 		
-		<consumable name="e_il_suo_clone"  > <effect> </effect> </consumable>
+		<consumable name="e_il_suo_clone"  > 
+			<effect>
+			</effect>
+		</consumable>
 		<consumable name="folle"  > <effect> </effect> </consumable>
 		<consumable name="incompreso"  > <effect> </effect> </consumable>
 		<consumable name="telepatico"  > <effect> </effect> </consumable>
@@ -163,22 +166,164 @@
 	</doors>
 	<treasures>
 	
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
-		<equipment name="amplificatore_mentale" slot="head" bonus="4" value="500" />
+		<equipment name="autofuga_1000" slot="feet" bonus="0" value="400" >
+			<effect name="bonusEscape">
+				<bonus>2</bonus>
+			</effect>
+		</equipment>
+		<equipment name="ruotini_retrattili" slot="feet" bonus="0" value="400" >
+			<effect name="bonusEscape">
+				<bonus>1</bonus>
+			</effect>
+		</equipment>
+		<equipment name="stivaloni_ronzanti" slot="feet" bonus="2" value="600" />
+		<equipment name="stivali_magnetici" slot="feet" bonus="1" value="300" />
+		<equipment name="armatura_di_energia" slot="body" bonus="2" value="400" />
+		<equipment name="vernice_verde" slot="body" bonus="1" value="100" />
+		<equipment name="nastrini_posizionati_strategicamente" slot="body" bonus="2" value="400" />
+		<equipment name="elmetto_a_bolla" slot="head" bonus="2" value="300" />
+		<equipment name="antenne_acustiche" slot="head" bonus="4" value="600" >
+			<effect>
+				<!-- solo da un cyborg -->
+			</effect>
+		</equipment>
+		<equipment name="ciuffo_per-manente" slot="head" bonus="0" value="400" >
+			<effect>
+				<!-- meno una mano -->
+			</effect>
+		</equipment>
+		<equipment name="raser" slot="twohand" bonus="2" value="500" />
+		<equipment name="maser" slot="twohand" bonus="3" value="600" />
+		<equipment name="bobaser" slot="twohand" bonus="4" value="800" />
+		<equipment name="pussaviaser" slot="twohand" bonus="4" value="800" />
+		<equipment name="sprayser" slot="twohand" bonus="3" value="600" >
+			<effect>
+				<!-- non utilizzabile da insettoide -->
+			</effect>
+		</equipment>
+		<equipment name="laser" slot="hand" bonus="2" value="400" />
+		<equipment name="frusta_neuronica" slot="hand" bonus="4" value="500" >
+			<effect>
+				<!-- solo da mutante -->
+			</effect>
+		</equipment>
+		<equipment name="sciabola_fotonica" slot="hand" bonus="2" value="400" >
+			<effect>
+				<!-- solo da umano -->
+			</effect>
+		</equipment>
+		<equipment name="campo_di_stupidita" slot="hand" bonus="4" value="500" >
+			<effect>
+				<!-- solo da umano -->
+			</effect>
+		</equipment>
+		<equipment name="mongolarma" slot="hand" bonus="2" value="300" >
+			<effect>
+				<!-- non utilizzabile da psichico -->
+			</effect>
+		</equipment>
+		<equipment name="amplificatore_mentale" slot="hand" bonus="4" value="600" >
+			<effect>
+				<!-- solo da psichico -->
+			</effect>
+		</equipment>
+		<equipment name="cannone_al_plasma" slot="hand" bonus="4" value="1200" />
+
+
+		<consumable name="rinforzi_i_tuoi_micro-chloridian"  > 
+			<effect>
+				<!-- uplevel -->
+			</effect>
+		</consumable>
+		<consumable name="monolito"  > 
+			<effect>
+				<!-- uplevel -->
+			</effect>
+		</consumable>
+		<consumable name="ringraziamenti"  > 
+			<effect>
+				<!-- uplevel -->
+			</effect>
+		</consumable>
+		<consumable name="obliteri_un_pianeta_pacifico"  > 
+			<effect>
+				<!-- uplevel -->
+			</effect>
+		</consumable>
+		<consumable name="nanogranata_allucinogenica"  value="100"> 
+			<effect name="combatBonus">
+				<playerBonus>3</playerBonus>
+				<extraTreasure>0</extraTreasure>
+				<choosable>true</choosable>
+			</effect>
+		</consumable>
+		<consumable name="rum_denubiano"  value="100"> 
+			<effect>
+				<playerBonus>3</playerBonus>
+				<extraTreasure>0</extraTreasure>
+				<choosable>true</choosable>
+			</effect>
+		</consumable>
+		<consumable name="granata_flash_supernova"  value="100"> 
+			<effect>
+				<playerBonus>3</playerBonus>
+				<extraTreasure>0</extraTreasure>
+				<choosable>true</choosable>
+			</effect>
+		</consumable>
+		<consumable name="grosso_bottone_rosso"  value="200"> 
+			<effect>
+				<playerBonus>5</playerBonus>
+				<extraTreasure>0</extraTreasure>
+				<choosable>true</choosable>
+			</effect>
+		</consumable>
+		<consumable name="granata_sonica_al_ruttoplasma" value="200" > 
+			<effect>
+				<playerBonus>4</playerBonus>
+				<extraTreasure>0</extraTreasure>
+				<choosable>true</choosable>
+			</effect>
+		</consumable>
+		<consumable name="campo_di_stasi"  value="1000"> <!-- ha due effetti -->
+			<effect>
+				<!-- fa fallire la fuga -->
+			</effect>
+			<effect>
+				<!-- fuga automatica -->
+			</effect>
+		</consumable>
+		<consumable name="granata_apriscatole"  value="300"> 
+			<effect>
+				<!-- effetto strano: +5 al giocatore se pro o gli togli l'armatura se contro -->
+			</effect>
+		</consumable>
+		<consumable name="gas_del_controllo_mentale"  value="500"> 
+			<effect>
+				<!-- automatic escape e draw treasure of monster -->
+			</effect>
+		</consumable>
+		<consumable name="granata_allo_yogurt"  value="200"> 
+			<effect>
+				<playerBonus>3</playerBonus>
+				<extraTreasure>0</extraTreasure>
+				<choosable>true</choosable>
+			</effect>
+		</consumable>
+		<consumable name="discorso_del_veniamo_in_pace"  > 
+			<effect>
+				<playerBonus>4</playerBonus>
+				<extraTreasure>0</extraTreasure>
+				<choosable>false</choosable> <!-- solo contro mostro -->
+			</effect>
+		</consumable>
+		<consumable name="granata_birragasata" value="100" > 
+			<effect>
+				<playerBonus>3</playerBonus>
+				<extraTreasure>0</extraTreasure>
+				<choosable>true</choosable>
+			</effect>
+		</consumable>
 	
 	</treasures>
 </cards>

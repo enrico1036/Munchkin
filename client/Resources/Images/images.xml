@@ -431,10 +431,6 @@
     	<path>Resources/Images/Cards/discorso_del_veniamo_in_pace.png</path>
     </image>
     <image>
-    	<name>elettrotuta</name>
-    	<path>Resources/Images/Cards/elettrotuta.png</path>
-    </image>
-    <image>
     	<name>elmetto_a_bolla</name>
     	<path>Resources/Images/Cards/elmetto_a_bolla.png</path>
     </image>
@@ -501,10 +497,6 @@
     <image>
     	<name>pussaviaser</name>
     	<path>Resources/Images/Cards/pussaviaser.png</path>
-    </image>
-    <image>
-    	<name>rastrelliera</name>
-    	<path>Resources/Images/Cards/rastrelliera.png</path>
     </image>
     <image>
     	<name>rinforzi_i_tuoi_micro-chloridian</name>
