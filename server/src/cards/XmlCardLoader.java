@@ -311,9 +311,11 @@ public class XmlCardLoader {
 							for(int k=0;k<buffNode.getLength();k++){
 								if (buffNode.item(k).getNodeType() != Node.TEXT_NODE) {
 									Element buffElem = (Element) buffNode.item(k);
+									
 									String nodeName=buffElem.getTagName();
 									String nodeValue=buffElem.getTextContent();
 									buff.put(nodeName, nodeValue);
+									
 							
 								}
 							}	

@@ -8,6 +8,7 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import com.sun.org.apache.xpath.internal.axes.WalkingIterator;
 
+import debug.Debug;
 import game.Combat;
 import game.Decks;
 import game.GameManager;
@@ -24,11 +25,10 @@ import utils.StateMachine;
 public class Effect {
 
 	public static void runEffect(StateMachine gamePhase, Player owner, HashMap<String, HashMap<String, String>> effects) {
-		
-		//HashMap<String, String> parameters;
-		
 			for(String effectID : effects.keySet()){
 				HashMap<String, String> parameters = effects.get(effectID);
+				
+				Debug.log("Effect" + effectID + " on " + owner.getUsername());
 			
 				switch (effectID) {
 				// call right method with gamePhase and needed parameters
@@ -70,7 +70,7 @@ public class Effect {
 					break;
 				case "dropAllHand":
 					dropAllHand();
-				break;
+					break;
 				case "escapeForRace":
 					escapeForRace((Combat) gamePhase, parameters.get("raceName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
 					break;
