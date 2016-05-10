@@ -190,10 +190,7 @@
     	<name>mutaforma</name>
     	<path>Resources/Images/Cards/mutaforma.png</path>
     </image>
-    <image>
-    	<name>obsolescenza_programmata</name>
-    	<path>Resources/Images/Cards/obsolescenza_programmata.png</path>
-    </image>
+    
     <image>
     	<name>regressione_genetica</name>
     	<path>Resources/Images/Cards/regressione_genetica.png</path>
