@@ -235,10 +235,7 @@
     	<name>formiche_giganti</name>
     	<path>Resources/Images/Cards/formiche_giganti.png</path>
     </image>
-    <image>
-    	<name>gian_giar</name>
-    	<path>Resources/Images/Cards/gian_giar.png</path>
-    </image>
+    
     <image>
     	<name>grande_cthulhu</name>
     	<path>Resources/Images/Cards/grande_cthulhu.png</path>
@@ -299,10 +296,7 @@
     	<path>Resources/Images/Cards/ranger_spaziale.png</path>
     </image>
  
-    <image>
-    	<name>sciame_pesante</name>
-    	<path>Resources/Images/Cards/sciame_pesante.png</path>
-    </image>
+    
     <image>
     	<name>stella_canina</name>
     	<path>Resources/Images/Cards/stella_canina.png</path>
@@ -421,10 +415,7 @@
     	<name>palladipelo_zannuta</name>
     	<path>Resources/Images/Cards/palladipelo_zannuta.png</path>
     </image>
-    <image>
-    	<name>grigi</name>
-    	<path>Resources/Images/Cards/grigi.png</path>
-    </image>
+   
     <image>
     	<name>granata_apriscatole</name>
     	<path>Resources/Images/Cards/granata_apriscatole.png</path>
