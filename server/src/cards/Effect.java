@@ -80,7 +80,12 @@ public class Effect {
 				case "escapeForObject":
 					escapeForObject((Combat) gamePhase, EquipSlot.parse(parameters.get("slot")), parameters.get("cardName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
 					break;
-				
+				case "mostroOcchiutoBadThings":
+					mostroOcchiutoBadThings((Combat) gamePhase);
+					break;
+				case "updateLevelAll":
+					updateLevelAll();
+					break;
 				}
 		}
 	}
@@ -282,15 +287,30 @@ public class Effect {
 		}
 	}
 
-	// mostroOcchiutoBadThings{cyborg fuggono, altri lose 2 level}
+	/** mostroOcchiutoBadThings{cyborg fuggono, altri lose 2 level}
+	*/
+	private static void mostroOcchiutoBadThings(Combat gamePhase) {
+		if(!GameManager.getCurrentPlayer().getRace().getTitle().equals("cyborg")) {
+			loseLevel(2);
+		}
+	}
 
-	// upLevelAll() per il grande cthulu
+	/**
+	 *  upLevelAll() per il grande cthulu, tutti guadagnano un livello tranne il giocatore che muore
+	 */
+	private static void updateLevelAll() {
+		for (Player player : GameManager.getPlayers()) {
+			if(!player.getUsername().equals(GameManager.getCurrentPlayer().getUsername())) {
+				player.leveleUp(1);
+			} else {
+				dead();
+			}
+		}
+	}
 
 	// uplevel(class) me sa che non serve perche c'è bonusToClass e quindi basta settarlo negativo 
 
 	// uplevel(race) vedi uplevel(class)
-
-	// grande-cthulhu_brutte cose(){uplevel per ogni giocatore che non combatte} me sa che non serve
 
 	/**
 	 * Automatically escapes if the player has the specified race
@@ -332,11 +352,13 @@ public class Effect {
 	}
 	
 
-	// EscapeAutomatic(treasure,levelEarned) // per le carte tesoro
+	// EìscapeAutomatic(treasure,levelEarned) // per le carte tesoro
 
 	// FailEscape
 
 	// tettonaBionica(calzatura) pure questo si potrebbe evitare visti gli escape automatic
 
 	// addHand
+	
+	// clone clona il mostro
 }
