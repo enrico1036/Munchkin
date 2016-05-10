@@ -190,10 +190,7 @@
     	<name>mutaforma</name>
     	<path>Resources/Images/Cards/mutaforma.png</path>
     </image>
-    <image>
-    	<name>obsolescenza_programmata</name>
-    	<path>Resources/Images/Cards/obsolescenza_programmata.png</path>
-    </image>
+
     <image>
     	<name>regressione_genetica</name>
     	<path>Resources/Images/Cards/regressione_genetica.png</path>
@@ -228,18 +225,12 @@
     	<name>cyborg</name>
     	<path>Resources/Images/Cards/cyborg.png</path>
     </image>
-    <image>
-    	<name>cyborg1</name>
-    	<path>Resources/Images/Cards/cyborg1.png</path>
-    </image>
+ 
     <image>
     	<name>felino</name>
     	<path>Resources/Images/Cards/felino.png</path>
     </image>
-    <image>
-    	<name>felino1</name>
-    	<path>Resources/Images/Cards/felino1.png</path>
-    </image>
+ 
     <image>
     	<name>formiche_giganti</name>
     	<path>Resources/Images/Cards/formiche_giganti.png</path>
@@ -256,10 +247,7 @@
     	<name>insettoide</name>
     	<path>Resources/Images/Cards/insettoide.png</path>
     </image>
-    <image>
-    	<name>insettoide1</name>
-    	<path>Resources/Images/Cards/insettoide1.png</path>
-    </image>
+
     <image>
     	<name>la_chela</name>
     	<path>Resources/Images/Cards/la_chela.png</path>
@@ -276,10 +264,7 @@
     	<name>mutante</name>
     	<path>Resources/Images/Cards/mutante.png</path>
     </image>
-    <image>
-    	<name>mutante1</name>
-    	<path>Resources/Images/Cards/mutante1.png</path>
-    </image>
+
     <image>
     	<name>noison</name>
     	<path>Resources/Images/Cards/noison.png</path>
@@ -304,10 +289,7 @@
     	<name>psichico</name>
     	<path>Resources/Images/Cards/psichico.png</path>
     </image>
-    <image>
-    	<name>psichico1</name>
-    	<path>Resources/Images/Cards/psichico1.png</path>
-    </image>
+ 
     <image>
     	<name>radioattivo</name>
     	<path>Resources/Images/Cards/radioattivo.png</path>
@@ -316,10 +298,7 @@
     	<name>ranger_spaziale</name>
     	<path>Resources/Images/Cards/ranger_spaziale.png</path>
     </image>
-    <image>
-    	<name>ranger_spaziale1</name>
-    	<path>Resources/Images/Cards/ranger_spaziale1.png</path>
-    </image>
+ 
     <image>
     	<name>sciame_pesante</name>
     	<path>Resources/Images/Cards/sciame_pesante.png</path>
