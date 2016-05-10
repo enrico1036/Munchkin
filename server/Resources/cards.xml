@@ -103,6 +103,7 @@
 			</effect>
 			<badThings name="dead"></badThings>
 		</monster>
+		
 		<monster name="grande_cthulhu" level="20"  earningLevels="02" earningTreasures="05"   >
 			<effect> 
 			</effect> 
