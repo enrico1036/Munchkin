@@ -120,6 +120,8 @@
 			<effect> 
 			</effect> 
 		</monster>
+		
+		
 		<monster name="orribile_cosa_verde" level="08"  earningLevels="01" earningTreasures="02"   >
 			<effect> 
 			</effect> 
@@ -150,31 +152,138 @@
 		</monster>
 		
 		
-		<curse name="dolcetto_alieno" immediate="true"  > <effect> </effect> </curse>
-		<curse name="cavo_monocellulare" immediate="true"  > <effect> </effect> </curse>
-		<curse name="aggressione_genetica" immediate="true"  > <effect> </effect> </curse>
-		<curse name="apriscatole" immediate="true"  > <effect> </effect> </curse>
-		<curse name="buco_nero" immediate="true"  > <effect> </effect> </curse>
-		<curse name="obsolescenza_programmata" immediate="true"  > <effect> </effect> </curse>
-		<curse name="vasca_chimica" immediate="true"  > <effect> </effect> </curse>
-		<curse name="decadimento_orbitale" immediate="true"  > <effect> </effect> </curse>
-		<curse name="gelatinizzatore" immediate="true"  > <effect> </effect> </curse>
+		<curse name="dolcetto_alieno" immediate="true"  > 
+		<effect name="dropObject">
+		 <slot>body</slot>
+		  </effect> 
+		 </curse>
+		<curse name="cavo_monocellulare" immediate="true"  > 
+		<effect name="dropObject">
+		 <slot>head</slot>
+		  </effect>
+		</curse>
+		<curse name="regressione_genetica" immediate="true"  >
+		 <effect name="loseLevel">
+			<numberLevel>1</numberLevel>
+		 </effect> 
+		  </curse>
+		<curse name="apriscatole" immediate="true"  >
+		<effect name="dropObject">
+		 <slot>body</slot>
+		  </effect> 
+		 </curse>
+		<curse name="buco_nero" immediate="true"  >
+		 <effect name="dropObject">
+		 <slot>head</slot>
+		  </effect>
+		   </curse>
+		
+		<curse name="vasca_chimica" immediate="true"  >
+			 <effect name="dropRace">		
+			</effect> 
+		</curse>
+		<curse name="decadimento_orbitale" immediate="true"  >
+		  <effect name="loseLevel">
+			<numberLevel>1</numberLevel>
+		 </effect> 
+		 </curse>
+		<curse name="gelatinizzatore" immediate="true"  >
+		 <effect name="loseLevel">
+			<numberLevel>1</numberLevel>
+		  </effect>
+		   </curse>
+		
 		
 		<consumable name="e_il_suo_clone"  > 
-			<effect>
+			<effect name="clone">
 			</effect>
 		</consumable>
-		<consumable name="folle"  > <effect> </effect> </consumable>
-		<consumable name="incompreso"  > <effect> </effect> </consumable>
-		<consumable name="telepatico"  > <effect> </effect> </consumable>
-		<consumable name="computerizzato"  > <effect> </effect> </consumable>
-		<consumable name="mutaforma"  > <effect> </effect> </consumable>
-		<consumable name="io_sono_tuo_padre"  > <effect> </effect> </consumable>
-		<consumable name="radioattivo"  > <effect> </effect> </consumable>
-		<consumable name="miniaturizzato"  > <effect> </effect> </consumable>
-		<consumable name="ultimo_della_sua_razza"  > <effect> </effect> </consumable>
-		<consumable name="da_un_altra_dimensione"  > <effect> </effect> </consumable>
+		<consumable name="folle"  > 
+		<effect name="combatBonus">
+		  <playerBonus>-5</playerBonus>
+		  <extraTreasure>1</extraTreasure>
+		  <choosable>false</choosable>
+		  </effect>
+		</consumable>
+		<consumable name="incompreso"  >
+		<effect name="combatBonus">
+		  <playerBonus>5</playerBonus>
+		  <extraTreasure>-1</extraTreasure>
+		  <choosable>false</choosable>
+		  </effect>
+		 </consumable>
+		<consumable name="telepatico"  >
+		<effect name="combatBonus">
+		  <playerBonus>-5</playerBonus>
+		  <extraTreasure>1</extraTreasure>
+		  <choosable>false</choosable>
+		  </effect>
+		 </consumable>
+		<consumable name="computerizzato"  > 
+		<effect name="combatBonus">
+		  <playerBonus>-5</playerBonus>
+		  <extraTreasure>1</extraTreasure>
+		  <choosable>false</choosable>
+		  </effect>
+		 </consumable>
+		<consumable name="mutaforma"  >
+		<effect name="combatBonus">
+		  <playerBonus>-10</playerBonus>
+		  <extraTreasure>2</extraTreasure>
+		  <choosable>false</choosable>
+		  </effect>
+		 </consumable>
+		<consumable name="io_sono_tuo_padre"  > 
+		<effect name="combatBonus">
+		  <playerBonus>-10</playerBonus>
+		  <extraTreasure>2</extraTreasure>
+		  <choosable>false</choosable>
+		  </effect>
+		 </consumable>
+		<consumable name="radioattivo"  >
+		<effect name="combatBonus">
+		  <playerBonus>-5</playerBonus>
+		  <extraTreasure>1</extraTreasure>
+		  <choosable>false</choosable>
+		  </effect>
+		 </consumable>
+		<consumable name="miniaturizzato"  > 
+		<effect name="combatBonus">
+		  <playerBonus>5</playerBonus>
+		  <extraTreasure>-1</extraTreasure>
+		  <choosable>false</choosable>
+		  </effect>
+		 </consumable>
+		<consumable name="ultimo_della_sua_razza"  > 
+		<effect name="combatBonus">
+		  <playerBonus>-10</playerBonus>
+		  <extraTreasure>2</extraTreasure>
+		  <choosable>false</choosable>
+		  </effect>
+		 </consumable>
+		<consumable name="da_un_altra_dimensione"  >
+		 <effect name="combatBonus">
+		  <playerBonus>-10</playerBonus>
+		  <extraTreasure>2</extraTreasure>
+		  <choosable>false</choosable>
+		  </effect>
+		   </consumable>
 		
+		<race name="insettoide"></race>
+		<race name="felino"></race>
+		<race name="mutante"></race>
+		<race name="cyborg"></race>
+		
+		<race name="insettoide"></race>
+		<race name="felino"></race>
+		<race name="mutante"></race>
+		<race name="cyborg"></race>
+		
+		<class name="ranger_spaziale"></class>
+		<class name="psichico"></class>
+		
+		<class name="ranger_spaziale"></class>
+		<class name="psichico"></class>
 		
 	</doors>
 	<treasures>
@@ -244,24 +353,24 @@
 
 
 		<consumable name="rinforzi_i_tuoi_micro-chloridian"  > 
-			<effect>
-				 uplevel 
-			</effect>
+			<effect name="loseLevel">
+			<numberLevel>-1</numberLevel>
+		 </effect>
 		</consumable>
 		<consumable name="monolito"  > 
-			<effect>
-				 uplevel 
-			</effect>
+			<effect name="loseLevel">
+			<numberLevel>-1</numberLevel>
+		 </effect>
 		</consumable>
 		<consumable name="ringraziamenti"  > 
-			<effect>
-				 uplevel 
-			</effect>
+			<effect name="loseLevel">
+			<numberLevel>-1</numberLevel>
+		 </effect>
 		</consumable>
 		<consumable name="obliteri_un_pianeta_pacifico"  > 
-			<effect>
-				 uplevel 
-			</effect>
+			<effect name="loseLevel">
+			<numberLevel>-1</numberLevel>
+		 </effect>
 		</consumable>
 		<consumable name="nanogranata_allucinogenica"  value="100"> 
 			<effect name="combatBonus">
@@ -325,7 +434,7 @@
 		</consumable>
 		<consumable name="discorso_del_veniamo_in_pace"  > 
 			<effect>
-				<playerBonus>4</playerBonus>
+				<playerBonus>-5</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>false</choosable>
 			</effect>
