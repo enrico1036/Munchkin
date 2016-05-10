@@ -33,63 +33,75 @@
 			</badThings>
 		</monster>
 		
-		<monster name="poltrona" level="01"  earningLevels="01" earningTreasures="01"   > 
-			<effect name="drawTreasure">
-				<number>1</number>
-				<show>false</show>
-			</effect> 
-		</monster>
-		
 		<monster name="palladipelo_zannuta" level="06"  earningLevels="01" earningTreasures="02"   >
 			<effect name="bonusToRace">
 				<raceName>felino</raceName>
 				<bonus>-2</bonus>
 			</effect>
-		</monster>
-		<monster name="darth_water" level="16"  earningLevels="02" earningTreasures="04"   > 
-			<effect> 
-			</effect> 
-		</monster>
-		<monster name="psico_sceriffo" level="12"  earningLevels="01" earningTreasures="03"   >
-			<effect> 
-			</effect> 
+			<badThings name = "dropAllHand">
+			</badThings>
 		</monster>
 
 		<monster name="pinguini_assassini" level="05"  earningLevels="01" earningTreasures="02"   >
-			<effect> 
-			</effect> 
+			<effect name="bonusToRace">
+				<raceName>felino</raceName>
+				<bonus>-2</bonus>
+			</effect>
+			<badThings name="loseLevel">
+				<numberLevel>1</numberLevel>
+			</badThings>
 		</monster>
-		<monster name="minuscole_ma_avanzate_creature" level="01"  earningLevels="01" earningTreasures="01"   >
-			<effect> 
-			</effect> 
-		</monster>
+		
 		<monster name="formiche_gigante" level="06"  earningLevels="01" earningTreasures="02"   >
-			<effect> 
-			</effect> 
+			<effect name="bonusToRace">
+				<raceName>psichico</raceName>
+				<bonus>-5</bonus>
+			</effect>
+			<badThings name="dropClass"></badThings>
 		</monster>
-		<monster name="tettona_bionica" level="014"  earningLevels="01" earningTreasures="04"   >
-			<effect> 
-			</effect> 
-		</monster>
+		
 		<monster name="xqwzzmp" level="05"  earningLevels="01" earningTreasures="02"   >
-			<effect> 
-			</effect> 
+			<effect name="bonusToRace">
+				<raceName>psichico</raceName>
+				<bonus>2</bonus>
+			</effect>
+			<badThings name = "dropObject">
+				feet
+			</badThings>
 		</monster>
 		<monster name="stella_canina" level="09"  earningLevels="01" earningTreasures="03"   >
-			<effect> 
-			</effect> 
+			<effect name="bonusToRace">
+				<raceName>felino</raceName>
+				<bonus>-3</bonus>
+			</effect>
+			<badThings name="loseLevel">
+				<numberLevel>1</numberLevel>
+			</badThings>
 		</monster>
 		<monster name="noison" level="07"  earningLevels="01" earningTreasures="02"   >
-			<effect> 
-			</effect> 
+			<effect name="bonusToRace">
+				<raceName>pischico</raceName>
+				<bonus>-3</bonus>
+			</effect>
+			<badThings name="loseLevel">
+				<numberLevel>1</numberLevel>
+			</badThings>
 		</monster>
 		<monster name="pesce_stellare" level="08"  earningLevels="01" earningTreasures="02"   >
-			<effect> 
-			</effect> 
+			<effect name="bonusToRace">
+				<raceName>felino</raceName>
+				<bonus>5</bonus>
+			</effect>
+			<badThings name = "dropObject">
+				feet
+			</badThings>
 		</monster>
 		<monster name="clowntrooper" level="17"  earningLevels="02" earningTreasures="04"   >
-			<effect> 
-			</effect> 
+			<effect name="bonusToRace">
+				<raceName>felino</raceName>
+				<bonus>5</bonus>
+			</effect>
+			<badThings name="dead"></badThings>
 		</monster>
 		<monster name="grande_cthulhu" level="20"  earningLevels="02" earningTreasures="05"   >
 			<effect> 
