@@ -233,10 +233,6 @@
     	<path>Resources/Images/Cards/cyborg1.png</path>
     </image>
     <image>
-    	<name>darth_water</name>
-    	<path>Resources/Images/Cards/darth_water.png</path>
-    </image>
-    <image>
     	<name>felino</name>
     	<path>Resources/Images/Cards/felino.png</path>
     </image>
@@ -271,10 +267,6 @@
     <image>
     	<name>miniaturizzato</name>
     	<path>Resources/Images/Cards/miniaturizzato.png</path>
-    </image>
-    <image>
-    	<name>minuscole_ma_avanzate_creature</name>
-    	<path>Resources/Images/Cards/minuscole_ma_avanzate_creature.png</path>
     </image>
     <image>
     	<name>mostro_occhiuto</name>
@@ -341,10 +333,6 @@
     	<path>Resources/Images/Cards/succhiafaccia.png</path>
     </image>
     <image>
-    	<name>tettona_bionica</name>
-    	<path>Resources/Images/Cards/tettona_bionica.png</path>
-    </image>
-    <image>
     	<name>ultra_violetta</name>
     	<path>Resources/Images/Cards/ultra_violetta.png</path>
     </image>
@@ -360,11 +348,7 @@
     	<name>pianta_carnivora</name>
     	<path>Resources/Images/Cards/pianta_carnivora.png</path>
     </image>
-    <image>
-    	<name>psico_sceriffo</name>
-    	<path>Resources/Images/Cards/psico_sceriffo.png</path>
-    </image>
-
+    
     <!-- Treasure Cards -->
     
     <image>
