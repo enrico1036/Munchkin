@@ -86,6 +86,9 @@ public class Effect {
 				case "updateLevelAll":
 					updateLevelAll();
 					break;
+				case "cloneMonster":
+					cloneMonster((Combat) gamePhase);
+					break;
 				}
 		}
 	}
@@ -356,9 +359,13 @@ public class Effect {
 
 	// FailEscape
 
-	// tettonaBionica(calzatura) pure questo si potrebbe evitare visti gli escape automatic
-
 	// addHand
 	
-	// clone clona il mostro
+	/**
+	 * Clone the monster in combat
+	 * @param gamePhase
+	 */
+	private static void cloneMonster(Combat gamePhase){
+		gamePhase.cloneMonster();
+	}
 }
