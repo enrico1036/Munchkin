@@ -42,7 +42,7 @@ public class Combat extends StateMachine {
 		// start help request and communications between client and server
 		GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Do you want to ask for help? If yes, how many treasures do you want to gift? (N)", "No", "Yes", 0, card.getEarningTreasures(), 15000));
 		// waitfor popup answer (and message to return values)
-		PopUpResultMessage ret = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT).getValue();
+		PopUpResultMessage ret = (PopUpResultMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_POPUP_RESULT);
 		// if yes, set promisedTreasure and:
 		if (ret.isButton2Pressed()) {
 			for (Player player : GameManager.getPlayers()) { // ask to all except for the current player
@@ -52,11 +52,11 @@ public class Combat extends StateMachine {
 
 			for (int i = 0; i < GameManager.getPlayers().size() - 1; i++) {
 				// wait for popup answer, if yes set helperPlayer
-				ret = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(Message.CLT_POPUP_RESULT).getValue();
-				if (ret.isButton2Pressed()) {
-					helperPlayer = GameManager.getPlayerByName(ret.getSender());
-					break;
-				}
+				// ret = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(Message.CLT_POPUP_RESULT).getValue();
+				//if (ret.isButton2Pressed()) {
+				//	helperPlayer = GameManager.getPlayerByName(ret.getSender());
+				//	break;
+				//}
 			}
 		}
 	}
@@ -69,13 +69,13 @@ public class Combat extends StateMachine {
 			for (Player player : GameManager.getPlayers()) { // ask to all players
 				player.sendMessage(new PopUpMessage("Do you want to interfer in combat? (N)", "No", "Yes", 7000));
 				// wait for popup answer
-				PopUpResultMessage popUpRet = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT).getValue();
+				PopUpResultMessage popUpRet = (PopUpResultMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_POPUP_RESULT);
 				// if yes
 				if (popUpRet.isButton2Pressed()) {
 					allNo = false;
 					boolean cardSelected = false;
 					do {
-						SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(player.getUsername(), Message.CLT_CARD_SELECTED).getValue();
+						SelectedCardMessage message = (SelectedCardMessage) player.msgQueue().waitFor(Message.CLT_CARD_SELECTED);
 						// manage returned card (check if card.category is allowed)
 						Card card = player.getHandCard(message.getCardName());
 						switch (card.getCategory()) {
