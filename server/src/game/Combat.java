@@ -154,6 +154,10 @@ public class Combat extends StateMachine {
 			GameManager.getCurrentPlayer().draw(Decks.getTreasureCard());
 		while(stepOver());	// terminate state machine
 	}
+	
+	public void cloneMonster() {
+		playerCombatBonus -= card.getLevel();
+	}
 
 	@Override
 	public boolean performStep() {

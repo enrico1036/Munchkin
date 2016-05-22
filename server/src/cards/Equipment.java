@@ -3,7 +3,8 @@ package cards;
 public class Equipment extends Card {
 	private int bonus;
 	private int value;
-	private EquipSlot slot;	
+	private EquipSlot slot;
+	//TODO: valutare se conviene mettere le carte che sono usabili solo da qualcuno o no ( private String raceAllowed )
 
 	
 	public Equipment(String title, EquipSlot slot, int bonus, int value) {

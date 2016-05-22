@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cards>
 	<doors>
-		
 		<monster name="creatura_della_laguna_rosa" level="08"  earningLevels="01" earningTreasures="02"  >
 			<badThings name="loseLevel">
 				<numberLevel>3</numberLevel>
@@ -464,6 +463,5 @@
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
-	
 	</treasures>
 </cards>

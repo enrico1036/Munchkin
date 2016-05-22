@@ -190,7 +190,6 @@
     	<name>mutaforma</name>
     	<path>Resources/Images/Cards/mutaforma.png</path>
     </image>
-    
     <image>
     	<name>regressione_genetica</name>
     	<path>Resources/Images/Cards/regressione_genetica.png</path>
@@ -225,23 +224,13 @@
     	<name>cyborg</name>
     	<path>Resources/Images/Cards/cyborg.png</path>
     </image>
-
-    <image>
-    	<name>darth_water</name>
-    	<path>Resources/Images/Cards/darth_water.png</path>
-    </image>
     <image>
     	<name>felino</name>
     	<path>Resources/Images/Cards/felino.png</path>
     </image>
-   
     <image>
     	<name>formiche_giganti</name>
     	<path>Resources/Images/Cards/formiche_giganti.png</path>
-    </image>
-    <image>
-    	<name>gian_giar</name>
-    	<path>Resources/Images/Cards/gian_giar.png</path>
     </image>
     <image>
     	<name>grande_cthulhu</name>
@@ -251,7 +240,6 @@
     	<name>insettoide</name>
     	<path>Resources/Images/Cards/insettoide.png</path>
     </image>
-   
     <image>
     	<name>la_chela</name>
     	<path>Resources/Images/Cards/la_chela.png</path>
@@ -259,10 +247,6 @@
     <image>
     	<name>miniaturizzato</name>
     	<path>Resources/Images/Cards/miniaturizzato.png</path>
-    </image>
-    <image>
-    	<name>minuscole_ma_avanzate_creature</name>
-    	<path>Resources/Images/Cards/minuscole_ma_avanzate_creature.png</path>
     </image>
     <image>
     	<name>mostro_occhiuto</name>
@@ -297,7 +281,6 @@
     	<name>psichico</name>
     	<path>Resources/Images/Cards/psichico.png</path>
     </image>
- 
     <image>
     	<name>radioattivo</name>
     	<path>Resources/Images/Cards/radioattivo.png</path>
@@ -306,11 +289,6 @@
     	<name>ranger_spaziale</name>
     	<path>Resources/Images/Cards/ranger_spaziale.png</path>
     </image>
-
-    <image>
-    	<name>sciame_pesante</name>
-    	<path>Resources/Images/Cards/sciame_pesante.png</path>
-    </image>
     <image>
     	<name>stella_canina</name>
     	<path>Resources/Images/Cards/stella_canina.png</path>
@@ -318,10 +296,6 @@
     <image>
     	<name>succhiafaccia</name>
     	<path>Resources/Images/Cards/succhiafaccia.png</path>
-    </image>
-    <image>
-    	<name>tettona_bionica</name>
-    	<path>Resources/Images/Cards/tettona_bionica.png</path>
     </image>
     <image>
     	<name>ultra_violetta</name>
@@ -339,11 +313,7 @@
     	<name>pianta_carnivora</name>
     	<path>Resources/Images/Cards/pianta_carnivora.png</path>
     </image>
-    <image>
-    	<name>psico_sceriffo</name>
-    	<path>Resources/Images/Cards/psico_sceriffo.png</path>
-    </image>
-
+    
     <!-- Treasure Cards -->
     
     <image>
@@ -436,10 +406,6 @@
     <image>
     	<name>palladipelo_zannuta</name>
     	<path>Resources/Images/Cards/palladipelo_zannuta.png</path>
-    </image>
-    <image>
-    	<name>grigi</name>
-    	<path>Resources/Images/Cards/grigi.png</path>
     </image>
     <image>
     	<name>granata_apriscatole</name>
