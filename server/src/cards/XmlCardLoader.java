@@ -50,7 +50,6 @@ public class XmlCardLoader {
 	private static final String levelAttr = "level";
 	private static final String effectAttr = "effect";
 	private static final String badThingsAttr = "badThings";
-	private static final String curseImmAttr = "immediate";
 	private static final String consCombatAttr="onlyCombat";
 	private static final String slotAttr = "slot";
 	private static final String valueAttr = "value";
@@ -169,8 +168,8 @@ public class XmlCardLoader {
 				break;
 
 			case curseTag:
-				boolean immediate = Boolean.parseBoolean(elem.getAttribute(curseImmAttr));
-				Curse curseCard = new Curse(name, immediate);
+				
+				Curse curseCard = new Curse(name);
 				
 				NodeList curseNode = root.getElementsByTagName(curseTag).item(curseCounter).getChildNodes();
 				curseCounter++;

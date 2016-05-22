@@ -36,8 +36,8 @@ public class GameUI extends GamePanel implements ActionListener{
 
 		zp = new ZoomedPanel();
 		zp.setVisible(true);
-		zp.setLayout(null);
-        //zp.setBounds(getWidth() / 3, getHeight() / 20, getWidth() / 3, getHeight() * 5 / 8);
+		//zp.setLayout(null);
+		//zp.setBounds(getWidth() / 3, getHeight() / 20, getWidth() / 3, getHeight() * 5 / 8);
         add(zp);
         setComponentZOrder(zp, 0);
         

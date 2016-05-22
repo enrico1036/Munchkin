@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cards>
 	<doors>
+		
 		<monster name="creatura_della_laguna_rosa" level="08"  earningLevels="01" earningTreasures="02"  >
 			<badThings name="loseLevel">
 				<numberLevel>3</numberLevel>
@@ -169,42 +170,42 @@
 	
 		
 		
-		<curse name="dolcetto_alieno" immediate="true"  > 
+		<curse name="dolcetto_alieno" > 
 		<effect name="dropObject">
 		 <slot>body</slot>
 		  </effect> 
 		 </curse>
-		<curse name="cavo_monocellulare" immediate="true"  > 
+		<curse name="cavo_monocellulare"  > 
 		<effect name="dropObject">
 		 <slot>head</slot>
 		  </effect>
 		</curse>
-		<curse name="regressione_genetica" immediate="true"  >
+		<curse name="regressione_genetica" >
 		 <effect name="loseLevel">
 			<numberLevel>1</numberLevel>
 		 </effect> 
 		  </curse>
-		<curse name="apriscatole" immediate="true"  >
+		<curse name="apriscatole" >
 		<effect name="dropObject">
 		 <slot>body</slot>
 		  </effect> 
 		 </curse>
-		<curse name="buco_nero" immediate="true"  >
+		<curse name="buco_nero" >
 		 <effect name="dropObject">
 		 <slot>head</slot>
 		  </effect>
 		   </curse>
 		
-		<curse name="vasca_chimica" immediate="true"  >
+		<curse name="vasca_chimica" >
 			 <effect name="dropRace">		
 			</effect> 
 		</curse>
-		<curse name="decadimento_orbitale" immediate="true"  >
+		<curse name="decadimento_orbitale" >
 		  <effect name="loseLevel">
 			<numberLevel>1</numberLevel>
 		 </effect> 
 		 </curse>
-		<curse name="gelatinizzatore" immediate="true"  >
+		<curse name="gelatinizzatore" >
 		 <effect name="loseLevel">
 			<numberLevel>1</numberLevel>
 		  </effect>
@@ -397,28 +398,28 @@
 			</effect>
 		</consumable>
 		<consumable name="rum_denubiano"  value="100"> 
-			<effect>
+			<effect  name="combatBonus">
 				<playerBonus>3</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
 		<consumable name="granata_flash_supernova"  value="100"> 
-			<effect>
+			<effect name="combatBonus">
 				<playerBonus>3</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
 		<consumable name="grosso_bottone_rosso"  value="200"> 
-			<effect>
+			<effect name="combatBonus">
 				<playerBonus>5</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
 		<consumable name="granata_sonica_al_ruttoplasma" value="200" > 
-			<effect>
+			<effect  name="combatBonus">
 				<playerBonus>4</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
@@ -443,25 +444,26 @@
 			</effect>
 		</consumable>
 		<consumable name="granata_allo_yogurt"  value="200"> 
-			<effect>
+			<effect name="combatBonus">
 				<playerBonus>3</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
 		<consumable name="discorso_del_veniamo_in_pace"  > 
-			<effect>
+			<effect name="combatBonus">
 				<playerBonus>-5</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>false</choosable>
 			</effect>
 		</consumable>
 		<consumable name="granata_birragasata" value="100" > 
-			<effect>
+			<effect name="combatBonus">
 				<playerBonus>3</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
+	
 	</treasures>
 </cards>

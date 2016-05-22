@@ -2,11 +2,11 @@ package cards;
 
 public class Curse extends Card {
 	
-	private boolean immediate; //true if immediate, false if semipermanent
 	
-	public Curse(String title, boolean immediate) {
+	
+	public Curse(String title) {
 		super(title, CardType.Door, Category.Curse);
-		this.immediate = immediate;
+		
 	}
 
 
