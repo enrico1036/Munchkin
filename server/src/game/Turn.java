@@ -3,6 +3,7 @@ package game;
 import cards.Card;
 import cards.Category;
 import cards.ClassCard;
+import cards.Consumable;
 import cards.Equipment;
 import cards.Race;
 import network.message.Message;
@@ -27,25 +28,27 @@ public class Turn extends StateMachine {
 		SelectedCardMessage message = (SelectedCardMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_CARD_SELECTED);
 		while (!message.getCardName().equals(SelectedCardMessage.DOOR_DECK)) {
 			Card card = GameManager.getCurrentPlayer().getHandCard(message.getCardName());
-			if (card != null && (card.getCategory() == Category.Equipment || card.getCategory() == Category.Class || card.getCategory() == Category.Race) ) {
-				if (GameManager.getCurrentPlayer().equip(((Equipment) card).getSlot(), (Equipment) card)) {
-					GameManager.getCurrentPlayer().discardCard(card);
-				} else if(card.getCategory() == Category.Class){
-					try {
-						GameManager.getCurrentPlayer().setClass((ClassCard) card);	
-					} catch (Exception e) {
-						e.printStackTrace();
+			if (card != null) {
+				switch(card.getCategory()) {
+				case Equipment:	//card is an equipment so equip it
+					if (GameManager.getCurrentPlayer().equip(((Equipment) card).getSlot(), (Equipment) card)) {
+						GameManager.getCurrentPlayer().discardCard(card);
 					}
-					
-				}
-				else if(card.getCategory() == Category.Race){
-					try {
-						GameManager.getCurrentPlayer().setRace((Race) card);	
-					} catch (Exception e) {
-						e.printStackTrace();
+					break;
+				case Class:	//card is a class so set new player's class to the new one
+					GameManager.getCurrentPlayer().setClass((ClassCard) card);
+					break;
+				case Race:	//card is a race so set new player's race to the new one
+					GameManager.getCurrentPlayer().setRace((Race) card);
+					break;
+				case Consumable:
+					if(!((Consumable) card).isCombatOnly()) {
+						card.effect(this);
 					}
-				}else{
-					GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("You cannot equip this card", "OK", 3000));
+					break;
+				default:	//not allowed card at this game phase
+					GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("You cannot use this card right now", "OK", 3000));
+					break;
 				}
 			}
 			message = (SelectedCardMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_CARD_SELECTED);

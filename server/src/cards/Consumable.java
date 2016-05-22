@@ -12,6 +12,12 @@ public class Consumable extends Card {
 		this.combatOnly = combat;
 		effects= new HashMap<String, HashMap<String, String>>();
 	}
-	
 
+	/**
+	 * @return the true if this card can be played only in combat phase
+	 */
+	public boolean isCombatOnly() {
+		return combatOnly;
+	}
+	
 }
