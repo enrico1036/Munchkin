@@ -17,7 +17,7 @@ import game.Decks;
 import game.GameManager;
 import game.Player;
 import network.ConnectionListener;
-import network.MessageQueue;
+import network.NewMessageQueue;
 import network.message.ActionResultMessage;
 import network.message.Message;
 import network.message.client.ChatMessage;
@@ -38,7 +38,7 @@ public class MunchkinServer implements PlayerEventListener {
 	// Tcp listener
 	private ConnectionListener connListener;
 	// Common message queue shared between players
-	private MessageQueue queue;
+	private NewMessageQueue queue;
 	// Timer used to pass from lobby to main game loop
 	private CountdownTask countTask;
 	private Timer timer;
@@ -59,7 +59,7 @@ public class MunchkinServer implements PlayerEventListener {
 		// Create player array
 		players = new ArrayList<Player>();
 		// Create queue
-		queue = new MessageQueue();
+		queue = new NewMessageQueue();
 
 		GameManager.init(players, queue);
 

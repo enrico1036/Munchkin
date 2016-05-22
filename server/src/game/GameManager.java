@@ -7,7 +7,7 @@ import java.util.Collections;
 import cards.Card;
 import debug.Debug;
 import javafx.stage.Popup;
-import network.MessageQueue;
+import network.NewMessageQueue;
 import network.message.Message;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayCardMessage.Action;
@@ -18,10 +18,10 @@ import network.message.server.StateUpdateMessage;
 public class GameManager {
 	private static boolean gameStarted = false;
 	private static boolean playerWon;
-	private static MessageQueue queue;
+	private static NewMessageQueue queue;
 	private static ArrayList<Player> players;
 	
-	public static void init(final ArrayList<Player> players, final MessageQueue queue){
+	public static void init(final ArrayList<Player> players, final NewMessageQueue queue){
 		GameManager.players = players;
 		GameManager.queue = queue;
 		playerWon = false;
@@ -99,7 +99,7 @@ public class GameManager {
 		}
 	}
 
-	public static final MessageQueue getInQueue() {
+	public static final NewMessageQueue getInQueue() {
 		return GameManager.queue;
 	}
 	

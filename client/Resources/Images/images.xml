@@ -190,7 +190,6 @@
     	<name>mutaforma</name>
     	<path>Resources/Images/Cards/mutaforma.png</path>
     </image>
-
     <image>
     	<name>regressione_genetica</name>
     	<path>Resources/Images/Cards/regressione_genetica.png</path>
@@ -225,17 +224,14 @@
     	<name>cyborg</name>
     	<path>Resources/Images/Cards/cyborg.png</path>
     </image>
- 
     <image>
     	<name>felino</name>
     	<path>Resources/Images/Cards/felino.png</path>
     </image>
- 
     <image>
     	<name>formiche_giganti</name>
     	<path>Resources/Images/Cards/formiche_giganti.png</path>
     </image>
-    
     <image>
     	<name>grande_cthulhu</name>
     	<path>Resources/Images/Cards/grande_cthulhu.png</path>
@@ -244,7 +240,6 @@
     	<name>insettoide</name>
     	<path>Resources/Images/Cards/insettoide.png</path>
     </image>
-
     <image>
     	<name>la_chela</name>
     	<path>Resources/Images/Cards/la_chela.png</path>
@@ -286,7 +281,6 @@
     	<name>psichico</name>
     	<path>Resources/Images/Cards/psichico.png</path>
     </image>
- 
     <image>
     	<name>radioattivo</name>
     	<path>Resources/Images/Cards/radioattivo.png</path>
@@ -295,8 +289,6 @@
     	<name>ranger_spaziale</name>
     	<path>Resources/Images/Cards/ranger_spaziale.png</path>
     </image>
- 
-    
     <image>
     	<name>stella_canina</name>
     	<path>Resources/Images/Cards/stella_canina.png</path>
@@ -415,7 +407,6 @@
     	<name>palladipelo_zannuta</name>
     	<path>Resources/Images/Cards/palladipelo_zannuta.png</path>
     </image>
-   
     <image>
     	<name>granata_apriscatole</name>
     	<path>Resources/Images/Cards/granata_apriscatole.png</path>

@@ -66,7 +66,7 @@ public class Draw extends StateMachine {
 			// if player choose a monster from the hand perform all the lookForTrouble steps, if player click on door deck call stepOver()
 			boolean monsterSelected = false;
 			do {
-			SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+			SelectedCardMessage message = (SelectedCardMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_CARD_SELECTED);
 			if (!message.getCardName().equals(SelectedCardMessage.DOOR_DECK)) {
 				Card card = GameManager.getCurrentPlayer().getHandCard(message.getCardName());
 				if (card != null && card.getCategory() == Category.Monster) {
