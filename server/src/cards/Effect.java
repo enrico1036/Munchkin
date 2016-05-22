@@ -125,7 +125,7 @@ public class Effect {
 	private static void combatBonus(Combat gamePhase, Player owner, int playerBonus, int extra_treasure, boolean choosable) {
 		if (choosable) {
 			owner.sendMessage(new PopUpMessage("Who you want to give the bonus to? (Monster)", "Monster", "Player", 10000));
-			PopUpResultMessage result = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(owner.toString(), Message.CLT_POPUP_RESULT).getValue();
+			PopUpResultMessage result = (PopUpResultMessage) owner.msgQueue().waitFor(Message.CLT_POPUP_RESULT);
 			if (result.isButton1Pressed() || result.isTimedOut()) { // default monster
 				gamePhase.addPlayerCombatBonus(-playerBonus);
 				gamePhase.addPlayerTreasureBonus(extra_treasure);
@@ -255,15 +255,15 @@ public class Effect {
 			if (onlyHand) {
 				do {
 					GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Please choose a card in your hand to discard", "OK", 7000));
-					GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT);
-					SelectedCardMessage selectedCardMsg = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+					GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_POPUP_RESULT);
+					SelectedCardMessage selectedCardMsg = (SelectedCardMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_CARD_SELECTED);
 					selectedCard = GameManager.getCurrentPlayer().getHandCard(selectedCardMsg.getCardName());
 				} while ((cardCategory == Category.Any ? false : selectedCard.getCategory() != cardCategory) && selectedCard != null);
 			} else {
 				do {
 					GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Please choose a card to discard", "OK", 7000));
-					GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT);
-					SelectedCardMessage selectedCardMsg = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+					GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_POPUP_RESULT);
+					SelectedCardMessage selectedCardMsg = (SelectedCardMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_CARD_SELECTED);
 					selectedCard = GameManager.getCurrentPlayer().getCardByName(selectedCardMsg.getCardName());
 				} while ((cardCategory == Category.Any ? false : selectedCard.getCategory() != cardCategory) && selectedCard != null);
 			}

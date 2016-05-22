@@ -30,7 +30,7 @@ public class ConnectionListener implements Runnable {
 	private boolean running;
 	private int connTimeout;
 	private PlayerEventListener eventListener;
-	private MessageQueue queue;
+	private NewMessageQueue queue;
 
 	public ConnectionListener(int port, int maxConnections) throws IOException {
 		// Initialize and bind socket on port
@@ -61,7 +61,7 @@ public class ConnectionListener implements Runnable {
 		this.eventListener = listener;
 	}
 	
-	public void setCommonMessageQueue(MessageQueue queue){
+	public void setCommonMessageQueue(NewMessageQueue queue){
 		this.queue = queue;
 	}
 

@@ -10,6 +10,7 @@ import cards.EquipSlot;
 import cards.Equipment;
 import cards.Race;
 import network.ClientConnection;
+import network.NewMessageQueue;
 import network.message.Message;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayerFullStatsMessage;
@@ -37,6 +38,7 @@ public class Player {
 	private boolean alive;
 	private int escapeTreshold; // you can escape from monster only if rolling a die the result is higher or equal
 	private final int handSize = 5;
+	private final NewMessageQueue queue;
 
 	// Anonymous Player constructor used into ConnectionListener
 	public Player(PlayerEventListener listener) {
@@ -49,6 +51,7 @@ public class Player {
 		this.escapeTreshold = 5;
 		this.eventListener = listener;
 		equipments = new HashMap<>();
+		queue = new NewMessageQueue();
 	}
 
 	// Default Player constructor
@@ -198,6 +201,10 @@ public class Player {
 			GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
 		}
 		return card;
+	}
+	
+	public NewMessageQueue msgQueue(){
+		return queue;
 	}
 
 	public Card removeCardByName(String cardName) {

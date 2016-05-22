@@ -22,7 +22,7 @@ public class Turn extends StateMachine {
 
 	private void equip() {
 		// wait for an equip action. If draw action detected skip this phase
-		SelectedCardMessage message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+		SelectedCardMessage message = (SelectedCardMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_CARD_SELECTED);
 		while (!message.getCardName().equals(SelectedCardMessage.DOOR_DECK)) {
 			Card card = GameManager.getCurrentPlayer().getHandCard(message.getCardName());
 			if (card != null && card.getCategory() == Category.Equipment) {
@@ -32,7 +32,7 @@ public class Turn extends StateMachine {
 					GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("You cannot equip this card", "OK", 3000));
 				}
 			}
-			message = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+			message = (SelectedCardMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_CARD_SELECTED);
 		}
 	}
 
@@ -50,11 +50,11 @@ public class Turn extends StateMachine {
 		if (equipments > 0) {
 			// ask to player what to sell if nothing skip
 			GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("How many cards do you want to sell? (0)", "OK", 0, equipments, 10000));
-			PopUpResultMessage answer = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_POPUP_RESULT).getValue();
+			PopUpResultMessage answer = (PopUpResultMessage) GameManager.getCurrentPlayer().msgQueue().waitFor( Message.CLT_POPUP_RESULT);
 			int value = 0;
 			Card card = null;
 			for (int i = 0; i < answer.getValue(); i++) {
-				SelectedCardMessage selCard = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+				SelectedCardMessage selCard = (SelectedCardMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_CARD_SELECTED);
 				card = GameManager.getCurrentPlayer().getHandCard(selCard.getCardName());
 				if (card != null && card.getCategory() == Category.Equipment) {
 					GameManager.getCurrentPlayer().discardCard(card);
@@ -74,7 +74,7 @@ public class Turn extends StateMachine {
 			// Tell current player to discard a card
 			GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("Choose a card to discard!", "OK", 3000));
 			// Wait for a card to be received
-			SelectedCardMessage received = (SelectedCardMessage) GameManager.getInQueue().waitForMessage(GameManager.getCurrentPlayer().getUsername(), Message.CLT_CARD_SELECTED).getValue();
+			SelectedCardMessage received = (SelectedCardMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_CARD_SELECTED);
 
 			// Find the player(s) with the lowest level
 			int lowestPlayerNum = 0;
