@@ -9,7 +9,7 @@
 			<effect name="escapeForRace">
 				<raceName>felino</raceName>
 				<levels>0</levels>
-				<treasures>0</treasures>
+				<earnedTreasures>0</earnedTreasures>
 			</effect>
 			<effect name="drawDoor">
 				<number>1</number>
