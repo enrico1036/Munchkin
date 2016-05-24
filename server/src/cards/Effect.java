@@ -72,13 +72,13 @@ public class Effect {
 					dropAllHand();
 					break;
 				case "escapeForRace":
-					escapeForRace((Combat) gamePhase, parameters.get("raceName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
+					escapeForRace((Combat) gamePhase, parameters.get("raceName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("earnedTreasures")));
 					break;
 				case "escapeForClass":
-					escapeForClass((Combat) gamePhase, parameters.get("className"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
+					escapeForClass((Combat) gamePhase, parameters.get("className"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("earnedTreasures")));
 					break;
 				case "escapeForObject":
-					escapeForObject((Combat) gamePhase, EquipSlot.parse(parameters.get("slot")), parameters.get("cardName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("treasures")));
+					escapeForObject((Combat) gamePhase, EquipSlot.parse(parameters.get("slot")), parameters.get("cardName"), Integer.parseInt(parameters.get("levels")), Integer.parseInt(parameters.get("earnedTreasures")));
 					break;
 				case "mostroOcchiutoBadThings":
 					mostroOcchiutoBadThings((Combat) gamePhase);
