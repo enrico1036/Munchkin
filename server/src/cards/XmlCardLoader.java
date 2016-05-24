@@ -215,7 +215,7 @@ public class XmlCardLoader {
 				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute(consCombatAttr));
 				Consumable consumableCard = new Consumable(name, CardType.Door,onlyCombat);
 				
-				NodeList consumableNode = root.getElementsByTagName(consumableTag).item(curseCounter).getChildNodes();
+				NodeList consumableNode = root.getElementsByTagName(consumableTag).item(consumableCounter).getChildNodes();
 				consumableCounter++;
 				
 				for(int j=0;j<consumableNode.getLength();j++){
@@ -291,7 +291,7 @@ public class XmlCardLoader {
 				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute("onlyCombat"));
 				Consumable consumableCard = new Consumable(name, CardType.Treasure, onlyCombat);
 				
-				NodeList consumableNode = root.getElementsByTagName(consumableTag).item(curseCounter).getChildNodes();
+				NodeList consumableNode = root.getElementsByTagName(consumableTag).item(consumableCounter).getChildNodes();
 				consumableCounter++;
 				
 				for(int j=0;j<consumableNode.getLength();j++){

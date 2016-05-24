@@ -81,7 +81,7 @@
 		<monster name="noison" level="07"  earningLevels="01" earningTreasures="02"   >
 			<effect name="bonusToClass">
 				<className>psichico</className>
-				<bonus>-3</bonus>
+				<bonus>-2</bonus>
 			</effect>
 			<badThings name="loseLevel">
 				<numberLevel>1</numberLevel>
