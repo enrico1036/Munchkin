@@ -9,8 +9,9 @@ import network.message.Message;
 public class PlayCardMessage extends Message{
 	private String cardName;
 	private Action action;
-	public static enum Action {SHOW, DRAW, DISCARD, REMOVE};	//If SHOW just paint the card on the main table, if DRAW put that card in client's hand
-																//If DISCARD put a card in the garbage stack, if REMOVE remove a card from a player's hand
+	public static enum Action {SHOW, DRAW, DISCARD, REMOVE, CLEANTABLE};	//If SHOW just paint the card on the main table, if DRAW put that card in client's hand
+																			//If DISCARD put a card in the garbage stack, if REMOVE remove a card from a player's hand
+																			//If CLEANTABLE remove the card from table
 
 	
 	public PlayCardMessage(Card card, Action action) {

@@ -29,4 +29,8 @@ public class CardDataSet extends SharedData {
 		update();
 		return cardRemoved;
 	}
+	
+	public void removeAllCards() {
+		cards.clear();
+	}
 }

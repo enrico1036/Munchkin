@@ -72,6 +72,9 @@ public abstract class Message implements Serializable {
 
 	// Tell to a client to show with the dice on the correct face
 	public static final String DICE_RESULT = "DICE_RESULT";
+	
+	// Tell to a client to clear all the card in table
+	public static final String CLEAR_TBL = "CLEAR_TBL";
 
 	/*
 	 * MESSAGE CODES LIST END

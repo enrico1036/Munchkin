@@ -6,7 +6,10 @@ import cards.Monster;
 import network.message.Message;
 import network.message.client.PopUpResultMessage;
 import network.message.client.SelectedCardMessage;
+import network.message.server.ClearAllTableMessage;
+import network.message.server.PlayCardMessage;
 import network.message.server.PopUpMessage;
+import network.message.server.PlayCardMessage.Action;
 import utils.StateMachine;
 
 public class Combat extends StateMachine {
@@ -77,6 +80,7 @@ public class Combat extends StateMachine {
 						SelectedCardMessage message = (SelectedCardMessage) player.msgQueue().waitFor(Message.CLT_CARD_SELECTED);
 						// manage returned card (check if card.category is allowed)
 						Card card = player.getHandCard(message.getCardName());
+						GameManager.broadcastMessage(new PlayCardMessage(card, Action.SHOW));
 						switch (card.getCategory()) {
 						case Consumable:
 							if(((Consumable)card).isCombatOnly()) {
@@ -139,6 +143,7 @@ public class Combat extends StateMachine {
 				}
 			}
 		}
+		GameManager.broadcastMessage(new ClearAllTableMessage());
 	}
 	
 	public void addPlayerCombatBonus(int playerCombatBonus) {

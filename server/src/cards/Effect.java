@@ -176,6 +176,7 @@ public class Effect {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+				GameManager.broadcastMessage(new PlayCardMessage(card, Action.CLEANTABLE));
 				GameManager.getCurrentPlayer().draw(card);
 			}
 		}
@@ -199,6 +200,7 @@ public class Effect {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+				GameManager.broadcastMessage(new PlayCardMessage(card, Action.CLEANTABLE));
 				GameManager.getCurrentPlayer().draw(card);
 			}
 		}

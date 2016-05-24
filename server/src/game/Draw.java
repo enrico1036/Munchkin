@@ -36,7 +36,7 @@ public class Draw extends StateMachine {
 		switch (card.getCategory()) {
 		case Curse:
 			card.effect(this);
-			GameManager.broadcastMessage(new PlayCardMessage(card, Action.DISCARD));
+			Decks.discardCard(card);
 			break;
 		case Monster:
 			Combat combat = new Combat((Monster) card);
@@ -47,9 +47,9 @@ public class Draw extends StateMachine {
 			break;
 		default:
 			GameManager.getCurrentPlayer().draw(card);
-
 			break;
 		}
+		GameManager.broadcastMessage(new PlayCardMessage(card, Action.CLEANTABLE));
 	}
 
 	private void lookForTrouble() {
@@ -74,6 +74,7 @@ public class Draw extends StateMachine {
 					GameManager.broadcastMessage(new PlayCardMessage(card, Action.SHOW));
 					Combat combat = new Combat((Monster) card);
 					while (combat.performStep());
+					GameManager.broadcastMessage(new PlayCardMessage(card, Action.CLEANTABLE));
 					Decks.discardCard(card);
 					currentState = this.states.length - 1; // skip to the end state
 				}

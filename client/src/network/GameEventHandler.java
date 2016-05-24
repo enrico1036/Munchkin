@@ -58,17 +58,21 @@ public class GameEventHandler {
 							Data.getTable().addCard(playCardMessage.getCardName());
 							break;
 						case DRAW:
-							Data.getTable().removeCard(playCardMessage.getCardName());
 							Data.getHand().addCard(playCardMessage.getCardName());
 							break;
 						case DISCARD:
-							Data.getTable().removeCard(playCardMessage.getCardName());
 							Data.getDiscardDeck().getCards().add(0, playCardMessage.getCardName());
 							break;
 						case REMOVE:
 							Data.getHand().removeCard(playCardMessage.getCardName());
 							break;
+						case CLEANTABLE:
+							Data.getTable().removeCard(playCardMessage.getCardName());
+							break;
 						}
+						break;
+					case Message.CLEAR_TBL:
+						Data.getTable().removeAllCards();
 						break;
 					case Message.CLT_READY_STATUS:
 						ReadyLobbyMessage readyPlayerList = (ReadyLobbyMessage) received;
