@@ -48,7 +48,6 @@ public class OpponentsPanel extends JPanel {
 		groupLayout.setAutoCreateContainerGaps(true);
 		SequentialGroup horizontalGroup = groupLayout.createSequentialGroup();
 		ParallelGroup verticalGroup = groupLayout.createParallelGroup(Alignment.CENTER);
-		//TODO: try to center panels. Uncommenting PreferredGaps they will be centered but too small
 		horizontalGroup.addPreferredGap(ComponentPlacement.UNRELATED, 0, Short.MAX_VALUE);
 		for(PlayerOpponentUI opponent : opponentPlayers.values()) {
 			horizontalGroup.addComponent(opponent, 788/6, 788/3, 788*2/5);

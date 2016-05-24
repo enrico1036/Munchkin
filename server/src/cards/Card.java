@@ -43,7 +43,6 @@ public abstract class Card {
 		
 		public void effect(StateMachine gamePhase) {
 			Effect.runEffect(gamePhase, this.owner, this.effects);
-			//TODO DA SISTEMARE
 		}
 		
 		public void endEffect(StateMachine gamePhase) {

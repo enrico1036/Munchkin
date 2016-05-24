@@ -349,7 +349,6 @@ public class Effect {
 	 * @param treasures
 	 */
 	private static void escapeForObject(Combat gamePhase, EquipSlot slot, String cardName, int levels, int treasures) {
-		//TODO: look for the right object (slot and name) and escape if present
 		if(GameManager.getCurrentPlayer().getEquipment(slot).getTitle().equals(cardName))
 			gamePhase.escape(levels, treasures);
 	}

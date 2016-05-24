@@ -35,8 +35,7 @@ public class Draw extends StateMachine {
 		// if curse play it, if monster start a combat and execute it. In all other cases draw it
 		switch (card.getCategory()) {
 		case Curse:
-			// TODO: card effect
-			
+			card.effect(this);
 			GameManager.broadcastMessage(new PlayCardMessage(card, Action.DISCARD));
 			break;
 		case Monster:
@@ -54,7 +53,7 @@ public class Draw extends StateMachine {
 	}
 
 	private void lookForTrouble() {
-		//TODO: look for trouble making this phase unperformed
+		// TODO: fly you fools!
 		boolean monsters = false; // true if hand contains a monster, false otherwise
 		for (Card card : GameManager.getCurrentPlayer().getHand()) {
 			if (card.getCategory() == Category.Monster) {

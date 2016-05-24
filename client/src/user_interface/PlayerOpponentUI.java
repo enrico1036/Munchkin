@@ -52,7 +52,6 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 						);
 			//	super.getStatistics().setBounds(0, 0, psw / 2, psh);
 			//	super.getEquipment().setBounds(psw / 2, 0, psw / 2, psh);
-				// TODO prendi il glass glass.disegna(this)
 			} else {
 //				remove(super.getEquipment());
 				groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
@@ -63,7 +62,6 @@ public class PlayerOpponentUI extends PlayerUI implements ActionListener {
 						.addComponent(getStatistics())
 						);
 			//	super.getStatistics().setBounds(0, 0, psw, psh);
-				// TODO prendi il glass e fai glass.disegna(this)
 			}
 
 		}

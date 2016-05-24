@@ -19,7 +19,6 @@ public class Actions {
 	 * @param caller
 	 */
 	public static void mouseUp(String caller) {
-		//TODO: send message to server with dragFrom and caller
 		if(dragFrom.equals(caller))
 			//card was clicked so send SelectedCardMessage
 			GameEventHandler.selectCard(caller);

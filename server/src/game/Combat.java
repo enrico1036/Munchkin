@@ -34,7 +34,6 @@ public class Combat extends StateMachine {
 	}
 
 	private void begin() {
-		// TODO: maybe set initial values
 		card.effect(this);
 	}
 

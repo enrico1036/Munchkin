@@ -31,7 +31,6 @@ import org.w3c.dom.NodeList;
  *	</cards>
  */
 
-//TODO: Add effects, badthings and de-effects loading
 
 public class XmlCardLoader {
 	// Tag constant strings

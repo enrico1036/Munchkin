@@ -141,7 +141,7 @@ public class ClientCard extends JButton implements MouseListener {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO: controllare perchè lo zoomedPanel è null
-		// zoomedPanel.showCard(image);
+		zoomedPanel.showPanel(image);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class ClientCard extends JButton implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO: controllare perchè lo zoomedPanel è null
-		// zoomedPanel.hideCard();
+		zoomedPanel.hidePanel();
 
 	}
 
