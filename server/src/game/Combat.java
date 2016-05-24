@@ -1,12 +1,11 @@
 package game;
 
 import cards.Card;
-import cards.Category;
+import cards.Consumable;
 import cards.Monster;
 import network.message.Message;
 import network.message.client.PopUpResultMessage;
 import network.message.client.SelectedCardMessage;
-import network.message.server.DiceResultMessage;
 import network.message.server.PopUpMessage;
 import utils.StateMachine;
 
@@ -35,7 +34,8 @@ public class Combat extends StateMachine {
 	}
 
 	private void begin() {
-		// TODO: card effect and set initial values
+		// TODO: maybe set initial values
+		card.effect(this);
 	}
 
 	private void askForHelp() {
@@ -80,12 +80,14 @@ public class Combat extends StateMachine {
 						Card card = player.getHandCard(message.getCardName());
 						switch (card.getCategory()) {
 						case Consumable:
-							cardSelected = true;
-							// TODO: card effect
+							if(((Consumable)card).isCombatOnly()) {
+								cardSelected = true;
+								card.effect(this);							
+								}
 							break;
 						case Curse:
 							cardSelected = true;
-							// TODO: card effect
+							card.effect(this);
 							break;
 						default:
 							cardSelected = false;

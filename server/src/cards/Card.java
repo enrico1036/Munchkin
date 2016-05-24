@@ -1,10 +1,7 @@
 package cards;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
 import game.Player;
-import javafx.util.Pair;
 import utils.StateMachine;
 
 public abstract class Card {
