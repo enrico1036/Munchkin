@@ -313,10 +313,10 @@
 		<equipment name="nastrini_posizionati_strategicamente" slot="body" bonus="2" value="400" />
 		<equipment name="elmetto_a_bolla" slot="head" bonus="2" value="300" />
 	
-		<equipment name="raser" slot="twohand" bonus="2" value="500" />
-		<equipment name="maser" slot="twohand" bonus="3" value="600" />
-		<equipment name="bobaser" slot="twohand" bonus="4" value="800" />
-		<equipment name="pussaviaser" slot="twohand" bonus="4" value="800" />
+		<equipment name="raser" slot="hand" bonus="2" value="500" />
+		<equipment name="maser" slot="hand" bonus="3" value="600" />
+		<equipment name="bobaser" slot="hand" bonus="4" value="800" />
+		<equipment name="pussaviaser" slot="hand" bonus="4" value="800" />
 	
 		<equipment name="laser" slot="hand" bonus="2" value="400" />
 	
