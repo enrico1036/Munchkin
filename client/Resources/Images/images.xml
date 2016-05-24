@@ -232,10 +232,7 @@
     	<name>formiche_giganti</name>
     	<path>Resources/Images/Cards/formiche_giganti.png</path>
     </image>
-    <image>
-    	<name>grande_cthulhu</name>
-    	<path>Resources/Images/Cards/grande_cthulhu.png</path>
-    </image>
+    
     <image>
     	<name>insettoide</name>
     	<path>Resources/Images/Cards/insettoide.png</path>
@@ -248,10 +245,7 @@
     	<name>miniaturizzato</name>
     	<path>Resources/Images/Cards/miniaturizzato.png</path>
     </image>
-    <image>
-    	<name>mostro_occhiuto</name>
-    	<path>Resources/Images/Cards/mostro_occhiuto.png</path>
-    </image>
+ 
     <image>
     	<name>mutante</name>
     	<path>Resources/Images/Cards/mutante.png</path>
@@ -316,10 +310,7 @@
     
     <!-- Treasure Cards -->
     
-    <image>
-    	<name>amplificatore_mentale</name>
-    	<path>Resources/Images/Cards/amplificatore_mentale.png</path>
-    </image>
+ 
     <image>
     	<name>autofuga_1000</name>
     	<path>Resources/Images/Cards/autofuga_1000.png</path>
@@ -336,10 +327,7 @@
     	<name>maser</name>
     	<path>Resources/Images/Cards/maser.png</path>
     </image>
-    <image>
-    	<name>mongolarma</name>
-    	<path>Resources/Images/Cards/mongolarma.png</path>
-    </image>
+  
     <image>
     	<name>raser</name>
     	<path>Resources/Images/Cards/raser.png</path>
@@ -355,26 +343,14 @@
     
     
     
-    <image>
-    	<name>antenne_acustiche</name>
-    	<path>Resources/Images/Cards/antenne_acustiche.png</path>
-    </image>
+   
     <image>
     	<name>armatura_di_energia</name>
     	<path>Resources/Images/Cards/armatura_di_energia.png</path>
     </image>
-    <image>
-    	<name>campo_di_stasi</name>
-    	<path>Resources/Images/Cards/campo_di_stasi.png</path>
-    </image>
-    <image>
-    	<name>campo_di_stupidita</name>
-    	<path>Resources/Images/Cards/campo_di_stupidita.png</path>
-    </image>
-    <image>
-    	<name>ciuffo_per-manente</name>
-    	<path>Resources/Images/Cards/ciuffo_per-manente.png</path>
-    </image>
+   
+
+
     <image>
     	<name>discorso_del_veniamo_in_pace</name>
     	<path>Resources/Images/Cards/discorso_del_veniamo_in_pace.png</path>
@@ -383,14 +359,8 @@
     	<name>elmetto_a_bolla</name>
     	<path>Resources/Images/Cards/elmetto_a_bolla.png</path>
     </image>
-    <image>
-    	<name>frusta_neuronica</name>
-    	<path>Resources/Images/Cards/frusta_neuronica.png</path>
-    </image>
-    <image>
-    	<name>gas_del_controllo_mentale</name>
-    	<path>Resources/Images/Cards/gas_del_controllo_mentale.png</path>
-    </image>
+  
+ 
     <image>
     	<name>granata_flash_supernova</name>
     	<path>Resources/Images/Cards/granata_flash_supernova.png</path>
@@ -407,10 +377,7 @@
     	<name>palladipelo_zannuta</name>
     	<path>Resources/Images/Cards/palladipelo_zannuta.png</path>
     </image>
-    <image>
-    	<name>granata_apriscatole</name>
-    	<path>Resources/Images/Cards/granata_apriscatole.png</path>
-    </image>
+
     <image>
     	<name>granata_sonica_al_ruttoplasma</name>
     	<path>Resources/Images/Cards/granata_sonica_al_ruttoplasma.png</path>
@@ -459,14 +426,8 @@
     	<name>ruotini_retrattili</name>
     	<path>Resources/Images/Cards/ruotini_retrattili.png</path>
     </image>
-    <image>
-    	<name>sciabola_fotonica</name>
-    	<path>Resources/Images/Cards/sciabola_fotonica.png</path>
-    </image>
-    <image>
-    	<name>sprayser</name>
-    	<path>Resources/Images/Cards/sprayser.png</path>
-    </image>
+  
+ 
     <image>
     	<name>vernice_verde</name>
     	<path>Resources/Images/Cards/vernice_verde.png</path>

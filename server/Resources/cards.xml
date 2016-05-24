@@ -54,7 +54,7 @@
 		
 		<monster name="formiche_gigante" level="06"  earningLevels="01" earningTreasures="02"   >
 			<effect name="bonusToClass">
-				<className>pischico</className>
+				<className>psichico</className>
 				<bonus>-5</bonus>
 			</effect>
 			<badThings name="dropClass"></badThings>
@@ -62,7 +62,7 @@
 		
 		<monster name="xqwzzmp" level="05"  earningLevels="01" earningTreasures="02"   >
 			<effect name="bonusToClass">
-				<className>pischico</className>
+				<className>psichico</className>
 				<bonus>2</bonus>
 			</effect>
 			<badThings name = "dropObject">
@@ -80,7 +80,7 @@
 		</monster>
 		<monster name="noison" level="07"  earningLevels="01" earningTreasures="02"   >
 			<effect name="bonusToClass">
-				<className>pischico</className>
+				<className>psichico</className>
 				<bonus>-3</bonus>
 			</effect>
 			<badThings name="loseLevel">
@@ -104,18 +104,6 @@
 			<badThings name="dead"></badThings>
 		</monster>
 		
-		<monster name="grande_cthulhu" level="20"  earningLevels="02" earningTreasures="05"   >
-			<effect> 
-			</effect> 
-		</monster>
-		<monster name="sciame_pesante" level="11"  earningLevels="01" earningTreasures="03"   >
-			<effect> 
-			</effect> 
-		</monster>
-		<monster name="mostro_occhiuto" level="06"  earningLevels="01" earningTreasures="02"   >
-			<effect> 
-			</effect> 
-		</monster>
 		<monster name="ultra_violetta" level="15"  earningLevels="02" earningTreasures="04"   >
 			<effect name="bonusToRace">
 				<raceName>insettoide</raceName>
@@ -212,74 +200,74 @@
 		   </curse>
 		
 		
-		<consumable name="e_il_suo_clone"  > 
+		<consumable name="e_il_suo_clone" onlyCombat="true" > 
 			<effect name="clone">
 			</effect>
 		</consumable>
-		<consumable name="folle"  > 
+		<consumable name="folle"  onlyCombat="true"> 
 		<effect name="combatBonus">
 		  <playerBonus>-5</playerBonus>
 		  <extraTreasure>1</extraTreasure>
 		  <choosable>false</choosable>
 		  </effect>
 		</consumable>
-		<consumable name="incompreso"  >
+		<consumable name="incompreso" onlyCombat="true" >
 		<effect name="combatBonus">
 		  <playerBonus>5</playerBonus>
 		  <extraTreasure>-1</extraTreasure>
 		  <choosable>false</choosable>
 		  </effect>
 		 </consumable>
-		<consumable name="telepatico"  >
+		<consumable name="telepatico"  onlyCombat="true">
 		<effect name="combatBonus">
 		  <playerBonus>-5</playerBonus>
 		  <extraTreasure>1</extraTreasure>
 		  <choosable>false</choosable>
 		  </effect>
 		 </consumable>
-		<consumable name="computerizzato"  > 
+		<consumable name="computerizzato" onlyCombat="true" > 
 		<effect name="combatBonus">
 		  <playerBonus>-5</playerBonus>
 		  <extraTreasure>1</extraTreasure>
 		  <choosable>false</choosable>
 		  </effect>
 		 </consumable>
-		<consumable name="mutaforma"  >
+		<consumable name="mutaforma"  onlyCombat="true">
 		<effect name="combatBonus">
 		  <playerBonus>-10</playerBonus>
 		  <extraTreasure>2</extraTreasure>
 		  <choosable>false</choosable>
 		  </effect>
 		 </consumable>
-		<consumable name="io_sono_tuo_padre"  > 
+		<consumable name="io_sono_tuo_padre"  onlyCombat="true"> 
 		<effect name="combatBonus">
 		  <playerBonus>-10</playerBonus>
 		  <extraTreasure>2</extraTreasure>
 		  <choosable>false</choosable>
 		  </effect>
 		 </consumable>
-		<consumable name="radioattivo"  >
+		<consumable name="radioattivo" onlyCombat="true" >
 		<effect name="combatBonus">
 		  <playerBonus>-5</playerBonus>
 		  <extraTreasure>1</extraTreasure>
 		  <choosable>false</choosable>
 		  </effect>
 		 </consumable>
-		<consumable name="miniaturizzato"  > 
+		<consumable name="miniaturizzato" onlyCombat="true" > 
 		<effect name="combatBonus">
 		  <playerBonus>5</playerBonus>
 		  <extraTreasure>-1</extraTreasure>
 		  <choosable>false</choosable>
 		  </effect>
 		 </consumable>
-		<consumable name="ultimo_della_sua_razza"  > 
+		<consumable name="ultimo_della_sua_razza" onlyCombat="true" > 
 		<effect name="combatBonus">
 		  <playerBonus>-10</playerBonus>
 		  <extraTreasure>2</extraTreasure>
 		  <choosable>false</choosable>
 		  </effect>
 		 </consumable>
-		<consumable name="da_un_altra_dimensione"  >
+		<consumable name="da_un_altra_dimensione" onlyCombat="true" >
 		 <effect name="combatBonus">
 		  <playerBonus>-10</playerBonus>
 		  <extraTreasure>2</extraTreasure>
@@ -322,142 +310,88 @@
 		<equipment name="vernice_verde" slot="body" bonus="1" value="100" />
 		<equipment name="nastrini_posizionati_strategicamente" slot="body" bonus="2" value="400" />
 		<equipment name="elmetto_a_bolla" slot="head" bonus="2" value="300" />
-		<equipment name="antenne_acustiche" slot="head" bonus="4" value="600" >
-			<effect>
-				 solo da un cyborg 
-			</effect>
-		</equipment>
-		<equipment name="ciuffo_per-manente" slot="head" bonus="0" value="400" >
-			<effect>
-				 meno una mano 
-			</effect>
-		</equipment>
+	
 		<equipment name="raser" slot="twohand" bonus="2" value="500" />
 		<equipment name="maser" slot="twohand" bonus="3" value="600" />
 		<equipment name="bobaser" slot="twohand" bonus="4" value="800" />
 		<equipment name="pussaviaser" slot="twohand" bonus="4" value="800" />
-		<equipment name="sprayser" slot="twohand" bonus="3" value="600" >
-			<effect>
-				 non utilizzabile da insettoide 
-			</effect>
-		</equipment>
+	
 		<equipment name="laser" slot="hand" bonus="2" value="400" />
-		<equipment name="frusta_neuronica" slot="hand" bonus="4" value="500" >
-			<effect>
-				 solo da mutante 
-			</effect>
-		</equipment>
-		<equipment name="sciabola_fotonica" slot="hand" bonus="2" value="400" >
-			<effect>
-				 solo da umano 
-			</effect>
-		</equipment>
-		<equipment name="campo_di_stupidita" slot="hand" bonus="4" value="500" >
-			<effect>
-				 solo da umano 
-			</effect>
-		</equipment>
-		<equipment name="mongolarma" slot="hand" bonus="2" value="300" >
-			<effect>
-				 non utilizzabile da psichico 
-			</effect>
-		</equipment>
-		<equipment name="amplificatore_mentale" slot="hand" bonus="4" value="600" >
-			<effect>
-				 solo da psichico 
-			</effect>
-		</equipment>
+	
 		<equipment name="cannone_al_plasma" slot="hand" bonus="4" value="1200" />
 
 
-		<consumable name="rinforzi_i_tuoi_micro-chloridian"  > 
+		<consumable name="rinforzi_i_tuoi_micro-chloridian" onlyCombat="false" > 
 			<effect name="loseLevel">
 			<numberLevel>-1</numberLevel>
 		 </effect>
 		</consumable>
-		<consumable name="monolito"  > 
+		<consumable name="monolito"  onlyCombat="false"> 
 			<effect name="loseLevel">
 			<numberLevel>-1</numberLevel>
 		 </effect>
 		</consumable>
-		<consumable name="ringraziamenti"  > 
+		<consumable name="ringraziamenti" onlyCombat="false" > 
 			<effect name="loseLevel">
 			<numberLevel>-1</numberLevel>
 		 </effect>
 		</consumable>
-		<consumable name="obliteri_un_pianeta_pacifico"  > 
+		<consumable name="obliteri_un_pianeta_pacifico" onlyCombat="false" > 
 			<effect name="loseLevel">
 			<numberLevel>-1</numberLevel>
 		 </effect>
 		</consumable>
-		<consumable name="nanogranata_allucinogenica"  value="100"> 
+		<consumable name="nanogranata_allucinogenica"  onlyCombat="true"> 
 			<effect name="combatBonus">
 				<playerBonus>3</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
-		<consumable name="rum_denubiano"  value="100"> 
+		<consumable name="rum_denubiano"   onlyCombat="true"> 
 			<effect  name="combatBonus">
 				<playerBonus>3</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
-		<consumable name="granata_flash_supernova"  value="100"> 
+		<consumable name="granata_flash_supernova"  onlyCombat="true"> 
 			<effect name="combatBonus">
 				<playerBonus>3</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
-		<consumable name="grosso_bottone_rosso"  value="200"> 
+		<consumable name="grosso_bottone_rosso"  onlyCombat="true"> 
 			<effect name="combatBonus">
 				<playerBonus>5</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
-		<consumable name="granata_sonica_al_ruttoplasma" value="200" > 
+		<consumable name="granata_sonica_al_ruttoplasma"  onlyCombat="true"> 
 			<effect  name="combatBonus">
 				<playerBonus>4</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
-		<consumable name="campo_di_stasi"  value="1000">  ha due effetti 
-			<effect>
-				 fa fallire la fuga 
-			</effect>
-			<effect>
-				 fuga automatica 
-			</effect>
-		</consumable>
-		<consumable name="granata_apriscatole"  value="300"> 
-			<effect>
-				 effetto strano: +5 al giocatore se pro o gli togli l'armatura se contro 
-			</effect>
-		</consumable>
-		<consumable name="gas_del_controllo_mentale"  value="500"> 
-			<effect>
-				 automatic escape e draw treasure of monster 
-			</effect>
-		</consumable>
-		<consumable name="granata_allo_yogurt"  value="200"> 
+
+		<consumable name="granata_allo_yogurt" onlyCombat="true"> 
 			<effect name="combatBonus">
 				<playerBonus>3</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>true</choosable>
 			</effect>
 		</consumable>
-		<consumable name="discorso_del_veniamo_in_pace"  > 
+		<consumable name="discorso_del_veniamo_in_pace" onlyCombat="true"> 
 			<effect name="combatBonus">
 				<playerBonus>-5</playerBonus>
 				<extraTreasure>0</extraTreasure>
 				<choosable>false</choosable>
 			</effect>
 		</consumable>
-		<consumable name="granata_birragasata" value="100" > 
+		<consumable name="granata_birragasata" onlyCombat="true"> 
 			<effect name="combatBonus">
 				<playerBonus>3</playerBonus>
 				<extraTreasure>0</extraTreasure>
