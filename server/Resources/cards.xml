@@ -2,12 +2,14 @@
 <cards>
 	<doors>
 		
-		<monster name="creatura_della_laguna_rosa" level="08"  earningLevels="01" earningTreasures="02"  >
+		<monster name="creature_della_laguna_rosa" level="08"  earningLevels="01" earningTreasures="02"  >
 			<badThings name="loseLevel">
 				<numberLevel>3</numberLevel>
 			</badThings>
 			<effect name="escapeForRace">
 				<raceName>felino</raceName>
+				<levels>0</levels>
+				<treasures>0</treasures>
 			</effect>
 			<effect name="drawDoor">
 				<number>1</number>
@@ -52,7 +54,7 @@
 			</badThings>
 		</monster>
 		
-		<monster name="formiche_gigante" level="06"  earningLevels="01" earningTreasures="02"   >
+		<monster name="formiche_giganti" level="06"  earningLevels="01" earningTreasures="02"   >
 			<effect name="bonusToClass">
 				<className>psichico</className>
 				<bonus>-5</bonus>
