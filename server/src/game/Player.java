@@ -168,6 +168,7 @@ public class Player {
 	public void draw(Card card) {
 		setAlive();
 		hand.add(card);
+		card.setOwner(this);
 		sendMessage(new PlayCardMessage(card, Action.DRAW));
 		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
 	}

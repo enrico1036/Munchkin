@@ -31,6 +31,7 @@ public class Draw extends StateMachine {
 			}
 		}
 		Card card = Decks.getDoorCard();
+		card.setOwner(GameManager.getCurrentPlayer());
 		GameManager.broadcastMessage(new PlayCardMessage(card, Action.SHOW));
 		// if curse play it, if monster start a combat and execute it. In all other cases draw it
 		switch (card.getCategory()) {

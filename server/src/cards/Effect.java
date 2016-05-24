@@ -28,7 +28,7 @@ public class Effect {
 			for(String effectID : effects.keySet()){
 				HashMap<String, String> parameters = effects.get(effectID);
 				
-				Debug.log("Effect" + effectID + " on " + owner.getUsername());
+				Debug.log("Effect " + effectID + " on " + owner.getUsername());
 			
 				switch (effectID) {
 				// call right method with gamePhase and needed parameters

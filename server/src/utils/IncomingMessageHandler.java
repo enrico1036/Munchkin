@@ -73,6 +73,14 @@ public class IncomingMessageHandler {
 			else
 				player.sendMessage(new PlayerFullStatsMessage(GameManager.getPlayerByName(playerStatRequest.getPlayer())));
 			break;
+		case Message.CLT_CARD_SELECTED:
+			Card selectedCard = player.getHandCard(((SelectedCardMessage) message).getCardName());
+			messageUsed = false;
+			if(selectedCard != null && selectedCard.getCategory() == Category.Curse) {
+				selectedCard.effect(null);
+				messageUsed = true;
+			}
+			break;
 			
 		default:
 			messageUsed = false;

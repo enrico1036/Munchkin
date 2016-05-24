@@ -37,13 +37,16 @@ public class Turn extends StateMachine {
 					break;
 				case Class:	//card is a class so set new player's class to the new one
 					GameManager.getCurrentPlayer().setClass((ClassCard) card);
+					GameManager.getCurrentPlayer().discardCard(card);
 					break;
 				case Race:	//card is a race so set new player's race to the new one
 					GameManager.getCurrentPlayer().setRace((Race) card);
+					GameManager.getCurrentPlayer().discardCard(card);
 					break;
 				case Consumable:
 					if(!((Consumable) card).isCombatOnly()) {
 						card.effect(this);
+						GameManager.getCurrentPlayer().discardCard(card);
 					}
 					break;
 				default:	//not allowed card at this game phase

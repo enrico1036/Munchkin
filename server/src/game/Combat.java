@@ -71,7 +71,7 @@ public class Combat extends StateMachine {
 			for (Player player : GameManager.getPlayers()) { // ask to all players
 				player.sendMessage(new PopUpMessage("Do you want to interfer in combat? (N)", "No", "Yes", 7000));
 				// wait for popup answer
-				PopUpResultMessage popUpRet = (PopUpResultMessage) GameManager.getCurrentPlayer().msgQueue().waitFor(Message.CLT_POPUP_RESULT);
+				PopUpResultMessage popUpRet = (PopUpResultMessage) player.msgQueue().waitFor(Message.CLT_POPUP_RESULT);
 				// if yes
 				if (popUpRet.isButton2Pressed()) {
 					allNo = false;
