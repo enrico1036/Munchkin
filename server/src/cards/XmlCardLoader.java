@@ -288,7 +288,7 @@ public class XmlCardLoader {
 			switch (elem.getTagName()) {
 
 			case consumableTag:
-				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute("onlyCombat"));
+				boolean onlyCombat = Boolean.parseBoolean(elem.getAttribute(consCombatAttr));
 				Consumable consumableCard = new Consumable(name, CardType.Treasure, onlyCombat);
 				
 				NodeList consumableNode = root.getElementsByTagName(consumableTag).item(consumableCounter).getChildNodes();
