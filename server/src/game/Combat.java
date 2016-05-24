@@ -81,6 +81,7 @@ public class Combat extends StateMachine {
 						// manage returned card (check if card.category is allowed)
 						Card card = player.getHandCard(message.getCardName());
 						GameManager.broadcastMessage(new PlayCardMessage(card, Action.SHOW));
+						GameManager.getCurrentPlayer().sendMessage((new PlayCardMessage(card, Action.REMOVE)));
 						switch (card.getCategory()) {
 						case Consumable:
 							if(((Consumable)card).isCombatOnly()) {

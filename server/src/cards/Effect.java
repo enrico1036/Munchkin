@@ -224,7 +224,7 @@ public class Effect {
 	 * @param bonus
 	 */
 	private static void bonusToRace(Combat gamePhase, String raceName, int bonus) {
-		if (GameManager.getCurrentPlayer().getRace().getTitle().equals(raceName)) {
+		if (GameManager.getCurrentPlayer().getRace() != null && GameManager.getCurrentPlayer().getRace().getTitle().equals(raceName)) {
 			gamePhase.addPlayerCombatBonus(bonus);
 		}
 	}
@@ -237,7 +237,7 @@ public class Effect {
 	 * @param bonus
 	 */
 	private static void bonusToClass(Combat gamePhase, String className, int bonus) {
-		if (GameManager.getCurrentPlayer().getCardClass().getTitle().equals(className)) {
+		if (GameManager.getCurrentPlayer().getCardClass() != null && GameManager.getCurrentPlayer().getCardClass().getTitle().equals(className)) {
 			gamePhase.addPlayerCombatBonus(bonus);
 		}
 	}
@@ -295,7 +295,7 @@ public class Effect {
 	/** mostroOcchiutoBadThings{cyborg fuggono, altri lose 2 level}
 	*/
 	private static void mostroOcchiutoBadThings(Combat gamePhase) {
-		if(!GameManager.getCurrentPlayer().getRace().getTitle().equals("cyborg")) {
+		if(GameManager.getCurrentPlayer().getRace() != null && !GameManager.getCurrentPlayer().getRace().getTitle().equals("cyborg")) {
 			loseLevel(2);
 		}
 	}
@@ -325,7 +325,7 @@ public class Effect {
 	 * @param treasures
 	 */
 	private static void escapeForRace(Combat gamePhase, String raceName, int levels, int treasures) {
-		if(GameManager.getCurrentPlayer().getRace().getTitle().equals(raceName)) {
+		if(GameManager.getCurrentPlayer().getRace() != null && GameManager.getCurrentPlayer().getRace().getTitle().equals(raceName)) {
 			gamePhase.escape(levels, treasures);
 		}
 	}
@@ -338,7 +338,7 @@ public class Effect {
 	 * @param treasures
 	 */
 	private static void escapeForClass(Combat gamePhase, String className, int levels, int treasures) {
-		if(GameManager.getCurrentPlayer().getCardClass().getTitle().equals(className)) {
+		if(GameManager.getCurrentPlayer().getCardClass() != null && GameManager.getCurrentPlayer().getCardClass().getTitle().equals(className)) {
 			gamePhase.escape(levels, treasures);
 		}
 	}
@@ -351,7 +351,7 @@ public class Effect {
 	 * @param treasures
 	 */
 	private static void escapeForObject(Combat gamePhase, EquipSlot slot, String cardName, int levels, int treasures) {
-		if(GameManager.getCurrentPlayer().getEquipment(slot).getTitle().equals(cardName))
+		if(GameManager.getCurrentPlayer().getEquipment(slot) != null && GameManager.getCurrentPlayer().getEquipment(slot).getTitle().equals(cardName))
 			gamePhase.escape(levels, treasures);
 	}
 	
