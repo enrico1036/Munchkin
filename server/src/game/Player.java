@@ -30,11 +30,7 @@ public class Player {
 	// private int classAllowed;
 	private ArrayList<Card> hand;
 	private HashMap<EquipSlot, Equipment> equipments;
-	// private Equipment head;
-	// private Equipment hand1;
-	// private Equipment hand2;
-	// private Equipment body;
-	// private Equipment feet;
+	private boolean firstHandOld;
 	private boolean alive;
 	private int escapeTreshold; // you can escape from monster only if rolling a die the result is higher or equal
 	private final int handSize = 5;
@@ -51,6 +47,7 @@ public class Player {
 		this.escapeTreshold = 5;
 		this.eventListener = listener;
 		equipments = new HashMap<>();
+		this.firstHandOld = true;
 		queue = new NewMessageQueue();
 	}
 
@@ -234,25 +231,9 @@ public class Player {
 	}
 
 	public boolean equip(cards.EquipSlot slot, cards.Equipment card) {
-		if (card.getSlot() != slot)
-			return false;
-		// switch (slot) {
-		// case head:
-		// this.head = card;
-		// break;
-		// case body:
-		// this.body = card;
-		// break;
-		// case hand1:
-		// this.hand1 = card;
-		// break;
-		// case hand2:
-		// this.hand2 = card;
-		// break;
-		// case feet:
-		// this.feet = card;
-		// break;
-		// }
+		if(slot == EquipSlot.hand) {
+			slot = firstHandOld ? EquipSlot.hand1 : EquipSlot.hand2;
+		}
 
 		Decks.discardCard(equipments.put(slot, card));
 

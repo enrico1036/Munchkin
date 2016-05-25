@@ -5,7 +5,8 @@ public enum EquipSlot {
 	body("body"), 
 	hand1("hand1"), 
 	hand2("hand2"), 
-	feet("feet");
+	feet("feet"),
+	hand("hand");
 	
 	private final String slot;
 	EquipSlot(String slot){
@@ -24,6 +25,8 @@ public enum EquipSlot {
 			return EquipSlot.hand2;
 		case "feet":
 			return EquipSlot.feet;
+		case "hand":
+			return EquipSlot.hand;
 		}
 		return null;
 	}
