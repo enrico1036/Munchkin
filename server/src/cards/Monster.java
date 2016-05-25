@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.util.Pair;
+import utils.StateMachine;
 
 public class Monster extends Card {
 
@@ -24,7 +25,7 @@ public class Monster extends Card {
 	}
 	
 	
-	public  HashMap<String, HashMap<String, String>> badThings(){
+	public  HashMap<String, HashMap<String, String>> getBadThings(){
 		return badThings;
 	}
 	
@@ -50,5 +51,8 @@ public class Monster extends Card {
 		return totalBonus;
 	}
 	
+	public void badThings(StateMachine gamePhase) {
+		Effect.runEffect(gamePhase, this.owner, this.badThings);
+	}
 	
 }

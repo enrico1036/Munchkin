@@ -15,6 +15,7 @@ import network.message.Message;
 import network.message.server.PlayCardMessage;
 import network.message.server.PlayerFullStatsMessage;
 import network.message.server.PlayCardMessage.Action;
+import sun.text.normalizer.CharTrie.FriendAgent;
 import network.message.server.PlayerEquipmentMessage;
 import utils.PlayerEventListener;
 
@@ -66,6 +67,9 @@ public class Player {
 	}
 
 	public void die() {
+		for (Card card : hand) {
+			sendMessage(new PlayCardMessage(card, Action.REMOVE));
+		}
 		this.hand.clear();
 		this.equipments.clear();
 		this.alive = false;
@@ -233,6 +237,7 @@ public class Player {
 	public boolean equip(cards.EquipSlot slot, cards.Equipment card) {
 		if(slot == EquipSlot.hand) {
 			slot = firstHandOld ? EquipSlot.hand1 : EquipSlot.hand2;
+			firstHandOld = !firstHandOld;
 		}
 
 		Decks.discardCard(equipments.put(slot, card));

@@ -12,6 +12,8 @@ import network.message.client.ClientGeneralRequest;
 import network.message.client.ConnectionRequestMessage;
 import network.message.client.PlayerStatusRequest;
 import network.message.client.SelectedCardMessage;
+import network.message.server.PlayCardMessage;
+import network.message.server.PlayCardMessage.Action;
 import network.message.server.PlayerEquipmentMessage;
 import network.message.server.PlayerFullStatsMessage;
 import network.message.server.ReadyLobbyMessage;
@@ -78,6 +80,7 @@ public class IncomingMessageHandler {
 			messageUsed = false;
 			if(selectedCard != null && selectedCard.getCategory() == Category.Curse) {
 				selectedCard.effect(null);
+				player.sendMessage(new PlayCardMessage(selectedCard, Action.REMOVE));
 				messageUsed = true;
 			}
 			break;

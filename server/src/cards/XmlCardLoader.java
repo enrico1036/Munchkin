@@ -138,7 +138,7 @@ public class XmlCardLoader {
 									
 										}
 									}	
-									monsterCard.badThings().put(effectName, badThings);
+									monsterCard.getBadThings().put(effectName, badThings);
 									
 							}else if(cardElem.getTagName().equals(effectAttr)){
 								HashMap<String,String> buff = new HashMap<>();

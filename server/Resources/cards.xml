@@ -203,7 +203,7 @@
 		
 		
 		<consumable name="e_il_suo_clone" onlyCombat="true" > 
-			<effect name="clone">
+			<effect name="cloneMonster">
 			</effect>
 		</consumable>
 		<consumable name="folle"  onlyCombat="true"> 

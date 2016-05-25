@@ -80,10 +80,9 @@ public class Combat extends StateMachine {
 						SelectedCardMessage message = (SelectedCardMessage) player.msgQueue().waitFor(Message.CLT_CARD_SELECTED);
 						// manage returned card (check if card.category is allowed)
 						Card card = player.getHandCard(message.getCardName());
-						GameManager.broadcastMessage(new PlayCardMessage(card, Action.SHOW));
-						GameManager.getCurrentPlayer().sendMessage((new PlayCardMessage(card, Action.REMOVE)));
 						switch (card.getCategory()) {
 						case Consumable:
+							cardSelected = false;
 							if(((Consumable)card).isCombatOnly()) {
 								cardSelected = true;
 								card.effect(this);							
@@ -96,6 +95,10 @@ public class Combat extends StateMachine {
 						default:
 							cardSelected = false;
 							break;
+						}
+						if(cardSelected) {
+							GameManager.broadcastMessage(new PlayCardMessage(card, Action.SHOW));
+							player.discardCard(card);
 						}
 					} while (!cardSelected);
 				}
@@ -119,13 +122,15 @@ public class Combat extends StateMachine {
 //				GameManager.getCurrentPlayer().sendMessage(new DiceResultMessage(die));
 				GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("You made " + Integer.toString(die), 5000));
 				if(die < GameManager.getCurrentPlayer().getEscapeTreshold()) {
-					//run bad things
+					//TODO: check bad things running
+					card.badThings(this);
 				}
 				die = (int) (Math.random()*5.0+1.0);
 //				helperPlayer.sendMessage(new DiceResultMessage(die));
 				helperPlayer.sendMessage(new PopUpMessage("You made " + Integer.toString(die), 5000));
 				if(die < helperPlayer.getEscapeTreshold()) {
-					//run bad things
+					//TODO: check bad things running
+					card.badThings(this);
 				}
 			}
 		} else { // No one helped player
@@ -140,7 +145,8 @@ public class Combat extends StateMachine {
 //				GameManager.getCurrentPlayer().sendMessage(new DiceResultMessage(die));
 				GameManager.getCurrentPlayer().sendMessage(new PopUpMessage("You made " + Integer.toString(die), 5000));
 				if(die < GameManager.getCurrentPlayer().getEscapeTreshold()) {
-					//run bad things
+					//TODO: check bad things running
+					card.badThings(this);
 				}
 			}
 		}
