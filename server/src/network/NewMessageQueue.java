@@ -69,5 +69,9 @@ public class NewMessageQueue {
 
 		return asyncMessage;
 	}
+	
+	public void clearQueue() {
+		queue.clear();
+	}
 
 }
