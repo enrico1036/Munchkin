@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import dataStructure.CardDataSet;
@@ -185,10 +186,26 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 			item.setSize(itemSize);
 			item.setVisible(true);
 			add(item);
-			item.repaint();
+			rePaintMyComponent(item);
 		}
 		selectedItemIndex = -1;
 		updateView();
 	}
-
+	
+	public void rePaintMyComponent(ClientCard card){
+		Runnable target = new Runnable() {
+			@Override
+			public void run() {
+				card.repaint();
+			}
+			};
+			
+			try {
+			SwingUtilities.invokeLater(target);
+			} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+			
+			}
 }

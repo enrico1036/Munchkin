@@ -3,6 +3,7 @@ package user_interface;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JPanel;
 
@@ -21,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Component;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 public class DeckPanel extends JPanel implements ActionListener, DataListener {
 
@@ -140,5 +142,25 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 		} else {
 			doorCards.setEnabled(false);
 		}
+		rePaintMyComponent();
+		
 	}
+	
+	public void rePaintMyComponent(){
+	Runnable target = new Runnable() {
+		@Override
+		public void run() {
+			discards.repaint();
+		}
+		};
+		
+		try {
+		SwingUtilities.invokeLater(target);
+		} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		
+		}
+	
 }

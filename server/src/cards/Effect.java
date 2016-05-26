@@ -32,22 +32,24 @@ public class Effect {
 			
 				switch (effectID) {
 				// call right method with gamePhase and needed parameters
-				case "loseLevel":
+				case "loseLevel": //FUNZIONA
 					loseLevel(Integer.parseInt((parameters.get("numberLevel"))));
+					
 					break;
 				case "drawDoor":
 					drawDoor(Integer.parseInt(parameters.get("number")), Boolean.getBoolean(parameters.get("show")));
+					
 					break;
 				case "drawTreasure":
 					drawTreasure(Integer.parseInt(parameters.get("number")), Boolean.getBoolean(parameters.get("show")));
 					break;
-				case "combatBonus":
+				case "combatBonus": //FUNZIONA
 					combatBonus((Combat) gamePhase, owner, Integer.parseInt(parameters.get("playerBonus")), Integer.parseInt(parameters.get("extraTreasure")), Boolean.getBoolean(parameters.get("choosable")));
 					break;
-				case "dropObject":
+				case "dropObject": //FUNZIONA
 					dropObject(EquipSlot.parse(parameters.get("slot")));
 					break;
-				case "dropRace":
+				case "dropRace": 
 					dropRace();
 					break;
 				case "dropClass":
@@ -56,19 +58,19 @@ public class Effect {
 				case "bonusEscape":
 					bonusEscape(owner, Integer.parseInt(parameters.get("bonus")));
 					break;
-				case "bonusToRace":
+				case "bonusToRace": //FUNZIONA
 					bonusToRace((Combat) gamePhase, parameters.get("raceName"), Integer.parseInt(parameters.get("bonus")));
 					break;
-				case "bonusToClass":
+				case "bonusToClass": //FUNZIONA
 					bonusToClass((Combat) gamePhase, parameters.get("className"), Integer.parseInt(parameters.get("bonus")));
 					break;
-				case "dead":
+				case "dead": //FUNZIONA
 					dead();
 					break;
 				case "dropCard":
 					dropCard(Category.valueOf(parameters.get("cardCategory")), Integer.parseInt(parameters.get("number")), Boolean.parseBoolean(parameters.get("onlyHand")));
 					break;
-				case "dropAllHand":
+				case "dropAllHand": //FUNZIONA
 					dropAllHand();
 					break;
 				case "escapeForRace":
@@ -86,7 +88,7 @@ public class Effect {
 				case "updateLevelAll":
 					updateLevelAll();
 					break;
-				case "cloneMonster":
+				case "cloneMonster": //FUNZIONA
 					cloneMonster((Combat) gamePhase);
 					break;
 				}
@@ -287,7 +289,9 @@ public class Effect {
 	 * Discard all the cards from current player's hand
 	 */
 	private static void dropAllHand() {
-		for (Card card : GameManager.getCurrentPlayer().getHand()) {
+		
+		while(!GameManager.getCurrentPlayer().getHand().isEmpty()){
+			Card card = GameManager.getCurrentPlayer().getHand().get(0);
 			Decks.discardCard(GameManager.getCurrentPlayer().pickCard(card.getTitle()));
 		}
 	}
