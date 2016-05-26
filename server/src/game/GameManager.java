@@ -74,6 +74,7 @@ public class GameManager {
 			turn();
 			if(getCurrentPlayer().getLevel() >= 10)
 				win();
+			clearAllMessageQueues();
 		}
 		end();
 	}
@@ -111,5 +112,11 @@ public class GameManager {
 				selectedPlayer = player;
 		}
 		return selectedPlayer;
+	}
+	
+	private static void clearAllMessageQueues() {
+		for (Player player : players) {
+			player.msgQueue().clearQueue();
+		}
 	}
 }
