@@ -85,7 +85,10 @@ public class Player {
 	}
 
 	public void leveleUp(int x) {
-		this.level += x;
+		level += x;
+		if(level < 1) {
+			level = 1;
+		}
 		GameManager.broadcastMessage(new PlayerFullStatsMessage(this));
 	}
 
