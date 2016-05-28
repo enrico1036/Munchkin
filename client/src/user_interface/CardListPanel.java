@@ -113,7 +113,7 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 			arrangeItems(selectedItemIndex + 1, items.size() - selectedItemIndex - 1, viewport);
 		}
 
-		repaint();
+		rePaintMyComponent();
 	}
 
 	private void arrangeItems(int firstItem, int numItems, BoundRect view) {
@@ -186,17 +186,17 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 			item.setSize(itemSize);
 			item.setVisible(true);
 			add(item);
-			rePaintMyComponent(item);
+			//rePaintMyComponent(item);
 		}
 		selectedItemIndex = -1;
 		updateView();
 	}
 	
-	public void rePaintMyComponent(ClientCard card){
+	public void rePaintMyComponent(){
 		Runnable target = new Runnable() {
 			@Override
 			public void run() {
-				card.repaint();
+				repaint();
 			}
 			};
 			
