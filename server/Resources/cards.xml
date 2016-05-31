@@ -269,7 +269,7 @@
 		  <choosable>false</choosable>
 		  </effect>
 		 </consumable>
-		<consumable name="da_un_altra_dimensione" onlyCombat="true" >
+		<consumable name="da_unaltra_dimensione" onlyCombat="true" >
 		 <effect name="combatBonus">
 		  <playerBonus>-10</playerBonus>
 		  <extraTreasure>2</extraTreasure>

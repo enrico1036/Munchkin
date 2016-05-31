@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import client.MunchkinClient;
 import dataStructure.CardDataSet;
 import dataStructure.DataListener;
 import dataStructure.SharedData;
@@ -113,7 +114,8 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 			arrangeItems(selectedItemIndex + 1, items.size() - selectedItemIndex - 1, viewport);
 		}
 
-		rePaintMyComponent();
+		//rePaintMyComponent();
+		
 	}
 
 	private void arrangeItems(int firstItem, int numItems, BoundRect view) {
@@ -186,22 +188,25 @@ public class CardListPanel<E extends JComponent> extends JPanel implements Mouse
 			item.setSize(itemSize);
 			item.setVisible(true);
 			add(item);
-			//rePaintMyComponent(item);
+			rePaintMyComponent((JComponent)item);
 		}
 		selectedItemIndex = -1;
 		updateView();
 	}
 	
-	public void rePaintMyComponent(){
+	public void rePaintMyComponent(JComponent item){
 		Runnable target = new Runnable() {
 			@Override
 			public void run() {
-				repaint();
+				//item.repaint();
+				
+				MunchkinClient.getWindow().setSize(MunchkinClient.getWindow().getWidth(), MunchkinClient.getWindow().getHeight()+1);
+				MunchkinClient.getWindow().setSize(MunchkinClient.getWindow().getWidth(), MunchkinClient.getWindow().getHeight()-1);
 			}
 			};
 			
 			try {
-			SwingUtilities.invokeLater(target);
+			SwingUtilities.invokeAndWait(target);
 			} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

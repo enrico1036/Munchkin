@@ -144,6 +144,7 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 		}
 		rePaintMyComponent();
 		
+		
 	}
 	
 	public void rePaintMyComponent(){
@@ -151,6 +152,7 @@ public class DeckPanel extends JPanel implements ActionListener, DataListener {
 		@Override
 		public void run() {
 			discards.repaint();
+			
 		}
 		};
 		

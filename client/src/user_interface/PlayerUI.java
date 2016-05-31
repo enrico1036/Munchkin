@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 import cards.EquipSlot;
@@ -23,6 +24,7 @@ import network.GameEventHandler;
 import cards.EquipSlot;
 import java.awt.FlowLayout;
 import javax.swing.JSplitPane;
+import javax.swing.SwingUtilities;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout.SequentialGroup;
@@ -84,13 +86,15 @@ public class PlayerUI extends GamePanel implements DataListener {
 		// update the player level and power value
 		statistics.getLblPlayerLevelValue().setText(String.valueOf(Data.getPlayer(playerName).getLevel()));
 		statistics.getLblPlayerPowerValue().setText(String.valueOf(Data.getPlayer(playerName).getCombatLevel()));
-
+		//rePaintMyComponent((JComponent)statistics.getLblPlayerLevelValue());
+		//rePaintMyComponent((JComponent)statistics.getLblPlayerPowerValue());
 		// update the player race
 		BufferedImage image = MunchkinClient.getImage(Data.getPlayer(playerName).getRaceCard());
 
-		if (statistics.getPlayerClass().zoomedPanelIsNull())
-			statistics.getPlayerClass().setZoomedPanel(zp);
+		if (statistics.getPlayerRace().zoomedPanelIsNull())
+			statistics.getPlayerRace().setZoomedPanel(zp);
 			statistics.getPlayerRace().setImage(image);
+			//rePaintMyComponent((JComponent)statistics.getPlayerRace());
 
 		// update the player class
 		image = MunchkinClient.getImage(Data.getPlayer(playerName).getClassCard());
@@ -98,15 +102,24 @@ public class PlayerUI extends GamePanel implements DataListener {
 		if (statistics.getPlayerClass().zoomedPanelIsNull())
 			statistics.getPlayerClass().setZoomedPanel(zp);
 			statistics.getPlayerClass().setImage(image);
+			//rePaintMyComponent((JComponent)statistics.getPlayerClass());
 
 		// update the size of the player hand
 		statistics.getLblNumCards().setText(String.valueOf(Data.getPlayer(playerName).getHandSize()));
-
+		//rePaintMyComponent((JComponent)statistics.getLblNumCards());
+		
 		equipment.getPlayerHead().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.head)));
 		equipment.getPlayerHand1().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.hand1)));
 		equipment.getPlayerHand2().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.hand2)));
 		equipment.getPlayerBody().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.body)));
 		equipment.getPlayerFeet().setImage(MunchkinClient.getImage(Data.getPlayer(playerName).getEquipment(EquipSlot.feet)));
+		/*
+		rePaintMyComponent((JComponent)equipment.getPlayerHead());
+		rePaintMyComponent((JComponent)equipment.getPlayerHand1());
+		rePaintMyComponent((JComponent)equipment.getPlayerHand2());
+		rePaintMyComponent((JComponent)equipment.getPlayerBody());
+		rePaintMyComponent((JComponent)equipment.getPlayerFeet());
+		*/
 		
 		/**
 		 * if-else statement that set as red, otherwise black,
@@ -119,5 +132,29 @@ public class PlayerUI extends GamePanel implements DataListener {
 		{
 			statistics.getLblPlayerName().setForeground(Color.BLACK);
 		}
+		
+		
+		MunchkinClient.getWindow().setSize(MunchkinClient.getWindow().getWidth(), MunchkinClient.getWindow().getHeight()+1);
+		MunchkinClient.getWindow().setSize(MunchkinClient.getWindow().getWidth(), MunchkinClient.getWindow().getHeight()-1);
+		
 	}
+	
+
+	public void rePaintMyComponent(JComponent item){
+		Runnable target = new Runnable() {
+			@Override
+			public void run() {
+				item.repaint();
+				
+			}
+			};
+			
+			try {
+			SwingUtilities.invokeAndWait(target);
+			} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+			
+			}
 }
