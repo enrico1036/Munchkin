@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Date;
+
 import cards.Card;
 import cards.Consumable;
 import cards.Monster;
@@ -51,15 +53,18 @@ public class Combat extends StateMachine {
 				if (!player.getUsername().equals(GameManager.getCurrentPlayer().getUsername()))
 					player.sendMessage(new PopUpMessage("Do you want to help " + GameManager.getCurrentPlayer().getUsername() + " for " + Integer.toString(promisedTreasure) + "? (N)", "No", "Yes", 10000));
 			}
-
-			for (int i = 0; i < GameManager.getPlayers().size() - 1; i++) {
-				// wait for popup answer, if yes set helperPlayer
-				// ret = (PopUpResultMessage) GameManager.getInQueue().waitForMessage(Message.CLT_POPUP_RESULT).getValue();
-				//if (ret.isButton2Pressed()) {
-				//	helperPlayer = GameManager.getPlayerByName(ret.getSender());
-				//	break;
-				//}
+			
+			Date firtSent = new Date(System.currentTimeMillis() + 300000);
+			for (Player player : GameManager.getPlayers()) { // ask to all except for the current player
+				if (!player.getUsername().equals(GameManager.getCurrentPlayer().getUsername())){
+					// wait for popup answer, if yes set helperPlayer
+					ret = (PopUpResultMessage) player.msgQueue().waitFor(Message.CLT_POPUP_RESULT);
+					if (ret.isButton2Pressed() && firtSent.after(ret.getTime())) {
+						helperPlayer = GameManager.getPlayerByName(ret.getSender());
+					}
+				}
 			}
+
 		}
 	}
 

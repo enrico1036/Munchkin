@@ -1,6 +1,7 @@
 package network.message;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public abstract class Message implements Serializable {
 
@@ -79,13 +80,18 @@ public abstract class Message implements Serializable {
 	/*
 	 * MESSAGE CODES LIST END
 	 */
-
+	protected final Date creationTime;
 	protected final String messageCode;
 
 	public Message(String code) {
 		this.messageCode = code;
+		creationTime = new Date(System.currentTimeMillis());
 	}
-
+	
+	public Date getTime(){
+		return creationTime;
+	}
+	
 	public String getMessageCode() {
 		return messageCode;
 	}
