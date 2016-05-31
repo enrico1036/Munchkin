@@ -113,6 +113,7 @@ public class Combat extends StateMachine {
 	}
 
 	private void end() {
+		
 		playerWon = false;
 		if (helperPlayer != null) {	// helperPlayer present
 			if (helperPlayer.getCombatLevel() + GameManager.getCurrentPlayer().getCombatLevel() + playerCombatBonus > card.getLevel()) {

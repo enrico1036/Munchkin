@@ -6,10 +6,13 @@ import debug.Debug;
 import network.message.Message;
 
 public class NewMessageQueue {
+	private static long MAX_WAIT_MILLIS = 30000; 
+	
 	private LinkedList<Message> queue;
 	private Message asyncMessage;
 	private boolean onWait;
 	private Object lock;
+	
 
 	public NewMessageQueue() {
 		queue = new LinkedList<>();
@@ -54,11 +57,16 @@ public class NewMessageQueue {
 		}
 
 		asyncMessage = null;
+		long millis = System.currentTimeMillis();
 		// Wait for that message to come
 		while (asyncMessage == null || !asyncMessage.getMessageCode().equals(messageType)) {
 			try {
 				synchronized (lock) {
-					lock.wait();
+					// Lock for 30 sec max
+					lock.wait(MAX_WAIT_MILLIS);
+					// Exit in case wait exits before timeout
+					if(System.currentTimeMillis() - millis > MAX_WAIT_MILLIS)
+						break;
 				}
 			} catch (InterruptedException e) {
 				continue;
