@@ -296,11 +296,6 @@
 	</doors>
 	<treasures>
 	
-		<equipment name="autofuga_1000" slot="feet" bonus="0" value="400" >
-			<effect name="bonusEscape">
-				<bonus>2</bonus>
-			</effect>
-		</equipment>
 		<equipment name="ruotini_retrattili" slot="feet" bonus="0" value="400" >
 			<effect name="bonusEscape">
 				<bonus>1</bonus>

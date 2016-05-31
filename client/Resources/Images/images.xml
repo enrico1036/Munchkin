@@ -311,10 +311,7 @@
     <!-- Treasure Cards -->
     
  
-    <image>
-    	<name>autofuga_1000</name>
-    	<path>Resources/Images/Cards/autofuga_1000.png</path>
-    </image>
+    
     <image>
     	<name>bobaser</name>
     	<path>Resources/Images/Cards/bobaser.png</path>
