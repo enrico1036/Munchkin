@@ -6,6 +6,7 @@ import cards.Card;
 import cards.Consumable;
 import cards.Monster;
 import network.message.Message;
+import network.message.client.ChatMessage;
 import network.message.client.PopUpResultMessage;
 import network.message.client.SelectedCardMessage;
 import network.message.server.ClearAllTableMessage;
@@ -60,7 +61,7 @@ public class Combat extends StateMachine {
 					// wait for popup answer, if yes set helperPlayer
 					ret = (PopUpResultMessage) player.msgQueue().waitFor(Message.CLT_POPUP_RESULT);
 					if (ret.isButton2Pressed() && firtSent.after(ret.getTime())) {
-						helperPlayer = GameManager.getPlayerByName(ret.getSender());
+						helperPlayer = player;
 					}
 				}
 			}
@@ -160,6 +161,9 @@ public class Combat extends StateMachine {
 	
 	public void addPlayerCombatBonus(int playerCombatBonus) {
 		this.playerCombatBonus += playerCombatBonus;
+		GameManager.broadcastMessage(new ChatMessage("Server", 
+				GameManager.getCurrentPlayer().getUsername() + 
+				" combat bonus: " + Integer.toString(playerCombatBonus)));
 	}
 	
 	public void addPlayerTreasureBonus(int playerTreasureBonus) {
