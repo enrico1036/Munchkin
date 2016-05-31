@@ -49,13 +49,13 @@ public class Effect {
 				case "dropObject": //FUNZIONA
 					dropObject(EquipSlot.parse(parameters.get("slot")));
 					break;
-				case "dropRace": 
+				case "dropRace": //FUNZIONA
 					dropRace();
 					break;
 				case "dropClass":
 					dropClass();
 					break;
-				case "bonusEscape":
+				case "bonusEscape": //FUNZIONA
 					bonusEscape(owner, Integer.parseInt(parameters.get("bonus")));
 					break;
 				case "bonusToRace": //FUNZIONA
