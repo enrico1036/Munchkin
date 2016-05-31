@@ -31,7 +31,6 @@ public class NewMessageQueue {
 	}
 
 	public void append(Message message) {
-		Debug.log("Appended: " + message.getMessageCode());
 		if (onWait) {
 			asyncMessage = message;
 			synchronized (lock) {
@@ -62,11 +61,11 @@ public class NewMessageQueue {
 		while (asyncMessage == null || !asyncMessage.getMessageCode().equals(messageType)) {
 			try {
 				synchronized (lock) {
-					// Lock for 30 sec max
-					lock.wait(MAX_WAIT_MILLIS);
 					// Exit in case wait exits before timeout
-					if(System.currentTimeMillis() - millis > MAX_WAIT_MILLIS)
-						break;
+					//if(System.currentTimeMillis() - millis > MAX_WAIT_MILLIS)
+						//break;
+					// Lock for 30 sec max
+					lock.wait();
 				}
 			} catch (InterruptedException e) {
 				continue;
