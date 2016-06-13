@@ -251,46 +251,11 @@ public class Player {
 	}
 
 	public Equipment getEquipment(EquipSlot slot) {
-		// Equipment card = null;
-		// switch (slot) {
-		// case head:
-		// card = this.head;
-		// break;
-		// case body:
-		// card = this.body;
-		// break;
-		// case hand1:
-		// card = this.hand1;
-		// break;
-		// case hand2:
-		// card = this.hand2;
-		// break;
-		// case feet:
-		// card = this.feet;
-		// break;
-		// }
 		return equipments.get(slot);
 	}
 
 	public Equipment removeEquipment(EquipSlot slot) {
 		Equipment card = null;
-		// switch (slot) {
-		// case head:
-		// card = this.head;
-		// break;
-		// case body:
-		// card = this.body;
-		// break;
-		// case hand1:
-		// card = this.hand1;
-		// break;
-		// case hand2:
-		// card = this.hand2;
-		// break;
-		// case feet:
-		// card = this.feet;
-		// break;
-		// }
 		card = equipments.remove(slot);
 		GameManager.broadcastMessage(new PlayerEquipmentMessage(this));
 		return card;

@@ -105,21 +105,23 @@ public class Combat extends StateMachine {
 						// manage returned card (check if card.category is
 						// allowed)
 						Card card = player.getHandCard(message.getCardName());
-						switch (card.getCategory()) {
-						case Consumable:
-							cardSelected = false;
-							if (((Consumable) card).isCombatOnly()) {
+						if(card != null) {
+							switch (card.getCategory()) {
+							case Consumable:
+								cardSelected = false;
+								if (((Consumable) card).isCombatOnly()) {
+									cardSelected = true;
+									card.effect(this);
+								}
+								break;
+							case Curse:
 								cardSelected = true;
 								card.effect(this);
+								break;
+							default:
+								cardSelected = false;
+								break;
 							}
-							break;
-						case Curse:
-							cardSelected = true;
-							card.effect(this);
-							break;
-						default:
-							cardSelected = false;
-							break;
 						}
 						if (cardSelected) {
 							GameManager.broadcastMessage(new PlayCardMessage(card, Action.SHOW));

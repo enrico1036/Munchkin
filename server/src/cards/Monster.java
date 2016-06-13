@@ -52,7 +52,11 @@ public class Monster extends Card {
 	}
 	
 	public void badThings(StateMachine gamePhase) {
-		Effect.runEffect(gamePhase, this.owner, this.badThings);
+		try {
+			Effect.runEffect(gamePhase, this.owner, this.badThings);
+		} catch (Exception e) {
+			//e.printStackTrace();
+		}
 	}
 	
 }

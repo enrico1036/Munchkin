@@ -24,7 +24,7 @@ import utils.StateMachine;
 
 public class Effect {
 
-	public static void runEffect(StateMachine gamePhase, Player owner, HashMap<String, HashMap<String, String>> effects) {
+	public static void runEffect(StateMachine gamePhase, Player owner, HashMap<String, HashMap<String, String>> effects) throws Exception {
 			for(String effectID : effects.keySet()){
 				HashMap<String, String> parameters = effects.get(effectID);
 				
@@ -34,11 +34,9 @@ public class Effect {
 				// call right method with gamePhase and needed parameters
 				case "loseLevel": //FUNZIONA
 					loseLevel(Integer.parseInt((parameters.get("numberLevel"))));
-					
 					break;
 				case "drawDoor":
 					drawDoor(Integer.parseInt(parameters.get("number")), Boolean.getBoolean(parameters.get("show")));
-					
 					break;
 				case "drawTreasure":
 					drawTreasure(Integer.parseInt(parameters.get("number")), Boolean.getBoolean(parameters.get("show")));

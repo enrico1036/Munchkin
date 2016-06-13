@@ -42,11 +42,19 @@ public abstract class Card {
 		}
 		
 		public void effect(StateMachine gamePhase) {
-			Effect.runEffect(gamePhase, this.owner, this.effects);
+			try {
+				Effect.runEffect(gamePhase, this.owner, this.effects);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		public void endEffect(StateMachine gamePhase) {
-			Effect.runEffect(gamePhase, this.owner, this.endEffects);
+			try {
+				Effect.runEffect(gamePhase, this.owner, this.endEffects);
+			} catch (Exception e) {
+				//e.printStackTrace();
+			}
 		}
 		
 		public String getTitle() {
